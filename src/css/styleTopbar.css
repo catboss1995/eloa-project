@@ -27,8 +27,8 @@ nav {
 
 .nav-right a {
     text-decoration: none;
-    font-size: var(--font-light);
-    color: var(--light-brown);
+    font-size: var(--font18-light);
+    color: var(--light-brown5);
 }
 
 .nav-right img {
