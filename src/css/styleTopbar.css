@@ -1,0 +1,36 @@
+@import url("../../public/styleReset.css");
+
+nav {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+#topbar-logo {
+    height: 40px;
+}
+
+/* nav裡面靠右的元素 */
+.nav-right {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: 20px;
+    padding-right: 80px;
+}
+
+.nav-right a {
+    text-decoration: none;
+    font-size: var(--font-light);
+    color: var(--light-brown);
+}
+
+.nav-right img {
+    height: 30px;
+}
