@@ -1,4 +1,4 @@
-import "../css/styleTopbar.css"
+import "../scss/styleTopbar.scss"
 import topbarLogo from "../assets/images/topbarLogo.png"
 import topbarMember from "../assets/images/topbarMember.png"
 import topbarBag from "../assets/images/topbarBag.png"

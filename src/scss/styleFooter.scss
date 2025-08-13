@@ -1,9 +1,9 @@
-@import url("../../public/styleReset.css");
+@use "./styleReset" as *;
 
 footer {
     display: flex;
     flex-direction: column;
-    background-color: var(--brown4);
+    background-color: $brown4;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -31,10 +31,10 @@ footer {
     justify-content: center;
     width: 100%;
     height: 90px;
-    background-color: var(--dark-brown2);
+    background-color: $dark-brown2;
 }
 
 #footer-copyright p {
     width: fit-content;
-    color: var(--white);
+    color: $white;
 }

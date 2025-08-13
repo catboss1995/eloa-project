@@ -1,49 +1,47 @@
 @charset "UTF-8";
 
-:root {
-    /* 字體大小 */
-    --font14-light: 14px;
-    --font16-light: 16px;
-    --font18-light: 18px;
-    --font24-light: 24px;
-    --font32-light: 32px;
-    --font40-light: 40px;
-    --font48-light: 48px;
-    --font56-light: 56px;
-    --font64-light: 64px;
+/* 字體大小 */
+$font14-light: 14px;
+$font16-light: 16px;
+$font18-light: 18px;
+$font24-light: 24px;
+$font32-light: 32px;
+$font40-light: 40px;
+$font48-light: 48px;
+$font56-light: 56px;
+$font64-light: 64px;
 
-    /* 色彩 */
+/* 色彩 */
 
-    --white: #FFFFFF;
+$white: #FFFFFF;
 
-    --light-brown1: #D8C6AB;
-    --light-brown2: #CAAE81;
-    --light-brown3: #C4B29A;
-    --light-brown4: #CBB9A3;
-    --light-brown5: #CAAE81;
-    --light-brown6: #B98E4C;
+$light-brown1: #D8C6AB;
+$light-brown2: #CAAE81;
+$light-brown3: #C4B29A;
+$light-brown4: #CBB9A3;
+$light-brown5: #CAAE81;
+$light-brown6: #B98E4C;
 
-    --dark-brown1: #48270D;
-    --dark-brown2: #5B4C39;
+$dark-brown1: #48270D;
+$dark-brown2: #5B4C39;
 
-    --brown1: #A78F75;
-    --brown2: #8B7357;
-    --brown3: #A38D78;
-    --brown4: #C5BEAC;
+$brown1: #A78F75;
+$brown2: #8B7357;
+$brown3: #A38D78;
+$brown4: #C5BEAC;
 
-    --beige0: #FAF9F5;
-    --beige1: #F3EFE6;
-    --beige2: #F0E8DB;
-    --beige3: #F4F1EA;
-    --beige4: #E6DBC9;
-    --beige5: #DDD1B9;
+$beige0: #FAF9F5;
+$beige1: #F3EFE6;
+$beige2: #F0E8DB;
+$beige3: #F4F1EA;
+$beige4: #E6DBC9;
+$beige5: #DDD1B9;
 
-    --natural-gray70: #F1EFEF;
-    --natural-gray100: #D9D9D9;
+$natural-gray70: #F1EFEF;
+$natural-gray100: #D9D9D9;
 
-    --pink1: #FFE3E3;
+$pink1: #FFE3E3;
 
-}
 
 /* CSS Reset */
 html,

@@ -1,4 +1,4 @@
-@import url("../../public/styleReset.css");
+@use "styleReset" as *;
 
 nav {
     display: flex;
@@ -14,7 +14,7 @@ nav {
 
 #topbar-logo {
     height: 40px;
-    padding-left: 40px;
+    padding-left: 30px;
     object-fit: contain;
 }
 
@@ -27,10 +27,13 @@ nav {
     padding-right: 40px;
 }
 
-.nav-right a {
-    text-decoration: none;
-    font-size: var(--font18-light);
-    color: var(--light-brown5);
+.nav-right {
+    a {
+        text-decoration: none;
+        font-size: $font18-light;
+        color: $light-brown5;
+    }
+
 }
 
 .nav-right img {

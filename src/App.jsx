@@ -26,6 +26,7 @@ function App() {
         <Route path='/ShopCart' element={<ShopCart/>}></Route>
         <Route path='/SkinTest' element={<SkinTest/>}></Route>
       </Routes>
+      <Footer/>
       
     </>
   )
