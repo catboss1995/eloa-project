@@ -1,23 +1,24 @@
 import "../css/styleTopbar.css"
-import topbarLogo from "../images/topbarLogo.png"
-import topbarMember from "../images/topbarMember.png"
-import topbarBag from "../images/topbarBag.png"
-
+import topbarLogo from "../assets/images/topbarLogo.png"
+import topbarMember from "../assets/images/topbarMember.png"
+import topbarBag from "../assets/images/topbarBag.png"
+import { Link } from "react-router-dom"
 
 
 const Topbar = () => {
   return (
     <nav>
-        <img src={topbarLogo} alt="logo" id="topbar-logo"/>
-        <div className="nav-right">
-            <a href="#">產品資訊</a>
-            <a href="#">我的膚況區</a>
-            <a href="#">肌膚學苑</a>
-            <a href="#">常見問題</a>
-            <a href="#">最新消息</a>
-            <img src={topbarMember} alt="memberIcon" id="topbar-member"/>
-            <img src={topbarBag} alt="bagIcon" id="topbar-bag"/>
-        </div>
+      <Link to="/"><img src={topbarLogo} alt="logo" id="topbar-logo" /></Link>
+      
+      <div className="nav-right">
+        <Link to="/ProductInfo">產品資訊</Link>
+        <Link to="/SkinTest">我的膚況區</Link>
+        <Link to="/Article">肌膚學苑</Link>
+        <Link to="/FQA">常見問題</Link>
+        <Link to="/News">最新消息</Link>
+        <Link to="/Member"><img src={topbarMember} alt="memberIcon" id="topbar-member" /></Link>
+        <Link to="/ShopCart"><img src={topbarBag} alt="bagIcon" id="topbar-bag" /></Link>
+      </div>
     </nav>
   )
 }
