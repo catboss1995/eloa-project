@@ -3,11 +3,26 @@ import topbarLogo from "../assets/images/topbarLogo.png"
 import topbarMember from "../assets/images/topbarMember.png"
 import topbarBag from "../assets/images/topbarBag.png"
 import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 
 const Topbar = () => {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(()=>{
+    const scrolling = () =>{
+      const scrollPosition = window.scrollY
+      // 一往下滾動就改變
+      setScrolled(scrollPosition>1)
+    }
+
+    window.addEventListener("scroll", scrolling)
+    return () => {
+      window.removeEventListener("scroll", scrolling)
+    }
+  },[])
   return (
-    <nav>
+    <nav className={scrolled ? "scroll" : ""}>
       <Link to="/"><img src={topbarLogo} alt="logo" id="topbar-logo" /></Link>
       
       <div className="nav-right">

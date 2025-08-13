@@ -11,6 +11,13 @@ nav {
     justify-content: space-between;
     background-color: $white;
     z-index: 99;
+
+    // 滾動下滑效果
+    &.scroll {
+        background: rgba(255, 255, 255, 0.4); 
+        backdrop-filter: blur(20px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
 }
 
 #topbar-logo {
