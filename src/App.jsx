@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Topbar></Topbar>
-      <Footer></Footer>
+
     </>
   )
 }
