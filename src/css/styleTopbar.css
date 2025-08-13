@@ -9,12 +9,13 @@ nav {
     height: 64px;
     align-items: center;
     justify-content: space-between;
-    padding: 0 40px;
+    
 }
 
 #topbar-logo {
     height: 40px;
-    margin: 0 30px;
+    padding-left: 40px;
+    object-fit: contain;
 }
 
 /* nav裡面靠右的元素 */
@@ -23,7 +24,7 @@ nav {
     width: fit-content;
     align-items: center;
     gap: 20px;
-    padding-right: 80px;
+    padding-right: 40px;
 }
 
 .nav-right a {

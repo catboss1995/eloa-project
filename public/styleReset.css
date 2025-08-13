@@ -157,6 +157,7 @@ ol {
 /* 重置圖片 */
 img {
     display: block;
+    width: 100%;
 }
 
 /* 重置連接 */
