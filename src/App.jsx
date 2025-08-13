@@ -15,8 +15,7 @@ import SkinTest from "./pages/SkinTest"
 function App() {
   return (
     <>    
-      <Topbar></Topbar>
-      
+      <Topbar></Topbar>      
       <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/Article' element={<Article/>}></Route>
@@ -27,7 +26,7 @@ function App() {
         <Route path='/ShopCart' element={<ShopCart/>}></Route>
         <Route path='/SkinTest' element={<SkinTest/>}></Route>
       </Routes>
-
+      
     </>
   )
 }

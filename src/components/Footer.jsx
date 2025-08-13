@@ -1,5 +1,5 @@
 import "../css/styleFooter.css"
-import topbarLogo from "../images/topbarLogo.png"
+import topbarLogo from "../assets/images/topbarLogo.png"
 
 const Footer = () => {
   return (
