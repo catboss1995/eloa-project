@@ -1,8 +1,16 @@
-import React from 'react'
+import "../scss/styleHome.scss"
 
 const Home = () => {
   return (
-    <div>我是首頁</div>
+    <>
+      <section className='h100-vh'>
+        test
+      </section>
+      <section className='h100-vh'>
+        test
+      </section>
+
+    </>
   )
 }
 

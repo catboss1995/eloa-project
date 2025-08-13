@@ -1,10 +1,10 @@
 @use "./styleReset" as *;
 
 footer {
+    position: relative;
     display: flex;
     flex-direction: column;
     background-color: $white;
-    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -18,13 +18,12 @@ h3 {
 #footer-main {
     display: flex;
     justify-content: space-between;
-    padding: 20px 40px;
-
+    padding: 20px 50px;
     #footer-left {
         display: flex;
         flex-direction: column;
-        width: 760px;
-
+        width: 100%;
+        margin-left: 50px;
         #footer-logo {
             height: 40px;
             object-fit: contain;
@@ -47,7 +46,7 @@ h3 {
     }
 
     #footer-right {
-        width: 760px;
+        width: 100%;
         align-self: flex-end;
 
         #site-map-connect {
