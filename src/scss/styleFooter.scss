@@ -15,16 +15,16 @@ h3 {
     color: $dark-brown2;
 }
 
-#footer-main {
+#ftrMain {
     display: flex;
     justify-content: space-between;
     padding: 20px 50px;
-    #footer-left {
+    #leftArea {
         display: flex;
         flex-direction: column;
         width: 100%;
         margin-left: 50px;
-        #footer-logo {
+        #logo {
             height: 40px;
             object-fit: contain;
             object-position: left;
@@ -36,7 +36,7 @@ h3 {
             width: fit-content;
         }
 
-        #footer-social-media {
+        #socials {
             display: flex;
             justify-content: flex-start;
             margin-top: 30px;
@@ -45,11 +45,11 @@ h3 {
         }
     }
 
-    #footer-right {
+    #rightArea {
         width: 100%;
         align-self: flex-end;
 
-        #site-map-connect {
+        #siteMap {
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
@@ -66,20 +66,19 @@ h3 {
             }
         }
 
-        #footer-sitemap {
+        #tools {
             display: flex;
             flex-direction: row;
             gap: 40px;
             a {
                 margin-top: 30px;
                 width: 30px;
-                
             }
         }
     }
 }
 
-#footer-copyright {
+#copyright {
     width: 100%;
     background-color: $brown1;
 

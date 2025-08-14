@@ -1,0 +1,299 @@
+@use "./styleReset"as *;
+
+// 主頁面樣式
+.acadPage {
+    width: 100%;
+    background-color: $beige0;
+    color: $dark-brown2;
+    overflow-x: hidden;
+}
+
+// 主視覺區塊
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../assets/images/articleHero.png');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+// 左側文字
+.leftText {
+    position: absolute;
+    font-size: 24px;
+    font-weight: 300;
+    color: $dark-brown1;
+    opacity: 0.9;
+    left: 12%;
+    top: 38%;
+}
+
+// 右側文字
+.rightText {
+    position: absolute;
+    font-size: 24px;
+    font-weight: 300;
+    color: $dark-brown1;
+    opacity: 0.9;
+    right: 12%;
+    top: 38%;
+}
+
+// 中央標題區
+.centerBox {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+}
+
+// 主標題
+.mainTitle {
+    font-size: 20px;
+    font-weight: 400;
+    color: $dark-brown1;
+    margin: 5px 0;
+    position: relative;
+    text-align: center;
+
+    // 添加左右兩側水平線
+    &::before, &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        height: 1px;
+        width: 80px;
+        background-color: $dark-brown1;
+        opacity: 0.8;
+    }
+                
+    &::before {
+        right: 100%;
+        margin-right: 20px;
+    }
+                
+    &::after {
+        left: 100%;
+        margin-left: 20px;
+    }
+}
+
+// 副標題
+.subTitle {
+    font-size: 12px;
+    font-weight: 300;
+    color: $dark-brown2;
+    margin: 5px 0;
+    text-align: center;
+}
+
+// 導航按鈕容器
+.navWrap {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+// 導航按鈕
+.navBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    color: $dark-brown1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.7);
+    }
+}
+
+// 搜尋按鈕
+.searchBtn {
+    .searchIcon {
+        font-size: 14px;
+        margin-right: 5px;
+    }
+}
+
+// 內容區塊
+.contentSec {
+    padding: 80px 10%;
+}
+
+// 區塊標題
+.secTitle {
+    font-size: 28px;
+    font-weight: 300;
+    color: $dark-brown1;
+    margin-bottom: 40px;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 60px;
+        height: 2px;
+        background-color: $light-brown2;
+    }
+}
+
+// 米色背景
+.beigeBg {
+    background-color: $beige1;
+}
+
+// 文章列表
+.articleList {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+// 文章卡片
+.articleCard {
+    display: flex;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+
+    // 反向排列
+    &.reverse {
+        flex-direction: row-reverse;
+        .cardText {
+            padding-left: 5%;
+            padding-right: 8%;
+        }
+    }
+}
+
+// 卡片文字區
+.cardText {
+    flex: 1;
+    padding: 40px 8% 40px 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+// 卡片標題
+.cardTitle {
+    font-size: 22px;
+    font-weight: 500;
+    color: $dark-brown1;
+    margin-bottom: 20px;
+}
+
+// 卡片描述
+.cardDesc {
+    font-size: 16px;
+    line-height: 1.6;
+    color: $dark-brown2;
+    margin-bottom: 30px;
+}
+
+// 閱讀更多按鈕
+.readBtn {
+    align-self: flex-start;
+    background-color: $light-brown2;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: darken($light-brown2, 10%);
+    }
+}
+
+// 卡片圖片
+.cardImg {
+    flex: 1;
+    min-height: 350px;
+    background-size: cover;
+    background-position: center;
+}
+
+// 響應式設計
+@media (max-width: 1024px) {
+    .leftText, .rightText {
+        position: static;
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .centerBox {
+        position: static;
+        transform: none;
+        margin: 30px 0;
+    }
+    
+    .mainTitle {
+        &::before, &::after {
+            width: 40px;
+        }
+        
+        &::before {
+            margin-right: 10px;
+        }
+        
+        &::after {
+            margin-left: 10px;
+        }
+    }
+
+    .navWrap {
+        position: static;
+        transform: none;
+        margin-top: 30px;
+        flex-wrap: wrap;
+        padding: 0 20px;
+    }
+
+    .navBtn {
+        margin: 5px;
+        flex-grow: 1;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .articleCard {
+        flex-direction: column !important;
+
+        .cardText {
+            padding: 30px !important;
+        }
+    }
+
+    .cardImg {
+        min-height: 250px;
+    }
+}
