@@ -2,13 +2,13 @@
 
 .h100-vh {
     position: relative;
-
     height: 100vh;
     background-color: $light-brown3;
 }
 
 #promote-sec {
     background: $gradient-light-dark3;
+    height: 1130px;
 
     #promote-sec-bg {
         position: absolute;
@@ -29,7 +29,7 @@
             #backPic {
                 position: absolute;
                 height: clamp(240px, 50vh, 320px);
-                bottom: 100px;
+                bottom: 300px;
                 right: -40px;
                 z-index: 3;
                 object-fit: contain; 
@@ -38,7 +38,7 @@
             #frontPic {
                 position: absolute;
                 height: clamp(240px, 50vh, 320px);
-                bottom: 250px;
+                bottom: 450px;
                 right: -70px;
                 z-index: 4; 
                 object-fit: contain;

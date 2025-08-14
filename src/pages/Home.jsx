@@ -7,7 +7,6 @@ const Home = () => {
   return (
     <>
       <section className='h100-vh'></section>
-
       <section className='h100-vh' id="promote-sec" >
         <img src={promoteSecBg} alt="promoteSecBg" id="promote-sec-bg"/>
         <div className="container">
