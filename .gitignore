@@ -1,24 +1,33 @@
-# Logs
-logs
-*.log
+# 依賴項
+node_modules/
+/.pnp
+.pnp.js
+
+# 構建檔案
+/dist
+/build
+
+# 環境變數
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 日誌
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# 編輯器目錄和文件
+.idea/
+.vscode/
+*.swp
+*.swo
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# 操作系統文件
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+Thumbs.db
+
+# 測試覆蓋率
+/coverage
