@@ -1,6 +1,5 @@
 import React from 'react'
 import faqBG from '../assets/images/FAQ-BG.svg' // 匯入 SVG
-import faqSearchBar from '../assets/images/FAQ-Search-bar.svg' // 匯入搜尋列 SVG
 const FQA = () => {
   return (
     <div>
