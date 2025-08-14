@@ -26,11 +26,11 @@ const Topbar = () => {
       <Link to="/"><img src={topbarLogo} alt="logo" id="topbar-logo" /></Link>
       
       <div className="nav-right">
-        <Link to="/ProductInfo">產品資訊</Link>
-        <Link to="/SkinTest">我的膚況區</Link>
-        <Link to="/Article">肌膚學苑</Link>
-        <Link to="/FQA">常見問題</Link>
-        <Link to="/News">最新消息</Link>
+        <Link to="/ProductInfo" className="text-link">產品資訊</Link>
+        <Link to="/SkinTest" className="text-link">我的膚況區</Link>
+        <Link to="/Article" className="text-link">肌膚學苑</Link>
+        <Link to="/FQA" className="text-link">常見問題</Link>
+        <Link to="/News"className="text-link">最新消息</Link>
         <Link to="/Member"><img src={topbarMember} alt="memberIcon" id="topbar-member" /></Link>
         <Link to="/ShopCart"><img src={topbarBag} alt="bagIcon" id="topbar-bag" /></Link>
       </div>
