@@ -1,14 +1,5 @@
 import React from 'react'
 import faqBG from '../assets/images/FAQ-BG.svg' // 匯入 SVG
-const FQA = () => {
-  return (
-    <div>我是FQA頁</div>
-  )
-}
-
-export default FQAimport React from 'react';
-import FQABG from '../assets/images/FAQ-BG.svg'; // 匯入 SVG 背景
-
 // 常見問題資料
 const fqaData = [
   { id: 1, group: "產品", title: "產品有哪些功能與規格？", description: "美容儀具備清潔、導入、按摩等多種模式，可依不同肌膚需求切換；詳細規格請見商品頁或洽客服。" },
@@ -21,22 +12,6 @@ const fqaData = [
   { id: 8, group: "其他", title: "是否提供國際運送？", description: "目前僅配送台灣地區，海外運送尚未開放。" }
 ];
 
-const FQA = () => {
-  return (
-    <div 
-      className="fqa-page" 
-      style={{ backgroundImage: `url(${faqBG})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}
-    >
-      <h1>常見問題</h1>
 
-      {fqaData.map(item => (
-        <div key={item.id} className="faq-item">
-          <h3>{item.title}</h3>
-          <p>{item.description}</p>
-        </div>
-      ))}
-    </div>
-  );
-}
 
 export default FQA;
