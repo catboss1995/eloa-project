@@ -1,14 +1,17 @@
+import { Link } from "react-router-dom"
 import "../scss/styleHome.scss"
+import primaryVideo from "../assets/video/bennerMv.Mp4"
 import promoteSecBg from "../assets/images/promoteSec-bg.svg"
 import frontPic from "../assets/images/frontPic.svg"
 import backPic from "../assets/images/backPic.svg"
 import ButtonStyle from "../components/ButtonStyle"
-import { Link } from "react-router-dom"
 
 const Home = () => {
   return (
     <>
-      <section className='h100-vh'></section>
+      <section className='h100-vh' id="primary-sec">
+        <video src={primaryVideo} id="primary-video" autoPlay muted loop playsInline preload="auto"></video>
+      </section>
       <section className='h100-vh' id="promote-sec" >
         <img src={promoteSecBg} alt="promoteSecBg" id="promote-sec-bg"/>
         <div className="container">
