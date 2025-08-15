@@ -16,12 +16,12 @@
     transition: all 0.2s ease-in-out;
 
     &:hover {
-        background-color: darken($color: $brown2, $amount: 10%);
+        background-color: $brown1;
         transform: translateY(-1px);
     }
 
     &:active {
-        background-color: darken($color: $brown2, $amount: 20%);
+        background-color: $brown3;
         transform: translateY(1px);
     }
 
