@@ -1,4 +1,5 @@
 @use "./styleReset"as *;
+@use "sass:color";
 
 // 主頁面樣式
 .acadPage {
@@ -228,9 +229,9 @@
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-
+    // 
     &:hover {
-        background-color: darken($light-brown2, 10%);
+        background-color: color.adjust($light-brown2, $lightness: -10%);
     }
 }
 
@@ -241,7 +242,7 @@
     background-size: cover;
     background-position: center;
 }
-
+// 目前只寫一個 考慮到可能會需要全局整合
 // 響應式設計
 @media (max-width: 1024px) {
     .leftText, .rightText {
