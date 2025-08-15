@@ -1,0 +1,45 @@
+@use "styleReset" as *;
+
+.button-container {
+    display: inline-flex;
+    width: fit-content;
+    height: 30px;
+    gap: 16px;
+    padding: 8px 24px;
+    margin-top: 30px;
+    background-color: $brown2;
+    border: none;
+    border-radius: 999px;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        background-color: darken($color: $brown2, $amount: 10%);
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        background-color: darken($color: $brown2, $amount: 20%);
+        transform: translateY(1px);
+    }
+
+}
+
+
+.button-text {
+    display: flex;
+    color: $beige1;
+    font-size: $font14-light;
+    font-weight: 500;
+    line-height: 5px;
+    letter-spacing: 1px;
+    word-wrap: break-word;
+}
+
+.arrow-icon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
