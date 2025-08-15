@@ -83,6 +83,41 @@ const Article = () => {
         </div>
       </section>
 
+      {/* 模式教學室 */}
+      <section className="contentSec beigeBg">
+        <h3 className="secTitle">模式教學室</h3>
+        
+        <div className="articleList">
+          {researchArticles.map((article, index) => (
+            <div key={article.id} className={`articleCard ${index % 2 === 1 ? 'reverse' : ''}`}>
+              <div className="cardText">
+                <h4 className="cardTitle">{article.title}</h4>
+                <p className="cardDesc">{article.description}</p>
+                <button className="readBtn">閱讀更多</button>
+              </div>
+              <div className="cardImg" style={{backgroundImage: `url(${article.imgUrl})`}}></div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 問題肌研究所 */}
+      <section className="contentSec">
+        <h3 className="secTitle">問題肌研究所</h3>
+        
+        <div className="articleList">
+          {articles.map((article, index) => (
+            <div key={article.id} className={`articleCard ${index % 2 === 1 ? 'reverse' : ''}`}>
+              <div className="cardText">
+                <h4 className="cardTitle">{article.title}</h4>
+                <p className="cardDesc">{article.description}</p>
+                <button className="readBtn">閱讀更多</button>
+              </div>
+              <div className="cardImg" style={{backgroundImage: `url(${article.imgUrl})`}}></div>
+            </div>
+          ))}
+        </div>
+      </section>
       {/* 問題肌研究所 */}
       <section className="contentSec beigeBg">
         <h3 className="secTitle">問題肌研究所</h3>
@@ -100,6 +135,7 @@ const Article = () => {
           ))}
         </div>
       </section>
+
     </div>
   );
 };
