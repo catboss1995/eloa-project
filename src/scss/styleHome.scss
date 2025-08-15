@@ -66,6 +66,10 @@
             p {
                 font-size: $font14-light
             }
+
+            a {
+                z-index: 99;
+            }
         }
     }
 }
