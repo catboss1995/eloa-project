@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "./styleReset"as *;
 
 // 主頁面樣式
@@ -229,9 +230,9 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
 
-    &:hover {
-        background-color: darken($light-brown2, 10%);
-    }
+&:hover {
+background-color: darken($light-brown2, 10%);
+}
 }
 
 // 卡片圖片
