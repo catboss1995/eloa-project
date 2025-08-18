@@ -6,12 +6,41 @@
 }
 
 #primary-sec {
-    .primary-1 {
+    position: relative;
+    overflow: hidden;
+
+    // 共同樣式
+    .primary-1,
+    .primary-2,
+    .primary-3,
+    .primary-4,
+    .primary-5 {
+        position: absolute;
         height: 100%;
         width: 100%;
+        top: 0;
+        left: 0;
         justify-items: center;
         align-content: center;
+        display: grid;
+        opacity: 0;
+        // transition: opacity 1s ease-in-out;
+        
+        .primary-caroual2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+    }
 
+    .primary-1 {
+        opacity: 1;
+        z-index: 3;
+        animation: primary-1-cycle 25s infinite;
         #primary-video {
             position: absolute;
             top: 0;
@@ -31,13 +60,97 @@
             animation: slideInRight 3s ease-out forwards;
             opacity: 0;
         }
+
         @keyframes slideInRight {
             from {
                 opacity: 0;
-              }
-              to {
+            }
+
+            to {
                 opacity: 1;
-              }
+            }
+        }
+    }
+
+    // 輪播動畫
+
+    .primary-2 {
+        animation: primary-2-cycle 25s infinite;
+        z-index: 3;
+    }
+
+    .primary-3 {
+        animation: primary-3-cycle 25s infinite;
+        z-index: 3;
+    }
+
+    .primary-4 {
+        animation: primary-4-cycle 25s infinite;
+        z-index: 3;
+    }
+
+    .primary-5 {
+        animation: primary-5-cycle 25s infinite;
+        z-index: 3;
+    }
+
+    @keyframes primary-1-cycle {
+        0%,20% {
+            opacity: 1;
+        }
+        24%,96% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes primary-2-cycle {
+        0%, 16% {
+            opacity: 0;
+        }
+        20%, 40% {
+            opacity: 1;
+        }
+        44%, 100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes primary-3-cycle {
+        0%, 36% {
+            opacity: 0;
+        }
+        40%, 60% {
+            opacity: 1;
+        }
+        64%, 100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes primary-4-cycle {
+        0%, 56% {
+            opacity: 0;
+        }
+        60%, 80% {
+            opacity: 1;
+        }
+        84%, 100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes primary-5-cycle {
+        0%, 76% {
+            opacity: 0;
+        }
+        80%, 96% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
         }
     }
 }

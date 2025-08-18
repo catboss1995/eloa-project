@@ -2,6 +2,14 @@ import { Link } from "react-router-dom"
 import "../scss/styleHome.scss"
 // primary 區
 import primaryVideo from "../assets/video/bennerMv.Mp4"
+import primarybg1 from "../assets/images/primary-1-bg1.svg"
+import primarybg2 from "../assets/images/primary-1-bg2.svg"
+import primarybg3 from "../assets/images/primary-1-bg3.svg"
+import primarybg4 from "../assets/images/primary-1-bg4.svg"
+import primarypd1 from "../assets/images/primary-1-product1.svg"
+import primarypd2 from "../assets/images/primary-1-product2.svg"
+import primarypd3 from "../assets/images/primary-1-product3.svg"
+import primarypd4 from "../assets/images/primary-1-product4.svg"
 import logo from "../assets/images/LOGO.svg"
 // promote 區
 import promoteSecBg from "../assets/images/promoteSec-bg.svg"
@@ -16,6 +24,18 @@ const Home = () => {
         <div className="primary-1">
           <img src={logo} alt="logo" id="primary-logo" />
           <video src={primaryVideo} id="primary-video" autoPlay muted loop playsInline preload="auto"></video>
+        </div>
+        <div className="primary-2">
+          <img src={primarybg1} alt="carousalBackground" className="primary-caroual2"/>
+        </div>
+        <div className="primary-3">
+          <img src={primarybg2} alt="carousalBackground" className="primary-caroual2"/>
+        </div>
+        <div className="primary-4">
+          <img src={primarybg3} alt="carousalBackground" className="primary-caroual2"/>
+        </div>
+        <div className="primary-5">
+          <img src={primarybg4} alt="carousalBackground" className="primary-caroual2"/>
         </div>
       </section>
       <section className='h100-vh' id="promote-sec" >
