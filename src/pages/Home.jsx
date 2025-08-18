@@ -37,6 +37,14 @@ const Home = () => {
         <div className="primary-5">
           <img src={primarybg4} alt="carousalBackground" className="primary-caroual2"/>
         </div>
+        {/* 加加看指示器 */}
+        <div className="carousel-indicators">
+          <div className="indicator indicator-1"></div>
+          <div className="indicator indicator-2"></div>
+          <div className="indicator indicator-3"></div>
+          <div className="indicator indicator-4"></div>
+          <div className="indicator indicator-5"></div>
+        </div>
       </section>
       <section className='h100-vh' id="promote-sec" >
         <img src={promoteSecBg} alt="promoteSecBg" id="promote-sec-bg"/>

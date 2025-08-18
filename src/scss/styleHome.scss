@@ -25,7 +25,7 @@
         display: grid;
         opacity: 0;
         // transition: opacity 1s ease-in-out;
-        
+
         .primary-caroual2 {
             position: absolute;
             top: 0;
@@ -41,6 +41,7 @@
         opacity: 1;
         z-index: 3;
         animation: primary-1-cycle 25s infinite;
+
         #primary-video {
             position: absolute;
             top: 0;
@@ -72,6 +73,150 @@
         }
     }
 
+    // 指示器
+    .carousel-indicators {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        display: flex;
+        gap: 12px;
+        z-index: 10;
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 99px;
+            background-color: $white-40;
+            cursor: pointer;
+            // transition: all 0.5s ease;
+            // border: 2px solid transparent;
+
+            &.indicator-1 {
+                animation: indicator-1-active 25s infinite;
+            }
+
+            &.indicator-2 {
+                animation: indicator-2-active 25s infinite;
+            }
+
+            &.indicator-3 {
+                animation: indicator-3-active 25s infinite;
+            }
+
+            &.indicator-4 {
+                animation: indicator-4-active 25s infinite;
+            }
+
+            &.indicator-5 {
+                animation: indicator-5-active 25s infinite;
+            }
+        }
+    }
+
+    // 指示器動畫
+    @keyframes indicator-1-active {
+
+        0%,
+        16% {
+            background-color: $white;
+            transform: scale(1.2);
+        }
+
+        20%,
+        96% {
+            background-color: $white-60;
+            transform: scale(1);
+        }
+
+        100% {
+            background-color: $white;
+            transform: scale(1.2);
+        }
+    }
+
+    @keyframes indicator-2-active {
+
+        0%,
+        16% {
+            background-color: $white-60;
+            transform: scale(1);
+        }
+
+        20%,
+        36% {
+            background-color: $white;
+            transform: scale(1.2);
+        }
+
+        40%,
+        100% {
+            background-color: $white-60;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes indicator-3-active {
+
+        0%,
+        36% {
+            background-color: $white-60;
+            transform: scale(1);
+        }
+
+        40%,
+        56% {
+            background-color: $white;
+            transform: scale(1.2);
+        }
+
+        60%,
+        100% {
+            background-color: $white-60;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes indicator-4-active {
+
+        0%,
+        56% {
+            background-color: $white-60;
+            transform: scale(1);
+        }
+
+        60%,
+        76% {
+            background-color: $white;
+            transform: scale(1.2);
+        }
+
+        80%,
+        100% {
+            background-color: $white-60;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes indicator-5-active {
+
+        0%,
+        76% {
+            background-color: $white-60;
+            transform: scale(1);
+        }
+
+        80%,
+        96% {
+            background-color: $white;
+            transform: scale(1.2);
+        }
+
+        100% {
+            background-color: $white-60;
+            transform: scale(1);
+        }
+    }
+
     // 輪播動畫
 
     .primary-2 {
@@ -95,65 +240,95 @@
     }
 
     @keyframes primary-1-cycle {
-        0%,20% {
+
+        0%,
+        20% {
             opacity: 1;
         }
-        24%,96% {
+
+        24%,
+        96% {
             opacity: 0;
         }
+
         100% {
             opacity: 1;
         }
     }
 
     @keyframes primary-2-cycle {
-        0%, 16% {
+
+        0%,
+        16% {
             opacity: 0;
         }
-        20%, 40% {
+
+        20%,
+        40% {
             opacity: 1;
         }
-        44%, 100% {
+
+        44%,
+        100% {
             opacity: 0;
         }
     }
 
     @keyframes primary-3-cycle {
-        0%, 36% {
+
+        0%,
+        36% {
             opacity: 0;
         }
-        40%, 60% {
+
+        40%,
+        60% {
             opacity: 1;
         }
-        64%, 100% {
+
+        64%,
+        100% {
             opacity: 0;
         }
     }
 
     @keyframes primary-4-cycle {
-        0%, 56% {
+
+        0%,
+        56% {
             opacity: 0;
         }
-        60%, 80% {
+
+        60%,
+        80% {
             opacity: 1;
         }
-        84%, 100% {
+
+        84%,
+        100% {
             opacity: 0;
         }
     }
 
     @keyframes primary-5-cycle {
-        0%, 76% {
+
+        0%,
+        76% {
             opacity: 0;
         }
-        80%, 96% {
+
+        80%,
+        96% {
             opacity: 1;
         }
+
         100% {
             opacity: 0;
         }
     }
 }
+
+// 第二區
 
 #promote-sec {
     background: $gradient-light-dark3;
