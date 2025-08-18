@@ -27,15 +27,35 @@ const Home = () => {
         </div>
         <div className="primary-2">
           <img src={primarybg1} alt="carousalBackground" className="primary-caroual2"/>
+          <article className="product-slogan">
+            <p className="slogan-en" id="slogan-en-1">The Future of Skincare Begins With Light.</p>
+            <p className="slogan-zh" id="slogan-zh-1">改寫肌膚的節奏，從這一束光開始。</p>
+          </article>
+          <img src={primarypd1} alt="primary-product1" className="primary-product" />
         </div>
         <div className="primary-3">
           <img src={primarybg2} alt="carousalBackground" className="primary-caroual2"/>
+          <img src={primarypd2} alt="primary-product1" className="primary-product-left" />
+          <article className="product-slogan">
+            <p className="slogan-en" id="slogan-en-1">The Future of Skincare Begins With Light.</p>
+            <p className="slogan-zh" id="slogan-zh-1">改寫肌膚的節奏，從這一束光開始。</p>
+          </article>
         </div>
         <div className="primary-4">
           <img src={primarybg3} alt="carousalBackground" className="primary-caroual2"/>
+          <article className="product-slogan">
+            <p className="slogan-en" id="slogan-en-1">The Future of Skincare Begins With Light.</p>
+            <p className="slogan-zh" id="slogan-zh-1">改寫肌膚的節奏，從這一束光開始。</p>
+          </article>
+          <img src={primarypd3} alt="primary-product1" className="primary-product" />
         </div>
         <div className="primary-5">
           <img src={primarybg4} alt="carousalBackground" className="primary-caroual2"/>
+          <img src={primarypd4} alt="primary-product1" className="primary-product-left" />
+          <article className="product-slogan">
+            <p className="slogan-en" id="slogan-en-1">The Future of Skincare Begins With Light.</p>
+            <p className="slogan-zh" id="slogan-zh-1">改寫肌膚的節奏，從這一束光開始。</p>
+          </article>
         </div>
         {/* 加加看指示器 */}
         <div className="carousel-indicators">

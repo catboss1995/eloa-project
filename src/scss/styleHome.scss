@@ -22,9 +22,42 @@
         left: 0;
         justify-items: center;
         align-content: center;
-        display: grid;
+        display: flex;
         opacity: 0;
         // transition: opacity 1s ease-in-out;
+        .product-slogan {
+            width: 30%;
+            z-index: 3;
+            justify-self: flex-start;
+            align-content: center;
+            margin-left: 80px;
+            .slogan-en {
+                color: $white;
+                font-size: $font32-light;
+                font-weight: 400;
+                line-height: 48px;
+                text-shadow: 2px 2px 4px $dark-brown1;
+            }
+            .slogan-zh {
+                color: $white;
+                font-size: $font16-light;
+                font-weight: 500;
+                line-height: 36px;
+                letter-spacing: 2.4px;
+                text-shadow: 2px 2px 4px $dark-brown1;
+            }
+        }
+        .primary-product, .primary-product-left {
+            align-self: center;
+            z-index: 3;
+            object-fit: cover;
+            height: 50%;
+        }
+        .primary-product-left {
+            display: block;
+            margin: 0 0 0 auto;
+            justify-self: center;
+        }
 
         .primary-caroual2 {
             position: absolute;
@@ -55,6 +88,8 @@
 
         #primary-logo {
             position: relative;
+            display: block;
+            margin: 0 auto;
             z-index: 2;
             filter: brightness(0) invert(1) drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.5));
             width: 20%;
@@ -77,7 +112,8 @@
     .carousel-indicators {
         position: absolute;
         bottom: 30px;
-        left: 50%;
+        width: 100%;
+        justify-content: center;
         display: flex;
         gap: 12px;
         z-index: 10;
