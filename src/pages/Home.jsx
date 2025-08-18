@@ -10,7 +10,7 @@ import primarypd1 from "../assets/images/primary-1-product1.svg"
 import primarypd2 from "../assets/images/primary-1-product2.svg"
 import primarypd3 from "../assets/images/primary-1-product3.svg"
 import primarypd4 from "../assets/images/primary-1-product4.svg"
-import logo from "../assets/images/LOGO.svg"
+import logo from "../assets/images/topbarlogo.png"
 // promote 區
 import promoteSecBg from "../assets/images/promoteSec-bg.svg"
 import frontPic from "../assets/images/frontPic.svg"

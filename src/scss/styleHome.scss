@@ -93,6 +93,7 @@
             z-index: 2;
             filter: brightness(0) invert(1) drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.5));
             width: 20%;
+            object-fit: contain;
             animation: slideInRight 3s ease-out forwards;
             opacity: 0;
         }
