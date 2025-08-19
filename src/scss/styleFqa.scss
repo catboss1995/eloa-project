@@ -1,0 +1,28 @@
+/* src/scss/styleFqa.scss  — ELOA FAQ (FQA) */
+
+:root {
+  --brand: #b68f6a;         /* 棕金系品牌色（可微調） */
+  --text: #3b3b3b;          /* 主文字 */
+  --muted: #6f6f6f;         /* 內文淡化 */
+  --line: #d9cfc5;          /* 分隔線（淡卡其） */
+  --radius: 10px;
+  --maxw: 1120px;           /* 內容寬 */
+}
+
+/* 頁面為純白底，左右保留空白 */
+.fqa-page {
+  background: #fff;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 主要容器：置中，與設計稿一樣較寬鬆的邊界 */
+.fqa-container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 72px auto 0;
+  padding: 0 28px;          
+}
+
