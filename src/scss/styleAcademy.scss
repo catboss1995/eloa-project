@@ -231,10 +231,8 @@
     transition: background-color 0.3s ease;
 
 &:hover {
-background-color: darken($light-brown2, 10%);
-}
-}
-
+background-color: color adjust($light-brown2, 10%);
+  }
 // 卡片圖片
 .cardImg {
     flex: 1;
