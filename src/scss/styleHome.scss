@@ -5,6 +5,7 @@
     height: 100vh;
 }
 
+// 第一區主要banner區
 #primary-sec {
     position: relative;
     overflow: hidden;
@@ -20,17 +21,17 @@
         width: 100%;
         top: 0;
         left: 0;
-        justify-items: center;
-        align-content: center;
         display: flex;
         opacity: 0;
+
         // transition: opacity 1s ease-in-out;
-        .product-slogan {
+        .product-slogan,
+        .product-slogan-right {
             width: 30%;
             z-index: 3;
-            justify-self: flex-start;
             align-content: center;
             margin-left: 80px;
+
             .slogan-en {
                 color: $white;
                 font-size: $font32-light;
@@ -38,6 +39,7 @@
                 line-height: 48px;
                 text-shadow: 2px 2px 4px $dark-brown1;
             }
+
             .slogan-zh {
                 color: $white;
                 font-size: $font16-light;
@@ -47,16 +49,22 @@
                 text-shadow: 2px 2px 4px $dark-brown1;
             }
         }
-        .primary-product, .primary-product-left {
-            align-self: center;
+
+        .product-slogan-right {
+            margin-left: auto;
+            margin-right: 80px;
+        }
+
+        .primary-product,
+        .primary-product-left {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
             z-index: 3;
             object-fit: cover;
-            height: 50%;
-        }
-        .primary-product-left {
-            display: block;
-            margin: 0 0 0 auto;
-            justify-self: center;
+            height: 55%;
+            filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.5));
         }
 
         .primary-caroual2 {
@@ -365,12 +373,10 @@
     }
 }
 
-// 第二區
-
+// 第二區推廣產品區
 #promote-sec {
     background: $gradient-light-dark3;
     height: 930px;
-
 
     #promote-sec-bg {
         position: absolute;
@@ -434,6 +440,169 @@
 
             a {
                 z-index: 99;
+            }
+        }
+    }
+}
+
+// 第三區產品卡片區
+#product-sec {
+    background: $gradient-light-dark4;
+    height: auto;
+    padding-bottom: 30px;
+
+    .decorate {
+        height: 40vh;
+        position: absolute;
+        top: 30px
+    }
+
+    #decorate-human {
+        height: 55vh;
+        top: -50px;
+        left: 150px;
+        z-index: 10;
+    }
+
+    #decorate-products {
+        height: 35vh;
+        top: 120px;
+        right: 100px;
+    }
+
+    .product-sec-layout {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        z-index: 99;
+
+        .product-sec-desc {
+            width: 45%;
+            margin: 50px 0 0 200px;
+
+            #product-sec-desc-sm,
+            #product-sec-desc-md,
+            #product-sec-desc-xs {
+                margin-bottom: 16px;
+                font-weight: 400;
+            }
+
+            #product-sec-desc-md {
+                font-size: $font24-light;
+                font-weight: 500;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            #product-sec-desc-xs {
+                margin-bottom: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 3;
+            }
+        }
+
+        .product-sec-cards-container {
+            position: relative;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            gap: 20px;
+            padding: 60px 100px 0 100px;
+
+            .product-sec-card {
+                display: flex;
+                flex: 1;
+                flex-direction: column;
+                height: 100%;
+                align-items: flex-start;
+                padding: 12px;
+                background-color: $beige1;
+                border-radius: 24px;
+
+                .product-card-bg {
+                    background: $gradient-light-dark7;
+                    border-radius: 18px;
+                    width: 100%;
+                    height: 40vh;
+
+                    .product-card-pic {
+                        padding: 30px 0;
+                        height: 40vh;
+                        justify-self: center;
+                    }
+                }
+
+                .product-card-desc {
+                    display: flex;
+                    flex-direction: column;
+                    padding-top: 20px;
+
+                    .product-card-desc-en {
+                        font-size: $font18-light;
+                        margin-bottom: 10px;
+                    }
+
+                    .product-card-desc-zh {
+                        font-size: $font14-light;
+                        margin-bottom: 10px;
+                    }
+
+                    .product-card-desc-text {
+                        font-size: 12px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 1;
+                    }
+
+                    .next-buttom {
+                        align-self: flex-end;
+                        background: $brown4;
+                        width: 36px;
+                        height: 36px;
+                        border-radius: 99px;
+                        justify-items: center;
+                        align-content: center;
+                        margin-top: 10px;
+                    }
+
+                    .product-card-buttons {
+                        display: flex;
+                        justify-content: flex-start;
+                        gap: 10px;
+                        flex-wrap: wrap;
+                        margin-bottom: 10px;
+
+                        .product-sec-card-button {
+                            display: inline-flex;
+                            width: fit-content;
+                            height: 30px;
+                            padding: 4px 12px;
+                            background: $white;
+                            border-radius: 99px;
+                            align-items: center;
+
+                            .product-sec-card-icon {
+                                margin-right: 5px;
+                            }
+
+                            .product-sec-card-icon-text {
+                                font-size: 12px;
+                                letter-spacing: 1px;
+                                word-wrap: break-word;
+                                text-align: center;
+                            }                            
+                        }
+                    }
+                }
+
             }
         }
     }
