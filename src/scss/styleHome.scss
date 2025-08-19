@@ -720,3 +720,22 @@
 
     }
 }
+
+// 第五區肌膚知識區
+#knowledge-sec {
+    background: $gradient-light-dark6;
+    .text-decorate-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        .text-decorate {
+            background: $gradient-light-dark3;
+            background-clip: text;
+            color : transparent;
+            font-size: $font48-light;
+            font-weight: 200;
+            font-style: italic;
+            opacity: .5;
+        }
+    }
+}

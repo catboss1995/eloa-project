@@ -41,6 +41,8 @@ import avatar4 from "../assets/images/feedback-card-avatar4.svg"
 import avatar5 from "../assets/images/feedback-card-avatar5.svg"
 import avatar6 from "../assets/images/feedback-card-avatar6.svg"
 import avatar7 from "../assets/images/feedback-card-avatar7.svg"
+// knowledge 區
+
 // 產品卡片區元件
 function ProductSecCardButton({ iconUrl, iconDesc }) {
   return (
@@ -147,6 +149,8 @@ function CuntomerFeedbackCarousel() {
     </div>
   )
 }
+//肌膚知識區元件
+
 
 const Home = () => {
   return (
@@ -245,6 +249,12 @@ const Home = () => {
           <p className="feedback-en">— Behind every beauty, there's her own story.  —</p>
           <CuntomerFeedbackCarousel/>
           <CuntomerFeedbackCarousel/>
+        </div>
+      </section>
+      <section className="h100-vh" id="knowledge-sec">
+        <div className="text-decorate-container">
+          <p className="text-decorate">Let Light Stay</p>
+          <p className="text-decorate">Let Time Retreat</p>
         </div>
       </section>
     </>
