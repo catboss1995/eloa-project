@@ -68,7 +68,8 @@
     text-align: center;
 
     // 添加左右兩側水平線
-    &::before, &::after {
+    &::before,
+    &::after {
         content: '';
         position: absolute;
         top: 50%;
@@ -77,12 +78,12 @@
         background-color: $dark-brown1;
         opacity: 0.8;
     }
-                
+
     &::before {
         right: 100%;
         margin-right: 20px;
     }
-                
+
     &::after {
         left: 100%;
         margin-left: 20px;
@@ -186,6 +187,7 @@
     // 反向排列
     &.reverse {
         flex-direction: row-reverse;
+
         .cardText {
             padding-left: 5%;
             padding-right: 8%;
@@ -230,12 +232,15 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
 
-&:hover {
-background-color: darken($light-brown2, 10%);
-}
+    &:hover {
+        background-color: darken($light-brown2, 10%);
+    }
+
+
+
+    background-color: color adjust($light-brown2, 10%);
 }
 
-// 卡片圖片
 .cardImg {
     flex: 1;
     min-height: 350px;
@@ -245,7 +250,9 @@ background-color: darken($light-brown2, 10%);
 
 // 響應式設計
 @media (max-width: 1024px) {
-    .leftText, .rightText {
+
+    .leftText,
+    .rightText {
         position: static;
         margin: 10px 0;
         text-align: center;
@@ -256,16 +263,18 @@ background-color: darken($light-brown2, 10%);
         transform: none;
         margin: 30px 0;
     }
-    
+
     .mainTitle {
-        &::before, &::after {
+
+        &::before,
+        &::after {
             width: 40px;
         }
-        
+
         &::before {
             margin-right: 10px;
         }
-        
+
         &::after {
             margin-left: 10px;
         }
