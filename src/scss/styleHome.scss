@@ -598,12 +598,125 @@
                                 letter-spacing: 1px;
                                 word-wrap: break-word;
                                 text-align: center;
-                            }                            
+                            }
                         }
                     }
                 }
 
             }
         }
+    }
+}
+
+// 第四區好評回應區
+#feedback-sec {
+    height: auto;
+
+    #feedback-container {
+        justify-items: center;
+        padding: 150px 100px;
+
+        .feedback-zh,
+        .feedback-en {
+            font-size: $font32-light;
+        }
+
+        .feedback-zh {
+            font-weight: 500;
+        }
+
+        .feedback-en {
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        // 跑馬燈容器
+        .feedback-carousel-wrapper {
+            width: 100%;
+            overflow: hidden;
+            margin-top: 3rem;
+            
+
+            .feedback-carousel-track {
+                display: flex;
+                animation: scroll 30s linear infinite;
+                width: fit-content;
+                margin-bottom: 1rem;
+                @keyframes scroll {
+                    0% {
+                        transform: translateX(0);
+                    }
+
+                    100% {
+                        transform: translateX(-50%);
+                    }
+                }
+
+                &:hover {
+                    animation-play-state: paused;
+                }
+
+                .feedback-carousel-item {
+                    .feedback-card {
+                        background: $beige1;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                        padding: 1.5rem;
+                        margin: 0 1rem;
+                        min-width: 320px;
+                        max-width: 320px;
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 1rem;
+                        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+                        &:hover {
+                            transform: translateY(-2px);
+                            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+                        }
+
+                        .customer-info {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            text-align: center;
+
+                            .customer-avatar {
+                                width: 4rem;
+                                height: 4rem;
+                                border-radius: 50%;
+                                object-fit: cover;
+                                margin-bottom: 0.5rem;
+                                border: 2px solid $light-brown1;
+                            }
+
+                            .customer-name {
+                                font-size: 0.875rem;
+                                font-weight: 500;
+                                margin: 0;
+                            }
+                        }
+
+                        .customer-feedback {
+                            flex: 1;
+
+                            .feedback-text {
+                                font-size: 0.875rem;
+                                line-height: 1.5;
+                                margin: 0;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;
+                                -webkit-box-orient: vertical;
+                                -webkit-line-clamp: 3;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+
     }
 }
