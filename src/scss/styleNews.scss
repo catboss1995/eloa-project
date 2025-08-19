@@ -1,0 +1,94 @@
+@use "./styleReset" as *;
+
+.news {
+  &__banner {
+    position: relative;
+    width: 100%;
+    height: 100vh;              
+    overflow: hidden;
+    background-color: #f7f6f2;
+  }
+
+  &__banner-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    object-fit: cover;          
+    object-position: center;    
+    filter: saturate(0.8);      /* 飽和度 80% */
+  }
+
+  &__banner-inner {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;     
+    justify-content: center;    
+    padding: 40px;
+    color: #fff;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: clamp(24px, 3vw, 42px);
+    font-weight: 700;
+  }
+
+  &__btn {
+    margin-top: 1rem;
+    padding: 10px 20px;
+    border: 1px solid #fff;
+    border-radius: 999px;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.25s ease;
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+.news {
+  /* 原本的 banner 保持不動 */
+
+  &__section {
+    width: min(1200px, 92%);
+    margin: 60px auto 40px;  /* 與 banner 保持間距 */
+    text-align: center;
+  }
+
+  &__heading {
+    font-size: clamp(22px, 2.8vw, 36px);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #5B4C39;
+  }
+}
+
+
+
+
+
+
+
+
+/* 📱 手機版 */
+@media (max-width: 768px) {
+  .news {
+    &__banner {
+      height: auto;                /* 手機不用硬撐滿高 */
+      aspect-ratio: 16 / 9;        /* 用圖片比例就好 */
+    }
+
+    &__banner-img {
+      object-position: center;     /* 手機居中顯示 */
+    }
+
+    &__banner-inner {
+      padding: 20px;
+    }
+  }
+}

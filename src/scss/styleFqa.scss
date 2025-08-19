@@ -1,139 +1,172 @@
 /* src/scss/styleFqa.scss — ELOA FAQ (FQA) */
 @use "./styleReset" as *;
 
-/* 新增一個可調的導覽列高度變數 */
-:root { --nav-h: 72px; } 
+/* ===== Variables ===== */
+:root {
+  --nav-h: 72px;           /* 若頂部有固定導覽列，可調整此值 */
+  --max-w: 1100px;
 
-html, body, #root { max-width: 100%; overflow-x: clip; }
-* { box-sizing: border-box; }
+  --c-text: #3a3a3a;       /* 主文字 */
+  --c-muted: #7f7b76;      /* 次文字 */
+  --c-line: #d9d4cc;       /* 分隔線(淡金灰) */
+  --c-accent: #b9a586;     /* 品牌感輕金 */
+}
 
+/* ===== FAQ Page ===== */
 .faq {
+  position: relative;
+  color: var(--c-text);
+  line-height: 1.8;
+  overflow-x: clip;
+
   &__container {
-    max-width: 1100px;
+    max-width: var(--max-w);
     width: 100%;
     margin: 0 auto;
-
-    
-    padding-top: calc(var(--nav-h) + 24px); 
-    padding-bottom: 2.5rem;
-    padding-inline: clamp(16px, 4vw, 32px);
+    padding-top: calc(var(--nav-h) + 28px);
+    padding-bottom: 120px;      /* 預留給底部波浪 */
+    padding-inline: 24px;
   }
 
-  /* 標題 + 搜尋列 */
-  &__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.2rem;
-    flex-wrap: wrap;
-    margin-bottom: 2.5rem;
-
-   
-  }
-
+  /* 左上大標題 */
   &__title {
-    font-size: 2.25rem;
-    font-weight: 800;
-    color: #5B4C39;
-    margin: 0;
-    white-space: nowrap;
-    line-height: 1.2;
-    flex: 0 0 auto;
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 700;
+    letter-spacing: .04em;
+    margin: 6px 0 18px;
   }
 
-  /* 搜尋列（可伸縮） */
+  /* 置中的搜尋列（如圖） */
   &__search {
     position: relative;
-    flex: 1 1 500px;
-    min-width: 300px;
-    max-width: 560px;
-    width: 100%;
+    width: min(600px, 92%);
+    margin: 0 auto 36px;       /* 置中 */
 
     input {
       width: 100%;
-      height: 46px;
-      padding: 0 1rem 0 2.5rem;
-      border: 1px solid #5B4C39;
-      border-radius: 30px;
-      font-size: 1rem;
+      height: 36px;
+      border: 1px solid var(--c-line);
+      border-radius: 999px;
+      padding: 0 42px 0 16px;  /* 右邊留空給 icon */
       outline: none;
+      font-size: 14px;
+      color: var(--c-text);
       background: #fff;
-      color: #5B4C39;
-      transition: box-shadow 0.2s ease;
 
-      &::placeholder { color: #9b8f80; }
-      &:hover  { box-shadow: 0 0 0 2px rgba(91, 76, 57, 0.12); }
-      &:focus  { box-shadow: 0 0 0 3px rgba(91, 76, 57, 0.25); }
+      &::placeholder {
+        color: #a8a4a0;
+        letter-spacing: .04em;
+      }
+      &:focus {
+        border-color: var(--c-accent);
+        box-shadow: 0 0 0 2px color-mix(in srgb, var(--c-accent) 18%, transparent);
+      }
     }
 
-    &-icon {
+    .faq__search-icon {
       position: absolute;
-      left: 14px;
+      right: 12px;
       top: 50%;
       transform: translateY(-50%);
       width: 18px;
       height: 18px;
+      opacity: .75;
       pointer-events: none;
-      opacity: 0.85;
     }
   }
 
-  /* FAQ 區塊 */
-  &__section { margin-bottom: 2.5rem; }
-
+  /* 群組（產品／實體店鋪／線上購物／其他） */
   &__group {
-    font-size: 1.35rem;
+    padding: 18px 0 24px;
+
+    /* 與上一組之間的分隔線（極細、長） */
+    & + & {
+      border-top: 1px solid var(--c-line);
+    }
+  }
+
+  /* 群組標題：左對齊 + 下方長線 */
+  &__group-title {
+    font-size: 16px;
     font-weight: 700;
-    margin-bottom: 1.2rem;
-    border-bottom: 1px solid #5B4C39;
-    padding-bottom: 0.6rem;
-    color: #5B4C39;
+    letter-spacing: .06em;
+    margin: 0 0 14px;
+
+    position: relative;
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: var(--c-line);
+      margin-top: 14px;
+    }
   }
 
-  &__item { margin-bottom: 1.2rem; }
+  /* 單一問題 */
+  &__item {
+    margin: 16px 0;
 
-  &__q {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #5B4C39;
-    cursor: pointer;
-    transition: color 0.2s;
-    &:hover { color: #9b8f80; }
+    .faq__question {
+      margin: 0 0 6px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      color: var(--c-text);
+    }
+
+    .faq__answer {
+      margin: 0;
+      font-size: 14px;
+      color: var(--c-muted);
+
+      /* 若答案為列表 */
+      li {
+        list-style: disc;
+        margin-left: 1.2em;
+        padding-left: .3em;
+      }
+    }
   }
 
-  &__a {
-    color: #5B4C39;
-    line-height: 1.8;
-    max-width: 80ch;
-  }
-
+  /* 底部波浪裝飾：鋪滿並貼底 */
   &__wave {
-    margin-top: 3rem;
-    img { display: block; width: 100%; height: auto; }
+    position: absolute;
+    inset-inline: 0;
+    bottom: -8px;      /* 輕微溢出，使視覺貼底 */
+    z-index: -1;
+    pointer-events: none;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      filter: contrast(103%) brightness(103%);
+    }
   }
-}
 
-/* 手機/平板：導覽列通常更高，這裡可微調 */
-@media (max-width: 768px) {
-  :root { --nav-h: 64px; } 
-
-  .faq {
-    &__title { font-size: 1.6rem; }
-
-    &__header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.8rem;
-      margin-bottom: 1.5rem;
+  /* ===== RWD ===== */
+  @media (max-width: 768px) {
+    &__container {
+      padding-inline: 16px;
+      padding-bottom: 100px;
     }
 
     &__search {
-      max-width: 100%;
-      min-width: 0;
-      flex: 1 1 100%;
-      input { height: 42px; }
+      width: 100%;
+      margin-bottom: 28px;
+
+      input {
+        height: 34px;
+        font-size: 13px;
+      }
     }
 
-    &__group { font-size: 1.1rem; }
+    &__group-title { font-size: 15px; }
+    &__item {
+      .faq__question { font-size: 14px; }
+      .faq__answer { font-size: 13px; }
+    }
   }
 }
