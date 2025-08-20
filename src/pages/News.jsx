@@ -1,5 +1,6 @@
 import React from "react";
 import newsBanner from "../assets/images/News-Banner2.png";
+
 import "../scss/styleNews.scss";
 
 const News = () => {
