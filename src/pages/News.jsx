@@ -29,7 +29,7 @@ const NewsSection = () => {
         <div className="banner__container">
           <img src={newsBanner} alt="ELOA Banner 團隊形象照" />
           <div className="banner__content">
-            <div className="banner__slogan">溫柔有感 · 優雅入門</div>
+            {/* <div className="banner__slogan">溫柔有感 · 優雅入門</div> */}
           </div>
         </div>
       </div>
