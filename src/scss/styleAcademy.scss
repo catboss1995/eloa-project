@@ -1,5 +1,5 @@
 @use "sass:color";
-@use "./styleReset"as *;
+@use "./styleReset" as *;
 
 // 主頁面樣式
 .acadPage {
@@ -232,11 +232,10 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
 
-    &:hover {
-        background-color: color adjust($light-brown2, 10%);
-    }
-}
-
+&:hover {
+background-color: color adjust($light-brown2, 10%);
+  }
+// 卡片圖片
 .cardImg {
     flex: 1;
     min-height: 350px;
@@ -246,9 +245,7 @@
 
 // 響應式設計
 @media (max-width: 1024px) {
-
-    .leftText,
-    .rightText {
+    .leftText, .rightText {
         position: static;
         margin: 10px 0;
         text-align: center;
@@ -275,31 +272,53 @@
             margin-left: 10px;
         }
     }
-
-    .navWrap {
-        position: static;
-        transform: none;
-        margin-top: 30px;
-        flex-wrap: wrap;
-        padding: 0 20px;
-    }
-
-    .navBtn {
-        margin: 5px;
-        flex-grow: 1;
-        text-align: center;
-        justify-content: center;
-    }
-
-    .articleCard {
-        flex-direction: column !important;
-
-        .cardText {
-            padding: 30px !important;
+        .centerBox {
+            position: static;
+            transform: none;
+            margin: 30px 0;
         }
-    }
 
-    .cardImg {
-        min-height: 250px;
+        .mainTitle {
+
+            &::before,
+            &::after {
+                width: 40px;
+            }
+
+            &::before {
+                margin-right: 10px;
+            }
+
+            &::after {
+                margin-left: 10px;
+            }
+        }
+
+        .navWrap {
+            position: static;
+            transform: none;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .navBtn {
+            margin: 5px;
+            flex-grow: 1;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .articleCard {
+            flex-direction: column !important;
+
+            .cardText {
+                padding: 30px !important;
+            }
+        }
+
+        .cardImg {
+            min-height: 250px;
+        }
     }
 }

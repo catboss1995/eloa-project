@@ -1,0 +1,296 @@
+/* src/scss/styleNews.scss */
+@use "./styleReset" as *;
+
+/* =============== 變數 & 基礎 =============== */
+$brand:     #5B4C39;
+$ink:       #111;
+$muted:     #777;
+$line:      #E8E2DA;
+$bg:        #fff;
+$container: 1200px;
+
+:root { --nav-h: 72px; }
+
+* { box-sizing: border-box; }
+html, body, #root { max-width: 100%; overflow-x: clip; }
+
+/* 版心容器（給非滿版區塊用） */
+.container {
+  max-width: $container;
+  width: 100%;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+}
+
+/* =============== BANNER（滿版） =============== */
+.banner {
+  background: $bg;
+  color: $ink;
+
+  &__container {
+    position: relative;
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);  /* 滿版關鍵 */
+    margin-top: calc(var(--nav-h) + 16px);
+  }
+
+  &__container > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    /* 需要固定高可開啟：
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    */
+  }
+
+  &__content {
+    position: absolute;
+    right: 5%;
+    bottom: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    pointer-events: none;
+  }
+
+  &__slogan {
+    font-size: clamp(20px, 2.2vw, 32px);
+    font-weight: 600;
+    color: $brand;
+    text-align: right;
+    line-height: 1.35;
+    text-shadow: 0 1px 3px rgba(255,255,255,.6);
+  }
+}
+
+/* =============== 最新消息（卡片區） =============== */
+.news {
+  background: $bg;
+  color: $ink;
+
+  &__container {
+    @extend .container;
+    padding-block: clamp(28px, 6vw, 64px);
+  }
+
+  &__title {
+    margin: 0 0 clamp(16px, 3vw, 28px);
+    text-align: center;
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 700;
+    letter-spacing: .12em;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 56px;
+      height: 2px;
+      background: $line;
+      border-radius: 2px;
+      margin: 10px auto 0;
+    }
+  }
+
+  /* 卡片容器（背景只在版心內；置中 ELOA Logo） */
+  &__carousel {
+    position: relative;
+    z-index: 1;
+
+    background-image: url("../assets/images/NEWS-CARD-LOGO.png");
+    background-repeat: no-repeat;
+    background-position: center 20px;
+    background-size: clamp(90px, 9vw, 140px) auto;
+
+    border-radius: 20px;
+    padding: 64px clamp(16px, 3vw, 32px) 32px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(12px, 2vw, 24px);
+  }
+
+  &__item {
+    border: 1px solid $line;
+    border-radius: 16px;
+    background: #fff;
+    overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0,0,0,.08);
+    }
+
+    > img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16/11;
+      object-fit: cover;
+    }
+
+    .news__text {
+      padding: 14px 16px 18px;
+
+      h3 {
+        margin: 0 0 6px;
+        font-size: 16px;
+        font-weight: 700;
+        color: $brand;
+      }
+      p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.7;
+        color: $muted;
+      }
+    }
+  }
+
+  /* 查看更多（卡片容器下方） */
+  &__more {
+    margin-top: clamp(16px, 3vw, 28px);
+    display: flex;
+    justify-content: center;
+
+    button {
+      appearance: none;
+      border: 1px solid $brand;
+      background: #fff;
+      color: $brand;
+      padding: 10px 18px;
+      border-radius: 999px;
+      letter-spacing: .08em;
+      font-size: 14px;
+      cursor: pointer;
+      transition: .25s ease;
+
+      &:hover { background: $brand; color: #fff; }
+    }
+  }
+}
+
+/* =============== Timeline（左線 + 圓點 + 卡片） =============== */
+/* 這段直接整合，不需另開檔 */
+.timeline {
+  @extend .container;
+  display: grid;
+  grid-template-columns: 64px 1fr; /* 左：線/點；右：內容 */
+  gap: clamp(16px, 3vw, 32px);
+  position: relative;
+  padding-block: clamp(28px, 6vw, 64px);
+
+  /* 左側直線：以 NEWS-line.svg 當 repeat-y 背景 */
+  background-image: url("../assets/images/NEWS-line.svg");
+  background-repeat: repeat-y;
+  background-position: left calc(32px + 2px) top; /* 線置中左欄 */
+  background-size: 4px auto;
+
+  &__rail { min-height: 100%; }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 3vw, 28px);
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 64px 1fr; /* 左點／右卡片 */
+    column-gap: clamp(12px, 2.5vw, 20px);
+    align-items: flex-start;
+    position: relative;
+  }
+
+  /* 左側圓點（貼在線上） */
+  &__dot {
+    grid-column: 1 / 2;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: $brand;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px $line;
+    margin-left: calc(32px - 7px); /* 64欄寬一半 - 半徑 */
+    margin-top: 6px;
+  }
+
+  /* 右側卡片 */
+  &__card {
+    grid-column: 2 / 3;
+    display: grid;
+    grid-template-columns: min(320px, 40%) 1fr;
+    gap: clamp(12px, 2vw, 16px);
+    align-items: start;
+  }
+
+  &__thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f3f3f3; /* 無圖時灰底佔位 */
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__text {
+    .timeline__date {
+      font-size: 13px;
+      color: $brand;
+      margin: 0 0 6px;
+      letter-spacing: .02em;
+    }
+    .timeline__title {
+      font-size: 16px;
+      font-weight: 700;
+      color: $ink;
+      margin: 0 0 6px;
+    }
+    .timeline__desc {
+      font-size: 14px;
+      color: $muted;
+      line-height: 1.7;
+      margin: 0;
+    }
+  }
+}
+
+/* =============== RWD =============== */
+@media (max-width: 1024px) {
+  .news__carousel { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .timeline {
+    grid-template-columns: 48px 1fr;
+    background-position: left calc(24px + 2px) top;
+
+    &__item { grid-template-columns: 48px 1fr; }
+    &__dot  { margin-left: calc(24px - 7px); }
+    &__card { grid-template-columns: 1fr; } /* 圖片疊到文字上方 */
+  }
+}
+
+@media (max-width: 640px) {
+  .banner__content {
+    position: static;
+    margin: 10px auto 0;
+    width: min(92vw, $container);
+    padding-inline: 16px;
+    align-items: center;
+  }
+  .banner__slogan { text-align: center; font-size: 20px; }
+
+  .news__carousel {
+    grid-template-columns: 1fr;
+    background-position: center 14px;
+    padding-top: 52px;
+  }
+}

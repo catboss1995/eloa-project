@@ -21,5 +21,12 @@
 - 已經測試過可以顯示在 /SkinTest
 
 ## zoena
+### - 2025-08-18
 - 新增 FQA內容
 - 新增Scss樣式
+
+## zoena
+### - 2025-08-19
+- 新增 FQA放大鏡icon
+- FQA.JSX&SCSS完成
+
