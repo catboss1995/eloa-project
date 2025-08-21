@@ -1,13 +1,13 @@
 import React from 'react';
 // 引入 SCSS 樣式
 import "../scss/styleAcademy.scss";
-// 方法二：ES6 import (Vite/Webpack 支援)
-import articlesPic01 from '../assets/images/articlesPic01.png';
-import articlesPic02 from '../assets/images/articlesPic02.png';
-import articlesPic03 from '../assets/images/articlesPic03.png';
-import articlesPic04 from '../assets/images/articlesPic04.png';
-import articlesPic05 from '../assets/images/articlesPic05.png';
-import articlesPic06 from '../assets/images/articlesPic06.png';
+// 直接使用 CDN URL 替代本地圖片路徑
+const articlesPic01 = "https://ik.imagekit.io/8sle6rwoo/articlesPic01.png";
+const articlesPic02 = "https://ik.imagekit.io/8sle6rwoo/articlesPic02.png";
+const articlesPic03 = "https://ik.imagekit.io/8sle6rwoo/articlesPic03.png";
+const articlesPic04 = "https://ik.imagekit.io/8sle6rwoo/articlesPic04.png";
+const articlesPic05 = "https://ik.imagekit.io/8sle6rwoo/articlesPic05.png";
+const articlesPic06 = "https://ik.imagekit.io/8sle6rwoo/articlesPic06.png";
 
 
 const Article = () => {
