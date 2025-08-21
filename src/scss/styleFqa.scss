@@ -5,6 +5,7 @@
    ELOA FAQ - 固定橫排、不被切到
    ================================ */
 
+/* 變數（若外部已定義，這裡可刪或改用 !default） */
 $brand: #5B4C39;
 $line:  #D9D0C5;
 $container: 1200px;
@@ -35,8 +36,8 @@ $container: 1200px;
   justify-content: space-between;
   gap: 24px;
   margin: 12px 0 36px;
-  white-space: nowrap;      /* 關鍵：整排不換行 */
-  overflow: visible;        /* 防裁切 */
+  white-space: nowrap;  /* 關鍵：整排不換行 */
+  overflow: visible;    /* 防裁切 */
 }
 
 .faq__title {
@@ -44,39 +45,33 @@ $container: 1200px;
   font-size: 32px;
   font-weight: 800;
   line-height: 1;
-  flex: 0 0 auto;           /* 不被壓縮 */
+  flex: 0 0 auto;       /* 不被壓縮 */
 }
 
 /* 搜尋框：白底、品牌色外框、icon 左側；固定寬度與安全距 */
 .faq__searchBox {
   position: relative;
-  flex: 0 0 560px;          /* 固定寬，避免換行 */
+  flex: 0 0 560px;      /* 固定寬，避免換行 */
   max-width: 560px;
   min-width: 320px;
-  margin-right: 8px;        /* 右側安全距，避免視覺貼邊 */
+  margin-right: 8px;    /* 右側安全距，避免視覺貼邊 */
 }
-
 .faq__searchBox input {
   width: 100%;
   height: 40px;
   padding: 10px 14px 10px 42px; /* 左側留 icon 空間 */
   border: 1px solid $brand;
-  border-radius: 999px;     /* 膠囊形 */
-  background-color: #fff;   /* 強制白底，避免深色模式自動變黑 */
+  border-radius: 999px; /* 膠囊形 */
+  background-color: #fff; /* 強制白底，避免深色模式自動變黑 */
   color: $brand;
   font-size: 15px;
   outline: none;
   transition: box-shadow .18s ease;
 
-  &::placeholder {
-    color: $brand;
-    opacity: .8;
-  }
-
+  &::placeholder { color: $brand; opacity: .8; }
   &:hover  { border-color: $brand; }
   &:focus  { border-color: $brand; box-shadow: 0 0 0 2px rgba(91,76,57,.15); }
 }
-
 .faq__searchIcon {
   position: absolute;
   left: 14px;
@@ -87,14 +82,89 @@ $container: 1200px;
   opacity: .85;
 }
 
-/* ===== 群組與內容 ===== */
-.faq__group      { margin: 40px 0 20px; }
-.faq__groupName  { font-weight: 700; font-size: 20px; margin-bottom: 12px; }
-.faq__divider    { height: 1px; background: $line; margin-bottom: 24px; }
-.faq__item + .faq__item { margin-top: 24px; }
-.faq__q          { font-weight: 700; font-size: 16px; margin-bottom: 8px; line-height: 1.7; }
-.faq__a          { font-size: 15px; line-height: 1.9; }
+/* ===== 群組：卡片式（白底＋邊框＋圓角） ===== */
+.faq__group {
+  margin: 40px 0 20px;
+  border: 1px solid $line;
+  border-radius: 12px;
+  background: #fff;
+  padding: 20px 24px;
+}
+.faq__groupName  {
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: $brand;
+}
+.faq__divider { height: 1px; background: $line; margin-bottom: 16px; }
 
+/* ===== 內容區（Q & A） ===== */
+.faq__item + .faq__item { margin-top: 24px; }
+
+/* 問題列：button 風格，預設清楚可讀；Hover/展開僅改底色 */
+.faq__q {
+  /* 文字外觀 */
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.7;
+  color: $brand;
+
+  /* 互動外觀（button reset + 互動態） */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 8px 4px;
+  margin-bottom: 8px;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color .2s ease, color .2s ease;
+
+  &:hover {
+    background-color: rgba(91, 76, 57, 0.06);
+    color: $brand;
+  }
+}
+/* 展開中的問題列：持續底色高亮（字色不變） */
+.faq__item.is-open .faq__q {
+  background-color: rgba(91, 76, 57, 0.08);
+  color: $brand;
+}
+
+/* 右側箭頭（可換 SVG） */
+.faq__chevron {
+  flex: 0 0 auto;
+  font-size: 16px;
+  color: $brand;
+  transition: transform .3s ease, color .2s ease;
+  transform-origin: center;
+}
+.faq__chevron.is-open { transform: rotate(180deg); }
+
+/* 答案：外層做高度動畫（避免 height:auto 無法轉場） */
+.faq__aWrap {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height .35s ease, opacity .25s ease;
+  pointer-events: none;  /* 收起時不可互動 */
+}
+/* 展開時由 .is-open 觸發 */
+.faq__item.is-open .faq__aWrap {
+  max-height: 600px;     /* 視內容長度調整 */
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.faq__a { font-size: 15px; line-height: 1.9; }
+/* 收起時避免殘留縫隙（若未來在 .faq__a 加 padding/margin 可同步壓掉） */
+.faq__item:not(.is-open) .faq__a { padding: 0; margin: 0; }
+
+/* 條列清單（如：實體店鋪服務） */
 .faq__bullets { margin-top: 6px; }
 .faq__bullet  {
   position: relative; padding-left: 20px; line-height: 1.9;
@@ -110,13 +180,11 @@ $container: 1200px;
   .faq__container { padding-left: 40px; padding-right: 40px; }
   .faq__searchBox { flex-basis: 460px; max-width: 460px; min-width: 300px; }
 }
-
 @media (max-width: 820px) {
   .faq__title     { font-size: 28px; }
   .faq__searchBox { flex-basis: 360px; max-width: 360px; min-width: 280px; }
   .faq__searchBox input { height: 38px; }
 }
-
 /* 超窄時仍同排：允許 header 水平滾動以避免破版或切角 */
 @media (max-width: 560px) {
   .faq__container { padding-left: 24px; padding-right: 24px; }
