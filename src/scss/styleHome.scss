@@ -492,17 +492,12 @@
             #product-sec-desc-md {
                 font-size: $font24-light;
                 font-weight: 500;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
+                @extend %single-line;
             }
 
             #product-sec-desc-xs {
                 margin-bottom: 0;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
+                @extend %multiple-lines;
                 -webkit-line-clamp: 3;
             }
         }
@@ -555,10 +550,7 @@
 
                     .product-card-desc-text {
                         font-size: 12px;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        display: -webkit-box;
-                        -webkit-box-orient: vertical;
+                        @extend %multiple-lines;
                         -webkit-line-clamp: 1;
                     }
 
@@ -635,13 +627,14 @@
             width: 100%;
             overflow: hidden;
             margin-top: 3rem;
-            
+
 
             .feedback-carousel-track {
                 display: flex;
                 animation: scroll 30s linear infinite;
                 width: fit-content;
                 margin-bottom: 1rem;
+
                 @keyframes scroll {
                     0% {
                         transform: translateX(0);
@@ -704,10 +697,7 @@
                                 font-size: 0.875rem;
                                 line-height: 1.5;
                                 margin: 0;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                                display: -webkit-box;
-                                -webkit-box-orient: vertical;
+                                @extend %multiple-lines;
                                 -webkit-line-clamp: 3;
                             }
                         }
@@ -724,51 +714,60 @@
 // 第五區肌膚知識區
 #knowledge-sec {
     background: $gradient-light-dark6;
+    height: auto;
     .text-decorate-container {
         position: absolute;
         top: 0;
         left: 0;
+
         .text-decorate {
             background: $gradient-light-dark3;
             background-clip: text;
-            color : transparent;
+            color: transparent;
             font-size: $font48-light;
             font-weight: 200;
             font-style: italic;
             opacity: .5;
-        }        
+        }
     }
+
     .knowledge-content {
-        
+        padding: 0 100px;
+        width: 100%;
         .knowledge-title {
             width: 100%;
             justify-content: center;
             padding-top: 100px;
-            gap:100px;
+            gap: 100px;
             display: flex;
             flex-direction: row;
+
             .knowledge-title-slogan {
                 border-bottom: 2px solid $white;
+
                 p {
                     color: $white;
                     font-size: $font32-light;
                 }
             }
+
             .knowledge-title-desc {
                 margin-top: auto;
+
                 p {
                     color: $white;
                     font-size: $font18-light;
                 }
             }
         }
+
         .knowledge-cards {
             display: flex;
             flex-direction: row;
+            justify-content: space-between;
             gap: 10px;
-            justify-content: center;
-            margin-top: 50px;
-            padding: 0 100px;
+            padding-top: 50px;
+
             .knowledge-card {
                 display: flex;
                 position: relative;
@@ -776,27 +775,108 @@
                 justify-content: flex-end;
                 align-items: center;
                 height: 60vh;
-                width: 35vh;
+                width: 42vh;
                 border-radius: 20px;
                 overflow: clip;
+
                 img {
                     position: absolute;
                     object-fit: cover;
                     top: 0;
-                    left: 0;
-                    width: 100%;
+                    left: 0;                    
                     height: 100%;
+                    width: 100%;
                 }
+
                 .card-text-area {
                     z-index: 2;
                     background-color: $white-80;
                     border-radius: 20px;
                     width: 100%;
-                    padding: 5px;                  
-                    .card-text-small, .card-text-title {
-                        
+                    padding: 5px;
+
+                    .card-text-small,
+                    .card-text-title {
+                        @extend %single-line;
+                    }
+
+                    .card-text-small {
+                        font-size: 12px;
+                    }
+
+                    .card-text-title {
+                        font-size: $font14-light;
                     }
                 }
+            }
+        }
+    }
+    .knowledge-connect {
+        padding: 0 100px;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 200px;
+    }
+}
+
+// 第六區app推廣區
+#app-sec {
+    position: relative;    
+    height: 450px;
+    padding: 0 100px;
+    .text-decorate-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        .text-decorate {
+            background: $gradient-light-dark7;
+            background-clip: text;
+            color: transparent;
+            font-size: $font40-light;
+            font-weight: 200;
+            font-style: italic;
+            opacity: .7;
+        }
+    }
+    #app-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 450px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 10px;        
+    }
+    .app-content {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        gap: 100px;
+        overflow: visible;
+        .app-text-area {
+            width: 100%;
+            z-index: 2;
+            justify-content: center;
+            align-content: center;
+            #app-text-title {
+                font-size: $font32-light;
+                border-bottom: 2px solid $dark-brown2;
+                margin-bottom: 30px;
+            }
+        }
+        .app-img {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            #app-human {
+                position: absolute;  
+                height: 500px;
+                object-fit: cover;
+                bottom: 0;
+                right: 100px;
+                transform: translateX(50px);
             }
         }
     }

@@ -46,6 +46,9 @@ import KnowledgeCardBG1 from "../assets/images/knowledgeCard1bg.svg"
 import KnowledgeCardBG2 from "../assets/images/knowledgeCard2bg.svg"
 import KnowledgeCardBG3 from "../assets/images/knowledgeCard3bg.svg"
 import KnowledgeCardBG4 from "../assets/images/knowledgeCard4bg.svg"
+// app 區
+import appBG from "../assets/images/app-sec-bg.svg"
+import appHuman from "../assets/images/app-sec-human.svg"
 
 // 產品卡片區元件
 const ProductSecCardButton = ({ iconUrl, iconDesc }) =>{
@@ -153,7 +156,7 @@ const CustomerFeedbackCarousel = () =>{
     </div>
   )
 }
-//肌膚知識區元件
+// 肌膚知識區元件
 const KnowledgeCard = ({content}) => {
   return (
     <div className="knowledge-card">
@@ -320,12 +323,34 @@ const Home = () => {
           </div>
           <div className="knowledge-cards">
             <KnowledgeCardContent/>
-          </div>
-          <div className="knowledge-connect">
-
-          </div>
+          </div>          
+        </div>
+        <div className="knowledge-connect">
+            <Link to="/Article">
+                <ButtonStyle text="肌膚知識學苑"></ButtonStyle>
+            </Link>
         </div>
       </section>
+      <section className="h100-vh" id="app-sec">
+        <div className="text-decorate-container">
+          <p className="text-decorate">Supervised & Endorsed</p>
+          <p className="text-decorate">by Skin Professionals. </p>
+        </div>
+        <img id="app-bg" src={appBG} alt="appBackground"/>
+        <div className="app-content">
+          <div className="app-text-area">
+            <p id="app-text-title">專業醫師 x 智慧演算</p>
+            <div className="app-text-content">
+              <p>我們不只製造儀器，更建立了一套由醫師與顧問監修的智慧保養系統。</p>
+              <p>透過 ELOA App，將膚況與保養細節化為每日可執行的專屬建議，</p>
+              <p>每一次使用，都是更理解自己肌膚的過程。</p>
+            </div>
+          </div>
+          <div className="app-img">
+            <img id="app-human" src={appHuman} alt="appDecorateHuman" />
+          </div>
+        </div>
+      </section> 
     </>
   )
 }
