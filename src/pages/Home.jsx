@@ -42,9 +42,13 @@ import avatar5 from "../assets/images/feedback-card-avatar5.svg"
 import avatar6 from "../assets/images/feedback-card-avatar6.svg"
 import avatar7 from "../assets/images/feedback-card-avatar7.svg"
 // knowledge 區
+import KnowledgeCardBG1 from "../assets/images/knowledgeCard1bg.svg"
+import KnowledgeCardBG2 from "../assets/images/knowledgeCard2bg.svg"
+import KnowledgeCardBG3 from "../assets/images/knowledgeCard3bg.svg"
+import KnowledgeCardBG4 from "../assets/images/knowledgeCard4bg.svg"
 
 // 產品卡片區元件
-function ProductSecCardButton({ iconUrl, iconDesc }) {
+const ProductSecCardButton = ({ iconUrl, iconDesc }) =>{
   return (
     <div className='product-sec-card-button'>
       <img src={iconUrl} alt="icon" className='product-sec-card-icon' />
@@ -53,7 +57,7 @@ function ProductSecCardButton({ iconUrl, iconDesc }) {
   )
 }
 
-function ProductSecCard({ picUrl, picNameEn, picNameZh, picNameDesc1, picNameDesc2, iconUrl1, iconDesc1, iconUrl2, iconDesc2, iconUrl3, iconDesc3 }) {
+const ProductSecCard = ({ picUrl, picNameEn, picNameZh, picNameDesc1, picNameDesc2, iconUrl1, iconDesc1, iconUrl2, iconDesc2, iconUrl3, iconDesc3 })=> {
   return (
     <div className="product-sec-card">
       <div className="product-card-bg">
@@ -76,7 +80,7 @@ function ProductSecCard({ picUrl, picNameEn, picNameZh, picNameDesc1, picNameDes
 }
 
 // 顧客回應區元件
-function FeedbackCard({ customer }) {
+const FeedbackCard = ({ customer }) => {
   return (
     <div className="feedback-card">
       <div className="customer-info">
@@ -90,7 +94,7 @@ function FeedbackCard({ customer }) {
   )
 }
 
-function CuntomerFeedbackCarousel() {
+const CustomerFeedbackCarousel = () =>{
   const customers = [
     {
       id: 1,
@@ -150,6 +154,53 @@ function CuntomerFeedbackCarousel() {
   )
 }
 //肌膚知識區元件
+const KnowledgeCard = ({content}) => {
+  return (
+    <div className="knowledge-card">
+      <img src={content.background} alt="backgroundPicture" />
+      <div className="card-text-area">
+        <p className="card-text-small">{content.small}</p>
+        <p className="card-text-title">{content.title}</p>
+      </div>
+    </div>
+  )
+}
+
+const KnowledgeCardContent = () =>{
+  const cardContent = [
+    {
+      id: 1,
+      background: KnowledgeCardBG1,
+      small: "不同季節環境變化大，保養方式也要跟著調整",
+      title: "換季保養：秋冬、春夏肌膚護理"
+    },
+    {
+      id: 2,
+      background: KnowledgeCardBG2,
+      small: "臉部按摩是最簡單、最划算的肌膚保養投資",
+      title: "臉部按摩的好處與正確手法教學"
+    },
+    {
+      id: 3,
+      background: KnowledgeCardBG3,
+      small: "分享正確洗臉流程、適合各膚質的洗面產品挑選",
+      title: "每天洗臉的正確步驟與常見錯誤解析"
+    },
+    {
+      id: 4,
+      background: KnowledgeCardBG4,
+      small: "只要掌握正確的護理原則與產品選擇",
+      title: "敏感肌必看日常護理與產品挑選指南"
+    },
+  ]
+  return (
+    cardContent.map((content)=>{
+      return(
+        <KnowledgeCard key={content.id} content={content}/>
+      )
+    })    
+  )
+}
 
 
 const Home = () => {
@@ -247,14 +298,32 @@ const Home = () => {
         <div id="feedback-container">
           <p className="feedback-zh">”每一份美麗，都有她的故事”</p>
           <p className="feedback-en">— Behind every beauty, there's her own story.  —</p>
-          <CuntomerFeedbackCarousel/>
-          <CuntomerFeedbackCarousel/>
+          <CustomerFeedbackCarousel/>
+          <CustomerFeedbackCarousel/>
         </div>
       </section>
       <section className="h100-vh" id="knowledge-sec">
         <div className="text-decorate-container">
           <p className="text-decorate">Let Light Stay</p>
           <p className="text-decorate">Let Time Retreat</p>
+        </div>
+        <div className="knowledge-content">
+          <div className="knowledge-title">
+            <div className="knowledge-title-slogan">
+              <p>科技再高，</p>
+              <p>也要您聽得懂。</p>
+            </div>
+            <div className="knowledge-title-desc">
+              <p>ELOA 相信，只有理解自己的肌膚與保養方式，才能真正掌握屬於妳的美肌節奏。</p>
+              <p>在這裡，我們拆解專業術語、解釋使用邏輯，讓妳從知識開始，擁有可見的改變。</p>
+            </div>
+          </div>
+          <div className="knowledge-cards">
+            <KnowledgeCardContent/>
+          </div>
+          <div className="knowledge-connect">
+
+          </div>
         </div>
       </section>
     </>

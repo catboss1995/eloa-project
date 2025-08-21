@@ -736,6 +736,65 @@
             font-weight: 200;
             font-style: italic;
             opacity: .5;
+        }        
+    }
+    .knowledge-content {
+        
+        .knowledge-title {
+            width: 100%;
+            justify-content: center;
+            padding-top: 100px;
+            gap:100px;
+            display: flex;
+            flex-direction: row;
+            .knowledge-title-slogan {
+                border-bottom: 2px solid $white;
+                p {
+                    color: $white;
+                    font-size: $font32-light;
+                }
+            }
+            .knowledge-title-desc {
+                margin-top: auto;
+                p {
+                    color: $white;
+                    font-size: $font18-light;
+                }
+            }
+        }
+        .knowledge-cards {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding: 0 100px;
+            .knowledge-card {
+                display: flex;
+                position: relative;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: center;
+                height: 50vh;
+                width: 30vh;
+                border-radius: 20px;
+                overflow: clip;
+                img {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                }
+                .card-text-area {
+                    z-index: 2;
+                    background-color: $white-80;
+                    border-radius: 10px;
+                    width: 100%;                    
+                    .card-text-small, .card-text-title {
+                        text-overflow: clip;
+                    }
+                }
+            }
         }
     }
 }
