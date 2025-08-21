@@ -765,7 +765,8 @@
         .knowledge-cards {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            gap: 10px;
+            justify-content: center;
             margin-top: 50px;
             padding: 0 100px;
             .knowledge-card {
@@ -774,12 +775,13 @@
                 flex-direction: column;
                 justify-content: flex-end;
                 align-items: center;
-                height: 50vh;
-                width: 30vh;
+                height: 60vh;
+                width: 35vh;
                 border-radius: 20px;
                 overflow: clip;
                 img {
                     position: absolute;
+                    object-fit: cover;
                     top: 0;
                     left: 0;
                     width: 100%;
@@ -788,10 +790,11 @@
                 .card-text-area {
                     z-index: 2;
                     background-color: $white-80;
-                    border-radius: 10px;
-                    width: 100%;                    
+                    border-radius: 20px;
+                    width: 100%;
+                    padding: 5px;                  
                     .card-text-small, .card-text-title {
-                        text-overflow: clip;
+                        
                     }
                 }
             }
