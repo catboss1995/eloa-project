@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import "../scss/styleHome.scss"
+import { useState } from "react"
 // 共用元件區
 import ButtonStyle from "../components/ButtonStyle"
 // primary 區
@@ -33,6 +34,7 @@ import acneSkin from "../assets/images/AcneSkinIcon.svg"
 import hotSkin from "../assets/images/HotIcon.svg"
 import newArrivalSkin from "../assets/images/NewArrivalIcon.svg"
 import nextVector from "../assets/images/nextVector.svg"
+import prevVector from "../assets/images/prevVector.svg"
 // feedback 區
 import avatar1 from "../assets/images/feedback-card-avatar1.svg"
 import avatar2 from "../assets/images/feedback-card-avatar2.svg"
@@ -49,6 +51,12 @@ import KnowledgeCardBG4 from "../assets/images/knowledgeCard4bg.svg"
 // app 區
 import appBG from "../assets/images/app-sec-bg.svg"
 import appHuman from "../assets/images/app-sec-human.svg"
+// campaign 區
+import campaginCarousel1 from "../assets/images/campaign-carousel-1.png"
+import campaginCarousel2 from "../assets/images/campaign-carousel-2.png"
+import campaginCarousel3 from "../assets/images/campaign-carousel-3.jpg"
+
+
 
 // 產品卡片區元件
 const ProductSecCardButton = ({ iconUrl, iconDesc }) =>{
@@ -204,6 +212,125 @@ const KnowledgeCardContent = () =>{
     })    
   )
 }
+// 活動區元件
+const ImageCarousel = () => {
+  // 圖片數據
+  const images = [
+    {
+      id: 1,
+      src: campaginCarousel1,
+      alt: 'ELOA Award Image',
+      title: '這是什麼?'
+    },
+    {
+      id: 2,
+      src: campaginCarousel2,
+      alt: 'ELOA Exhibition',
+      title: '我是誰我在哪?'
+    },
+    {
+      id: 3,
+      src: campaginCarousel3,
+      alt: 'ELOA Team',
+      title: '你們看是傻X'
+    }
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // 處理輪播邏輯
+  const goToNext = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    setTimeout(() => setIsTransitioning(false), 500);
+  };
+
+  const goToPrev = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setTimeout(() => setIsTransitioning(false), 500);
+  };
+
+  // 計算圖片位置
+  const getImagePosition = (index) => {
+    const diff = index - currentIndex;
+    if (diff === 0) return 'center';
+    if (diff === 1 || diff === -(images.length - 1)) return 'right';
+    if (diff === -1 || diff === images.length - 1) return 'left';
+    return 'hidden';
+  };
+
+  return (
+    <div className="carousel-container">
+      <div className="carousel-wrapper">
+        {/* 左側控制按鈕 */}
+        <button 
+          className="carousel-control carousel-control--left"
+          onClick={goToPrev}
+          disabled={isTransitioning}
+        >
+          <img src={prevVector} alt="nextPic" />
+        </button>
+
+        {/* 圖片容器 */}
+        <div className="carousel-track">
+          {images.map((image, index) => {
+            const position = getImagePosition(index);
+            return (
+              <div
+                key={image.id}
+                className={`carousel-slide carousel-slide--${position} ${
+                  isTransitioning ? 'carousel-slide--transitioning' : ''
+                }`}
+              >
+                <div className="image-wrapper">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="carousel-image"
+                  />
+                  <div className="image-overlay">
+                    <h3 className="image-title">{image.title}</h3>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* 右側控制按鈕 */}
+        <button 
+          className="carousel-control carousel-control--right"
+          onClick={goToNext}
+          disabled={isTransitioning}
+        >
+          <img src={nextVector} alt="nextPic" />
+        </button>
+      </div>
+
+      {/* 指示器 */}
+      <div className="carousel-indicators">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            className={`indicator ${index === currentIndex ? 'indicator--active' : ''}`}
+            id={`indicator${index}`}
+            onClick={() => {
+              if (!isTransitioning) {
+                setIsTransitioning(true);
+                setCurrentIndex(index);
+                setTimeout(() => setIsTransitioning(false), 500);
+              }
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 
 const Home = () => {
@@ -351,6 +478,9 @@ const Home = () => {
           </div>
         </div>
       </section> 
+      <section className="h100-vh" id="campaign-sec">
+        <ImageCarousel/>
+      </section>
     </>
   )
 }

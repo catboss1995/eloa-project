@@ -715,6 +715,7 @@
 #knowledge-sec {
     background: $gradient-light-dark6;
     height: auto;
+
     .text-decorate-container {
         position: absolute;
         top: 0;
@@ -734,6 +735,7 @@
     .knowledge-content {
         padding: 0 100px;
         width: 100%;
+
         .knowledge-title {
             width: 100%;
             justify-content: center;
@@ -783,7 +785,7 @@
                     position: absolute;
                     object-fit: cover;
                     top: 0;
-                    left: 0;                    
+                    left: 0;
                     height: 100%;
                     width: 100%;
                 }
@@ -811,6 +813,7 @@
             }
         }
     }
+
     .knowledge-connect {
         padding: 0 100px;
         display: flex;
@@ -821,14 +824,16 @@
 
 // 第六區app推廣區
 #app-sec {
-    position: relative;    
+    position: relative;
     height: 450px;
     padding: 0 100px;
+
     .text-decorate-container {
         position: absolute;
         top: 0;
         left: 0;
         z-index: 2;
+
         .text-decorate {
             background: $gradient-light-dark7;
             background-clip: text;
@@ -839,6 +844,7 @@
             opacity: .7;
         }
     }
+
     #app-bg {
         position: absolute;
         top: 0;
@@ -846,8 +852,9 @@
         height: 450px;
         width: 100%;
         object-fit: cover;
-        border-radius: 10px;        
+        border-radius: 10px;
     }
+
     .app-content {
         display: flex;
         width: 100%;
@@ -855,28 +862,381 @@
         margin: 0 auto;
         gap: 100px;
         overflow: visible;
+
         .app-text-area {
             width: 100%;
             z-index: 2;
             justify-content: center;
             align-content: center;
+
             #app-text-title {
                 font-size: $font32-light;
                 border-bottom: 2px solid $dark-brown2;
                 margin-bottom: 30px;
             }
         }
+
         .app-img {
             width: 100%;
             height: 100%;
             overflow: visible;
+
             #app-human {
-                position: absolute;  
+                position: absolute;
                 height: 500px;
                 object-fit: cover;
                 bottom: 0;
                 right: 100px;
                 transform: translateX(50px);
+            }
+        }
+    }
+}
+
+// 第七區campaign活動區
+#campaign-sec {
+    padding: 0 100px;
+    // Variables
+    $center-image-width: 600px;
+    $side-image-width: 400px;
+    $transition-duration: 0.5s;
+    $control-size: 30px;
+
+    .carousel-container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 40px 20px;
+        position: relative;
+    }
+
+    .carousel-wrapper {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .carousel-track {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .carousel-slide {
+        position: absolute;
+        transition: all $transition-duration cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+
+        &--transitioning {
+            transition-duration: $transition-duration;
+        }
+
+        &--center {
+            transform: translateX(0) scale(1);
+            z-index: 3;
+            opacity: 1;
+
+            .image-wrapper {
+                width: $center-image-width;
+                height: 300px;
+                box-shadow: 0 20px 40px $black-20;
+            }
+
+            .image-overlay {
+                opacity: 1;
+            }
+        }
+
+        &--left {
+            transform: translateX(-400px) scale(0.8);
+            z-index: 2;
+            opacity: 0.6;
+
+            .image-wrapper {
+                width: $side-image-width;
+                height: 280px;
+                box-shadow: 0 10px 20px $black-20;
+            }
+
+            .image-overlay {
+                opacity: 0.7;
+            }
+        }
+
+        &--right {
+            transform: translateX(400px) scale(0.8);
+            z-index: 2;
+            opacity: 0.6;
+
+            .image-wrapper {
+                width: $side-image-width;
+                height: 280px;
+                box-shadow: 0 10px 20px $black-20;
+            }
+
+            .image-overlay {
+                opacity: 0.7;
+            }
+        }
+
+        &--hidden {
+            transform: scale(0);
+            opacity: 0;
+            z-index: 1;
+        }
+    }
+
+    .image-wrapper {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all $transition-duration ease;
+        background: $white;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, $light-brown5 0%, #f4e4c8 100%);
+            opacity: 0.1;
+            z-index: 1;
+        }
+    }
+
+    .carousel-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform $transition-duration ease;
+
+        .carousel-slide--center & {
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    .image-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, $black-60);
+        padding: 30px 20px 20px;
+        transition: opacity $transition-duration ease;
+        z-index: 2;
+    }
+
+    .image-title {
+        color: $white;
+        font-size: $font18-light;
+        font-weight: 600;
+        margin: 0;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+
+        .carousel-slide--left &,
+        .carousel-slide--right & {
+            font-size: $font14-light;
+        }
+    }
+
+    // Control Buttons
+    .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: $control-size;
+        height: $control-size;
+        padding: 0;
+        border: none;
+        border-radius: 999px;
+        background: rgba($brown4, 0.9);
+        color: $light-brown5;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 4;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px $black-20;
+
+        &:hover {
+            background: $brown3;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px $black-20;
+        }
+
+        &:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: translateY(-50%);
+        }
+
+        &--left {
+            left: 20px;
+            img {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        &--right {
+            right: 20px;
+            img {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+    }
+
+    // Indicators
+    .carousel-indicators {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+    }
+
+    #indicator0,
+    #indicator1,
+    #indicator2 {
+        width: 36px;
+        height: 16px;
+        padding: 0;
+        border: none;
+        background: rgba($light-brown5, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: rgba($light-brown5, 0.6);
+            transform: scaleX(1.3);
+        }
+
+        &--active {
+            background: $light-brown5;
+            transform: scaleX(1.3);
+
+            &:hover {
+                background: $light-brown5;
+            }
+        }
+    }
+
+    // Responsive Design
+    @media (max-width: 1024px) {
+        .carousel-container {
+            max-width: 900px;
+        }
+
+        .carousel-slide {
+            &--center .image-wrapper {
+                width: 500px;
+                height: 350px;
+            }
+
+            &--left,
+            &--right {
+                transform: translateX(-280px) scale(0.75);
+
+                .image-wrapper {
+                    width: 350px;
+                    height: 280px;
+                }
+            }
+
+            &--right {
+                transform: translateX(280px) scale(0.75);
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .carousel-container {
+            padding: 20px 10px;
+        }
+
+        .carousel-wrapper {
+            height: 350px;
+        }
+
+        .carousel-slide {
+            &--center .image-wrapper {
+                width: 400px;
+                height: 280px;
+            }
+
+            &--left,
+            &--right {
+                transform: translateX(-220px) scale(0.7);
+
+                .image-wrapper {
+                    width: 280px;
+                    height: 200px;
+                }
+            }
+
+            &--right {
+                transform: translateX(220px) scale(0.7);
+            }
+        }
+
+        .carousel-control {
+            width: 40px;
+            height: 40px;
+
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        .image-title {
+            font-size: 1.2rem;
+
+            .carousel-slide--left &,
+            .carousel-slide--right & {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        .carousel-slide {
+
+            &--left,
+            &--right {
+                opacity: 0.3;
+                transform: translateX(-150px) scale(0.6);
+
+                .image-wrapper {
+                    width: 200px;
+                    height: 150px;
+                }
+            }
+
+            &--right {
+                transform: translateX(150px) scale(0.6);
+            }
+
+            &--center .image-wrapper {
+                width: 320px;
+                height: 240px;
             }
         }
     }
