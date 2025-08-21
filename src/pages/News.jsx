@@ -2,6 +2,7 @@ import React from "react";
 
 // Banner
 import newsBanner from "../assets/images/News-Banner2.png";
+import newsCard from "../assets/images/NEWS-card.svg";   // ✅ 卡片容器背景
 
 // 最新消息卡片圖片（輪播用）
 import newsAward from "../assets/images/NEWS-ELOA-warm-award.png";   // 卡片1
@@ -39,8 +40,16 @@ const NewsSection = () => {
         <div className="news__container">
           <h2 className="news__title">最新消息</h2>
 
-          {/* 卡片容器 */}
-          <div className="news__carousel">
+          {/* ✅ 卡片容器：套用 NEWS-card.svg 當背景 */}
+          <div
+            className="news__carousel"
+            style={{
+              backgroundImage: `url(${newsCard})`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "100% auto",   // 寬度撐滿容器（像圖二）
+              backgroundPosition: "center top",
+            }}
+          >
             <div className="news__item">
               <img src={newsAward} alt="ELOA Award" />
               <div className="news__text">

@@ -34,15 +34,7 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
     margin-top: calc(var(--nav-h) + 16px);
   }
 
-  &__container > img {
-    display: block;
-    width: 100%;
-    height: auto;
-    /* 需要固定高可開啟：
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    */
-  }
+  &__container > img { display: block; width: 100%; height: auto; }
 
   &__content {
     position: absolute;
@@ -72,10 +64,27 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
 
   &__container {
     @extend .container;
+    position: relative;             /* 背景用 ::before 壓底 */
     padding-block: clamp(28px, 6vw, 64px);
+
+    /* 方法二：讓背景自動覆蓋整個容器高度 */
+    &::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+      bottom: 0;                    /* 高度涵蓋到按鈕 */
+      width: 100vw;                 /* 左右真滿版 */
+      background: url("../assets/images/NEWS-card.svg") no-repeat center top;
+      background-size: cover;       /* 依容器高度自動延展覆蓋 */
+      z-index: 0;
+    }
   }
 
   &__title {
+    position: relative;
+    z-index: 1;
     margin: 0 0 clamp(16px, 3vw, 28px);
     text-align: center;
     font-size: clamp(18px, 2vw, 22px);
@@ -93,22 +102,16 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
     }
   }
 
-  /* 卡片容器（背景只在版心內；置中 ELOA Logo） */
+  /* 卡片容器（不綁背景） */
   &__carousel {
     position: relative;
-    z-index: 1;
-
-    background-image: url("../assets/images/NEWS-CARD-LOGO.png");
-    background-repeat: no-repeat;
-    background-position: center 20px;
-    background-size: clamp(90px, 9vw, 140px) auto;
-
+    z-index: 1; /* 內容蓋在背景上 */
     border-radius: 20px;
-    padding: 64px clamp(16px, 3vw, 32px) 32px;
-
+    padding: clamp(80px, 9vw, 132px) clamp(16px, 3vw, 32px) clamp(36px, 6vw, 64px);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: clamp(12px, 2vw, 24px);
+    /* 卡片之間距離加大 */
+    gap: clamp(24px, 4vw, 40px);
   }
 
   &__item {
@@ -118,10 +121,7 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
     overflow: hidden;
     transition: transform .25s ease, box-shadow .25s ease;
 
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(0,0,0,.08);
-    }
+    &:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.08); }
 
     > img {
       display: block;
@@ -133,24 +133,17 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
     .news__text {
       padding: 14px 16px 18px;
 
-      h3 {
-        margin: 0 0 6px;
-        font-size: 16px;
-        font-weight: 700;
-        color: $brand;
-      }
-      p {
-        margin: 0;
-        font-size: 14px;
-        line-height: 1.7;
-        color: $muted;
-      }
+      h3 { margin: 0 0 6px; font-size: 16px; font-weight: 700; color: $brand; }
+      p  { margin: 0; font-size: 14px; line-height: 1.7; color: $muted; }
     }
   }
 
-  /* 查看更多（卡片容器下方） */
+  /* 查看更多（會被背景覆蓋到） */
   &__more {
-    margin-top: clamp(16px, 3vw, 28px);
+    position: relative;
+    z-index: 1;
+    /* 按鈕往上一點 */
+    margin-top: clamp(8px, 2vw, 16px);
     display: flex;
     justify-content: center;
 
@@ -172,51 +165,38 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
 }
 
 /* =============== Timeline（左線 + 圓點 + 卡片） =============== */
-/* 這段直接整合，不需另開檔 */
 .timeline {
   @extend .container;
   display: grid;
-  grid-template-columns: 64px 1fr; /* 左：線/點；右：內容 */
+  grid-template-columns: 64px 1fr;
   gap: clamp(16px, 3vw, 32px);
   position: relative;
   padding-block: clamp(28px, 6vw, 64px);
 
-  /* 左側直線：以 NEWS-line.svg 當 repeat-y 背景 */
   background-image: url("../assets/images/NEWS-line.svg");
   background-repeat: repeat-y;
-  background-position: left calc(32px + 2px) top; /* 線置中左欄 */
+  background-position: left calc(32px + 2px) top;
   background-size: 4px auto;
 
   &__rail { min-height: 100%; }
 
-  &__list {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(20px, 3vw, 28px);
-  }
+  &__list { display: flex; flex-direction: column; gap: clamp(20px, 3vw, 28px); }
 
   &__item {
     display: grid;
-    grid-template-columns: 64px 1fr; /* 左點／右卡片 */
+    grid-template-columns: 64px 1fr;
     column-gap: clamp(12px, 2.5vw, 20px);
     align-items: flex-start;
     position: relative;
   }
 
-  /* 左側圓點（貼在線上） */
   &__dot {
     grid-column: 1 / 2;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: $brand;
-    border: 2px solid #fff;
-    box-shadow: 0 0 0 2px $line;
-    margin-left: calc(32px - 7px); /* 64欄寬一半 - 半徑 */
-    margin-top: 6px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: $brand; border: 2px solid #fff; box-shadow: 0 0 0 2px $line;
+    margin-left: calc(32px - 7px); margin-top: 6px;
   }
 
-  /* 右側卡片 */
   &__card {
     grid-column: 2 / 3;
     display: grid;
@@ -226,39 +206,15 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
   }
 
   &__thumb {
-    width: 100%;
-    aspect-ratio: 16/9;
-    border-radius: 8px;
-    overflow: hidden;
-    background: #f3f3f3; /* 無圖時灰底佔位 */
+    width: 100%; aspect-ratio: 16/9; border-radius: 8px; overflow: hidden; background: #f3f3f3;
 
-    img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
   }
 
   &__text {
-    .timeline__date {
-      font-size: 13px;
-      color: $brand;
-      margin: 0 0 6px;
-      letter-spacing: .02em;
-    }
-    .timeline__title {
-      font-size: 16px;
-      font-weight: 700;
-      color: $ink;
-      margin: 0 0 6px;
-    }
-    .timeline__desc {
-      font-size: 14px;
-      color: $muted;
-      line-height: 1.7;
-      margin: 0;
-    }
+    .timeline__date  { font-size: 13px; color: $brand; margin: 0 0 6px; letter-spacing: .02em; }
+    .timeline__title { font-size: 16px; font-weight: 700; color: $ink; margin: 0 0 6px; }
+    .timeline__desc  { font-size: 14px; color: $muted; line-height: 1.7; margin: 0; }
   }
 }
 
@@ -274,7 +230,7 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
 
     &__item { grid-template-columns: 48px 1fr; }
     &__dot  { margin-left: calc(24px - 7px); }
-    &__card { grid-template-columns: 1fr; } /* 圖片疊到文字上方 */
+    &__card { grid-template-columns: 1fr; }
   }
 }
 
@@ -290,7 +246,7 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
 
   .news__carousel {
     grid-template-columns: 1fr;
-    background-position: center 14px;
-    padding-top: 52px;
+    padding-top: clamp(72px, 16vw, 120px);   /* 背景上緣露出量 */
+    padding-bottom: clamp(28px, 10vw, 56px);
   }
 }
