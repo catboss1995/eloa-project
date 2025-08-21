@@ -232,28 +232,46 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
 
-    &:hover {
-        background-color: color adjust($light-brown2, 10%);
+&:hover {
+background-color: color adjust($light-brown2, 10%);
+  }
+// 卡片圖片
+.cardImg {
+    flex: 1;
+    min-height: 350px;
+    background-size: cover;
+    background-position: center;
+}
+
+// 響應式設計
+@media (max-width: 1024px) {
+    .leftText, .rightText {
+        position: static;
+        margin: 10px 0;
+        text-align: center;
     }
 
-    // 卡片圖片
-    .cardImg {
-        flex: 1;
-        min-height: 350px;
-        background-size: cover;
-        background-position: center;
+    .centerBox {
+        position: static;
+        transform: none;
+        margin: 30px 0;
     }
 
-    // 響應式設計
-    @media (max-width: 1024px) {
+    .mainTitle {
 
-        .leftText,
-        .rightText {
-            position: static;
-            margin: 10px 0;
-            text-align: center;
+        &::before,
+        &::after {
+            width: 40px;
         }
 
+        &::before {
+            margin-right: 10px;
+        }
+
+        &::after {
+            margin-left: 10px;
+        }
+    }
         .centerBox {
             position: static;
             transform: none;
