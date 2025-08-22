@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import faqWave from "../assets/images/FAQ-BG.svg";           // 底部裝飾波浪
+import faqWave from "../assets/images/FAQ-BG.svg";           // 底部裝飾波浪 (用於背景)
 import "../scss/styleFqa.scss";                              // 匯入 SCSS
 import faqSearchIcon from "../assets/images/FQA-search.svg"; // 搜尋 icon
 
@@ -79,7 +79,7 @@ const FaqPage = () => {
           <div className="faq__groupName">線上購物</div>
           <div className="faq__divider" />
 
-        <FaqItem id="o1" question="線上購物如何保障支付安全？">
+          <FaqItem id="o1" question="線上購物如何保障支付安全？">
             本網站採用加密連線並提供多元安全支付方式，例如信用卡與行動支付等，請放心使用。
           </FaqItem>
 
@@ -99,10 +99,18 @@ const FaqPage = () => {
         </section>
       </div>
 
-      {/* 底部裝飾波浪 */}
-      <div className="faq__wave">
-        <img src={faqWave} alt="裝飾波浪" />
-      </div>
+      {/* 底部裝飾波浪：用背景滑動（作法 A） */}
+      <div
+        className="faq__wave"
+        style={{
+          backgroundImage: `url(${faqWave})`, // 使用 import 的 SVG，避免 unused 警告
+          ["--wave-height"]: "140px",
+          ["--wave-speed"]: "46s",
+          ["--wave-scale"]: "1.2",
+          ["--wave-opacity"]: "1"
+        }}
+        aria-hidden="true"
+      />
     </div>
   );
 };
