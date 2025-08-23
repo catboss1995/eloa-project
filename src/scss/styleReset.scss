@@ -52,6 +52,7 @@ $natural-gray100: #D9D9D9;
 
 $pink1: #FFE3E3;
 
+$gradient-light-dark2: linear-gradient(to bottom ,#E4D6C0, $white);
 $gradient-light-dark3: linear-gradient(to top ,#E4D6C0, $white);
 $gradient-light-dark4: linear-gradient(to right ,#E4D6C0, $white);
 $gradient-light-dark5: linear-gradient(to top ,#F4F0E5, #DACBB4);
@@ -110,6 +111,7 @@ body {
     line-height: 1.5;
     color: $dark-brown2;
     background-color: $beige0;
+    letter-spacing: 1px;
 }
 
 /* 標題重置 */

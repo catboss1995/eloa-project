@@ -3,6 +3,15 @@
 .h100-vh {
     position: relative;
     height: 100vh;
+
+    &:not(#primary-sec) {
+        opacity: 0;
+        transition: opacity 0.8s ease-out;
+    }
+
+    &.show {
+        opacity: 1 !important;
+    }
 }
 
 // 第一區主要banner區
@@ -896,11 +905,39 @@
 // 第七區campaign活動區
 #campaign-sec {
     padding: 0 100px;
-    // Variables
+    position: relative;
+    z-index: 2;
+    // 變數
     $center-image-width: 600px;
     $side-image-width: 400px;
     $transition-duration: 0.5s;
     $control-size: 30px;
+
+    .campaign-text-area {
+        position: absolute;
+        top: 24px;
+        left: 0;
+        z-index: 2;
+
+        .text-decorate {
+            background: $gradient-light-dark7;
+            background-clip: text;
+            color: transparent;
+            font-size: $font48-light;
+            font-weight: 200;
+            font-style: italic;
+            opacity: .5;
+        }
+
+        #text-decorate-zh {
+            position: absolute;
+            color: $dark-brown1;
+            top: -10px;
+            right: 10px;
+            font-size: $font32-light;
+            opacity: 1;
+        }
+    }
 
     .carousel-container {
         width: 100%;
@@ -954,7 +991,7 @@
         }
 
         &--left {
-            transform: translateX(-400px) scale(0.8);
+            transform: translateX(400px) scale(0.8);
             z-index: 2;
             opacity: 0.6;
 
@@ -970,7 +1007,7 @@
         }
 
         &--right {
-            transform: translateX(400px) scale(0.8);
+            transform: translateX(-400px) scale(0.8);
             z-index: 2;
             opacity: 0.6;
 
@@ -1088,6 +1125,7 @@
 
         &--left {
             left: 20px;
+
             img {
                 width: 20px;
                 height: 20px;
@@ -1096,6 +1134,7 @@
 
         &--right {
             right: 20px;
+
             img {
                 width: 20px;
                 height: 20px;
@@ -1115,8 +1154,8 @@
     #indicator0,
     #indicator1,
     #indicator2 {
-        width: 36px;
-        height: 16px;
+        width: 28px;
+        height: 12px;
         padding: 0;
         border: none;
         background: rgba($light-brown5, 0.3);
@@ -1128,14 +1167,22 @@
             transform: scaleX(1.3);
         }
 
-        &--active {
-            background: $light-brown5;
+        &.indicator--active {
+            background: $light-brown6;
             transform: scaleX(1.3);
 
             &:hover {
-                background: $light-brown5;
+                background: $light-brown6;
+                transform: scaleX(1.3);
             }
         }
+    }
+
+    .campaign-button-area {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
     }
 
     // Responsive Design
@@ -1238,6 +1285,333 @@
                 width: 320px;
                 height: 240px;
             }
+        }
+    }
+}
+
+// 第八、九區 news&stores 區
+#news-store-sec {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 0 100px;
+    height: auto;
+    z-index: 1;
+
+    .news-text-area {
+        position: relative;
+        width: fit-content;
+
+        .text-decorate {
+            background: $gradient-light-dark7;
+            background-clip: text;
+            color: transparent;
+            font-size: $font56-light;
+            font-weight: 200;
+            font-style: italic;
+            opacity: .5;
+        }
+
+        #text-decorate-zh {
+            position: relative;
+            color: $dark-brown1;
+            top: -40px;
+            justify-self: center;
+            font-size: $font24-light;
+            opacity: 1;
+        }
+    }
+
+    .news-container {
+        width: 100%;
+        height: auto;
+        padding: 0 100px;
+
+        .news-content {
+            display: flex;
+            width: 100%;
+            margin: 30px 0;
+            gap: 20px;
+            justify-content: space-around;
+            border-bottom: 2px solid $brown3;
+            line-height: 60px;
+
+            .news-date {
+                font-size: $font24-light;
+                align-self: center;
+            }
+
+            .news-desc {
+                font-size: $font16-light;
+                align-self: center;
+                @extend %single-line;
+            }
+        }
+    }
+
+    .stores-container {
+        display: flex;
+        width: 100%;
+        height: 800px;
+        justify-content: space-between;
+        padding-top: 100px;
+
+        .store-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+
+            &:nth-child(2) {
+                align-self: center;
+            }
+
+            &:nth-child(3) {
+                padding-top: 50px;
+            }
+
+            .store-map {
+                // width: 10wh;
+                max-width: 350px;
+                // height: 10vh;
+                max-height: 350px;
+
+                img {
+                    border-radius: 999px;
+                }
+
+            }
+
+            .store-name {
+                font-size: $font24-light;
+            }
+
+            .store-address {
+                font-size: $font18-light;
+            }
+
+            .info-title-box {
+                border-left: 10px solid $brown2;
+                margin-bottom: 30px;
+
+                .info-title {
+                    font-size: $font24-light;
+                    padding-left: 16px;
+                }
+            }
+        }
+    }
+
+    .news-store-decorate {
+        img {
+            position: absolute;
+            z-index: -1;
+
+            &:nth-child(1) {
+                position: absolute;
+                right: 0;
+                top: -300px;
+            }
+
+            &:nth-child(2) {
+                right: 40%;
+                top: -100px;
+            }
+
+            &:nth-child(3) {
+                left: 0;
+                top: 10%;
+            }
+
+            &:nth-child(4) {
+                bottom: 0;
+                left: 0;
+            }
+        }
+
+        #store-area {
+            position: absolute;
+            right: 100px;
+            bottom: -15px;
+
+            .text-decorate {
+                background: $gradient-light-dark2;
+                background-clip: text;
+                color: transparent;
+                font-size: $font56-light;
+                font-weight: 200;
+                font-style: italic;
+                opacity: 1;
+
+                &:nth-child(2) {
+                    color: $white;
+                }
+            }
+        }
+
+    }
+}
+
+// 第十區服務保障區
+#service-sec {
+    position: relative;
+    padding: 0 100px;
+    background: $gradient-light-dark2;
+
+    .service-sec-text-area {
+        padding-top: 100px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+
+        >p {
+            &:nth-child(1) {
+                position: absolute;
+                top: 90px;
+                font-size: $font24-light;
+            }
+
+            &:nth-child(2) {
+                position: absolute;
+                font-size: $font18-light;
+                top: 130px;
+            }
+
+            &:nth-child(3) {
+                background: $gradient-light-dark2;
+                background-clip: text;
+                color: transparent;
+                font-size: $font64-light;
+                font-weight: 200;
+                font-style: italic;
+                opacity: 1;
+            }
+        }
+    }
+
+    .service-sec-icon-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding-right: 80px;
+        margin-top: 100px;
+        .service-sec-icon-area {
+            margin-right: -80px;
+            .service-icon-container {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                gap:20px;
+                top: -50%;
+                align-items: center;
+                .service-icon {
+                    width: 9vh;    
+                }
+                p{
+                    font-size: $font14-light;
+                }
+
+            }
+
+            .draw-line {
+                path {
+                    fill: none;
+                    stroke: $dark-brown1;
+                    stroke-width: 1;
+                    stroke-dasharray: 1;
+                    /* 1 = 整條線 */
+                    stroke-dashoffset: 1;
+                    /* 一開始藏起來 */
+                }
+            }
+        }
+    }
+
+    &.show {
+        .service-sec-icon-area{
+            &:nth-child(1) {
+                .service-icon-container{
+                    opacity: 0;
+                    animation: fadeIn 1.5s linear forwards;
+                }
+                .draw-line {
+                    path {
+                        animation: draw 1.5s linear forwards;               
+                    }
+                }
+            }
+            &:nth-child(2){
+                .service-icon-container{
+                    opacity: 0;
+                    animation: fadeIn 1.5s linear 1.5s forwards;
+                }
+                .draw-line{
+                    path {
+                        animation: draw 1.5s linear 1.5s forwards;               
+                    }
+                }
+            }
+            &:nth-child(3){
+                .service-icon-container{
+                    opacity: 0;
+                    animation: fadeIn 1.5s linear 3s forwards;
+                }
+                .draw-line{
+                    path {
+                        animation: draw 1.5s linear 3s forwards;               
+                    }
+                }
+            }
+            &:nth-child(4){
+                .service-icon-container{
+                    opacity: 0;
+                    animation: fadeIn 1.5s linear 4.5s forwards;
+                }
+                .draw-line{
+                    path {
+                        animation: draw 1.5s linear 4.5s forwards;               
+                    }
+                }
+            }
+            &:nth-child(5){
+                .service-icon-container{
+                    opacity: 0;
+                    animation: fadeIn 1.5s linear 6s forwards;
+                }
+                .draw-line{
+                    path {
+                        animation: draw 1.5s linear 6s forwards;               
+                    }
+                }
+            }
+            &:nth-child(6){
+                .service-icon-container{
+                    opacity: 0;
+                    animation: fadeIn 1.5s linear 7.5s forwards;
+                }
+                .draw-line{
+                    path {
+                        animation: draw 1.5s linear 7.5s forwards;               
+                    }
+                }
+            }
+        }
+    }
+
+    @keyframes draw {
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
         }
     }
 }
