@@ -1,0 +1,98 @@
+// 圖片與文字結合樣式 - 根據參考圖片重新設計
+.image-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 4rem 0;
+  position: relative;
+
+  &.image-right {
+    flex-direction: row-reverse;
+  }
+
+  &.image-left {
+    flex-direction: row;
+  }
+
+  .image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    max-width: 45%;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+
+      &.rounded {
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .text-container {
+    flex: 1;
+    padding: 0 2rem;
+    text-align: left;
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #5a4a3b;
+      margin-bottom: 1.5rem;
+      position: relative;
+      
+      &:after {
+    content: '';
+    position: absolute;
+        bottom: -0.5rem;
+    left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: #a88a6a;
+  }
+    }
+
+    .section-content {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #5a4a3b;
+
+      p {
+        margin-bottom: 1rem;
+      }
+      
+      span.highlight {
+        color: #a88a6a;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+// 響應式調整
+@media (max-width: 768px) {
+  .image-section {
+    flex-direction: column !important;
+    margin: 3rem 0;
+    
+    .image-container {
+      max-width: 100%;
+      margin-bottom: 2rem;
+    }
+    
+    .text-container {
+      padding: 0;
+      
+      .section-title {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+// 文章結論樣式 - 根據新參考圖重新設計
+.conclusionSection {
+  margin: 3rem 0;
+  padding: 2rem;
+  background-color: #f8f8f8;
+  border-radius: 15px;
+  
+  .conclusionTitle {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: center;
+  }
+  
+  .conclusionText {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #555;
+    
+    p {
+      margin-bottom: 1rem;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// 響應式調整
+@media (max-width: 768px) {
+  .conclusionSection {
+    padding: 1.5rem;
+    
+    .conclusionTitle {
+      font-size: 1.2rem;
+    }
+    
+    .conclusionText {
+      font-size: 0.9rem;
+    }
+  }
+}

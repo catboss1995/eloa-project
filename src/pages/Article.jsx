@@ -1,166 +1,266 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 // 引入 SCSS 樣式
 import "../scss/styleAcademy.scss";
-// 方法二：ES6 import (Vite/Webpack 支援)
-import articlesPic01 from '../assets/images/articlesPic01.png';
-import articlesPic02 from '../assets/images/articlesPic02.png';
-import articlesPic03 from '../assets/images/articlesPic03.png';
-import articlesPic04 from '../assets/images/articlesPic04.png';
-import articlesPic05 from '../assets/images/articlesPic05.png';
-import articlesPic06 from '../assets/images/articlesPic06.png';
+// 引入文章數據
+import articlesData from '../data/articlesData';
 
+// 直接使用 CDN URL 替代本地圖片路徑
+const articlesPic01 = "https://ik.imagekit.io/8sle6rwoo/articlesPic01.png";
+const articlesPic02 = "https://ik.imagekit.io/8sle6rwoo/articlesPic02.png";
+const articlesPic03 = "https://ik.imagekit.io/8sle6rwoo/articlesPic03.png";
+const articlesPic04 = "https://ik.imagekit.io/8sle6rwoo/articlesPic04.png";
+const articlesPic05 = "https://ik.imagekit.io/8sle6rwoo/articlesPic05.png";
+const articlesPic06 = "https://ik.imagekit.io/8sle6rwoo/articlesPic06.png";
+
+// 圖片映射表
+const imageMap = {
+  1: articlesPic01,
+  2: articlesPic02,
+  3: articlesPic03,
+  4: articlesPic04,
+  5: articlesPic05,
+  6: articlesPic06
+};
 
 const Article = () => {
-  const articles = [
-    {
-      id: 1,
-      title: "敏感肌必看：日常護理與產品挑選指南",
-      description:
-        "敏感肌膚容易泛紅、刺痛、乾癢，遇到換季、空氣污染或保養品成分不合時，狀況更明顯。只要掌握正確的護理原則與產品選擇，敏感肌也能穩定健康！",
-      imgUrl: articlesPic01,
-      reverse: false,
-    },
-    {
-      id: 2,
-      title: "每天洗臉的正確步驟與常見錯誤解析",
-      description:
-        "洗臉是日常保養中最基礎的一步，但你真的洗對了嗎？錯誤的洗臉方式可能會讓肌膚越洗越乾、甚至引發粉刺與敏感。了解正確洗臉的五大步驟，改善NG行為，讓肌膚越洗越健康！",
-      imgUrl: articlesPic02,
-      reverse: true,
-    },
-  ];
+  // 搜尋相關狀態
+  const [searchTerm, setSearchTerm] = useState('');
+  const [activeFilter, setActiveFilter] = useState('');
+  const [showSearchInput, setShowSearchInput] = useState(false);
+  const [filteredArticles, setFilteredArticles] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+  
+  // 創建引用來追蹤搜尋區域的DOM元素
+  const searchRef = useRef(null);
 
-  const articles02 = [
-    {
-      id: 3,
-      title: "美容儀器怎麼選？不同膚質適合的家用美容儀推薦",
-      description:
-        "現代人對肌膚保養越來越講究，家用美容儀成為許多人日常保養的好幫手。但市面上美容儀百百款，該如何根據自己的膚質挑選適合的產品？本篇將從膚質分類、美容儀種類、選購重點到正確使用方式，一次解析！",
-      imgUrl: articlesPic03,
-      reverse: false,
-    },
-    {
-      id: 4,
-      title: "換季保養：秋冬、春夏肌膚護理重點一次看懂",
-      description:
-        "每到季節交替，肌膚就容易出現乾癢、脫皮、泛紅、油水失衡等問題。不同季節環境變化大，保養方式也要跟著調整，才能讓你的臉一年四季都水嫩有光澤！",
-      imgUrl: articlesPic04,
-      reverse: true,
-    },
-  ];
+  // 使用從數據文件導入的文章數據
+  const allArticles = articlesData.map(article => ({
+    ...article,
+    imgUrl: imageMap[article.id],
+    reverse: article.id % 2 === 0 // 偶數ID的文章使用反向佈局
+  }));
 
-  const articles03 = [
-    {
-      id: 5,
-      title: "保濕大解析：為什麼您的臉總是乾？",
-      description:
-        "你是不是常常覺得明明有擦保濕產品，肌膚還是乾燥、脫皮？其實，保濕不只是塗抹乳液這麼簡單！這篇文章將帶你深入了解保濕的三大關鍵、日常容易忽略的陷阱，並教你如何選對產品，讓肌膚水潤透亮。",
-      imgUrl: articlesPic05,
-      reverse: false,
-    },
-    {
-      id: 6,
-      title: "臉部按摩的好處與正確手法教學",
-      description:
-        "洗臉是日常保養中最基礎的一步，但你真教學臉部按摩不僅能促進血液循環、減少浮腫，還能提升保養品吸收效率，是維持肌膚健康與年輕的重要小秘訣！只要掌握正確手法，每天花5-10分鐘，就能讓肌膚煥然一新。的洗對了嗎？錯誤的洗臉方式可能會讓肌膚越洗越乾、甚至引發粉刺與敏感。了解正確洗臉的五大步驟，改善NG行為，讓肌膚越洗越健康！",
-      imgUrl: articlesPic06,
-      reverse: true,
-    },
-  ];
+  // 根據分類分組文章
+  const articles = allArticles.filter(article => article.id <= 2);
+  const articles02 = allArticles.filter(article => article.id > 2 && article.id <= 4);
+  const articles03 = allArticles.filter(article => article.id > 4);
+
+  // 搜尋和篩選功能
+  useEffect(() => {
+    if (searchTerm || activeFilter) {
+      setIsSearching(true);
+      
+      let results = allArticles;
+      
+      // 關鍵字搜尋
+      if (searchTerm) {
+        const term = searchTerm.toLowerCase();
+        results = results.filter(article => 
+          article.title.toLowerCase().includes(term) || 
+          article.description.toLowerCase().includes(term) ||
+          article.keywords.some(keyword => keyword.toLowerCase().includes(term))
+        );
+      }
+      
+      // 分類篩選
+      if (activeFilter) {
+        results = results.filter(article => article.category === activeFilter);
+      }
+      
+      setFilteredArticles(results);
+    } else {
+      setIsSearching(false);
+    }
+  }, [searchTerm, activeFilter]);
+
+  // 處理點擊外部區域收起搜尋框
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (searchRef.current && !searchRef.current.contains(event.target) && showSearchInput) {
+        setShowSearchInput(false);
+        if (searchTerm === '') {
+          setIsSearching(false);
+        }
+      }
+    }
+    
+    // 添加全局點擊事件監聽器
+    document.addEventListener("mousedown", handleClickOutside);
+    
+    // 清理函數
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showSearchInput, searchTerm]);
+
+  // 處理搜尋按鈕點擊
+  const handleSearchClick = () => {
+    setShowSearchInput(!showSearchInput);
+    if (!showSearchInput) {
+      setActiveFilter('');
+    } else {
+      setSearchTerm('');
+    }
+  };
+
+  // 處理分類篩選點擊
+  const handleFilterClick = (category) => {
+    if (activeFilter === category) {
+      setActiveFilter('');
+    } else {
+      setActiveFilter(category);
+      setShowSearchInput(false);
+      setSearchTerm('');
+    }
+  };
+
+  // 處理搜尋輸入
+  const handleSearchInput = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    
+    // 如果搜尋詞被清空，自動收起搜尋框
+    if (value === '') {
+      // 設置一個短暫的延遲，讓用戶有時間看到輸入框被清空
+      setTimeout(() => {
+        setShowSearchInput(false);
+      }, 300);
+    }
+  };
+
+  // 渲染文章卡片
+  const renderArticleCard = (article) => (
+    <div key={article.id} className={`articleCard ${article.reverse ? 'reverse' : ''}`}>
+      <div className="cardText">
+        <h4 className="cardTitle">{article.title}</h4>
+        <p className="cardDesc">{article.description}</p>
+        <Link to={`/article/${article.slug}`} className="readBtn">閱讀文章</Link>
+      </div>
+      <div className="cardImg" style={{"--bg-image": `url(${article.imgUrl})`}}>
+        <div className="imgOverflow" style={{backgroundImage: `url(${article.imgUrl})`}}></div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="acadPage">
       {/* 主視覺區塊 */}
       <section className="hero">
-        <div className="leftText">變美的開始</div>
+        <div className="leftText">變美的地圖</div>
         <div className="rightText">從理解肌膚開始。</div>
         <div className="centerBox">
           <h2 className="mainTitle">肌膚知識學苑</h2>
           <p className="subTitle">Your Skin Intelligence Space</p>
         </div>
         <div className="navWrap">
-          <div className="navBtn searchBtn">
-            <span className="searchIcon">⌕</span>
-            <span>關鍵字搜尋</span>
+          <div ref={searchRef} className="searchContainer">
+            <div className={`navBtn searchBtn ${showSearchInput ? 'active' : ''}`} onClick={handleSearchClick}>
+              <span className="searchIcon">⌕</span>
+              <span>關鍵字搜尋</span>
+            </div>
+            {showSearchInput && (
+              <div className="searchInputWrap">
+                <input 
+                  type="text" 
+                  className="searchInput" 
+                  placeholder="輸入關鍵字..." 
+                  value={searchTerm}
+                  onChange={handleSearchInput}
+                  autoFocus
+                />
+              </div>
+            )}
           </div>
-          <div className="navBtn">膚質類型介紹</div>
-          <div className="navBtn">美容儀使用知識</div>
-          <div className="navBtn">教學影片</div>
-          <div className="navBtn">專家專欄</div>
+          <div 
+            className={`navBtn ${activeFilter === '膚質類型介紹' ? 'active' : ''}`} 
+            onClick={() => handleFilterClick('膚質類型介紹')}
+          >
+            膚質類型介紹
+          </div>
+          <div 
+            className={`navBtn ${activeFilter === '美容儀使用知識' ? 'active' : ''}`} 
+            onClick={() => handleFilterClick('美容儀使用知識')}
+          >
+            美容儀使用知識
+          </div>
+          <div 
+            className={`navBtn ${activeFilter === '教學影片' ? 'active' : ''}`} 
+            onClick={() => handleFilterClick('教學影片')}
+          >
+            教學影片
+          </div>
+          <div 
+            className={`navBtn ${activeFilter === '專家專欄' ? 'active' : ''}`} 
+            onClick={() => handleFilterClick('專家專欄')}
+          >
+            專家專欄
+          </div>
         </div>
       </section>
 
-      {/* 保養科學堂 */}
-      <section className="contentSec">
-        <h3 className="secTitle">保養科學堂</h3>
-        
-        <div className="articleList">
-          {articles.map((article, index) => (
-            <div key={article.id} className={`articleCard ${index % 2 === 1 ? 'reverse' : ''}`}>
-              <div className="cardText">
-                <h4 className="cardTitle">{article.title}</h4>
-                <p className="cardDesc">{article.description}</p>
-                <button className="readBtn">閱讀更多</button>
+      {/* 搜尋結果 */}
+      {isSearching && (
+        <section className="contentSec">
+          <div className="secHeader">
+            <h3 className="secTitle">
+              {activeFilter ? `${activeFilter}` : '搜尋結果'}
+              {searchTerm && `: "${searchTerm}"`}
+            </h3>
+          </div>
+          
+          <div className="articleList">
+            {filteredArticles.length > 0 ? (
+              filteredArticles.map(article => renderArticleCard(article))
+            ) : (
+              <div className="noResults">
+                <p>沒有找到符合條件的文章，請嘗試其他關鍵字。</p>
               </div>
-              <div className="cardImg" style={{backgroundImage: `url(${article.imgUrl})`}}></div>
-            </div>
-          ))}
-        </div>
-      </section>
+            )}
+          </div>
+        </section>
+      )}
 
-      {/* 模式教學室 */}
-      <section className="contentSec beigeBg">
-        <h3 className="secTitle">模式教學室</h3>
-        
-        <div className="articleList">
-          {articles02.map((article, index) => (
-            <div key={article.id} className={`articleCard ${index % 2 === 1 ? 'reverse' : ''}`}>
-              <div className="cardText">
-                <h4 className="cardTitle">{article.title}</h4>
-                <p className="cardDesc">{article.description}</p>
-                <button className="readBtn">閱讀更多</button>
-              </div>
-              <div className="cardImg" style={{backgroundImage: `url(${article.imgUrl})`}}></div>
+      {/* 當沒有搜尋時顯示原本的內容 */}
+      {!isSearching && (
+        <>
+          {/* 保養科學堂 */}
+          <section className="contentSec">
+            <div className="secHeader">
+              <h3 className="secTitle">保養科學堂</h3>
             </div>
-          ))}
-        </div>
-      </section>
+            
+            <div className="articleList">
+              {articles.map(article => renderArticleCard(article))}
+            </div>
+          </section>
 
-      {/* 問題肌研究所 */}
-      <section className="contentSec">
-        <h3 className="secTitle">問題肌研究所</h3>
-        
-        <div className="articleList">
-          {articles.map((article, index) => (
-            <div key={article.id} className={`articleCard ${index % 2 === 1 ? 'reverse' : ''}`}>
-              <div className="cardText">
-                <h4 className="cardTitle">{article.title}</h4>
-                <p className="cardDesc">{article.description}</p>
-                <button className="readBtn">閱讀更多</button>
-              </div>
-              <div className="cardImg" style={{backgroundImage: `url(${article.imgUrl})`}}></div>
+          {/* 模式教學室 */}
+          <section className="contentSec beigeBg">
+            <div className="secHeader">
+              <h3 className="secTitle">模式教學室</h3>
             </div>
-          ))}
-        </div>
-      </section>
-      {/* 問題肌研究所 */}
-      <section className="contentSec beigeBg">
-        <h3 className="secTitle">問題肌研究所</h3>
-        
-        <div className="articleList">
-          {articles03.map((article, index) => (
-            <div key={article.id} className={`articleCard ${index % 2 === 1 ? 'reverse' : ''}`}>
-              <div className="cardText">
-                <h4 className="cardTitle">{article.title}</h4>
-                <p className="cardDesc">{article.description}</p>
-                <button className="readBtn">閱讀更多</button>
-              </div>
-              <div className="cardImg" style={{backgroundImage: `url(${article.imgUrl})`}}></div>
+            
+            <div className="articleList">
+              {articles02.map(article => renderArticleCard(article))}
             </div>
-          ))}
-        </div>
-      </section>
+          </section>
 
+          {/* 問題肌研究所 */}
+          <section className="contentSec">
+            <div className="secHeader">
+              <h3 className="secTitle">問題肌研究所</h3>
+            </div>
+            
+            <div className="articleList">
+              {articles03.map(article => renderArticleCard(article))}
+            </div>
+          </section>
+        </>
+      )}
+
+      {/* 底部圓弧裝飾 */}
+      <div className="bottomCurve"></div>
     </div>
   );
 };

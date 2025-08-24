@@ -1,0 +1,69 @@
+// 圖片網格樣式 - 根據參考圖片重新設計
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin: 4rem 0;
+  
+  .imageItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #f8f3ee;
+    padding: 2rem;
+    border-radius: 20px;
+    transition: transform 0.3s;
+    
+    &:hover {
+      transform: translateY(-5px);
+    }
+    
+      .imageWrapper {
+      width: 120px;
+      height: 120px;
+        margin-bottom: 1.5rem;
+      position: relative;
+      
+      &.rounded {
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      
+      &.square {
+        border-radius: 20px;
+        overflow: hidden;
+    }
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+  }
+}
+    
+    .imageCaption {
+      font-size: 1rem;
+      color: #5a4a3b;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+  }
+}
+
+// 響應式調整
+@media (max-width: 768px) {
+  .imageGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    
+    .imageItem {
+      padding: 1.5rem;
+      
+      .imageWrapper {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  }
+}
