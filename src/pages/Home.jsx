@@ -244,7 +244,7 @@ const ImageCarousel = () => {
       src: campaginCarousel3,
       alt: 'ELOA Team',
       title: '你們看是傻X'
-    },
+    }
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -326,8 +326,8 @@ const ImageCarousel = () => {
         {images.map((_, index) => (
           <button
             key={index}
-            className={`indicator ${index === currentIndex ? 'indicator--active' : ''}`}
-            id={`indicator${index}`}
+            className={`indicator ${index === currentIndex ? 'indicator-active' : ''}`}
+            // id={`indicator${index}`}
             onClick={() => {
               if (!isTransitioning) {
                 setIsTransitioning(true);
