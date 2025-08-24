@@ -19,6 +19,11 @@
 - 新增 SkinTest 頁面初版
 - 完成背景圖與玻璃視窗區塊排版
 - 已經測試過可以顯示在 /SkinTest
+### - 2025/08/24
+- 已完成 5 個頁面（SkinLanding, Step1~Step4）
+- Router: src/skin/SkinRouter.jsx
+- 狀態管理：SkinFormProvider 共用
+- Step4 可收集前面所有答案並送出**
 
 ## zoena
 ### - 2025-08-18
