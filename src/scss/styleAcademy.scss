@@ -1,5 +1,5 @@
-@use "./styleReset"as *;
 @use "sass:color";
+@use "./styleReset" as *;
 
 // 主頁面樣式
 .acadPage {
@@ -7,6 +7,7 @@
     background-color: $beige0;
     color: $dark-brown2;
     overflow-x: hidden;
+    font-family: 'Noto Sans TC', sans-serif;
 }
 
 // 主視覺區塊
@@ -108,7 +109,16 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
+}
+
+// 搜尋容器
+.searchContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 
 // 導航按鈕
@@ -130,6 +140,11 @@
     &:hover {
         background: rgba(255, 255, 255, 0.7);
     }
+    
+    &.active {
+        background-color: $light-brown2;
+        color: white;
+    }
 }
 
 // 搜尋按鈕
@@ -140,28 +155,77 @@
     }
 }
 
+// 搜尋輸入框
+.searchInputWrap {
+    flex: 1;
+    min-width: 250px;
+    max-width: 400px;
+    margin-left: 10px;
+    
+    .searchInput {
+        width: 100%;
+        padding: 8px 15px;
+        border-radius: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        font-size: 14px;
+        color: $dark-brown1;
+        outline: none;
+        transition: all 0.3s ease;
+        
+        &:focus {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        &::placeholder {
+            color: rgba($dark-brown1, 0.6);
+        }
+    }
+}
+
 // 內容區塊
 .contentSec {
-    padding: 80px 10%;
+    padding: 80px 0;
+    position: relative;
+}
+
+// 區塊標題容器
+.secHeader {
+    margin-bottom: 60px;
+    position: relative;
+    padding: 0;
 }
 
 // 區塊標題
 .secTitle {
     font-size: 28px;
-    font-weight: 300;
+    font-weight: 400;
     color: $dark-brown1;
-    margin-bottom: 40px;
     position: relative;
-
-    &::after {
+    display: inline-block;
+    padding: 15px 60px 15px 60px; /* 左右間距一致 */
+    background-color: $beige1;
+    border-radius: 0 50px 50px 0;
+    margin-left: 0;
+    
+    // 添加左側深色邊條
+    &::before {
         content: '';
         position: absolute;
-        bottom: -10px;
         left: 0;
-        width: 60px;
-        height: 2px;
-        background-color: $light-brown2;
+        top: 0;
+        bottom: 0;
+        width: 10px;
+        background-color: $dark-brown2;
+        border-radius: 0;
     }
+}
+
+// 米色背景區塊的標題樣式特殊處理
+.beigeBg .secTitle {
+    background-color: $beige0;
 }
 
 // 米色背景
@@ -169,28 +233,78 @@
     background-color: $beige1;
 }
 
-// 文章列表
+// 文章列表 - 修改為垂直排列
 .articleList {
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: 80px;
+    padding: 0 10%;
+    position: relative;
 }
 
-// 文章卡片
+// 文章卡片 - 修改為左右布局
 .articleCard {
     display: flex;
     background-color: white;
     border-radius: 20px;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    
     // 反向排列
     &.reverse {
         flex-direction: row-reverse;
+    }
+    
+    // 添加米色背景層
+    &::after {
+        content: '';
+        position: absolute;
+        top: 30px;
+        bottom: -30px;
+        left: 30px;
+        right: 30px;
+        background-color: $beige1;
+        border-radius: 20px;
+        z-index: -1;
+    }
+    
+    // 反向卡片的背景層位置調整
+    &.reverse::after {
+        left: 30px;
+        right: 30px;
+    }
+}
 
-        .cardText {
-            padding-left: 5%;
-            padding-right: 8%;
+// 卡片圖片容器
+.cardImg {
+    flex: 1;
+    position: relative;
+    min-height: 300px;
+    
+    .imgOverflow {
+        position: absolute;
+        top: -20px;
+        bottom: -20px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    // 調整圖片位置
+    .articleCard:not(.reverse) & {
+        .imgOverflow {
+            left: 0;
+            right: -40px;
+        }
+    }
+    
+    .articleCard.reverse & {
+        .imgOverflow {
+            right: 0;
+            left: -40px;
         }
     }
 }
@@ -198,10 +312,13 @@
 // 卡片文字區
 .cardText {
     flex: 1;
-    padding: 40px 8% 40px 5%;
+    padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    z-index: 1;
+    background-color: white;
+    border-radius: 20px;
 }
 
 // 卡片標題
@@ -209,7 +326,21 @@
     font-size: 22px;
     font-weight: 500;
     color: $dark-brown1;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    line-height: 1.3;
+    position: relative;
+    padding-bottom: 15px;
+    
+    // 添加下方金色分隔線
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: $light-brown2;
+    }
 }
 
 // 卡片描述
@@ -231,72 +362,218 @@
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    // 
+    display: flex;
+    align-items: center;
+    
+    // 添加勾選圖標
+    &::after {
+        content: '✓';
+        margin-left: 8px;
+        font-size: 14px;
+    }
+
     &:hover {
-        background-color: darken($light-brown2, 10%);
+        background-color: color.adjust($light-brown2, $lightness: 10%);
     }
 }
 
-// 卡片圖片
-.cardImg {
-    flex: 1;
-    min-height: 350px;
-    background-size: cover;
-    background-position: center;
+// 無搜尋結果樣式
+.noResults {
+    text-align: center;
+    padding: 40px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    
+    p {
+        font-size: 18px;
+        color: $dark-brown2;
+    }
 }
-// 目前只寫一個 考慮到可能會需要全局整合
-// 響應式設計
+
+// 底部圓弧裝飾
+.bottomCurve {
+    height: 100px;
+    background-color: $beige0;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    margin-top: -50px;
+    position: relative;
+    z-index: 1;
+}
+
+// 暫定響應式
 @media (max-width: 1024px) {
+    .secTitle {
+        font-size: 24px;
+        padding: 12px 50px 12px 50px; /* 左右間距一致 */
+    }
+    
+    .cardTitle {
+        font-size: 20px;
+    }
+    
+    .cardDesc {
+        font-size: 15px;
+    }
+    
+    .cardText {
+        padding: 30px;
+    }
+    
+    .cardImg {
+        .imgOverflow {
+            top: -15px;
+            bottom: -15px;
+        }
+        
+        .articleCard:not(.reverse) & {
+            .imgOverflow {
+                right: -30px;
+            }
+        }
+        
+        .articleCard.reverse & {
+            .imgOverflow {
+                left: -30px;
+            }
+        }
+    }
+    
+    .articleCard::after {
+        top: 20px;
+        bottom: -20px;
+        left: 20px;
+        right: 20px;
+    }
+    
+    .searchInputWrap {
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .articleCard, .articleCard.reverse {
+        flex-direction: column;
+    }
+    
+    .hero {
+        height: 80vh;
+    }
+    
     .leftText, .rightText {
-        position: static;
-        margin: 10px 0;
-        text-align: center;
+        font-size: 18px;
     }
-
-    .centerBox {
-        position: static;
-        transform: none;
-        margin: 30px 0;
-    }
-
-    .mainTitle {
-        &::before,
-        &::after {
-            width: 40px;
-        }
-
-        &::before {
-            margin-right: 10px;
-        }
-
-        &::after {
-            margin-left: 10px;
-        }
-    }
+    
     .navWrap {
-        position: static;
-        transform: none;
-        margin-top: 30px;
         flex-wrap: wrap;
-        padding: 0 20px;
+        padding: 0 5%;
+        bottom: 5%;
     }
-
-    .navBtn {
-        margin: 5px;
-        flex-grow: 1;
-        text-align: center;
-        justify-content: center;
+    
+    .contentSec {
+        padding: 60px 0;
     }
-
-    .articleCard {
-        flex-direction: column !important;
-
-        .cardText {
-            padding: 30px !important;
-        }
+    
+    .secTitle {
+        font-size: 22px;
+        padding: 10px 40px 10px 40px; /* 左右間距一致 */
     }
-
+    
+    .cardTitle {
+        font-size: 18px;
+    }
+    
+    .cardDesc {
+        font-size: 14px;
+    }
+    
+    .cardText {
+        padding: 25px;
+    }
+    
+    // 在小屏幕上調整圖片
     .cardImg {
         min-height: 250px;
+        
+        .imgOverflow {
+            top: -15px;
+            left: -15px !important;
+            right: -15px !important;
+            bottom: -15px;
+        }
+    }
+    
+    .articleCard::after {
+        top: 15px;
+        bottom: -15px;
+        left: 15px;
+        right: 15px;
+    }
+    
+    .searchContainer {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    
+    .searchInputWrap {
+        min-width: 100%;
+        order: 1;
+        margin-top: 10px;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        height: 70vh;
+    }
+    
+    .leftText {
+        left: 5%;
+    }
+    
+    .rightText {
+        right: 5%;
+    }
+    
+    .navBtn {
+        padding: 6px 15px;
+        font-size: 12px;
+    }
+    
+    .articleList {
+        gap: 60px;
+        padding: 0 5%;
+    }
+    
+    .cardImg {
+        min-height: 200px;
+        
+        .imgOverflow {
+            top: -10px;
+            left: -10px !important;
+            right: -10px !important;
+            bottom: -10px;
+        }
+    }
+    
+    .secTitle {
+        font-size: 20px;
+        padding: 8px 30px 8px 30px; /* 左右間距一致 */
+    }
+    
+    .cardText {
+        padding: 20px;
+    }
+    
+    .articleCard::after {
+        top: 10px;
+        bottom: -10px;
+        left: 10px;
+        right: 10px;
+    }
+    
+    .noResults p {
+        font-size: 16px;
     }
 }

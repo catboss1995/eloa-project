@@ -1,0 +1,70 @@
+// 引入所有文章相關樣式
+@use 'base';
+@use 'intro';
+@use 'section';
+@use 'divider';
+@use 'step_card';
+@use 'tips';
+@use 'image_grid';
+@use 'conclusion';
+
+// 全局顏色變數
+$primary-color: #a88a6a;
+$secondary-color: #d9c3aa;
+$background-light: #f9f6f2;
+$text-dark: #333;
+$text-medium: #555;
+$text-light: #888;
+
+// 全局共享樣式
+.articleContentPage {
+  // 文章內容通用樣式
+  p {
+    margin-bottom: 1.2rem;
+    line-height: 1.8;
+  }
+  
+  // 強調文字
+  .highlight {
+    color: $primary-color;
+    font-weight: 500;
+  }
+  
+  // 引用樣式
+  blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    border-left: 4px solid $primary-color;
+    background-color: $background-light;
+    font-style: italic;
+    color: $text-medium;
+  }
+  
+  // 列表樣式
+  ul, ol {
+    margin: 1.2rem 0;
+    padding-left: 1.5rem;
+    
+    li {
+      margin-bottom: 0.8rem;
+      line-height: 1.6;
+    }
+  }
+  
+  // 連結樣式
+  a {
+    color: $primary-color;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+    
+    &:hover {
+      border-color: $primary-color;
+    }
+  }
+  
+  // 圖片通用樣式
+  img {
+    max-width: 50%;
+  }
+}

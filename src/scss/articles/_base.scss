@@ -1,0 +1,232 @@
+// 文章頁面基礎樣式 - 完全重新設計以匹配參考圖片
+.articleContentPage {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  font-family: 'Noto Sans TC', sans-serif;
+  color: #5a4a3b;
+  line-height: 1.6;
+  background-color: #fff;
+  
+  // 麵包屑導航
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-size: 0.85rem;
+    
+    .breadcrumbLink {
+      color: #a88a6a;
+      text-decoration: none;
+      transition: color 0.3s;
+      
+      &:hover {
+        color: #8a614d;
+      }
+    }
+    
+    .separator {
+      margin: 0 0.5rem;
+      color: #ccc;
+    }
+    
+    .currentPage {
+      color: #8a614d;
+      font-weight: 500;
+    }
+  }
+  
+  // 文章標題區
+  .articleHeader {
+    margin-bottom: 2rem;
+    
+    .articleTitle {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      line-height: 1.3;
+      color: #5a4a3b;
+    }
+    
+    .articleMeta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      .authorInfo {
+        display: flex;
+        align-items: center;
+        
+        .authorImage {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin-right: 1rem;
+        }
+        
+        .authorDetails {
+          display: flex;
+          flex-direction: column;
+          
+          .authorName {
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+            font-size: 0.9rem;
+            color: #5a4a3b;
+          }
+          
+          .publishDate {
+            font-size: 0.8rem;
+      color: #a88a6a;
+    }
+        }
+      }
+    
+        .shareButtons {
+        display: flex;
+        gap: 0.8rem;
+        
+        button {
+          padding: 0.4rem 0.8rem;
+          border: 1px solid #a88a6a;
+          border-radius: 20px;
+          background: white;
+          font-size: 0.85rem;
+          cursor: pointer;
+          transition: all 0.3s;
+          color: #a88a6a;
+          
+          &:hover {
+            background: #f8f3ee;
+        }
+      }
+    }
+  }
+}
+  
+  // 主視覺圖片 - 修改為長方形設計
+  .heroImageContainer {
+    margin-bottom: 3rem;
+    border-radius: 20px;
+    overflow: hidden;
+    
+    .heroImage {
+      width: 1920px;
+      height: auto;
+      object-fit: cover;
+      aspect-ratio: 16/9;
+    }
+  }
+  
+  // 文章內容
+  .articleContent {
+    margin-bottom: 2.5rem;
+  }
+  
+  // 相關文章
+  .relatedArticles {
+    margin: 2.5rem 0;
+    padding: 1.5rem;
+    background: #f8f3ee;
+    border-radius: 20px;
+    
+    .relatedTitle {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      color: #8a614d;
+    }
+    
+    .relatedList {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      
+      .relatedItem {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #5a4a3b;
+        transition: color 0.3s;
+        
+        &:hover {
+          color: #a88a6a;
+        }
+        
+        .relatedDot {
+          width: 6px;
+          height: 6px;
+          background: #a88a6a;
+          border-radius: 50%;
+          margin-right: 0.8rem;
+        }
+        
+        .relatedText {
+          font-size: 0.9rem;
+          line-height: 1.4;
+        }
+      }
+    }
+  }
+  
+  // 返回按鈕
+  .backButtonContainer {
+    margin: 2.5rem 0;
+    text-align: center;
+    
+    .backButton {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.7rem 1.2rem;
+      border: 1px solid #a88a6a;
+      border-radius: 30px;
+      background: white;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      color: #a88a6a;
+      
+      &:hover {
+        background: #f8f3ee;
+      }
+      
+      .backArrow {
+        margin-right: 0.5rem;
+        font-size: 1.1rem;
+      }
+    }
+  }
+  
+  // 底部裝飾
+  .bottomDecoration {
+    height: 3px;
+    background: linear-gradient(to right, #a88a6a, #d9c3aa);
+    margin: 1.5rem 0;
+    border-radius: 3px;
+  }
+}
+
+// 響應式調整
+@media (max-width: 768px) {
+  .articleContentPage {
+    padding: 1.2rem 0.8rem;
+    
+    .articleHeader {
+      .articleTitle {
+        font-size: 1.5rem;
+      }
+      
+      .articleMeta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        
+        .shareButtons {
+          width: 100%;
+          justify-content: flex-start;
+        }
+      }
+    }
+  }
+}
