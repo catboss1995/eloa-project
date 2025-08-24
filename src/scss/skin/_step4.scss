@@ -1,0 +1,235 @@
+/* src/scss/skin/_step4.scss
+   step4：三段式頁面（桌面每段固定 1080px，高度）
+   - Section1: 人物背景 + 玻璃卡片（置中，下移）
+   - Section2: 標題 + 說明文字
+   - Section3: 門市圖片 + 裝飾 + 右下圓形 CTA
+*/
+
+/* 色彩變數，若專案有 global CSS variables 會自動覆蓋 */
+:root {
+  --brand-brown: #8b6f62;
+  --brand-brown-strong: #6f5a4f;
+  --text-muted: #6f5a4f;
+
+  --sec-h: auto; /* mobile 預設：自動高度 */
+  --card-offset: 220px; /* 卡片下移量 (200~300px 可自行調整) */
+}
+
+/* 桌面版 (≥1440px)：每段固定 1080px 高 */
+@media (min-width: 1440px) {
+  :root {
+    --sec-h: 1080px;
+  }
+}
+
+/* 解除 SkinTest.module.scss 的滿版限制 */
+.step4 {
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  position: relative;
+}
+
+/* 每一段的共同樣式 */
+.step4-sec {
+  height: var(--sec-h);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: min(1980px, 100%);
+  margin-inline: auto;
+}
+
+/* ========== Section 1：人物背景 + 玻璃卡片 ========== */
+.step4-sec--hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(80% 80% at 20% 20%, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0) 60%),
+    var(--hero-img) no-repeat right center / cover;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.step4-hero {
+  position: relative;
+  z-index: 1; /* 蓋在背景上 */
+  width: 100%;
+}
+
+/* 玻璃卡片：絕對定位，水平置中，下移 */
+/* 3) 玻璃卡片：絕對定位置中並往下移 */
+
+.step4-card {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  width: min(680px, 86%);
+  text-align: center;
+  z-index: 2;
+
+  /* 這一行可選，但很穩：用 grid 讓所有子項目水平置中 */
+  display: grid;
+  justify-items: center;
+
+  &__product {
+    /* 1) 圖片是 block，要靠 auto margin 置中 */
+    display: block;
+    margin-inline: auto;
+
+    /* 2) clamp 順序修正：70 ~ 100px，理想 10vw */
+    width: clamp(70px, 10vw, 100px);
+    height: auto;
+
+    margin-bottom: clamp(6px, 1vw, 10px);
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.08));
+
+    /* 3) 保險：避免被全域樣式影響 */
+    float: none;
+  }
+
+  &__title {
+    font-weight: 800;
+    font-size: clamp(18px, 1.9vw, 21px);
+    color: var(--brand-brown-strong);
+    margin-top: 2px;
+  }
+
+  &__desc {
+    margin: 6px 0 14px;
+    line-height: 1.9;
+    color: var(--text-muted);
+  }
+
+  .btn-next { margin-top: 6px; }
+}
+
+/* ========== Section 2：標題 + 說明文字 ========== */
+.step4-sec--intro {
+  .skin-card__title {
+    text-align: center;
+  }
+  .line-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+}
+.line-wrap img {
+  max-width: 280px;
+  height: auto;
+}
+
+
+  .step4-intro {
+    width: min(980px, 90%);
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .step4-intro__desc {
+    margin-top: 12px;
+    line-height: 1.9;
+    color: var(--text-muted);
+  }
+}
+
+/* ========== Section 3：門市圖 + 裝飾 + FAB ========== */
+.step4-sec--store {
+  .step4-store__decor {
+    position: absolute;
+    top: -18px;
+    width: 260px;
+    height: auto;
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 0;
+
+    &--left {
+      left: -110px;
+    }
+    &--right {
+      right: -110px;
+      transform: scaleX(-1);
+    }
+
+    @media (max-width: 1440px) {
+      display: none;
+    }
+  }
+
+  .step4-store__imgWrap {
+    position: relative;
+    width: min(1080px, 92vw);
+    margin-inline: auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+    z-index: 1;
+  }
+
+  .step4-store__img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .step4-store__fab {
+    position: absolute;
+    right: clamp(16px, 3vw, 28px);
+    bottom: clamp(16px, 3vw, 28px);
+    width: clamp(120px, 13vw, 160px);
+    height: clamp(120px, 13vw, 160px);
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    background: radial-gradient(circle at 30% 30%, #fff, #f2e8e1);
+    color: var(--brand-brown-strong);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    line-height: 1.35;
+    text-align: center;
+    display: grid;
+    place-items: center;
+    box-shadow:
+      0 12px 28px rgba(0, 0, 0, 0.18),
+      inset 0 1px 0 #fff;
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow:
+        0 16px 36px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 #fff;
+    }
+  }
+}
+/* 行動版：回到正常 flow（避免留大片上邊距）*/
+@media (max-width: 1439.98px){
+  .step4-card{
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin-inline: auto;
+  }
+}
+
+/* 桌面版：絕對定位置中，往下偏移 */
+@media (min-width: 1440px){
+  .step4-sec--hero .step4-card{
+    position: absolute;
+    top: 50px;        /* 200~300 自行調 */
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    width: min(680px, 86%);
+    text-align: center;
+    z-index: 2;
+  }
+}
