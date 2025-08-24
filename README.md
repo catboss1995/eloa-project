@@ -30,3 +30,6 @@
 - 新增 FQA放大鏡icon
 - FQA.JSX&SCSS完成
 
+### - 2025-08-24
+修改FQA-JSX/SCSS
+修改NEWS-JSX/SCSS
