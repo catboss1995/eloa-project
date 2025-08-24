@@ -4,7 +4,7 @@
 
 
 
-/* =============== 變數 & 基礎 =============== */
+/*  變數 & 基礎  */
 $brand:     #5B4C39;
 $ink:       #111;
 $muted:     #777;
@@ -20,7 +20,7 @@ $container: 1200px;
 html, body, #root { max-width: 100%; overflow-x: clip; }
 
 
-/* 版心容器（給非滿版區塊用） */
+/* 版心容器 */
 .container {
   max-width: $container;
   width: 100%;
@@ -29,7 +29,7 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
 }
 
 
-/* =============== BANNER（滿版） =============== */
+/*  BANNER  */
 .banner {
   background: $bg;
   color: $ink;
@@ -38,7 +38,7 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
   &__container {
     position: relative;
     width: 100vw;
-    margin-inline: calc(50% - 50vw);  /* 滿版關鍵 */
+    margin-inline: calc(50% - 50vw);
     margin-top: calc(var(--nav-h) + 16px);
   }
 
@@ -69,43 +69,38 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
 }
 
 
-/* =============== 最新消息（卡片區） =============== */
+/*  new news  */
 .news {
   background: $bg;
   color: $ink;
 
-
   &__container {
     @extend .container;
-    position: relative;             /* 背景用 ::before 壓底 */
+    position: relative;
     padding-block: clamp(28px, 6vw, 64px);
 
-
-    /* ✅ 方法二：讓背景自動覆蓋整個容器高度 */
     &::before {
       content: "";
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
       top: 0;
-      bottom: 0;                    /* 高度涵蓋到按鈕 */
-      width: 100vw;                 /* 左右真滿版 */
+      bottom: 0;
+      width: 105vw;
       background: url("../assets/images/NEWS-card.svg") no-repeat center top;
-      background-size: cover;       /* ← 方法2：依容器高度自動延展覆蓋 */
+      background-size: cover;
       z-index: 0;
     }
   }
 
-
   &__title {
     position: relative;
-    z-index: 1;
-    margin: 0 0 clamp(16px, 3vw, 28px);
+    z-index: 2;
+    margin: clamp(50px, 8vw, 10px) 0 clamp(12px, 6vw, 18px);
     text-align: center;
-    font-size: clamp(18px, 2vw, 22px);
+    font-size: clamp(50px, 2vw, 22px);
     font-weight: 700;
     letter-spacing: .12em;
-
 
     &::after {
       content: "";
@@ -118,16 +113,76 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
     }
   }
 
+  &__logo {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    margin-bottom: clamp(0px, 0vw, 0px);
+    margin-top: 80px;
 
-  /* 卡片容器（不綁背景） */
+    img {
+      width: 200px;
+      height: auto;
+      display: block;
+      
+      @media (max-width: 768px) {
+        width: 150px;
+      }
+      
+      @media (max-width: 480px) {
+        width: 120px;
+      }
+    }
+  }
+
+
+  /* 卡片容器 */
   &__carousel {
     position: relative;
-    z-index: 1; /* 內容蓋在背景上 */
-    border-radius: 20px;
-    padding: clamp(80px, 9vw, 132px) clamp(16px, 3vw, 32px) clamp(36px, 6vw, 64px);
+    z-index: 2;
+    border-radius: 0px;
+    padding: clamp(80px, 2vw, 132px) clamp(16px, 3vw, 32px) clamp(36px, 2vw, 64px);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: clamp(12px, 2vw, 24px);
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 55%;
+    transform: translateY(-50%);
+    z-index: 3;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    img {
+      width: 56px;
+      height: 56px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+      
+      @media (max-width: 768px) {
+        width: 48px;
+        height: 48px;
+      }
+      
+      @media (max-width: 480px) {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    
+    &--left {
+      left: clamp(-25px, 0vw, -25px);
+    }
+    
+    &--right {
+      right: clamp(-25px, 0vw, -25px);
+    }
   }
 
 
@@ -160,10 +215,10 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
   }
 
 
-  /* 查看更多（會被背景覆蓋到） */
+  /* see more */
   &__more {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     margin-top: clamp(16px, 3vw, 28px);
     display: flex;
     justify-content: center;
@@ -174,7 +229,7 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
       border: 1px solid $brand;
       background: #fff;
       color: $brand;
-      padding: 10px 18px;
+      padding: 12px 35px;
       border-radius: 999px;
       letter-spacing: .08em;
       font-size: 14px;
@@ -188,7 +243,7 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
 }
 
 
-/* =============== Timeline（左線 + 圓點 + 卡片） =============== */
+/*  Timeline  */
 .timeline {
   @extend .container;
   display: grid;
@@ -197,18 +252,37 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
   position: relative;
   padding-block: clamp(28px, 6vw, 64px);
 
-
   background-image: url("../assets/images/NEWS-line.svg");
-  background-repeat: repeat-y;
-  background-position: left calc(32px + 2px) top;
-  background-size: 4px auto;
-
+  background-repeat: no-repeat;
+  background-position: left calc(180px) top calc(69px);
+  background-size: 24px auto;
 
   &__rail { min-height: 100%; }
 
-
   &__list { display: flex; flex-direction: column; gap: clamp(20px, 3vw, 28px); }
 
+  &__logo {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    margin-bottom: clamp(24px, 4vw, 48px);
+    grid-column: 1 / -1;
+
+    img {
+      width: 180px;
+      height: auto;
+      display: block;
+      
+      @media (max-width: 768px) {
+        width: 140px;
+      }
+      
+      @media (max-width: 480px) {
+        width: 120px;
+      }
+    }
+  }
 
   &__item {
     display: grid;
@@ -217,15 +291,6 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
     align-items: flex-start;
     position: relative;
   }
-
-
-  &__dot {
-    grid-column: 1 / 2;
-    width: 14px; height: 14px; border-radius: 50%;
-    background: $brand; border: 2px solid #fff; box-shadow: 0 0 0 2px $line;
-    margin-left: calc(32px - 7px); margin-top: 6px;
-  }
-
 
   &__card {
     grid-column: 2 / 3;
@@ -237,10 +302,18 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
 
 
   &__thumb {
-    width: 100%; aspect-ratio: 16/9; border-radius: 8px; overflow: hidden; background: #f3f3f3;
+    width: 100%; 
+    aspect-ratio: 16/9; 
+    border-radius: 8px; 
+    overflow: hidden; 
+    background: #f3f3f3;
 
-
-    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    img { 
+      display: block; 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover;
+    }
   }
 
 
@@ -252,41 +325,345 @@ html, body, #root { max-width: 100%; overflow-x: clip; }
 }
 
 
-/* =============== RWD =============== */
-@media (max-width: 1024px) {
-  .news__carousel { grid-template-columns: repeat(2, 1fr); }
+/*  RWD  */
+
+@media (min-width: 1400px) {
+  .news__carousel {
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 3vw, 48px);
+  }
 }
 
+@media (max-width: 1200px) {
+  .container {
+    max-width: 100%;
+    padding-inline: clamp(20px, 4vw, 40px);
+  }
+  
+  .news__carousel {
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(16px, 2.5vw, 24px);
+  }
+}
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
+  .news__carousel { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: clamp(20px, 3vw, 32px);
+  }
+  
+  .news__logo img {
+    width: 160px;
+  }
+  
   .timeline {
     grid-template-columns: 48px 1fr;
     background-position: left calc(24px + 2px) top;
-
-
-    &__item { grid-template-columns: 48px 1fr; }
-    &__dot  { margin-left: calc(24px - 7px); }
-    &__card { grid-template-columns: 1fr; }
+    
+    &__item { 
+      grid-template-columns: 48px 1fr; 
+    }
+    
+    &__card { 
+      grid-template-columns: 1fr; 
+    }
   }
 }
 
+@media (max-width: 900px) {
+  .banner__content {
+    right: 3%;
+    bottom: 5%;
+  }
+  
+  .banner__slogan {
+    font-size: clamp(18px, 2vw, 28px);
+  }
+  
+  .news__title {
+    font-size: clamp(36px, 3vw, 42px);
+    margin: clamp(40px, 6vw, 60px) 0 clamp(16px, 4vw, 24px);
+  }
+  
+  .news__logo {
+    margin-top: 60px;
+    
+    img {
+      width: 140px;
+    }
+  }
+  
+  .news__carousel {
+    padding: clamp(60px, 4vw, 100px) clamp(20px, 4vw, 32px) clamp(32px, 3vw, 48px);
+  }
+}
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .banner__container {
+    margin-top: calc(var(--nav-h) + 8px);
+  }
+  
   .banner__content {
     position: static;
-    margin: 10px auto 0;
-    width: min(92vw, $container);
-    padding-inline: 16px;
+    margin: 16px auto 0;
+    width: min(90vw, 600px);
+    padding-inline: 20px;
     align-items: center;
   }
-  .banner__slogan { text-align: center; font-size: 20px; }
-
-
+  
+  .banner__slogan { 
+    text-align: center; 
+    font-size: 20px; 
+  }
+  
+  .news__title {
+    font-size: clamp(28px, 4vw, 36px);
+    margin: clamp(32px, 5vw, 48px) 0 clamp(20px, 3vw, 28px);
+  }
+  
+  .news__logo {
+    margin-top: 40px;
+    
+    img {
+      width: 120px;
+    }
+  }
+  
   .news__carousel {
     grid-template-columns: 1fr;
-    padding-top: clamp(72px, 16vw, 120px);   /* 背景上緣露出量 */
-    padding-bottom: clamp(28px, 10vw, 56px);
+    gap: clamp(24px, 4vw, 32px);
+    padding: clamp(48px, 6vw, 80px) clamp(16px, 4vw, 24px) clamp(28px, 4vw, 40px);
+  }
+  
+  .timeline {
+    padding-block: clamp(24px, 4vw, 48px);
+    
+    &__logo img {
+      width: 120px;
+    }
   }
 }
 
+@media (max-width: 640px) {
+  .container {
+    padding-inline: clamp(16px, 3vw, 24px);
+  }
+  
+  .banner__content {
+    width: min(85vw, 500px);
+    padding-inline: 16px;
+  }
+  
+  .news__title {
+    font-size: clamp(24px, 5vw, 32px);
+    margin: clamp(24px, 4vw, 40px) 0 clamp(16px, 3vw, 24px);
+  }
+  
+  .news__logo {
+    margin-top: 32px;
+    
+    img {
+      width: 100px;
+    }
+  }
+  
+  .news__carousel {
+    padding: clamp(40px, 5vw, 64px) clamp(12px, 3vw, 20px) clamp(24px, 3vw, 32px);
+  }
+  
+  .news__item {
+    .news__text {
+      padding: 12px 14px 16px;
+      
+      h3 { 
+        font-size: 15px; 
+      }
+      
+      p { 
+        font-size: 13px; 
+      }
+    }
+  }
+  
+  .news__more button {
+    padding: 10px 28px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner__content {
+    width: min(80vw, 400px);
+    padding-inline: 12px;
+  }
+  
+  .news__title {
+    font-size: clamp(20px, 6vw, 28px);
+  }
+  
+  .news__logo {
+    margin-top: 24px;
+    
+    img {
+      width: 80px;
+    }
+  }
+  
+  .news__carousel {
+    padding: clamp(32px, 4vw, 48px) clamp(8px, 2vw, 16px) clamp(20px, 2vw, 28px);
+  }
+  
+  .news__item {
+    .news__text {
+      padding: 10px 12px 14px;
+      
+      h3 { 
+        font-size: 14px; 
+      }
+      
+      p { 
+        font-size: 12px; 
+      }
+    }
+  }
+  
+  .news__more button {
+    padding: 8px 24px;
+    font-size: 12px;
+  }
+  
+  .timeline {
+    padding-block: clamp(20px, 3vw, 32px);
+    
+    &__logo img {
+      width: 100px;
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding-inline: 12px;
+  }
+  
+  .news__title {
+    font-size: clamp(18px, 7vw, 24px);
+  }
+  
+  .news__logo img {
+    width: 70px;
+  }
+  
+  .news__carousel {
+    padding: clamp(24px, 3vw, 32px) 8px clamp(16px, 2vw, 24px);
+  }
+}
+
+@media (max-width: 768px) {
+  .banner__content {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .news__title {
+    margin-bottom: 30px;
+    
+    &::after {
+      width: 40px;
+      margin: 15px auto 0;
+    }
+  }
+  
+  .news__carousel {
+    margin-top: 20px;
+  }
+  
+  .news__item {
+    margin-bottom: 20px;
+    border-radius: 12px;
+    
+    > img {
+      aspect-ratio: 16/10;
+    }
+    
+    .news__text {
+      padding: 16px 18px 20px;
+      
+      h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+        line-height: 1.3;
+      }
+      
+      p {
+        font-size: 15px;
+        line-height: 1.6;
+      }
+    }
+  }
+  
+  .news__more button {
+    padding: 14px 32px;
+    font-size: 16px;
+    min-height: 48px;
+    border-radius: 24px;
+  }
+  
+  .wave-container {
+    opacity: 0.8;
+    
+    .wave {
+      .path, .path2, .path3 {
+        stroke-width: 6; 
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .news__item {
+    .news__text {
+      padding: 14px 16px 18px;
+      
+      h3 {
+        font-size: 16px;
+        margin-bottom: 6px;
+      }
+      
+      p {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+    }
+  }
+  
+  .news__more button {
+    padding: 12px 28px;
+    font-size: 15px;
+    min-height: 44px;
+  }
+  
+  .wave-container {
+    top: 10%;
+    height: 70%;
+  }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .news__title {
+    margin: clamp(20px, 3vw, 32px) 0 clamp(12px, 2vw, 20px);
+  }
+  
+  .news__logo {
+    margin-top: 20px;
+    
+    img {
+      width: 80px;
+    }
+  }
+  
+  .news__carousel {
+    padding: clamp(30px, 4vw, 60px) clamp(16px, 3vw, 24px) clamp(20px, 3vw, 32px);
+  }
+}
 
