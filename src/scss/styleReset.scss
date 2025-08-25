@@ -52,13 +52,28 @@ $natural-gray100: #D9D9D9;
 
 $pink1: #FFE3E3;
 
+$gradient-light-dark2: linear-gradient(to bottom ,#E4D6C0, $white);
 $gradient-light-dark3: linear-gradient(to top ,#E4D6C0, $white);
 $gradient-light-dark4: linear-gradient(to right ,#E4D6C0, $white);
 $gradient-light-dark5: linear-gradient(to top ,#F4F0E5, #DACBB4);
 $gradient-light-dark6: linear-gradient(to bottom ,#CAAE81, $white);
 $gradient-light-dark7: linear-gradient(to top ,#DACBB4, #F4F0E5);
 
+// extends
+// 多行省略
+%multiple-lines {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
 
+// 單行省略
+%single-line {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 /* CSS Reset */
 html, body, div, span, applet, object, iframe,
@@ -96,6 +111,7 @@ body {
     line-height: 1.5;
     color: $dark-brown2;
     background-color: $beige0;
+    letter-spacing: 1px;
 }
 
 /* 標題重置 */
