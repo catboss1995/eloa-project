@@ -1,0 +1,28 @@
+// 文章簡介樣式 - 根據新參考圖重新設計
+.articleIntro {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+  margin: 2rem 0 3rem;
+  
+  p {
+    margin-bottom: 1rem;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  // 強調文字
+  strong {
+    color: #a88a6a;
+    font-weight: 600;
+  }
+}
+
+// 響應式調整
+@media (max-width: 768px) {
+  .articleIntro {
+    font-size: 0.95rem;
+  }
+}

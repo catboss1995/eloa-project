@@ -1,0 +1,91 @@
+.tipsSection {
+  margin: 4rem 0;
+      
+  .tipsTitle {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+    text-align: center;
+      color: #5a4a3b;
+    position: relative;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 2px;
+      background-color: #a88a6a;
+      }
+    }
+  
+  .tipsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    
+    .tipCard {
+      background-color: #f8f3ee;
+      padding: 2rem;
+      border-radius: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(168, 138, 106, 0.1);
+  }
+      
+      .tipTitle {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #8a614d;
+        display: flex;
+        align-items: center;
+        
+        &:before {
+          content: '';
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          background-color: #a88a6a;
+          border-radius: 50%;
+          margin-right: 0.8rem;
+}
+      }
+
+      .tipDescription {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: #5a4a3b;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .tipsSection {
+    .tipsTitle {
+      font-size: 1.5rem;
+    }
+    
+    .tipsGrid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      
+      .tipCard {
+        padding: 1.5rem;
+        
+        .tipTitle {
+          font-size: 1.1rem;
+        }
+        
+        .tipDescription {
+          font-size: 0.95rem;
+        }
+      }
+    }
+  }
+}

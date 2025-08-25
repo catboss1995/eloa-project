@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // 全域顏色變數到時候可以統合，後以 @use "./color"as *; 帶出
 $brand-brown: #5a3b28;
 $brand-brown-hover: color.adjust($brand-brown, $lightness: -10%);

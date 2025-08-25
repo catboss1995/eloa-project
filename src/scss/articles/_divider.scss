@@ -1,0 +1,37 @@
+.articleDivider {
+  margin: 5rem 0 3rem;
+  text-align: center;
+  position: relative;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #e0d5c9;
+  }
+  
+  .dividerText {
+    display: inline-block;
+    padding: 0 2rem;
+    background-color: #fff;
+    position: relative;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #5a4a3b;
+  }
+}
+
+// 響應式調整
+@media (max-width: 768px) {
+  .articleDivider {
+    margin: 3rem 0;
+    
+    .dividerText {
+      font-size: 1.3rem;
+      padding: 0 1rem;
+    }
+    }
+  }
