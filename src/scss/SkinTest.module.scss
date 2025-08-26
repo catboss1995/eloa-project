@@ -59,10 +59,9 @@
       transition: background-color 0.3s ease;
       
       &:hover {
-    background-color: darken($dark-brown2, 10%); 
+    background-color: color adjust($light-brown2, 10%); 
   } 
     }
-
 }
 
     .dots {

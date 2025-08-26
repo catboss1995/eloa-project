@@ -1,0 +1,132 @@
+// 文章內容區塊樣式 - 完全按照參考圖片重新設計
+.contentSection {
+  margin: 3rem 0;
+  position: relative;
+  overflow: hidden;
+
+  .sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  .sectionDesc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #555;
+
+    p {
+      margin-bottom: 1rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &.withImage {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3rem 2rem;
+    background: #f6f4f2;
+    border-radius: 50px;
+    position: relative;
+
+      .sectionImage {
+      flex: 1;
+      max-width: 45%;
+      height: auto;
+      border-radius: 50px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 30px;
+      }
+      }
+
+    .sectionText {
+      flex: 1;
+      max-width: 55%;
+      padding-left: 2rem;
+
+      .sectionTitle {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 1rem;
+    }
+
+      .sectionDesc {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: #555;
+
+        p {
+          margin-bottom: 1rem;
+
+          &:last-child {
+            margin-bottom: 0;
+  }
+}
+      }
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #f5f0ea; // 修改背景色以匹配圖片
+      clip-path: ellipse(150% 85% at 50% 100%);
+      z-index: -1;
+  }
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: #fff; // 添加底部弧形背景
+      clip-path: ellipse(150% 85% at 50% 100%);
+      z-index: -1;
+}
+  }
+}
+
+// 響應式調整
+@media (max-width: 992px) {
+  .contentSection {
+    flex-direction: column;
+    text-align: center;
+
+    &.withImage {
+      .sectionImage {
+        max-width: 100%;
+        margin-bottom: 2rem;
+        border-radius: 30px;
+      }
+
+      .sectionText {
+        max-width: 100%;
+        padding: 0;
+
+        .sectionTitle {
+          font-size: 1.5rem;
+        }
+
+        .sectionDesc {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
