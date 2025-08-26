@@ -18,7 +18,7 @@
         .product-pic-area {
             position: relative;
             display: flex;
-            // width: 100%;
+            flex: 1;
             gap: 20px;
             .product-pic-queue {
                 display: flex;
@@ -77,10 +77,10 @@
         .product-text-area {
             display: flex;
             flex-direction: column;
-            width: 100%;
+            flex: 1;
             gap:16px;
             .title {
-                font-size: $font32-light;
+                font-size: $font24-light;
             }
             .subtitle, .review {
                 font-size: $font14-light;
@@ -95,7 +95,7 @@
                 }
             }
             .desc {
-                font-size: $font18-light;
+                font-size: $font14-light;
                 line-height: 1.6;
             }
             .coupon {
@@ -148,13 +148,22 @@
         .add-on-card {
             display: flex;
             .add-on-pic{
-                flex: 1;
+                // flex: 1;
             }
             .add-on-text{
                 flex: 1;
+                .name {
+                    font-size: $font18-light;
+                }
+                .title {
+                    font-size: $font16-light;
+                }
+                .sub-title, .desc {
+                    font-size: $font14-light;
+                }
             }
             .add-on-button {
-                flex: 1;
+                // flex: 1;
             }
         }
     }

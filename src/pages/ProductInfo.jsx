@@ -3,9 +3,9 @@ import "../scss/styleProductInfo.scss"
 import GlassmorphismButton from '../components/GlassmorphismButton'
 
 // display 區
-import calmieFront from "../assets/images/info-calmie-front.svg"
-import calmieLeft from "../assets/images/info-calmie-left.svg"
-import calmieBack from "../assets/images/info-calmie-back.svg"
+import calmieFront from "../assets/images/info-calmie-front.avif"
+import calmieLeft from "../assets/images/info-calmie-left.avif"
+import calmieBack from "../assets/images/info-calmie-back.avif"
 import coupon from "../assets/images/ProductInfo-coupon.svg"
 import essence from "../assets/images/essence.svg"
 import gel from "../assets/images/gel.svg"
