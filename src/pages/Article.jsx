@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { animate, scroll, inView, stagger } from "motion";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from 'react-router-dom';
 // 引入 SCSS 樣式
 import "../scss/styleAcademy.scss";
@@ -31,8 +32,18 @@ const Article = () => {
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   
-  // 創建引用來追蹤搜尋區域的DOM元素
+  // 創建引用來追蹤DOM元素
   const searchRef = useRef(null);
+  const centerBoxRef = useRef(null);
+  const leftTextRef = useRef(null);
+  const rightTextRef = useRef(null);
+  const navWrapRef = useRef(null);
+  const articleCardsRef = useRef([]);
+  const sectionHeadersRef = useRef([]);
+
+  // 重置引用數組
+  articleCardsRef.current = [];
+  sectionHeadersRef.current = [];
 
   // 使用從數據文件導入的文章數據
   const allArticles = articlesData.map(article => ({
@@ -129,9 +140,27 @@ const Article = () => {
     }
   };
 
+  // 添加卡片引用的函數
+  const addToRefs = (el) => {
+    if (el && !articleCardsRef.current.includes(el)) {
+      articleCardsRef.current.push(el);
+    }
+  };
+
+  // 添加區塊標題引用的函數
+  const addToHeaderRefs = (el) => {
+    if (el && !sectionHeadersRef.current.includes(el)) {
+      sectionHeadersRef.current.push(el);
+    }
+  };
+
   // 渲染文章卡片
   const renderArticleCard = (article) => (
-    <div key={article.id} className={`articleCard ${article.reverse ? 'reverse' : ''}`}>
+    <div 
+      key={article.id} 
+      className={`articleCard ${article.reverse ? 'reverse' : ''}`}
+      ref={addToRefs}
+    >
       <div className="cardText">
         <h4 className="cardTitle">{article.title}</h4>
         <p className="cardDesc">{article.description}</p>
@@ -143,19 +172,138 @@ const Article = () => {
     </div>
   );
 
+  // 頁面載入動畫
+  useEffect(() => {
+    // 中央標題動畫
+    if (centerBoxRef.current) {
+      animate(
+        centerBoxRef.current, 
+        { opacity: [0, 1], y: [-80, 0] }, 
+        { duration: 1.2, easing: [0.17, 0.55, 0.55, 1] }
+      );
+    }
+
+    // 左側文字動畫
+    if (leftTextRef.current) {
+      animate(
+        leftTextRef.current, 
+        { opacity: [0, 1], x: [-50, 0] }, 
+        { duration: 1, delay: 0.3 }
+      );
+    }
+
+    // 右側文字動畫
+    if (rightTextRef.current) {
+      animate(
+        rightTextRef.current, 
+        { opacity: [0, 1], x: [50, 0] }, 
+        { duration: 1, delay: 0.3 }
+      );
+    }
+
+    // 導航按鈕動畫
+    if (navWrapRef.current) {
+      const navButtons = navWrapRef.current.querySelectorAll('.navBtn');
+      animate(
+        navButtons, 
+        { opacity: [0, 1], y: [20, 0] }, 
+        { 
+          delay: stagger(0.1, { start: 0.6 }), 
+          duration: 0.7,
+          easing: "ease-out"
+        }
+      );
+    }
+  }, []);
+
+  // 設置滾動觸發動畫
+  useEffect(() => {
+    // 為文章卡片設置滾動動畫
+    articleCardsRef.current.forEach((card, index) => {
+      inView(card, () => {
+        animate(
+          card, 
+          { opacity: [0, 1], y: [50, 0] }, 
+          { 
+            duration: 0.8, 
+            delay: 0.1 * index,
+            easing: "ease-out" 
+          }
+        );
+      }, { margin: "-10% 0px -10% 0px", amount: 0.3 });
+    });
+
+    // 為區塊標題設置滾動動畫
+    sectionHeadersRef.current.forEach((header) => {
+      inView(header, () => {
+        animate(
+          header, 
+          { opacity: [0, 1], x: [-30, 0] }, 
+          { duration: 0.8, easing: "ease-out" }
+        );
+      }, { margin: "-15% 0px -15% 0px" });
+    });
+
+    // 設置滾動視差效果
+    const imgOverflows = document.querySelectorAll('.imgOverflow');
+    scroll(
+      ({ y }) => {
+        const scrollY = window.scrollY;
+        imgOverflows.forEach((img) => {
+          const imgTop = img.getBoundingClientRect().top + scrollY;
+          const offset = (scrollY - imgTop) * 0.1;
+          img.style.transform = `translateY(${Math.min(Math.max(offset, -20), 20)}px)`;
+        });
+      }
+    );
+  }, [isSearching, filteredArticles]);
+
+  // 搜尋輸入框動畫
+  useEffect(() => {
+    if (showSearchInput) {
+      const searchInput = document.querySelector('.searchInputWrap');
+      if (searchInput) {
+        animate(
+          searchInput, 
+          { opacity: [0, 1], width: ["0%", "100%"] }, 
+          { duration: 0.3, easing: "ease-out" }
+        );
+      }
+    }
+  }, [showSearchInput]);
+
   return (
     <div className="acadPage">
       {/* 主視覺區塊 */}
       <section className="hero">
-        <div className="leftText">變美的地圖</div>
-        <div className="rightText">從理解肌膚開始。</div>
-        <div className="centerBox">
+        <div 
+          className="leftText" 
+          ref={leftTextRef} 
+          style={{ opacity: 0, transform: "translateX(-50px)" }}
+        >
+          變美的地圖
+        </div>
+        <div 
+          className="rightText" 
+          ref={rightTextRef} 
+          style={{ opacity: 0, transform: "translateX(50px)" }}
+        >
+          從理解肌膚開始。
+        </div>
+        <div 
+          className="centerBox" 
+          ref={centerBoxRef} 
+          style={{ opacity: 0, transform: "translateY(-80px)" }}
+        >
           <h2 className="mainTitle">肌膚知識學苑</h2>
           <p className="subTitle">Your Skin Intelligence Space</p>
         </div>
-        <div className="navWrap">
+        <div className="navWrap" ref={navWrapRef}>
           <div ref={searchRef} className="searchContainer">
-            <div className={`navBtn searchBtn ${showSearchInput ? 'active' : ''}`} onClick={handleSearchClick}>
+            <div 
+              className={`navBtn searchBtn ${showSearchInput ? 'active' : ''}`} 
+              onClick={handleSearchClick}
+            >
               <span className="searchIcon">⌕</span>
               <span>關鍵字搜尋</span>
             </div>
@@ -202,7 +350,7 @@ const Article = () => {
       {/* 搜尋結果 */}
       {isSearching && (
         <section className="contentSec">
-          <div className="secHeader">
+          <div className="secHeader" ref={addToHeaderRefs}>
             <h3 className="secTitle">
               {activeFilter ? `${activeFilter}` : '搜尋結果'}
               {searchTerm && `: "${searchTerm}"`}
@@ -226,7 +374,7 @@ const Article = () => {
         <>
           {/* 保養科學堂 */}
           <section className="contentSec">
-            <div className="secHeader">
+            <div className="secHeader" ref={addToHeaderRefs}>
               <h3 className="secTitle">保養科學堂</h3>
             </div>
             
@@ -237,7 +385,7 @@ const Article = () => {
 
           {/* 模式教學室 */}
           <section className="contentSec beigeBg">
-            <div className="secHeader">
+            <div className="secHeader" ref={addToHeaderRefs}>
               <h3 className="secTitle">模式教學室</h3>
             </div>
             
@@ -248,7 +396,7 @@ const Article = () => {
 
           {/* 問題肌研究所 */}
           <section className="contentSec">
-            <div className="secHeader">
+            <div className="secHeader" ref={addToHeaderRefs}>
               <h3 className="secTitle">問題肌研究所</h3>
             </div>
             
