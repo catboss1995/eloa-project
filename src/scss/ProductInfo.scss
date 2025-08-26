@@ -1,0 +1,173 @@
+@use "./styleReset" as *;
+
+.product-page {
+    width: 1920px;
+    height: 800px;
+    margin: 0 auto;
+    background: $white;
+    padding-top: 65px; // 避開 navbar
+}
+
+.product-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 40px;
+
+    // 左邊圖片區
+    &__gallery {
+        display: flex;
+        gap: 20px;
+
+        .thumbs {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            img {
+                width: 120px;
+                height: 120px;
+                object-fit: contain; // 圖片完整縮放顯示
+                background: #fff; // 白底
+                padding: 8px; // 圖片縮小，留白邊
+                border: 1px solid #ccc;
+                cursor: pointer;
+
+                &:hover {
+                    border: 2px solid $dark-brown2;
+                }
+            }
+        }
+
+        .main-img {
+            width: 675px;
+            height: 675px;
+            padding: 40px; // 給圖片留白
+            object-fit: contain;
+            border: 1px solid #ddd;
+            background: #fff;
+
+            display: block;
+            margin: auto; // 保證居中
+        }
+    }
+
+    // 右邊文字區
+    &__details {
+        width: 817px;
+        height: 675px;
+        color: $dark-brown2;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .title {
+            color: $dark-brown2;
+            font-size: 32px;
+            @extend .font-regular;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            @extend .font-light;
+        }
+
+        .review {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            @extend .font-light;
+
+            .stars {
+                display: flex;
+                gap: 5px;
+
+                .star {
+                    font-size: 22px;
+                    color: gold;
+                }
+            }
+        }
+
+        .desc {
+            font-size: 18px;
+            @extend .font-regular;
+            line-height: 1.6;
+        }
+
+        .coupon {
+            width: 313px;
+            height: 117px;
+            cursor: pointer;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                display: block;
+            }
+        }
+
+        .price {
+            font-size: 24px;
+            @extend .font-regular;
+            margin: 0px;
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .quantity {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+
+                .label {
+                    font-size: 24px;
+                    @extend .font-regular;
+                }
+
+                button {
+                    width: 48px;
+                    height: 48px;
+                    font-size: 24px;
+                    border: 1px solid $light-brown3;
+                    background: $beige0;
+                    cursor: pointer;
+
+                    display: flex; // ← 加 flex
+                    align-items: center; // ← 垂直置中
+                    justify-content: center; // ← 水平置中
+                }
+
+                .num {
+                    font-size: 24px;
+                    width: 50px;
+                    text-align: center;
+                }
+            }
+
+            .buttons {
+                display: flex;
+                gap: 20px;
+
+                .add-cart,
+                .buy-now {
+                    width: 174px;
+                    height: 48px;
+                    border-radius: 999px;
+                    background: $light-brown3;
+                    color: white;
+                    font-size: 18px;
+                    @extend .font-light;
+                    border: none;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
