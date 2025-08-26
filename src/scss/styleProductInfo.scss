@@ -1,0 +1,161 @@
+@use "./styleReset" as *;
+
+.info-h100-vh {
+    position: relative;
+    height: 100vh;
+    padding: 0 50px;
+}
+
+#product-display-sec {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    height: auto;
+    .display-area{
+        display: flex;
+        gap: 50px;
+        margin-bottom: 50px;
+        .product-pic-area {
+            position: relative;
+            display: flex;
+            // width: 100%;
+            gap: 20px;
+            .product-pic-queue {
+                display: flex;
+                position: relative;
+                flex-direction: column;
+                width: 20%;
+                gap: 20px;
+                .product-pic-box {
+                    width: 100%;
+                    max-width: 15vh;
+                    height: 20%;
+                    max-height: 15vh;
+                    padding: 10px 0 ;
+                    background-color: $white;
+                    border: 2px solid transparent;
+                    transition: all 0.5s ease;
+                    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+                    cursor: pointer;
+                    &:hover {
+                        transform: scale(1.05);
+                        filter: drop-shadow(0px 6px 8px rgba(0, 0, 0, 0.3));
+                    }
+                    &.active {
+                        border: 2px solid $dark-brown1;
+                        transform: scale(1.03);              
+    
+                    }
+                    img {
+                        object-fit: cover;
+                        height: 100%;
+                        justify-self: center;
+                        
+                    }
+                }
+            }
+            .product-pic-show {
+                width: 80%;
+                max-width: 500px;
+                max-height: 500px;
+                background-color: $white;
+                filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+                padding: 50px 0;
+                img {
+                    object-fit: cover;
+                    height: 100%;
+                    justify-self: center;
+                    // opacity: 1;
+                    transition: opacity 0.3s ease-in-out;
+                    &.loading {
+                        opacity: 0;
+                    }
+                    
+                }
+            }
+        }
+        .product-text-area {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap:16px;
+            .title {
+                font-size: $font32-light;
+            }
+            .subtitle, .review {
+                font-size: $font14-light;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                .stars {
+                    display: flex;
+                    gap: 5px;
+                    color: gold;
+                    font-size: $font18-light;
+                }
+            }
+            .desc {
+                font-size: $font18-light;
+                line-height: 1.6;
+            }
+            .coupon {
+                width: fit-content;
+                img{
+                    max-width: 30vh;
+                    max-height: 20vh;
+                    cursor: pointer;
+                }
+            }
+            .price {
+                font-size: $font24-light;
+            }
+            .shopping-actions {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                .quantity{
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    .label, .num {
+                        font-size: $font24-light;
+                    }
+                    button {
+                        width: 36px;
+                        height: 36px;
+                        padding: 0;
+                        display: flex;
+                        justify-content: center;
+                        line-height: 1.35;
+                        border: 1px solid $light-brown1;
+                        background: $beige0;
+                        cursor: pointer;
+                        font-size: $font24-light;
+                    }
+                }
+                .buttons {
+                    display: flex;
+                    gap: 20px;
+                }
+            }
+    
+        }
+    }
+    
+    .add-on-area {
+        display: flex;
+        flex-wrap: wrap;
+        .add-on-card {
+            display: flex;
+            .add-on-pic{
+                flex: 1;
+            }
+            .add-on-text{
+                flex: 1;
+            }
+            .add-on-button {
+                flex: 1;
+            }
+        }
+    }
+}   

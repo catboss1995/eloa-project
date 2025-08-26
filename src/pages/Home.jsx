@@ -485,7 +485,6 @@ const Home = () => {
             entry.target.classList.add("show");
           } else {
             entry.target.classList.remove("show"); 
-            // ❗ 如果你要「動畫只跑一次就保留」，這行拿掉
           }
         });
       },
