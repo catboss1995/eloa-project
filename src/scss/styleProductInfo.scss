@@ -1,15 +1,18 @@
 @use "./styleReset" as *;
 
+
 .info-h100-vh {
     position: relative;
     height: 100vh;
     padding: 0 50px;
+    background-color: $white;
 }
-
+// 產品展示區
 #product-display-sec {
     display: flex;
     flex-direction: column;
-    margin-top: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
     height: auto;
     .display-area{
         display: flex;
@@ -65,12 +68,19 @@
                     object-fit: cover;
                     height: 100%;
                     justify-self: center;
-                    // opacity: 1;
-                    transition: opacity 0.3s ease-in-out;
-                    &.loading {
+                    opacity: 0;
+                    transition: opacity 0.3s ease, transform 0.5s ease-in-out, filter 0.5s ease-in-out;
+                    &.fade-out {
                         opacity: 0;
+                        
                     }
-                    
+                    &.fade-in {
+                        opacity: 1;
+                    }
+                    &:hover {
+                        transform: scale3d(1.2,1.2,1.3) translateY(30px) ;
+                        filter:drop-shadow( 1px 1px 3px $black-40);
+                    }                    
                 }
             }
         }
@@ -145,26 +155,56 @@
     .add-on-area {
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 50px;
         .add-on-card {
             display: flex;
+            width: 40%;
+            min-width: 500px;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: $beige1;
+            border-radius: 12px;
             .add-on-pic{
-                // flex: 1;
+                img {
+                    min-width: 10vh;
+                    max-height:200px ;
+                }
             }
             .add-on-text{
-                flex: 1;
+                width: 60%;
+                padding: 0 30px;
+                text-wrap: nowrap;
                 .name {
                     font-size: $font18-light;
+                    margin-bottom: 10px;
                 }
                 .title {
                     font-size: $font16-light;
+                    margin-bottom: 15px;
+                    color: $light-brown2;
                 }
                 .sub-title, .desc {
                     font-size: $font14-light;
                 }
+                .sub-title{
+                    margin-bottom: 15px;
+                }
+                .price {
+                    font-size: $font16-light;
+                    margin-top: 15px;
+                }
             }
             .add-on-button {
-                // flex: 1;
+                justify-self: self-start;
+                align-self: flex-end;
+                text-wrap: nowrap;
             }
         }
     }
-}   
+}
+// 說明教學頁籤區
+#desc-tab-sec {
+    height: auto;
+}
