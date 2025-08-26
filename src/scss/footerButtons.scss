@@ -1,0 +1,103 @@
+/* ================================
+   底部波浪：三層景深（單向滑動＋上下微擺）
+   使用方式：
+   <div class="footer__wave">
+     <div class="footer__waveTrack wave--back">
+       <img src={waveImg} alt="" /><img src={waveImg} alt="" aria-hidden="true" />
+     </div>
+     <div class="footer__waveTrack wave--mid">
+       <img src={waveImg} alt="" /><img src={waveImg} alt="" aria-hidden="true" />
+     </div>
+     <div class="footer__waveTrack wave--front">
+       <img src={waveImg} alt="" /><img src={waveImg} alt="" aria-hidden="true" />
+     </div>
+   </div>
+   ================================ */
+
+.footer__wave {
+  position: relative;
+  height: 220px;               /* 視覺高度，依設計調整 */
+  overflow: hidden;
+  pointer-events: none;         /* 純視覺層避免干擾互動 */
+}
+
+/* 一條跑道（兩張同圖拼成 200% 寬 → translateX(-50%) 無縫循環） */
+.footer__waveTrack {
+  position: absolute;
+  inset: auto 0 0 0;           /* 貼底 */
+  width: 200%;
+  display: flex;
+  animation: wave-slide 20s linear infinite; /* 基準速度（各層覆寫） */
+  will-change: transform;
+}
+
+/* 跑道中的圖：各佔 50% 寬，避免露白；加入上下擺動 */
+.footer__waveTrack img {
+  width: 50%;
+  min-width: 50%;
+  height: auto;
+  display: block;
+  animation: wave-sway 5.2s ease-in-out infinite;
+  will-change: transform;
+  /* 若需要同色系，可用濾鏡微調（可移除） */
+  /* filter: sepia(.08) saturate(1.1) brightness(1.02); */
+}
+
+/* --------- 層次設定（速度 / 透明度 / 高度差） --------- */
+/* 後景：最慢、最淡、較高 */
+.wave--back {
+  opacity: .18;                 /* 最淡 */
+  transform: translateY(0);
+  animation-duration: 30s;      /* 最慢 */
+  z-index: 0;
+
+  img { animation-duration: 6.4s; }
+}
+
+/* 中景：中速、中等透明度、微下移 */
+.wave--mid {
+  opacity: .26;
+  transform: translateY(10px);
+  animation-duration: 22s;
+  z-index: 1;
+
+  img { animation-duration: 5.6s; animation-delay: .2s; }
+}
+
+/* 前景：最快、最不透明、再下移 */
+.wave--front {
+  opacity: .34;                 /* 最清楚 */
+  transform: translateY(18px);
+  animation-duration: 15s;      /* 最快 */
+  z-index: 2;
+
+  img { animation-duration: 4.8s; animation-delay: .4s; }
+}
+
+/* --------- 動畫定義 --------- */
+/* 單向水平滑動（200% → -50% 回到起點，無縫不折返） */
+@keyframes wave-slide {
+  from { transform: translateX(0%); }
+  to   { transform: translateX(-50%); }
+}
+
+/* 輕微上下擺動（自然起伏） */
+@keyframes wave-sway {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+/* --------- RWD 調整（可依版面微修） --------- */
+@media (max-width: 1024px) {
+  .footer__wave { height: 200px; }
+}
+@media (max-width: 820px) {
+  .footer__wave { height: 190px; }
+}
+@media (max-width: 560px) {
+  .footer__wave { height: 170px; }
+  .wave--back  { animation-duration: 32s; }
+  .wave--mid   { animation-duration: 24s; }
+  .wave--front { animation-duration: 16s; }
+}

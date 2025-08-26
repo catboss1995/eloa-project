@@ -10,27 +10,27 @@ import { useEffect, useState } from "react"
 const Topbar = () => {
   const [scrolled, setScrolled] = useState(false)
 
-  useEffect(()=>{
-    const scrolling = () =>{
+  useEffect(() => {
+    const scrolling = () => {
       const scrollPosition = window.scrollY
       // 一往下滾動就改變
-      setScrolled(scrollPosition>1)
+      setScrolled(scrollPosition > 1)
     }
 
     window.addEventListener("scroll", scrolling)
     return () => {
       window.removeEventListener("scroll", scrolling)
     }
-  },[])
+  }, [])
   return (
     <nav className={scrolled ? "scroll" : ""}>
       <Link to="/" className="btn-effect">
         <img src={topbarLogo} alt="logo" id="topbar-logo" />
       </Link>
-      
+
       <div className="nav-right">
         <Link to="/ProductInfo" className="text-link btn-effect nav-link">產品資訊</Link>
-        <Link to="/SkinTest" className="text-link btn-effect nav-link">我的膚況區</Link>
+        <Link to="/skin" className="text-link btn-effect nav-link">我的膚況區</Link>
         <Link to="/Article" className="text-link btn-effect nav-link">肌膚學苑</Link>
         <Link to="/FQA" className="text-link btn-effect nav-link">常見問題</Link>
         <Link to="/News" className="text-link btn-effect nav-link">最新消息</Link>
