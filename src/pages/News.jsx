@@ -10,16 +10,16 @@ import newsInterview from "../assets/images/NEWS-interview.png";
 import newsUnboxing from "../assets/images/NEWS-unboxing.png";
 
 // 第二頁用 Timeline 的三張 SVG 圖
-import newsPg2CupMask from "../assets/images/NEWS-line1.svg";
+import newsPg2CupMask from "../assets/images/NEWS-line1.jpg";
 import newsPg2Interview from "../assets/images/NEWS-line2.svg";
 import newsPg2Ribbon from "../assets/images/NEWS-line3.svg";
 
 // 時間軸圖片（原本用的）
-import timelineImg1 from "../assets/images/NEWS-line1.svg";
-import timelineImg2 from "../assets/images/NEWS-line2.svg";
-import timelineImg3 from "../assets/images/NEWS-line3.svg";
-import timelineImg4 from "../assets/images/NEWS-line4.svg";
-import timelineImg5 from "../assets/images/NEWS-line5.svg";
+import timelineImg1 from "../assets/images/NEWS-line1.jpg";
+import timelineImg2 from "../assets/images/NEWS-line2.jpg";
+import timelineImg3 from "../assets/images/NEWS-line3.jpg";
+import timelineImg4 from "../assets/images/NEWS-line4.jpg";
+import timelineImg5 from "../assets/images/NEWS-line5.jpg";
 
 import eloaLogo from "../assets/images/NEWS-CARD-LOGO.png";
 import arrowIcon from "../assets/images/arrowIcon.svg";
