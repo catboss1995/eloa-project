@@ -176,10 +176,20 @@ const Article = () => {
   useEffect(() => {
     // 中央標題動畫
     if (centerBoxRef.current) {
+      // 設置初始 y 偏移
+      centerBoxRef.current.style.setProperty('--y-offset', '-80px');
+      
+      //分別動畫透明度與位置
       animate(
         centerBoxRef.current, 
-        { opacity: [0, 1], y: [-80, 0] }, 
+        { opacity: [0, 1] }, 
         { duration: 1.2, easing: [0.17, 0.55, 0.55, 1] }
+      );
+
+      animate(
+        centerBoxRef.current,
+        { '--y-offset': ['-80px', '-50%'] }, 
+        { duration:1.2, easing:[0.17,0.55,0.55,1]}
       );
     }
 
@@ -223,14 +233,14 @@ const Article = () => {
       inView(card, () => {
         animate(
           card, 
-          { opacity: [0, 1], y: [50, 0] }, 
+          { opacity: [0, 1],scale: [0.95, 1], y: [70, 0] }, 
           { 
-            duration: 0.8, 
+            duration: 1.5, 
             delay: 0.1 * index,
             easing: "ease-out" 
           }
         );
-      }, { margin: "-10% 0px -10% 0px", amount: 0.3 });
+      }, { margin: "-10% 0px -10% 0px", amount: 0.001 });
     });
 
     // 為區塊標題設置滾動動畫
@@ -266,7 +276,7 @@ const Article = () => {
         animate(
           searchInput, 
           { opacity: [0, 1], width: ["0%", "100%"] }, 
-          { duration: 0.3, easing: "ease-out" }
+          { duration: 1, easing: "ease-out" }
         );
       }
     }
@@ -293,8 +303,9 @@ const Article = () => {
         <div 
           className="centerBox" 
           ref={centerBoxRef} 
-          style={{ opacity: 0, transform: "translateY(-80px)" }}
-        >
+          style={{ opacity: 0 }}
+>
+
           <h2 className="mainTitle">肌膚知識學苑</h2>
           <p className="subTitle">Your Skin Intelligence Space</p>
         </div>
