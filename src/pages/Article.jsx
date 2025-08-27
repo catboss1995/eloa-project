@@ -174,6 +174,8 @@ const Article = () => {
 
   // 頁面載入動畫
   useEffect(() => {
+     // 確保頁面完全加載
+    window.onload = () => {
     // 中央標題動畫
     if (centerBoxRef.current) {
       // 設置初始 y 偏移
@@ -224,6 +226,7 @@ const Article = () => {
         }
       );
     }
+  }
   }, []);
 
   // 設置滾動觸發動畫
