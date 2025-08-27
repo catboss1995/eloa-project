@@ -1,0 +1,210 @@
+@use "./styleReset" as *;
+
+
+.info-h100-vh {
+    position: relative;
+    height: 100vh;
+    padding: 0 50px;
+    background-color: $white;
+}
+// 產品展示區
+#product-display-sec {
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    height: auto;
+    .display-area{
+        display: flex;
+        gap: 50px;
+        margin-bottom: 50px;
+        .product-pic-area {
+            position: relative;
+            display: flex;
+            flex: 1;
+            gap: 20px;
+            .product-pic-queue {
+                display: flex;
+                position: relative;
+                flex-direction: column;
+                width: 20%;
+                gap: 20px;
+                .product-pic-box {
+                    width: 100%;
+                    max-width: 15vh;
+                    height: 20%;
+                    max-height: 15vh;
+                    padding: 10px 0 ;
+                    background-color: $white;
+                    border: 2px solid transparent;
+                    transition: all 0.5s ease;
+                    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+                    cursor: pointer;
+                    &:hover {
+                        transform: scale(1.05);
+                        filter: drop-shadow(0px 6px 8px rgba(0, 0, 0, 0.3));
+                    }
+                    &.active {
+                        border: 2px solid $dark-brown1;
+                        transform: scale(1.03);              
+    
+                    }
+                    img {
+                        object-fit: cover;
+                        height: 100%;
+                        justify-self: center;
+                        
+                    }
+                }
+            }
+            .product-pic-show {
+                width: 80%;
+                max-width: 500px;
+                max-height: 500px;
+                background-color: $white;
+                filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+                padding: 50px 0;
+                img {
+                    object-fit: cover;
+                    height: 100%;
+                    justify-self: center;
+                    opacity: 0;
+                    transition: opacity 0.3s ease, transform 0.5s ease-in-out, filter 0.5s ease-in-out;
+                    &.fade-out {
+                        opacity: 0;
+                        
+                    }
+                    &.fade-in {
+                        opacity: 1;
+                    }
+                    &:hover {
+                        transform: scale3d(1.2,1.2,1.3) translateY(30px) ;
+                        filter:drop-shadow( 1px 1px 3px $black-40);
+                    }                    
+                }
+            }
+        }
+        .product-text-area {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap:16px;
+            .title {
+                font-size: $font24-light;
+            }
+            .subtitle, .review {
+                font-size: $font14-light;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                .stars {
+                    display: flex;
+                    gap: 5px;
+                    color: gold;
+                    font-size: $font18-light;
+                }
+            }
+            .desc {
+                font-size: $font14-light;
+                line-height: 1.6;
+            }
+            .coupon {
+                width: fit-content;
+                img{
+                    max-width: 30vh;
+                    max-height: 20vh;
+                    cursor: pointer;
+                }
+            }
+            .price {
+                font-size: $font24-light;
+            }
+            .shopping-actions {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                .quantity{
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    .label, .num {
+                        font-size: $font24-light;
+                    }
+                    button {
+                        width: 36px;
+                        height: 36px;
+                        padding: 0;
+                        display: flex;
+                        justify-content: center;
+                        line-height: 1.35;
+                        border: 1px solid $light-brown1;
+                        background: $beige0;
+                        cursor: pointer;
+                        font-size: $font24-light;
+                    }
+                }
+                .buttons {
+                    display: flex;
+                    gap: 20px;
+                }
+            }
+    
+        }
+    }
+    
+    .add-on-area {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 50px;
+        .add-on-card {
+            display: flex;
+            width: 40%;
+            min-width: 500px;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: $beige1;
+            border-radius: 12px;
+            .add-on-pic{
+                img {
+                    min-width: 10vh;
+                    max-height:200px ;
+                }
+            }
+            .add-on-text{
+                width: 60%;
+                padding: 0 30px;
+                text-wrap: nowrap;
+                .name {
+                    font-size: $font18-light;
+                    margin-bottom: 10px;
+                }
+                .title {
+                    font-size: $font16-light;
+                    margin-bottom: 15px;
+                    color: $light-brown2;
+                }
+                .sub-title, .desc {
+                    font-size: $font14-light;
+                }
+                .sub-title{
+                    margin-bottom: 15px;
+                }
+                .price {
+                    font-size: $font16-light;
+                    margin-top: 15px;
+                }
+            }
+            .add-on-button {
+                justify-self: self-start;
+                align-self: flex-end;
+                text-wrap: nowrap;
+            }
+        }
+    }
+}
+// 說明教學頁籤區
+#desc-tab-sec {
+    height: auto;
+}
