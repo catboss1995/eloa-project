@@ -519,14 +519,12 @@ const Article = () => {
           <div 
             className={`navBtn ${activeFilter === '膚質類型介紹' ? 'active' : ''} ${useFallbackAnimations ? 'animate-fallback' : ''}`} 
             onClick={() => handleFilterClick('膚質類型介紹')}
-            style={useFallbackAnimations ? {animationDelay: '0.7s'} : {}}
           >
             膚質類型介紹
           </div>
           <div 
             className={`navBtn ${activeFilter === '美容儀使用知識' ? 'active' : ''} ${useFallbackAnimations ? 'animate-fallback' : ''}`} 
             onClick={() => handleFilterClick('美容儀使用知識')}
-            style={useFallbackAnimations ? {animationDelay: '0.8s'} : {}}
           >
             美容儀使用知識
           </div>
