@@ -1,0 +1,79 @@
+/* 動畫備用備案樣式，即使 JavaScript 動畫失敗，頁面仍然有基本的動畫效果 */
+
+/* 淡入動畫 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* 從左淡入 */
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* 從右淡入 */
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* 從下淡入 */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 從上淡入 */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 縮放淡入 */
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* 中央標題動畫 */
+.centerBox.animate-fallback {
+  animation: fadeIn 1.2s forwards, fadeInDown 1.2s forwards;
+}
+
+/* 左側文字動畫 */
+.leftText.animate-fallback {
+  animation: fadeInLeft 1s 0.3s forwards;
+}
+
+/* 右側文字動畫 */
+.rightText.animate-fallback {
+  animation: fadeInRight 1s 0.3s forwards;
+}
+
+/* 導航按鈕動畫 */
+.navWrap .navBtn.animate-fallback {
+  animation: fadeInUp 0.7s forwards;
+}
+
+.navWrap .navBtn.animate-fallback:nth-child(1) { animation-delay: 0.6s; }
+.navWrap .navBtn.animate-fallback:nth-child(2) { animation-delay: 0.7s; }
+.navWrap .navBtn.animate-fallback:nth-child(3) { animation-delay: 0.8s; }
+.navWrap .navBtn.animate-fallback:nth-child(4) { animation-delay: 0.9s; }
+.navWrap .navBtn.animate-fallback:nth-child(5) { animation-delay: 1.0s; }
+
+/* 文章卡片動畫 */
+.articleCard.animate-fallback {
+  animation: fadeInUp 1.5s ease-out forwards, fadeInScale 1.5s ease-out forwards;
+}
+
+/* 區塊標題動畫 */
+.secHeader.animate-fallback {
+  animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+/* 搜尋輸入框動畫 */
+.searchInputWrap.animate-fallback {
+  animation: fadeIn 0.8s ease-out forwards;
+  width: 100%;
+}
