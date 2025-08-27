@@ -228,19 +228,20 @@ const Article = () => {
       // 中央標題動畫
       if (centerBoxRef.current) {
         // 設置初始 y 偏移
-        centerBoxRef.current.style.transform = 'translateY(-80px)';
+        // 重要：移除初始樣式設置，避免干擾動畫-0827-pm 4.12
+        // centerBoxRef.current.style.transform = 'translateY(-80px)';
         
-        // 分別動畫透明度與位置
+        // 使用單一動畫同時處理透明度和位置，避免多個動畫互相干擾
         safeAnimate(
           centerBoxRef.current, 
-          { opacity: [0, 1] }, 
-          { duration: 1.2, easing: [0.17, 0.55, 0.55, 1] }
-        );
-
-        safeAnimate(
-          centerBoxRef.current,
-          { transform: ['translateY(-80px)', 'translateY(0)'] }, 
-          { duration: 1.2, easing: [0.17, 0.55, 0.55, 1] }
+          { 
+            opacity: [0, 1],
+            transform: ['translateY(-80px)', 'translateY(0)'] 
+          }, 
+          { 
+            duration: 1.2, 
+            easing: [0.17, 0.55, 0.55, 1] 
+          }
         );
       }
 
