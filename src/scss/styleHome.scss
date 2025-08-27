@@ -643,6 +643,9 @@
                 animation: scroll 30s linear infinite;
                 width: fit-content;
                 margin-bottom: 1rem;
+                &#sort-num2{
+                    animation-delay: 1s;
+                }
 
                 @keyframes scroll {
                     0% {
@@ -714,9 +717,6 @@
                 }
             }
         }
-
-
-
     }
 }
 

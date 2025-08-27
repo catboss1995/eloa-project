@@ -116,7 +116,7 @@ const FeedbackCard = ({ customer }) => {
   )
 }
 
-const CustomerFeedbackCarousel = () => {
+const CustomerFeedbackCarousel = ({sortNum}) => {
   const customers = [
     {
       id: 1,
@@ -165,7 +165,7 @@ const CustomerFeedbackCarousel = () => {
   const arrCustomers = [...customers, ...customers]
   return (
     <div className="feedback-carousel-wrapper">
-      <div className="feedback-carousel-track">
+      <div className="feedback-carousel-track" id={`sort-num${sortNum}`}>
         {arrCustomers.map((customer, index) => (
           <div key={`${customer.id}-${index}`} className="feedback-carousel-item">
             <FeedbackCard customer={customer} />
@@ -592,8 +592,8 @@ const Home = () => {
         <div id="feedback-container">
           <p className="feedback-zh">”每一份美麗，都有她的故事”</p>
           <p className="feedback-en">— Behind every beauty, there's her own story.  —</p>
-          <CustomerFeedbackCarousel />
-          <CustomerFeedbackCarousel />
+          <CustomerFeedbackCarousel sortNum={1}/>
+          <CustomerFeedbackCarousel sortNum={2}/>
         </div>
       </section>
       <section className="h100-vh" id="knowledge-sec">
