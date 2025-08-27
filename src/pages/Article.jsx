@@ -12,7 +12,7 @@ const isProduction = import.meta.env.PROD;
 const enableAnimations = import.meta.env.VITE_ENABLE_ANIMATIONS !== 'false';
 const animationDelay = parseInt(import.meta.env.VITE_ANIMATION_DELAY || '100');
 const debugMode = import.meta.env.VITE_DEBUG_MODE === 'true';
-const useMotionFallback = true; // 強制啟用備用方案
+const useMotionFallback = false; // 修改為 false，不強制啟用備用方案
 
 // 調試日誌函數
 const log = (...args) => {
@@ -201,7 +201,7 @@ const Article = () => {
       setUseFallbackAnimations(true);
       
       // 如果啟用了備用方案，則使用基本的 CSS 類
-      if (useMotionFallback && element) {
+      if (element) {
         if (Array.isArray(element)) {
           element.forEach(el => {
             if (el) el.classList.add('animate-fallback');
@@ -228,7 +228,7 @@ const Article = () => {
       // 中央標題動畫
       if (centerBoxRef.current) {
         // 設置初始 y 偏移
-        centerBoxRef.current.style.setProperty('--y-offset', '-80px');
+        centerBoxRef.current.style.transform = 'translateY(-80px)';
         
         // 分別動畫透明度與位置
         safeAnimate(
@@ -239,7 +239,7 @@ const Article = () => {
 
         safeAnimate(
           centerBoxRef.current,
-          { '--y-offset': ['-80px', '-50%'] }, 
+          { transform: ['translateY(-80px)', 'translateY(0)'] }, 
           { duration: 1.2, easing: [0.17, 0.55, 0.55, 1] }
         );
       }
@@ -248,7 +248,7 @@ const Article = () => {
       if (leftTextRef.current) {
         safeAnimate(
           leftTextRef.current, 
-          { opacity: [0, 1], x: [-50, 0] }, 
+          { opacity: [0, 1], transform: ['translateX(-50px)', 'translateX(0)'] }, 
           { duration: 1, delay: 0.3 }
         );
       }
@@ -257,7 +257,7 @@ const Article = () => {
       if (rightTextRef.current) {
         safeAnimate(
           rightTextRef.current, 
-          { opacity: [0, 1], x: [50, 0] }, 
+          { opacity: [0, 1], transform: ['translateX(50px)', 'translateX(0)'] }, 
           { duration: 1, delay: 0.3 }
         );
       }
@@ -267,7 +267,7 @@ const Article = () => {
         const navButtons = navWrapRef.current.querySelectorAll('.navBtn');
         safeAnimate(
           navButtons, 
-          { opacity: [0, 1], y: [20, 0] }, 
+          { opacity: [0, 1], transform: ['translateY(20px)', 'translateY(0)'] }, 
           { 
             delay: stagger(0.1, { start: 0.6 }), 
             duration: 0.7,
@@ -305,8 +305,9 @@ const Article = () => {
     try {
       const testAnimate = animate(document.createElement('div'), { opacity: [0, 1] }, { duration: 0.1 });
       testAnimate.cancel();
+      log('Motion library test successful');
     } catch (error) {
-      console.warn('Motion library not working properly, using fallback animations');
+      console.warn('Motion library not working properly, using fallback animations', error);
       setUseFallbackAnimations(true);
     }
     
@@ -364,7 +365,7 @@ const Article = () => {
           inView(card, () => {
             safeAnimate(
               card, 
-              { opacity: [0, 1], scale: [0.95, 1], y: [70, 0] }, 
+              { opacity: [0, 1], transform: ['scale(0.95) translateY(70px)', 'scale(1) translateY(0)'] }, 
               { 
                 duration: 1.5, 
                 delay: 0.1 * index,
@@ -384,7 +385,7 @@ const Article = () => {
           inView(header, () => {
             safeAnimate(
               header, 
-              { opacity: [0, 1], x: [-30, 0] }, 
+              { opacity: [0, 1], transform: ['translateX(-30px)', 'translateX(0)'] }, 
               { duration: 0.8, easing: "ease-out" }
             );
           }, { margin: "-15% 0px -15% 0px" });
@@ -475,21 +476,21 @@ const Article = () => {
         <div 
           className={`leftText ${useFallbackAnimations ? 'animate-fallback' : ''}`} 
           ref={leftTextRef} 
-          style={{ opacity: useFallbackAnimations ? 1 : 0, transform: useFallbackAnimations ? 'none' : "translateX(-50px)" }}
+          style={{ opacity: 0 }}
         >
           變美的地圖
         </div>
         <div 
           className={`rightText ${useFallbackAnimations ? 'animate-fallback' : ''}`} 
           ref={rightTextRef} 
-          style={{ opacity: useFallbackAnimations ? 1 : 0, transform: useFallbackAnimations ? 'none' : "translateX(50px)" }}
+          style={{ opacity: 0 }}
         >
           從理解肌膚開始。
         </div>
         <div 
           className={`centerBox ${useFallbackAnimations ? 'animate-fallback' : ''}`} 
           ref={centerBoxRef} 
-          style={{ opacity: useFallbackAnimations ? 1 : 0 }}
+          style={{ opacity: 0 }}
         >
           <h2 className="mainTitle">肌膚知識學苑</h2>
           <p className="subTitle">Your Skin Intelligence Space</p>
@@ -531,14 +532,12 @@ const Article = () => {
           <div 
             className={`navBtn ${activeFilter === '教學影片' ? 'active' : ''} ${useFallbackAnimations ? 'animate-fallback' : ''}`} 
             onClick={() => handleFilterClick('教學影片')}
-            style={useFallbackAnimations ? {animationDelay: '0.9s'} : {}}
           >
             教學影片
           </div>
           <div 
             className={`navBtn ${activeFilter === '專家專欄' ? 'active' : ''} ${useFallbackAnimations ? 'animate-fallback' : ''}`} 
             onClick={() => handleFilterClick('專家專欄')}
-            style={useFallbackAnimations ? {animationDelay: '1.0s'} : {}}
           >
             專家專欄
           </div>
