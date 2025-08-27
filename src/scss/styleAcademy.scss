@@ -1,5 +1,6 @@
 @use "sass:color";
 @use "./styleReset"as *;
+@use "./animation-fallbacks.scss";
 
 // 主頁面樣式
 .acadPage {

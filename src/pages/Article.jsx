@@ -1,3 +1,4 @@
+// src/pages/Article.jsx
 import { animate, scroll, inView, stagger } from "motion";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from 'react-router-dom';
@@ -5,6 +6,20 @@ import { Link } from 'react-router-dom';
 import "../scss/styleAcademy.scss";
 // 引入文章數據
 import articlesData from '../data/articlesData';
+
+// 檢查環境變量
+const isProduction = import.meta.env.PROD;
+const enableAnimations = import.meta.env.VITE_ENABLE_ANIMATIONS !== 'false';
+const animationDelay = parseInt(import.meta.env.VITE_ANIMATION_DELAY || '100');
+const debugMode = import.meta.env.VITE_DEBUG_MODE === 'true';
+const useMotionFallback = import.meta.env.VITE_USE_MOTION_FALLBACK === 'true';
+
+// 調試日誌函數
+const log = (...args) => {
+  if (debugMode) {
+    console.log('[Animation Debug]', ...args);
+  }
+};
 
 // 直接使用 CDN URL 替代本地圖片路徑
 const articlesPic01 = "https://ik.imagekit.io/8sle6rwoo/articlesPic01.png";
@@ -31,6 +46,7 @@ const Article = () => {
   const [showSearchInput, setShowSearchInput] = useState(false);
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [animationsInitialized, setAnimationsInitialized] = useState(false);
   
   // 創建引用來追蹤DOM元素
   const searchRef = useRef(null);
@@ -172,32 +188,61 @@ const Article = () => {
     </div>
   );
 
-  // 頁面載入動畫
-  useEffect(() => {
-     // 確保頁面完全加載
-    window.onload = () => {
+  // 安全的動畫函數
+  const safeAnimate = (element, keyframes, options) => {
+    if (!enableAnimations) return;
+    
+    try {
+      log(`Animating element:`, element);
+      return animate(element, keyframes, options);
+    } catch (error) {
+      console.error('Animation error:', error);
+      
+      // 如果啟用了備用方案，則使用基本的 CSS 類
+      if (useMotionFallback && element) {
+        if (Array.isArray(element)) {
+          element.forEach(el => {
+            el.classList.add('animate-fallback');
+          });
+        } else {
+          element.classList.add('animate-fallback');
+        }
+      }
+      return null;
+    }
+  };
+
+  // 初始化動畫
+  const initializeAnimations = () => {
+    log('Initializing animations');
+    
+    if (animationsInitialized) {
+      log('Animations already initialized, skipping');
+      return;
+    }
+    
     // 中央標題動畫
     if (centerBoxRef.current) {
       // 設置初始 y 偏移
       centerBoxRef.current.style.setProperty('--y-offset', '-80px');
       
-      //分別動畫透明度與位置
-      animate(
+      // 分別動畫透明度與位置
+      safeAnimate(
         centerBoxRef.current, 
         { opacity: [0, 1] }, 
         { duration: 1.2, easing: [0.17, 0.55, 0.55, 1] }
       );
 
-      animate(
+      safeAnimate(
         centerBoxRef.current,
         { '--y-offset': ['-80px', '-50%'] }, 
-        { duration:1.2, easing:[0.17,0.55,0.55,1]}
+        { duration: 1.2, easing: [0.17, 0.55, 0.55, 1] }
       );
     }
 
     // 左側文字動畫
     if (leftTextRef.current) {
-      animate(
+      safeAnimate(
         leftTextRef.current, 
         { opacity: [0, 1], x: [-50, 0] }, 
         { duration: 1, delay: 0.3 }
@@ -206,7 +251,7 @@ const Article = () => {
 
     // 右側文字動畫
     if (rightTextRef.current) {
-      animate(
+      safeAnimate(
         rightTextRef.current, 
         { opacity: [0, 1], x: [50, 0] }, 
         { duration: 1, delay: 0.3 }
@@ -216,7 +261,7 @@ const Article = () => {
     // 導航按鈕動畫
     if (navWrapRef.current) {
       const navButtons = navWrapRef.current.querySelectorAll('.navBtn');
-      animate(
+      safeAnimate(
         navButtons, 
         { opacity: [0, 1], y: [20, 0] }, 
         { 
@@ -226,60 +271,121 @@ const Article = () => {
         }
       );
     }
-  }
+    
+    setAnimationsInitialized(true);
+    log('Animations initialized successfully');
+  };
+
+  // 頁面載入動畫
+  useEffect(() => {
+    log('Setting up page load animations');
+    
+    // 如果文檔已經加載完成，直接初始化
+    if (document.readyState === 'complete') {
+      log('Document already loaded');
+      setTimeout(initializeAnimations, animationDelay);
+    } else {
+      // 否則等待 window.onload 事件
+      log('Waiting for window load event');
+      const handleLoad = () => {
+        log('Window loaded');
+        setTimeout(initializeAnimations, animationDelay);
+      };
+      
+      window.addEventListener('load', handleLoad);
+      
+      // 清理函數
+      return () => {
+        window.removeEventListener('load', handleLoad);
+      };
+    }
   }, []);
 
   // 設置滾動觸發動畫
   useEffect(() => {
+    if (!enableAnimations) return;
+    
+    log('Setting up scroll animations');
+    
     // 為文章卡片設置滾動動畫
     articleCardsRef.current.forEach((card, index) => {
-      inView(card, () => {
-        animate(
-          card, 
-          { opacity: [0, 1],scale: [0.95, 1], y: [70, 0] }, 
-          { 
-            duration: 1.5, 
-            delay: 0.1 * index,
-            easing: "ease-out" 
-          }
-        );
-      }, { margin: "-10% 0px -10% 0px", amount: 0.001 });
+      try {
+        inView(card, () => {
+          safeAnimate(
+            card, 
+            { opacity: [0, 1], scale: [0.95, 1], y: [70, 0] }, 
+            { 
+              duration: 1.5, 
+              delay: 0.1 * index,
+              easing: "ease-out" 
+            }
+          );
+        }, { margin: "-10% 0px -10% 0px", amount: 0.001 });
+      } catch (error) {
+        console.error('Error setting up card scroll animation:', error);
+      }
     });
 
     // 為區塊標題設置滾動動畫
     sectionHeadersRef.current.forEach((header) => {
-      inView(header, () => {
-        animate(
-          header, 
-          { opacity: [0, 1], x: [-30, 0] }, 
-          { duration: 0.8, easing: "ease-out" }
-        );
-      }, { margin: "-15% 0px -15% 0px" });
+      try {
+        inView(header, () => {
+          safeAnimate(
+            header, 
+            { opacity: [0, 1], x: [-30, 0] }, 
+            { duration: 0.8, easing: "ease-out" }
+          );
+        }, { margin: "-15% 0px -15% 0px" });
+      } catch (error) {
+        console.error('Error setting up header scroll animation:', error);
+      }
     });
 
     // 設置滾動視差效果
-    const imgOverflows = document.querySelectorAll('.imgOverflow');
-    scroll(
-      ({ y }) => {
-        const scrollY = window.scrollY;
-        imgOverflows.forEach((img) => {
-          const imgTop = img.getBoundingClientRect().top + scrollY;
-          const offset = (scrollY - imgTop) * 0.1;
-          img.style.transform = `translateY(${Math.min(Math.max(offset, -20), 20)}px)`;
-        });
+    try {
+      const imgOverflows = document.querySelectorAll('.imgOverflow');
+      
+      if (imgOverflows.length > 0) {
+        log(`Setting up parallax for ${imgOverflows.length} images`);
+        
+        const scrollHandler = scroll(
+          ({ y }) => {
+            const scrollY = window.scrollY;
+            imgOverflows.forEach((img) => {
+              try {
+                const imgTop = img.getBoundingClientRect().top + scrollY;
+                const offset = (scrollY - imgTop) * 0.1;
+                img.style.transform = `translateY(${Math.min(Math.max(offset, -20), 20)}px)`;
+              } catch (error) {
+                console.error('Error in parallax effect:', error);
+              }
+            });
+          }
+        );
+        
+        // 返回清理函數
+        return () => {
+          if (scrollHandler && typeof scrollHandler.cancel === 'function') {
+            scrollHandler.cancel();
+          }
+        };
       }
-    );
+    } catch (error) {
+      console.error('Error setting up parallax effect:', error);
+    }
   }, [isSearching, filteredArticles]);
 
   // 搜尋輸入框動畫
   useEffect(() => {
+    if (!enableAnimations) return;
+    
     if (showSearchInput) {
       const searchInput = document.querySelector('.searchInputWrap');
       if (searchInput) {
-        animate(
+        safeAnimate(
           searchInput, 
           { opacity: [0, 1], width: ["0%", "100%"] }, 
-          { duration: 1, easing: "ease-out" }
+          { duration: 0.8, easing: "ease-out" }
         );
       }
     }
@@ -307,8 +413,7 @@ const Article = () => {
           className="centerBox" 
           ref={centerBoxRef} 
           style={{ opacity: 0 }}
->
-
+        >
           <h2 className="mainTitle">肌膚知識學苑</h2>
           <p className="subTitle">Your Skin Intelligence Space</p>
         </div>
