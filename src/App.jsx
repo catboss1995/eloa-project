@@ -1,5 +1,5 @@
 // App.jsx
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import "./App.css";
 
 import Topbar from "./components/Topbar";
@@ -15,8 +15,13 @@ import ProductInfo from "./pages/ProductInfo";
 import ShopCart from "./pages/ShopCart";
 
 import SkinRouter from "./skin/SkinRouter";
+import { useEffect } from "react";
 
 function App() {
+  const { pathname } = useLocation();
+  useEffect (()=>{
+    window.scrollTo(0,0);
+  },[pathname]);
   return (
     <>
 
