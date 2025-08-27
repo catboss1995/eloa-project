@@ -1,8 +1,8 @@
-# 專題網站網址（gh-pages）：
+# 專題網站網址（gh-pages）：https://ntub0623.github.io/eloa-project/
 ## 俞老師
 - 0814：選單ok
 - 0827：請放上專題網址
-https://ntub0623.github.io/eloa-project/
+
 ## 烏鴉
 ### - 2025-08-14
 - 創建按鈕與互動效果庫 (buttonEffects.scss)
