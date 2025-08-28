@@ -3,9 +3,9 @@ import React, { useState, useEffect, useRef } from 'react'
 import "../scss/styleProductInfo.scss"
 import GlassmorphismButton from '../components/GlassmorphismButton'
 // display 區
-import calmieFront from "../assets/images/info-calmie-front.avif"
-import calmieLeft from "../assets/images/info-calmie-left.avif"
-import calmieBack from "../assets/images/info-calmie-back.avif"
+import calmieFront from "../assets/images/glow-pen-front.avif"
+import calmieLeft from "../assets/images/glow-pen-left.avif"
+import calmieBack from "../assets/images/glow-pen-right.avif"
 import coupon from "../assets/images/ProductInfo-coupon.svg"
 import essence from "../assets/images/essence.svg"
 import gel from "../assets/images/gel.svg"
@@ -30,6 +30,13 @@ import afterScroll from "../assets/images/after-scroll.png"
 // FAQ 區
 import arrowCollapsed from "../assets/images/faq-arrow-collapsed.svg"
 import arrowExpanded from "../assets/images/faq-arrow-expanded.svg"
+import avatar1 from "../assets/images/feedback-card-avatar1.avif"
+import avatar2 from "../assets/images/feedback-card-avatar2.avif"
+import avatar3 from "../assets/images/feedback-card-avatar3.avif"
+import avatar4 from "../assets/images/feedback-card-avatar4.avif"
+import avatar5 from "../assets/images/feedback-card-avatar5.avif"
+import avatar6 from "../assets/images/feedback-card-avatar6.avif"
+import avatar7 from "../assets/images/feedback-card-avatar7.avif"
 
 // display 區元件
 const PicQueue = () => {
@@ -90,8 +97,8 @@ const DescArea = () => {
   };
   return (
     <div className="product-text-area">
-      <h2 className="title">ELOA Calmié 恆溫冷敷舒緩儀</h2>
-      <p className="subtitle">623人今天瀏覽過</p>
+      <h2 className="title">ELOA GlowPen 智慧亮膚導入筆</h2>
+      <p className="subtitle">953人今天瀏覽過</p>
       <div className="review">
         <span>(21) 撰寫評論</span>
         <div className="stars">
@@ -101,9 +108,9 @@ const DescArea = () => {
         </div>
       </div>
       <p className="desc">
-        即刻舒緩，重啟膚觸平衡。智能冷凝技術可降低肌膚溫度，有效改善泛紅、刺激與緊繃等不適症狀。
-        特別適合敏感膚質或日曬後修護，為妳打造溫柔且即效的鎮定儀式。內建恆溫冷敷模組，
-        無需冰敷、無耗材，自動啟動與定時設計，讓保養流程更直覺安心。
+        ELOA GlowPen 結合微電流導入與紅光照射技術，能夠有效提升精華液滲透效率，同步淡化膚色不均、暗沉與細紋問題。
+        筆型設計輕巧直覺，適合眼周、唇周等局部部位，讓保養變得更準確、更有效。
+        紅光波長630nm，刺激肌膚修復與代謝，使肌膚更亮、更滑、更穩定。
       </p>
 
       {/* 優惠券 */}
@@ -111,7 +118,7 @@ const DescArea = () => {
         <img src={coupon} alt="優惠券" />
       </div>
 
-      <p className="price">售價 NT$4,980</p>
+      <p className="price">售價 NT$4,280</p>
       {/* 購物操作區 */}
       <div className="shopping-actions">
         <div className="quantity">
@@ -236,14 +243,14 @@ const DescTab = () => {
 
   const tabContent = {
     product: {
-      title: "不只是冰敷，ELOA Calmié 能成為妳每日保養的「收尾儀式」。",
+      title: "不只是冰敷，ELOA GlowPen 能成為妳每日保養的「收尾儀式」。",
       subTitle: "無論是搭配導出後修護、保濕精華滲透後冷鎮，還是單獨舒緩泛紅敏感，都是建立穩定膚況的關鍵步驟。",
       steps: [
         {
           src: tabProduct1,
           alt: "使用順序建議",
           title: "1. 搭配 ELOA Aura Clean 使用順序建議",
-          desc: "先使用 Aura Clean 導出清潔毛孔，\n再以 Calmié 恆溫冷敷舒緩，\n幫助毛孔收斂、穩定膚況，\n適合油性肌與粉刺肌日常保養。"
+          desc: "先使用 Aura Clean 導出清潔毛孔，\n再以 GlowPen 恆溫冷敷舒緩，\n幫助毛孔收斂、穩定膚況，\n適合油性肌與粉刺肌日常保養。"
         },
         {
           src: tabProduct2,
@@ -260,20 +267,20 @@ const DescTab = () => {
       ]
     },
     specs: {
-      title: "不只是冰敷，ELOA Calmié 能成為妳每日保養的「收尾儀式」。",
+      title: "不只是冰敷，ELOA GlowPen 能成為妳每日保養的「收尾儀式」。",
       subTitle: "無論是搭配導出後修護、保濕精華滲透後冷鎮，還是單獨舒緩泛紅敏感，都是建立穩定膚況的關鍵步驟。",
       src: tabSpec1,
       alt: "規格說明圖示",
       spec: [
-        { specification: "冷敷溫度：約10~15°C（自動恆溫）" },
-        { specification: "時間設計：5 分鐘智能定時" },
-        { specification: "冷凝材質：醫療級鋁合金面板" },
-        { specification: "充電方式：USB Type-C" },
-        { specification: "重量：約90g，輕巧易攜" }
+        { specification: "微電流輸出：250~350μA" },
+        { specification: "紅光波長：630nm 穩定輸出" },
+        { specification: "電源模式：USB充電" },
+        { specification: "操作時間：每次3~5分鐘，內建智能計時" },
+        { specification: "導頭材質：拋光金屬觸點" }
       ]
     },
     teaching: {
-      title: "不只是冰敷，ELOA Calmié 能成為妳每日保養的「收尾儀式」。",
+      title: "不只是冰敷，ELOA GlowPen 能成為妳每日保養的「收尾儀式」。",
       subTitle: "無論是搭配導出後修護、保濕精華滲透後冷鎮，還是單獨舒緩泛紅敏感，都是建立穩定膚況的關鍵步驟。",
       steps: [
         {
@@ -325,7 +332,7 @@ const DescTab = () => {
   );
 }
 // before-after 區元件
-const BeforeAfterScroll = ({ beforeImg, afterImg }) => {
+const BeforeAfterScroll = ({ beforeImg, afterImg, scrollImg }) => {
   const containerRef = useRef(null);
   const [dividerPos, setDividerPos] = useState(50); // 初始位置置中
   const [isDragging, setIsDragging] = useState(false);
@@ -370,7 +377,9 @@ const BeforeAfterScroll = ({ beforeImg, afterImg }) => {
         onMouseDown={startDrag}
         onTouchStart={startDrag}
       >
-        <div className="handle"></div>
+        <div className="handle">
+          <img src={scrollImg} alt="handle" />
+        </div>
       </div>
     </div>
   );
@@ -500,18 +509,18 @@ const FAQ = () => {
   const faqData = [
     {
       id: 'q1',
-      question: '敏感肌可以使用嗎？',
-      answer: 'A：可以。Calmie 的冷敷溫度經皮膚科實全檢測，約 10~15°C，溫和不刺激，適合敏感肌。且護徐肌膚舒泛紅膚況使用。'
+      question: '一定要搭配精華使用嗎？',
+      answer: 'A：是的，建議搭配導入型保養品（如精華液）使用以達最佳效果。'
     },
     {
-      id: 'q2', 
-      question: '使用時會感到刺痛或不適嗎？',
-      answer: 'A：不會。冷感溫度設計在舒適範圍內，不會造成冰凍感或刺痛感，大多數用戶會感到清涼舒緩。'
+      id: 'q2',
+      question: '紅光安全嗎？會不會刺激？',
+      answer: 'A：紅光為非雷射低能量光線，符合日常使用安全標準。'
     },
     {
       id: 'q3',
       question: '需要事先做降溫準備嗎？',
-      answer: 'A：不需要。Calmié 內建智能冷凝系統，可自動降溫至穩定溫度，無需額外冷藏或耗材。'
+      answer: 'A：不需要。GlowPen 內建智能冷凝系統，可自動降溫至穩定溫度，無需額外冷藏或耗材。'
     },
     {
       id: 'q4',
@@ -536,12 +545,12 @@ const FAQ = () => {
     <>
       {faqData.map((item, index) => (
         <div key={item.id} className="faq-item">
-          <div 
+          <div
             className="faq-question"
             onClick={() => toggleExpand(item.id)}
           >
             <span className="question-text">Q{index + 1}：{item.question}</span>
-            <img 
+            <img
               src={expandedItems[item.id] ? arrowCollapsed : arrowExpanded}
               alt={expandedItems[item.id] ? '收起' : '展開'}
               className={`arrow ${expandedItems[item.id] ? 'expanded' : 'collapsed'}`}
@@ -557,6 +566,110 @@ const FAQ = () => {
     </>
   );
 };
+
+// feedback 區元件
+const FiveStarsMaker = () => {
+  return (
+    <div className="stars">
+      {Array(5).fill(0).map((_, i) => (
+        <span key={i} className="star">★</span>
+      ))}
+    </div>
+  )
+}
+
+const FeedbackStars = () => {
+  const scores = [5, 4, 3, 2, 1];
+  return (
+    <>
+      {scores.map((score, index) => (
+        <div className='star-bar' key={index}>
+          <div className="stars" key={index}>
+            {Array.from({ length: 5 }, (_, i) => (
+              <span key={i} className="star">
+                {i < score ? "★" : "☆"}
+              </span>
+            ))}
+          </div>
+          <div className="bar" key={`${index}1`}>
+          </div>
+        </div>
+      ))}
+    </>
+  )
+}
+
+const FeedbackMessage = () => {
+  const customersMessages = [
+    {
+      id: 1,
+      avatar: avatar1,
+      name: "小青子",
+      date: "July 7, 2025",
+      feedback: "搭配美白精華吸收超快，眼下也不會乾了，整個亮起來！"
+    },
+    {
+      id: 2,
+      avatar: avatar2,
+      name: "小李子",
+      date: "Ausgust 8, 2025",
+      feedback: "用完皮膚摸起來超滑嫩，妝也更服貼，超愛！"
+    },
+    {
+      id: 3,
+      avatar: avatar3,
+      name: "小安子",
+      date: "June 6, 2025",
+      feedback: "操作直覺，效果明顯，連媽媽都想搶著用。"
+    },
+    {
+      id: 4,
+      avatar: avatar4,
+      name: "小京子",
+      date: "May 20, 2025",
+      feedback: "操作簡單又方便，手感剛剛好，不會太重。"
+    },
+    {
+      id: 5,
+      avatar: avatar5,
+      name: "小木子",
+      date: "April 4, 2025",
+      feedback: "如果可以有更多顏色選擇就更好啦～"
+    },
+    {
+      id: 6,
+      avatar: avatar6,
+      name: "小亮子",
+      date: "March 15, 2025",
+      feedback: "小巧好收納，晚上追劇的時候邊用邊放空很療癒。"
+    },
+    {
+      id: 7,
+      avatar: avatar7,
+      name: "戴玉晴雯子",
+      date: "January 26, 2025",
+      feedback: "用了一週後，臉真的有比較亮，尤其敷完面膜再搭配這台，吸收感覺更好！"
+    }
+
+  ];
+  return (
+    <>
+      {
+        customersMessages.map((message) => (
+          <div key={message.id} className="message-card">
+            <img src={message.avatar} alt="會員頭像" />
+            <div className="message-info">
+              <p>{message.name}</p>
+              <p>{message.date}</p>
+            </div>
+            <FiveStarsMaker />
+            <p>{message.feedback}</p>
+          </div>
+        ))
+      }
+    </>
+  )
+}
 
 const ProductInfo = () => {
   useEffect(() => {
@@ -605,7 +718,7 @@ const ProductInfo = () => {
         </div>
       </section>
       <section className='info-h100-vh' id="bf-effect-days-sec">
-        <BeforeAfterScroll beforeImg={beforeScroll} afterImg={afterScroll} />
+        <BeforeAfterScroll beforeImg={beforeScroll} afterImg={afterScroll} scrollImg={calmieBack} />
         <div className="text-area">
           <p>皮膚由暗沉、痘疤明顯→均勻透亮，煥發健康光澤</p>
           <p>僅<span>14</span>天</p>
@@ -614,7 +727,17 @@ const ProductInfo = () => {
       </section>
       <section className="info-h100-vh" id="faq-sec">
         <h2>常見問題</h2>
-        <FAQ/>
+        <FAQ />
+      </section>
+      <section className="info-h100-vh" id="feedback-grade-sec">
+        <h2>顧客評論</h2>
+        <div className='feedback-grade'>
+          <FeedbackStars />
+        </div>
+        <GlassmorphismButton text={"登入留評價"} />
+        <div className='feedback-message-area'>
+          <FeedbackMessage />
+        </div>
       </section>
     </>
   )

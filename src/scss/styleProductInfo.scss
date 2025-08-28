@@ -367,6 +367,7 @@
             background-color: $beige5;
             padding: 10px 50px;
             margin-bottom: 30px;
+            font-size: $font18-light;
         }
     }
 
@@ -511,13 +512,19 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                width: 20px;
-                height: 30px;
-                background-color: $white;
-                border: 2px solid $dark-brown1;
-                border-radius: 4px;
+                width: 50px;
+                height: 80px;
                 z-index: 10;
                 cursor: col-resize;
+
+                img {
+                    cursor: col-resize;
+                    object-fit: contain;
+                    justify-self: center;
+                    height: 100%;
+                    filter: drop-shadow(2px 2px 2px $black-60);
+                    pointer-events: none;
+                }
             }
         }
     }
@@ -542,24 +549,28 @@
 // 常見問題 區
 #faq-sec {
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 20px 100px;
     background-color: $white;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: auto;
+
     h2 {
         background-color: $beige5;
         padding: 10px 50px;
         font-size: $font18-light;
-        margin-bottom: 20px ;
+        margin-bottom: 20px;
     }
 
     .faq-item {
         width: 800px;
         margin-bottom: 16px;
-        border: 2px dashed $brown1;
+        border-color: $brown1 ;
+        border-width: 3px;
+        border-style: solid dashed;
         border-radius: 8px;
-        
+
 
         .faq-question {
             display: flex;
@@ -592,6 +603,7 @@
                 }
             }
         }
+
         .faq-answer {
             overflow: hidden;
             transition: max-height 0.3s ease, padding 0.3s ease;
@@ -608,11 +620,135 @@
             }
 
             .answer-content {
-                
+
                 font-size: 14px;
                 line-height: 1.6;
                 padding-top: 8px;
                 border-top: 1px solid rgba(211, 184, 255, 0.3);
+            }
+        }
+    }
+}
+
+//顧客評論 區
+#feedback-grade-sec {
+    padding: 20px;
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    h2 {
+        background-color: $beige5;
+        padding: 10px 50px;
+        font-size: $font18-light;
+        
+    }
+
+    .feedback-grade {
+        margin: 20px 0;
+        .star-bar {
+            display: flex;
+            height: 24px;
+            margin: 8px 0;
+            gap: 10px;
+
+            .bar {
+                position: relative;
+                display: flex;
+                background-color: $beige1;
+                width: 200px;
+                height: 80%;
+                align-self: flex-end;
+
+            }
+
+            &:nth-child(1) {
+                .bar {
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        background-color: $beige5;
+                        width: 0px;
+                        height: 100%;
+                        z-index: 2;
+                        transition: width 2s ease-in-out;
+                    }
+                }
+            }
+
+            &:nth-child(2) {
+                .bar {
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        background-color: $beige5;
+                        width: 0px;
+                        height: 100%;
+                        z-index: 2;
+                        transition: width 2s ease-in-out;
+                    }
+                }
+            }
+
+            .stars {
+                display: flex;
+                align-self: center;
+                gap: 5px;
+                color: $beige5;
+                font-size: $font18-light;
+            }
+        }
+    }
+    .feedback-message-area {
+        margin: 50px 0;
+        display: flex;
+        flex-direction: column;
+        gap:30px;
+        width: 900px;
+        height: 400px;
+        overflow: scroll;
+        .message-card {
+            display: flex;
+            gap:50px;
+            align-items: center;
+            img {
+                width: 60px;
+                height: 60px;
+            }
+            .message-info {
+                font-size: $font16-light;
+                min-width: 120px;
+                
+                p{
+                    text-wrap: nowrap;
+                }
+            }
+            .stars {
+                display: flex;
+                align-self: center;
+                gap: 5px;
+                color: $beige5;
+                font-size: $font18-light;
+            }
+        }
+    }
+
+    &.show {
+        .star-bar {
+            &:nth-child(1) {
+                .bar {
+                    &::before {
+                        width: 140px;                        
+                    }
+                }
+            }
+            &:nth-child(2) {
+                .bar {
+                    &::before {
+                        width: 40px;                        
+                    }
+                }
             }
         }
     }
