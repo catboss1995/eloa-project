@@ -6,14 +6,22 @@ import topbarBag from "../assets/images/topbarBag.png"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 
-
 const Topbar = () => {
   const [scrolled, setScrolled] = useState(false)
+  const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false)
+
+  // 產品資料
+  const products = [
+    { id: 1, name: "Master IX \n全效肌膚管理儀", path: "/ProductMasterIX" },
+    { id: 2, name: "Calmie \n恆溫冷敷舒緩儀", path: "/ProductCalmie" },
+    { id: 3, name: "Aura Clean \n淨膚導出清潔儀", path: "/ProductAuraClean" },
+    { id: 4, name: "GlowPen \n智慧亮膚導入筆", path: "/ProductGLowPen" },
+    { id: 5, name: "CleanShot \n 高效粉刺清潔儀", path: "/ProductCleanShot" }
+  ]
 
   useEffect(() => {
     const scrolling = () => {
       const scrollPosition = window.scrollY
-      // 一往下滾動就改變
       setScrolled(scrollPosition > 1)
     }
 
@@ -22,6 +30,26 @@ const Topbar = () => {
       window.removeEventListener("scroll", scrolling)
     }
   }, [])
+
+  // 處理點擊外部區域關閉下拉菜單
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('.dropdown-container')) {
+        setIsProductDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
+  const handleProductClick = (e) => {
+    e.preventDefault() // 防止跳轉
+    setIsProductDropdownOpen(!isProductDropdownOpen)
+  }
+
   return (
     <nav className={scrolled ? "scroll" : ""}>
       <Link to="/" className="btn-effect">
@@ -29,7 +57,34 @@ const Topbar = () => {
       </Link>
 
       <div className="nav-right">
-        <Link to="/ProductInfo" className="text-link btn-effect nav-link">產品資訊</Link>
+        {/* 產品資訊下拉菜單 */}
+        <div className="dropdown-container">
+          <div 
+            className="text-link btn-effect nav-link dropdown-trigger"
+            onClick={handleProductClick}
+          >
+            產品資訊
+            <span className={`dropdown-arrow ${isProductDropdownOpen ? 'open' : ''}`}>
+              ▽
+            </span>
+          </div>
+          
+          {isProductDropdownOpen && (
+            <div className="dropdown-menu">
+              {products.map((product) => (
+                <Link
+                  key={product.id}
+                  to={product.path}
+                  className="dropdown-item"
+                  onClick={() => setIsProductDropdownOpen(false)}
+                >
+                  {product.name}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+
         <Link to="/skin" className="text-link btn-effect nav-link">我的膚況區</Link>
         <Link to="/Article" className="text-link btn-effect nav-link">肌膚學苑</Link>
         <Link to="/FQA" className="text-link btn-effect nav-link">常見問題</Link>
@@ -44,5 +99,4 @@ const Topbar = () => {
     </nav>
   )
 }
-
 export default Topbar
