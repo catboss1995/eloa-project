@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+
 import "../scss/styleProductInfo.scss"
 import GlassmorphismButton from '../components/GlassmorphismButton'
-
 // display 區
 import calmieFront from "../assets/images/info-calmie-front.avif"
 import calmieLeft from "../assets/images/info-calmie-left.avif"
@@ -18,7 +18,18 @@ import tabTeaching1 from "../assets/images/desc-tab-teaching-1.svg"
 import tabTeaching2 from "../assets/images/desc-tab-teaching-2.svg"
 import tabTeaching3 from "../assets/images/desc-tab-teaching-3.svg"
 import tabTeaching4 from "../assets/images/desc-tab-teaching-4.svg"
-
+// before-after 區
+import beforePic1 from "../assets/images/1before.png"
+import beforePic2 from "../assets/images/2before.png"
+import beforePic3 from "../assets/images/3before.png"
+import afterPic1 from "../assets/images/1after.png"
+import afterPic2 from "../assets/images/2after.png"
+import afterPic3 from "../assets/images/3after.png"
+import beforeScroll from "../assets/images/before-scroll.png"
+import afterScroll from "../assets/images/after-scroll.png"
+// FAQ 區
+import arrowCollapsed from "../assets/images/faq-arrow-collapsed.svg"
+import arrowExpanded from "../assets/images/faq-arrow-expanded.svg"
 
 // display 區元件
 const PicQueue = () => {
@@ -172,17 +183,17 @@ const RenderContent = ({ tabs, tabContent, activeTab }) => {
   const content = tabContent[tabs[activeTab].key];
   if (tabs[activeTab].key === 'specs') {
     return (
-      <div className="tab-content specs-content">
+      <div className="tab-content">
         <div className="content-header">
           <h3>{content.title}</h3>
           <p>{content.subTitle}</p>
         </div>
         <div className="specs-layout">
-          <div className="specs-image">
+          <div className="specs-img">
             <img src={content.src} alt={content.alt} />
           </div>
 
-          <div className="spec-item">
+          <div className="spec-desc">
             {content.spec.map((sp, index) => (
               <p key={index} className="spec-value">
                 {sp.specification}
@@ -201,7 +212,7 @@ const RenderContent = ({ tabs, tabContent, activeTab }) => {
         <h3>{content.title}</h3>
         <p>{content.subTitle}</p>
       </div>
-      <div className="steps-grid">
+      <div className="steps-cards">
         {content.steps.map((step, index) => (
           <div key={index} className="step-card">
             <div className="step-img">
@@ -215,7 +226,6 @@ const RenderContent = ({ tabs, tabContent, activeTab }) => {
     </div>
   )
 }
-
 const DescTab = () => {
   const [activeTab, setActiveTab] = useState(0);
   const tabs = [
@@ -233,19 +243,19 @@ const DescTab = () => {
           src: tabProduct1,
           alt: "使用順序建議",
           title: "1. 搭配 ELOA Aura Clean 使用順序建議",
-          desc: "先使用 Aura Clean 導出清潔毛孔，再以 Calmié 恆溫冷敷舒緩，幫助毛孔收斂、穩定膚況，適合油性肌與粉刺肌日常保養。"
+          desc: "先使用 Aura Clean 導出清潔毛孔，\n再以 Calmié 恆溫冷敷舒緩，\n幫助毛孔收斂、穩定膚況，\n適合油性肌與粉刺肌日常保養。"
         },
         {
           src: tabProduct2,
           alt: "面膜安瓶並用",
           title: "2. 與面膜或安瓶併用",
-          desc: "在冷敷前使用保濕型安瓶或舒緩面膜，冷凝溫度幫助收緊毛孔、鎮定滲透後的活性成分，加速吸收，提升安瓶功效。"
+          desc: "在冷敷前使用保濕型安瓶或舒緩面膜，\n冷凝溫度幫助收緊毛孔、\n鎮定滲透後的活性成分，\n加速吸收，提升安瓶功效。"
         },
         {
           src: tabProduct3,
           alt: "搭配修護霜",
           title: "3. 日曬後／醫美術後搭配修護霜",
-          desc: "用於術後修復初期或戶外曝曬後，即時降低肌膚表溫，減少泛紅與灼熱感，建議搭配無酒精修護型乳霜使用。"
+          desc: "用於術後修復初期或戶外曝曬後，\n即時降低肌膚表溫，\n減少泛紅與灼熱感，\n建議搭配無酒精修護型乳霜使用。"
         }
       ]
     },
@@ -270,51 +280,307 @@ const DescTab = () => {
           src: tabTeaching1,
           alt: "搭載智慧恆溫",
           title: "1. ELOA 美容儀搭載智慧恆溫",
-          desc: "與安全充電設計，只需插上電源，即可快速進入預熱狀態。無需等待，讓保養從第一刻就有效率又安心"
+          desc: "與安全充電設計，只需插上電源，\n即可快速進入預熱狀態。\n無需等待，讓保養從第一刻就有效率又安心。"
         },
         {
           src: tabTeaching2,
           alt: "請先取下飾品",
           title: "2. 為確保導入效果，請先取下珠寶飾品",
-          desc: "將肌膚清潔乾淨、擦乾，避免保養品殘留影響吸收。"
+          desc: "將肌膚清潔乾淨、擦乾，\n避免保養品殘留影響吸收。"
         },
         {
           src: tabTeaching3,
           alt: "保養步驟",
           title: "3. 建議依照以下四個區域進行保養操作：",
-          desc: "左臉頰、右臉頰、額頭與嘴周，分區處理效果更佳。"
+          desc: "左臉頰、右臉頰、額頭與嘴周，\n分區處理效果更佳。"
         },
         {
           src: tabTeaching4,
           alt: "肌膚升級",
           title: "4. 利用 1MHz 高頻射頻與紅光雙波段",
-          desc: "溫和激活肌膚深層修護力，有效撫平細紋、提升緊實度，讓肌膚觸感與光澤同步升級。"
+          desc: "溫和激活肌膚深層修護力，\n有效撫平細紋、提升緊實度，\n讓肌膚觸感與光澤同步升級。"
         },
       ]
     }
   }
   return (
-    <div className="container">
-      <div className="tabs-wrapper">
-        <div className="tabs-header">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-        <div className="tabs-content">
-          <RenderContent tabs={tabs} tabContent={tabContent} activeTab={activeTab} />
-        </div>
+    <div className="tabs-container">
+
+      <div className="tabs-header">
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`tabs-button ${activeTab === tab.id ? "active" : ""}`}
+          >
+            {tab.label}
+          </button>
+        ))}
       </div>
+      <div className="tabs-content">
+        <RenderContent tabs={tabs} tabContent={tabContent} activeTab={activeTab} />
+      </div>
+
     </div>
   );
 }
+// before-after 區元件
+const BeforeAfterScroll = ({ beforeImg, afterImg }) => {
+  const containerRef = useRef(null);
+  const [dividerPos, setDividerPos] = useState(50); // 初始位置置中
+  const [isDragging, setIsDragging] = useState(false);
+
+  const startDrag = () => setIsDragging(true);
+  const stopDrag = () => setIsDragging(false);
+
+  const handleDrag = (e) => {
+    if (!isDragging || !containerRef.current) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    let clientX;
+
+    if (e.type === "touchmove") {
+      clientX = e.touches[0].clientX;
+    } else {
+      clientX = e.clientX;
+    }
+
+    const offsetX = clientX - rect.left;
+    const newPos = (offsetX / rect.width) * 100;
+    setDividerPos(Math.max(0, Math.min(100, newPos)));
+  };
+
+  return (
+    <div
+      className="before-after-container"
+      ref={containerRef}
+      onMouseMove={handleDrag}
+      onTouchMove={handleDrag}
+      onMouseUp={stopDrag}
+      onMouseLeave={stopDrag}
+      onTouchEnd={stopDrag}
+    >
+      <img src={afterImg} alt="After" className="after-img" />
+      <div className="before-wrapper" style={{ width: `${dividerPos}%` }}>
+        <img src={beforeImg} alt="Before" className="before-img" />
+      </div>
+      <div
+        className="divider"
+        style={{ left: `${dividerPos}%` }}
+        onMouseDown={startDrag}
+        onTouchStart={startDrag}
+      >
+        <div className="handle"></div>
+      </div>
+    </div>
+  );
+};
+const BeforeAfterContent = ({ bfPic }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [animatedPercent, setAnimatedPercent] = useState(0);
+  const cardRef = useRef();
+
+  // Intersection Observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          } else {
+            setIsVisible(false);
+          }
+        });
+      },
+      { threshold: 0.1 }
+
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // 數字動畫
+  useEffect(() => {
+    if (isVisible) {
+      let animationId;
+      const duration = 2000;
+      const startTime = Date.now();
+      const targetValue = bfPic.effectPercent;
+
+      const updateValue = () => {
+        const now = Date.now();
+        const progress = Math.min((now - startTime) / duration, 1);
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        const newValue = (targetValue * easeProgress).toFixed(1);
+
+        setAnimatedPercent(newValue);
+
+        if (progress < 1) {
+          animationId = requestAnimationFrame(updateValue);
+        }
+      };
+      animationId = requestAnimationFrame(updateValue);
+      return () => cancelAnimationFrame(animationId);
+    } else {
+      setAnimatedPercent(0);
+    }
+  }, [isVisible, bfPic.effectPercent]);
+
+  return (
+    <div ref={cardRef} className='effect-card'>
+      <div className="effect-title">
+        <div className="effect-name">{bfPic.effectName}</div>
+        <div className="effect-percent">+<span>{animatedPercent}</span>%</div>
+      </div>
+      <div className="before-after-pics">
+        <div className="before-container">
+          <div className="before-title">使用前</div>
+          <img src={bfPic.beforePic} alt={bfPic.beforeAlt} />
+        </div>
+        <div className="after-container">
+          <div className="after-title">使用14天後</div>
+          <img src={bfPic.afterPic} alt={bfPic.afterAlt} />
+        </div>
+      </div>
+      <p className="bf-desc">{bfPic.bfDesc}</p>
+    </div>
+  );
+};
+const BeforeAfterCard = () => {
+  const bfPics = [
+    {
+      id: 1,
+      effectName: "水潤度提升",
+      effectPercent: 35.7,
+      beforePic: beforePic1,
+      afterPic: afterPic1,
+      beforeAlt: "before",
+      afterAlt: "after",
+      bfDesc: "膚觸更柔嫩，乾燥細紋不再明顯"
+    },
+    {
+      id: 2,
+      effectName: "平滑度提升",
+      effectPercent: 18.6,
+      beforePic: beforePic2,
+      afterPic: afterPic2,
+      beforeAlt: "before",
+      afterAlt: "after",
+      bfDesc: "角質層更新加快，毛孔與粗糙感減少。"
+    },
+    {
+      id: 3,
+      effectName: "亮澤度提升",
+      effectPercent: 22.4,
+      beforePic: beforePic3,
+      afterPic: afterPic3,
+      beforeAlt: "before",
+      afterAlt: "after",
+      bfDesc: "暗沉膚色逐漸被喚醒，膚色更均勻，看起來更有光澤。"
+    },
+  ];
+  return (
+    <div className="effect-container">
+      {bfPics.map((bfPic) => (
+        <BeforeAfterContent key={bfPic.id} bfPic={bfPic} />
+      ))}
+    </div>
+
+  )
+}
+// qa 區元件
+const FAQ = () => {
+  const [expandedItems, setExpandedItems] = useState({});
+
+  const faqData = [
+    {
+      id: 'q1',
+      question: '敏感肌可以使用嗎？',
+      answer: 'A：可以。Calmie 的冷敷溫度經皮膚科實全檢測，約 10~15°C，溫和不刺激，適合敏感肌。且護徐肌膚舒泛紅膚況使用。'
+    },
+    {
+      id: 'q2', 
+      question: '使用時會感到刺痛或不適嗎？',
+      answer: 'A：不會。冷感溫度設計在舒適範圍內，不會造成冰凍感或刺痛感，大多數用戶會感到清涼舒緩。'
+    },
+    {
+      id: 'q3',
+      question: '需要事先做降溫準備嗎？',
+      answer: 'A：不需要。Calmié 內建智能冷凝系統，可自動降溫至穩定溫度，無需額外冷藏或耗材。'
+    },
+    {
+      id: 'q4',
+      question: '每天可以使用幾次？',
+      answer: 'A：建議每天 1~2 次，每次約 5 分鐘，依膚況調整。長時間或過於頻繁使用並不會額外增加效果。'
+    },
+    {
+      id: 'q5',
+      question: '使用前需要卸妝或清潔嗎？',
+      answer: 'A：建議先取下飾品，並徹底清潔與擦乾肌膚，避免殘留保養品影響冷敷效果。'
+    },
+  ];
+
+  const toggleExpand = (itemId) => {
+    setExpandedItems(prev => ({
+      ...prev,
+      [itemId]: !prev[itemId]
+    }));
+  };
+
+  return (
+    <>
+      {faqData.map((item, index) => (
+        <div key={item.id} className="faq-item">
+          <div 
+            className="faq-question"
+            onClick={() => toggleExpand(item.id)}
+          >
+            <span className="question-text">Q{index + 1}：{item.question}</span>
+            <img 
+              src={expandedItems[item.id] ? arrowCollapsed : arrowExpanded}
+              alt={expandedItems[item.id] ? '收起' : '展開'}
+              className={`arrow ${expandedItems[item.id] ? 'expanded' : 'collapsed'}`}
+            />
+          </div>
+          <div className={`faq-answer ${expandedItems[item.id] ? 'expanded' : 'collapsed'}`}>
+            <div className="answer-content">
+              {item.answer}
+            </div>
+          </div>
+        </div>
+      ))}
+    </>
+  );
+};
 
 const ProductInfo = () => {
+  useEffect(() => {
+    const sections = document.querySelectorAll("section:not(#product-display-sec)");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          } else {
+            entry.target.classList.remove("show");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    sections.forEach((sec) => observer.observe(sec));
+
+    return () => {
+      sections.forEach((sec) => observer.unobserve(sec));
+    };
+  }, []);
   return (
     <>
       <section className="info-h100-vh" id="product-display-sec">
@@ -328,6 +594,27 @@ const ProductInfo = () => {
       </section>
       <section className='info-h100-vh' id='desc-tab-sec'>
         <DescTab />
+      </section>
+      <section className="info-h100-vh" id="before-after-sec">
+        <div className="bf-text-area">
+          <p className="bf-title">美容儀使用後臉部對比</p>
+          <p className="bf-desc">立即啟動肌膚逆轉計畫，緊緻、提亮一機完成。<br />14天看見效果，數萬用戶一致推薦！</p>
+        </div>
+        <div className="bf-effect-area">
+          <BeforeAfterCard />
+        </div>
+      </section>
+      <section className='info-h100-vh' id="bf-effect-days-sec">
+        <BeforeAfterScroll beforeImg={beforeScroll} afterImg={afterScroll} />
+        <div className="text-area">
+          <p>皮膚由暗沉、痘疤明顯→均勻透亮，煥發健康光澤</p>
+          <p>僅<span>14</span>天</p>
+          <p>*ai效果圖，請勿認真</p>
+        </div>
+      </section>
+      <section className="info-h100-vh" id="faq-sec">
+        <h2>常見問題</h2>
+        <FAQ/>
       </section>
     </>
   )
