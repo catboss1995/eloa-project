@@ -6,7 +6,17 @@
     height: 100vh;
     padding: 0 50px;
     background-color: $white;
+
+    &:not(#product-display-sec) {
+        opacity: 0;
+        transition: opacity 0.8s ease-out;
+    }
+
+    &.show {
+        opacity: 1 !important;
+    }
 }
+
 // 產品展示區
 #product-display-sec {
     display: flex;
@@ -14,49 +24,57 @@
     padding-top: 100px;
     padding-bottom: 100px;
     height: auto;
-    .display-area{
+
+    .display-area {
         display: flex;
         gap: 50px;
         margin-bottom: 50px;
+
         .product-pic-area {
             position: relative;
             display: flex;
             flex: 1;
             gap: 20px;
+
             .product-pic-queue {
                 display: flex;
                 position: relative;
                 flex-direction: column;
                 width: 20%;
                 gap: 20px;
+
                 .product-pic-box {
                     width: 100%;
                     max-width: 15vh;
                     height: 20%;
                     max-height: 15vh;
-                    padding: 10px 0 ;
+                    padding: 10px 0;
                     background-color: $white;
                     border: 2px solid transparent;
                     transition: all 0.5s ease;
                     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
                     cursor: pointer;
+
                     &:hover {
                         transform: scale(1.05);
                         filter: drop-shadow(0px 6px 8px rgba(0, 0, 0, 0.3));
                     }
+
                     &.active {
                         border: 2px solid $dark-brown1;
-                        transform: scale(1.03);              
-    
+                        transform: scale(1.03);
+
                     }
+
                     img {
                         object-fit: cover;
                         height: 100%;
                         justify-self: center;
-                        
+
                     }
                 }
             }
+
             .product-pic-show {
                 width: 80%;
                 max-width: 500px;
@@ -64,39 +82,48 @@
                 background-color: $white;
                 filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
                 padding: 50px 0;
+
                 img {
                     object-fit: cover;
                     height: 100%;
                     justify-self: center;
                     opacity: 0;
                     transition: opacity 0.3s ease, transform 0.5s ease-in-out, filter 0.5s ease-in-out;
+
                     &.fade-out {
                         opacity: 0;
-                        
+
                     }
+
                     &.fade-in {
                         opacity: 1;
                     }
+
                     &:hover {
-                        transform: scale3d(1.2,1.2,1.3) translateY(30px) ;
-                        filter:drop-shadow( 1px 1px 3px $black-40);
-                    }                    
+                        transform: scale3d(1.2, 1.2, 1.3) translateY(30px);
+                        filter: drop-shadow(1px 1px 3px $black-40);
+                    }
                 }
             }
         }
+
         .product-text-area {
             display: flex;
             flex-direction: column;
             flex: 1;
-            gap:16px;
+            gap: 16px;
+
             .title {
                 font-size: $font24-light;
             }
-            .subtitle, .review {
+
+            .subtitle,
+            .review {
                 font-size: $font14-light;
                 display: flex;
                 align-items: center;
                 gap: 20px;
+
                 .stars {
                     display: flex;
                     gap: 5px;
@@ -104,32 +131,41 @@
                     font-size: $font18-light;
                 }
             }
+
             .desc {
                 font-size: $font14-light;
                 line-height: 1.6;
             }
+
             .coupon {
                 width: fit-content;
-                img{
+
+                img {
                     max-width: 30vh;
                     max-height: 20vh;
                     cursor: pointer;
                 }
             }
+
             .price {
                 font-size: $font24-light;
             }
+
             .shopping-actions {
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
-                .quantity{
+
+                .quantity {
                     display: flex;
                     align-items: center;
                     gap: 12px;
-                    .label, .num {
+
+                    .label,
+                    .num {
                         font-size: $font24-light;
                     }
+
                     button {
                         width: 36px;
                         height: 36px;
@@ -143,20 +179,22 @@
                         font-size: $font24-light;
                     }
                 }
+
                 .buttons {
                     display: flex;
                     gap: 20px;
                 }
             }
-    
+
         }
     }
-    
+
     .add-on-area {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
         gap: 50px;
+
         .add-on-card {
             display: flex;
             width: 40%;
@@ -166,36 +204,45 @@
             padding: 20px 40px;
             background-color: $beige1;
             border-radius: 12px;
-            .add-on-pic{
+
+            .add-on-pic {
                 img {
                     min-width: 10vh;
-                    max-height:200px ;
+                    max-height: 200px;
                 }
             }
-            .add-on-text{
+
+            .add-on-text {
                 width: 60%;
                 padding: 0 30px;
                 text-wrap: nowrap;
+
                 .name {
                     font-size: $font18-light;
                     margin-bottom: 10px;
                 }
+
                 .title {
                     font-size: $font16-light;
                     margin-bottom: 15px;
                     color: $light-brown2;
                 }
-                .sub-title, .desc {
+
+                .sub-title,
+                .desc {
                     font-size: $font14-light;
                 }
-                .sub-title{
+
+                .sub-title {
                     margin-bottom: 15px;
                 }
+
                 .price {
                     font-size: $font16-light;
                     margin-top: 15px;
                 }
             }
+
             .add-on-button {
                 justify-self: self-start;
                 align-self: flex-end;
@@ -204,7 +251,505 @@
         }
     }
 }
+
 // 說明教學頁籤區
 #desc-tab-sec {
+    height: 90vh;
+    background-color: $beige1;
+
+    .tabs-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .tabs-header {
+            overflow: hidden;
+            background-color: $white;
+            width: 130%;
+            display: flex;
+            justify-content: center;
+
+            .tabs-button {
+                position: relative;
+                border: 1px solid $dark-brown1;
+                padding: 10px 30px 20px;
+                bottom: -10px;
+                background-color: $beige0;
+
+                &:hover {
+                    background-color: $beige2;
+                }
+
+                &.active {
+                    background-color: $beige5;
+                }
+            }
+        }
+
+        .tabs-content {
+            width: 100%;
+
+            .tab-content {
+                text-align: center;
+
+                .content-header {
+                    padding: 20px 0;
+                }
+
+                .steps-cards {
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    gap: 50px;
+                    margin: 30px 0;
+
+                    .step-card {
+                        padding: 30px 30px;
+                        justify-items: center;
+                        background-color: $white-80;
+                        border-radius: 12px;
+                        flex: 1;
+                        max-width: 300px;
+
+                        .step-img {
+                            display: flex;
+                            width: 20vh;
+                            justify-items: center;
+                        }
+
+                        h4 {
+                            padding: 20px 0;
+                        }
+
+                        p {
+                            font-size: $font14-light;
+                            white-space: pre-line;
+                        }
+                    }
+                }
+            }
+
+            .specs-layout {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 50px;
+                margin: 30px 0;
+
+                .specs-img {
+                    padding: 30px 90px;
+                    background-color: $white-80;
+                    border-radius: 12px;
+                }
+            }
+        }
+    }
+}
+
+// before-after 區
+#before-after-sec {
+    display: flex;
+    flex-direction: column;
     height: auto;
+    padding-bottom: 100px;
+    align-items: center;
+
+    .bf-text-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin: 50px 0 30px;
+
+        .bf-title {
+            background-color: $beige5;
+            padding: 10px 50px;
+            margin-bottom: 30px;
+            font-size: $font18-light;
+        }
+    }
+
+    .bf-effect-area {
+        .effect-container {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            gap: 40px;
+            flex-wrap: wrap;
+
+            .effect-card {
+                display: flex;
+                flex-direction: column;
+                width: 400px;
+
+                .effect-title {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .effect-name {
+                        align-self: center;
+                    }
+
+                    .effect-percent {
+                        position: relative;
+                        bottom: -30px;
+                        font-size: $font40-light;
+                        transition: transform 2s ease-out;
+                    }
+                }
+
+                .before-after-pics {
+                    display: flex;
+                    position: relative;
+                    gap: 20px;
+                    margin-bottom: 20px;
+
+                    // padding-top: 5px;
+                    .before-title,
+                    .after-title {
+                        background-color: $beige5;
+                        justify-self: center;
+                        align-self: center;
+                        text-align: center;
+                        padding: 10px;
+                        width: 100%;
+                        margin-bottom: 5px;
+                        border-radius: 12px 12px 0 0;
+                    }
+                }
+
+                .bf-desc {
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    // section 淡出後動畫
+    &.show {
+        .effect-percent {
+            transform: translateY(-30px);
+        }
+    }
+}
+
+#bf-effect-days-sec {
+    padding-bottom: 100px;
+    display: flex;
+    gap: 50px;
+    height: auto;
+    justify-content: center;
+
+    .text-area {
+        justify-items: center;
+        align-content: center;
+
+        p {
+            padding: 40px 0;
+
+            span {
+                position: relative;
+                display: inline-block;
+                padding: 0 10px;
+                font-size: $font40-light;
+                opacity: 0;
+                bottom: -30px;
+                transition: opacity 2s ease-out, transform 2s ease-out;
+            }
+        }
+    }
+
+    .before-after-container {
+        position: relative;
+        width: 300px;
+        height: 400px;
+        user-select: none;
+
+        &::before {
+            position: absolute;
+            content: "";
+            width: 300px;
+            height: 400px;
+            background: $light-brown4;
+            transition: transform 2s ease-out;
+        }
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .before-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 400px;
+            overflow: hidden;
+
+            .before-img {
+                min-width: 300px;
+            }
+        }
+
+        .divider {
+            position: absolute;
+            top: 0;
+            transform: translateX(-50%);
+            height: 100%;
+            width: 4px;
+            background-color: $white;
+            z-index: 10;
+            cursor: col-resize;
+
+            .handle {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 50px;
+                height: 80px;
+                z-index: 10;
+                cursor: col-resize;
+
+                img {
+                    cursor: col-resize;
+                    object-fit: contain;
+                    justify-self: center;
+                    height: 100%;
+                    filter: drop-shadow(2px 2px 2px $black-60);
+                    pointer-events: none;
+                }
+            }
+        }
+    }
+
+    // sec 淡入後跑動畫
+    &.show {
+        .before-after-container {
+            &::before {
+                transform: translate(-30px, 30px);
+            }
+        }
+
+        .text-area {
+            span {
+                opacity: 1;
+                transform: translateY(-30px);
+            }
+        }
+    }
+}
+
+// 常見問題 區
+#faq-sec {
+    margin: 0 auto;
+    padding: 20px 20px 100px;
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+
+    h2 {
+        background-color: $beige5;
+        padding: 10px 50px;
+        font-size: $font18-light;
+        margin-bottom: 20px;
+    }
+
+    .faq-item {
+        width: 800px;
+        margin-bottom: 16px;
+        border-color: $brown1 ;
+        border-width: 3px;
+        border-style: solid dashed;
+        border-radius: 8px;
+
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            cursor: pointer;
+            background-color: $beige1;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: $beige2;
+            }
+
+            .question-text {
+                font-size: $font16-light;
+                font-weight: 500;
+                flex: 1;
+            }
+
+            .arrow {
+                width: 20px;
+                height: 20px;
+                margin-left: 16px;
+                transition: opacity 0.3s ease;
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+        }
+
+        .faq-answer {
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+
+            &.collapsed {
+                max-height: 0;
+                padding: 0 20px;
+            }
+
+            &.expanded {
+                max-height: 200px;
+                padding: 0 20px 16px;
+                background-color: $beige0;
+            }
+
+            .answer-content {
+
+                font-size: 14px;
+                line-height: 1.6;
+                padding-top: 8px;
+                border-top: 1px solid rgba(211, 184, 255, 0.3);
+            }
+        }
+    }
+}
+
+//顧客評論 區
+#feedback-grade-sec {
+    padding: 20px;
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    h2 {
+        background-color: $beige5;
+        padding: 10px 50px;
+        font-size: $font18-light;
+        
+    }
+
+    .feedback-grade {
+        margin: 20px 0;
+        .star-bar {
+            display: flex;
+            height: 24px;
+            margin: 8px 0;
+            gap: 10px;
+
+            .bar {
+                position: relative;
+                display: flex;
+                background-color: $beige1;
+                width: 200px;
+                height: 80%;
+                align-self: flex-end;
+
+            }
+
+            &:nth-child(1) {
+                .bar {
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        background-color: $beige5;
+                        width: 0px;
+                        height: 100%;
+                        z-index: 2;
+                        transition: width 2s ease-in-out;
+                    }
+                }
+            }
+
+            &:nth-child(2) {
+                .bar {
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        background-color: $beige5;
+                        width: 0px;
+                        height: 100%;
+                        z-index: 2;
+                        transition: width 2s ease-in-out;
+                    }
+                }
+            }
+
+            .stars {
+                display: flex;
+                align-self: center;
+                gap: 5px;
+                color: $beige5;
+                font-size: $font18-light;
+            }
+        }
+    }
+    .feedback-message-area {
+        margin: 50px 0;
+        display: flex;
+        flex-direction: column;
+        gap:30px;
+        width: 900px;
+        height: 400px;
+        overflow: scroll;
+        .message-card {
+            display: flex;
+            gap:50px;
+            align-items: center;
+            img {
+                width: 60px;
+                height: 60px;
+            }
+            .message-info {
+                font-size: $font16-light;
+                min-width: 120px;
+                
+                p{
+                    text-wrap: nowrap;
+                }
+            }
+            .stars {
+                display: flex;
+                align-self: center;
+                gap: 5px;
+                color: $beige5;
+                font-size: $font18-light;
+            }
+        }
+    }
+
+    &.show {
+        .star-bar {
+            &:nth-child(1) {
+                .bar {
+                    &::before {
+                        width: 140px;                        
+                    }
+                }
+            }
+            &:nth-child(2) {
+                .bar {
+                    &::before {
+                        width: 40px;                        
+                    }
+                }
+            }
+        }
+    }
 }

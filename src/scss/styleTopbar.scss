@@ -40,7 +40,8 @@ nav {
         font-size: $font18-light;
         color: $light-brown5;
         position: relative; 
-        display: inline-block; 
+        display: inline-block;
+        text-wrap: nowrap;
         
         transition: color 0.3s ease, transform 0.3s ease;
         &:hover {
@@ -66,4 +67,89 @@ nav {
 
 .nav-right img {
     height: 30px;
+}
+
+// 下拉菜單樣式
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+    
+    .dropdown-trigger {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        padding: 0;
+        
+        .dropdown-arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+            
+            &.open {
+                transform: rotate(180deg);
+            }
+        }
+    }
+    
+    .dropdown-menu {
+        position: absolute;
+        overflow: hidden;
+        top: calc(100% + 10px);
+        left: -50%;
+        background-color: $white;
+        border-radius: 8px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        min-width: 180px;
+        animation: dropdownFadeIn 0.3s ease;
+        z-index: 1000;
+        
+        // 箭頭指示器
+        &::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 20px;
+            width: 12px;
+            height: 12px;
+            background-color: $white;
+            border: 1px solid rgba($light-brown5, 0.1);
+            border-bottom: none;
+            border-right: none;
+            transform: rotate(45deg);
+        }
+        
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: $light-brown5;
+            font-size: $font16-light;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            white-space: pre-line;
+            border-bottom: 1px solid $beige2;
+            
+            &:hover {
+                background-color: rgba($light-brown5, 0.05);
+                border-left-color: $light-brown5;
+                transform: translateX(5px);
+            }
+            
+        }
+    }
+}
+
+// 下拉菜單動畫
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
