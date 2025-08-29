@@ -63,7 +63,7 @@ $container: 1200px;
   color: $brand;
   font-size: 16px;         /* 15 → 16 */
   outline: none;
-  transition: box-shadow .18s ease;
+  transition: box-shadow .18s ease, border-color .18s ease;
 
   &::placeholder { color: $brand; opacity: .8; }
   &:hover  { border-color: $brand; }
@@ -129,7 +129,7 @@ $container: 1200px;
 
   /* 動畫準備 */
   transition: background-color .2s ease, transform .18s ease, box-shadow .18s ease;
-  will-change: transform, box-shadow;
+  will-change: transform, box-shadow, background-color;
   transform-origin: center;
   z-index: 0;
 }
@@ -156,14 +156,12 @@ $container: 1200px;
   box-shadow: none !important;
 }
 
-/* ===== chevron（新增：搭配 .is-open 旋轉） ===== */
+/* ===== chevron（搭配 .is-open 旋轉） ===== */
 .faq__chevron {
   display: inline-block;
   transition: transform .25s ease;
 }
-.faq__chevron.is-open {
-  transform: rotate(180deg);
-}
+.faq__chevron.is-open { transform: rotate(180deg); }
 
 /* ===== 答案內容 ===== */
 .faq__aWrap {
@@ -172,6 +170,7 @@ $container: 1200px;
   overflow: hidden;
   transition: max-height .35s ease, opacity .25s ease;
   pointer-events: none;
+  will-change: max-height, opacity;
 }
 .faq__item.is-open .faq__aWrap {
   max-height: 600px;
@@ -193,11 +192,30 @@ $container: 1200px;
   &::before { content: "•"; position: absolute; left: 0; top: 0; color: $brand; }
 }
 
-/* ===== 底部波浪（改為：背景 repeat-x 單向滑動） =====
+/* ===== 搜尋結果空狀態 ===== */
+.faq__noResult {
+  margin: 12px 4px 40px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: #faf7f3;
+  color: $brand;
+  font-size: 15.5px;
+  border: 1px dashed $line;
+}
+
+/* ===== 高亮（與 JSX 的 <mark> 搭配） ===== */
+.faq mark {
+  background: #fff2b2;  /* 柔和黃 */
+  color: inherit;
+  padding: 0 .12em;
+  border-radius: .2em;
+  box-decoration-break: clone;
+}
+
+/* ===== 底部波浪（背景 repeat-x 單向滑動，或搭配 SVG path 動畫） =====
    說明：
-   1) 建議由 JSX 行內 style 指定 background-image: url(${faqWave})
-      這樣能沿用你 import 的圖，避免編譯器警告未使用資源。
-   2) 若未在 JSX 指定，也可在下方取消註解備援路徑。
+   1) 若改用背景圖，可在 JSX 以 style 設定 background-image。
+   2) 目前仍保留 SVG path 動畫設定（見下方 .faq__wave-container）。
 */
 .faq__wave {
   --wave-height: 120px;   /* 可由 JSX 覆蓋，如 140px */
@@ -210,7 +228,7 @@ $container: 1200px;
   height: var(--wave-height);
   overflow: hidden;
 
-  /* 若未由 JSX 設定，啟用備援路徑 ↓ */
+  /* 備援：若未在 JSX 指定背景圖，可啟用下行 */
   /* background-image: url("../assets/images/FAQ-BG.svg"); */
   background-repeat: repeat-x;
   background-size: auto calc(var(--wave-height) * var(--wave-scale));
@@ -226,75 +244,123 @@ $container: 1200px;
   to   { background-position-x: 100%; } /* 左→右單向 */
 }
 
+/* ===== SVG wave（與你 JSX 的 <svg class="faq__wave"> 相容） ===== */
 .faq__wave-container {
   position: relative;
   width: 100%;
   height: 300px;
   overflow: hidden;
   background: rgba(219, 205, 183, 0.05);
-  
+
   .faq__wave {
     width: 100%;
     height: 180%;
     transform: scaleX(1.3) scaleY(1) rotate(-7deg);
-    
+
     .faq__path {
-      fill: none; 
+      fill: none;
       stroke-width: 4;
       stroke-dasharray: 1000;
       stroke-dashoffset: 400;
       animation: faq-draw 12s ease-in-out infinite;
       stroke: #DBCDB7;
     }
-    
+
     .faq__path2 {
-      fill: none; 
+      fill: none;
       stroke-width: 4;
       stroke-dasharray: 400;
       stroke-dashoffset: 1000;
       animation: faq-draw2 15s ease-in-out infinite;
       stroke: #DBCDB7;
     }
-    
+
     .faq__path3 {
-      fill: none; 
+      fill: none;
       stroke-width: 4;
       stroke-dasharray: 1000;
       stroke-dashoffset: 2000;
       animation: faq-draw3 14s ease-in-out infinite;
       stroke: #DBCDB7;
     }
+
+    .faq__path4 {
+      fill: none;
+      stroke-width: 4;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 3000;
+      animation: faq-draw4 12s ease-in-out infinite;
+      stroke: #DBCDB7;
+    }
+
+    .faq__path5 {
+      fill: none;
+      stroke-width: 4;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 4000;
+      animation: faq-draw5 12s ease-in-out infinite;
+      stroke: #DBCDB7;
+    }
+
+    .faq__path6 {
+      fill: none;
+      stroke-width: 4;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 5000;
+      animation: faq-draw6 20s ease-in-out infinite;
+      stroke: #DBCDB7;
+    }
+
+    .faq__path7 {
+      fill: none;
+      stroke-width: 3;
+      stroke-dasharray: 800;
+      stroke-dashoffset: 6000;
+      animation: faq-draw7 18s ease-in-out infinite;
+      stroke: #DBCDB7;
+    }
+
+    .faq__path8 {
+      fill: none;
+      stroke-width: 2.5;
+      stroke-dasharray: 600;
+      stroke-dashoffset: 7000;
+      animation: faq-draw8 22s ease-in-out infinite;
+      stroke: #DBCDB7;
+    }
   }
 }
 
-@keyframes faq-draw {
-  0% { stroke-dashoffset: 4000; }
-  100% { stroke-dashoffset: 0; }
-}
+@keyframes faq-draw   { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
+@keyframes faq-draw2  { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
+@keyframes faq-draw3  { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
+@keyframes faq-draw4  { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
+@keyframes faq-draw5  { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
+@keyframes faq-draw6  { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
+@keyframes faq-draw7  { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
+@keyframes faq-draw8  { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
 
-@keyframes faq-draw2 {
-  0% { stroke-dashoffset: 4000; }
-  100% { stroke-dashoffset: 0; }
-}
-
-@keyframes faq-draw3 {
-  0% { stroke-dashoffset: 4000; }
-  100% { stroke-dashoffset: 0; }
-}
-
-/* 使用者偏好減少動效（無障礙）：關閉波浪動畫 */
+/* 使用者偏好減少動效（無障礙）：關閉波浪動畫與 path 動畫 */
 @media (prefers-reduced-motion: reduce) {
   .faq__wave { animation: none; }
+  .faq__wave .faq__path,
+  .faq__wave .faq__path2,
+  .faq__wave .faq__path3,
+  .faq__wave .faq__path4,
+  .faq__wave .faq__path5,
+  .faq__wave .faq__path6,
+  .faq__wave .faq__path7,
+  .faq__wave .faq__path8 { animation: none; }
 }
 
 /* ===== RWD ===== */
 @media (max-width: 1024px) {
   .faq__container { padding-left: 40px; padding-right: 40px; }
   .faq__searchBox { flex-basis: 460px; max-width: 460px; min-width: 300px; }
-  
+
   .faq__wave-container {
     height: 350px;
-    
+
     .faq__wave {
       width: 140%;
       transform: scaleX(1.4) scaleY(1.6) rotate(-6deg);
@@ -305,10 +371,10 @@ $container: 1200px;
   .faq__title     { font-size: 30px; }    /* 28 → 30 */
   .faq__searchBox { flex-basis: 360px; max-width: 360px; min-width: 280px; }
   .faq__searchBox input { height: 40px; font-size: 15.5px; }
-  
+
   .faq__wave-container {
     height: 300px;
-    
+
     .faq__wave {
       width: 130%;
       transform: scaleX(1.3) scaleY(1.4) rotate(-6deg);
@@ -320,17 +386,16 @@ $container: 1200px;
   .faq__header    { overflow-x: auto; }
   .faq__searchBox { flex-basis: 300px; max-width: 300px; min-width: 260px; }
   .faq__title     { font-size: 28px; }
-  
+
   .faq__wave-container {
     height: 250px;
-    
+
     .faq__wave {
       width: 120%;
       transform: scaleX(1.2) scaleY(1.2) rotate(-6deg);
-      
-      .faq__path, .faq__path2, .faq__path3 {
-        stroke-width: 3;
-      }
+
+      .faq__path, .faq__path2, .faq__path3 { stroke-width: 2; }
+      .faq__path4, .faq__path5, .faq__path6, .faq__path7, .faq__path8 { stroke-width: 1.5; }
     }
   }
 }
@@ -339,14 +404,12 @@ $container: 1200px;
 @media (max-width: 480px) {
   .faq__wave-container {
     height: 200px;
-    
+
     .faq__wave {
       width: 110%;
       transform: scaleX(1.1) scaleY(1.0) rotate(-6deg);
-      
-      .faq__path, .faq__path2, .faq__path3 {
-        stroke-width: 2.5;
-      }
+
+      .faq__path, .faq__path2, .faq__path3 { stroke-width: 2.5; }
     }
   }
 }
@@ -354,14 +417,12 @@ $container: 1200px;
 @media (max-width: 360px) {
   .faq__wave-container {
     height: 180px;
-    
+
     .faq__wave {
       width: 100%;
       transform: scaleX(1.0) scaleY(0.9) rotate(-6deg);
-      
-      .faq__path, .faq__path2, .faq__path3 {
-        stroke-width: 2;
-      }
+
+      .faq__path, .faq__path2, .faq__path3 { stroke-width: 2; }
     }
   }
 }
