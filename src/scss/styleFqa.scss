@@ -1,9 +1,5 @@
-/* src/scss/styleFqa.scss — ELOA FAQ (FQA) */
+/* src/scss/styleFqa.scss — ELOA FAQ (最終版整合) */
 @use "./styleReset" as *;
-
-/* ================================
-   ELOA FAQ - 無外框、僅底線分隔（字級微放大＋hover 浮起）
-   ================================ */
 
 $brand: #5B4C39;
 $line:  #D9D0C5;
@@ -27,7 +23,7 @@ $container: 1200px;
   overflow: visible;
 }
 
-/* ===== Header：標題 + 搜尋列 ===== */
+/* ===== Header ===== */
 .faq__header {
   display: flex;
   align-items: center;
@@ -40,7 +36,7 @@ $container: 1200px;
 
 .faq__title {
   margin: 0;
-  font-size: 34px;         /* 32 → 34 微放大 */
+  font-size: 34px;
   font-weight: 800;
   line-height: 1.05;
   flex: 0 0 auto;
@@ -55,13 +51,13 @@ $container: 1200px;
 }
 .faq__searchBox input {
   width: 100%;
-  height: 42px;            /* 40 → 42 */
+  height: 42px;
   padding: 11px 14px 11px 44px;
   border: 1px solid $brand;
   border-radius: 999px;
   background-color: #fff;
   color: $brand;
-  font-size: 16px;         /* 15 → 16 */
+  font-size: 16px;
   outline: none;
   transition: box-shadow .18s ease, border-color .18s ease;
 
@@ -74,27 +70,27 @@ $container: 1200px;
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  width: 19px; height: 19px;   /* 18 → 19 */
+  width: 19px; height: 19px;
   pointer-events: none;
   opacity: .85;
 }
 
-/* ===== Group：去掉外框/背景 ===== */
+/* ===== Group ===== */
 .faq__group {
   margin: 40px 0 20px;
+  padding: 0 4px;
   border: none;
   background: transparent;
-  padding: 0 4px; /* 左右留一點空間 */
 }
 .faq__groupName {
   font-weight: 700;
-  font-size: 21px;        /* 20 → 21 */
+  font-size: 21px;
   margin-bottom: 12px;
   color: $brand;
 }
 .faq__divider { height: 1px; background: $line; margin-bottom: 16px; }
 
-/* ===== Item：僅底線分隔 ===== */
+/* ===== Item ===== */
 .faq__item {
   border: none;
   border-bottom: 1px solid $line;
@@ -105,8 +101,8 @@ $container: 1200px;
 /* ===== 問題列（按鈕） ===== */
 .faq__q {
   font-weight: 700;
-  font-size: 17px;        /* 16 → 17 */
-  line-height: 1.75;      /* 1.7 → 1.75 */
+  font-size: 17px;
+  line-height: 1.75;
   color: $brand;
 
   display: flex;
@@ -114,54 +110,39 @@ $container: 1200px;
   justify-content: space-between;
   gap: 12px;
   width: 100%;
-  padding: 16px 0;        /* 14 → 16 */
-  margin-bottom: 0;
+  padding: 16px 0 16px 20px; /* 🔥 左邊留 20px 空間 */
   text-align: left;
   border: 0;
   background: transparent;
-  border-radius: 0;
   cursor: pointer;
 
-  /* —— 點擊不出黑框 —— */
   outline: none !important;
   box-shadow: none !important;
   -webkit-tap-highlight-color: transparent;
 
-  /* 動畫準備 */
-  transition: background-color .2s ease, transform .18s ease, box-shadow .18s ease;
-  will-change: transform, box-shadow, background-color;
+  transition: transform .2s ease;
   transform-origin: center;
   z-index: 0;
 }
 .faq__q:hover {
-  background-color: rgba(91,76,57,0.06);
-  transform: translateY(-2px) scale(1.015); /* 微浮起 + 放大 */
-  box-shadow:
-    0 2px 6px rgba(0,0,0,.06),
-    0 6px 18px rgba(0,0,0,.08);
-  z-index: 1;
+  transform: translateY(-2px) scale(1.02);
 }
 .faq__item.is-open .faq__q {
-  background-color: rgba(91,76,57,0.08);
-  transform: translateY(-1px);
-  box-shadow:
-    0 1px 4px rgba(0,0,0,.05),
-    0 4px 12px rgba(0,0,0,.06);
+  transform: translateY(-1px) scale(1.01);
 }
 
-/* 進一步保險：把所有聚焦態都關閉外框 */
-.faq__q:focus,
-.faq__q:focus-within {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-/* ===== chevron（搭配 .is-open 旋轉） ===== */
+/* ===== chevron (箭頭) ===== */
 .faq__chevron {
   display: inline-block;
-  transition: transform .25s ease;
+  font-size: 32px; /* 🔥 箭頭再大一點 */
+  transition: transform .25s ease, font-size .2s ease;
 }
-.faq__chevron.is-open { transform: rotate(180deg); }
+.faq__q:hover .faq__chevron {
+  transform: scale(1.3);
+}
+.faq__chevron.is-open {
+  transform: rotate(180deg) scale(1.3);
+}
 
 /* ===== 答案內容 ===== */
 .faq__aWrap {
@@ -170,7 +151,6 @@ $container: 1200px;
   overflow: hidden;
   transition: max-height .35s ease, opacity .25s ease;
   pointer-events: none;
-  will-change: max-height, opacity;
 }
 .faq__item.is-open .faq__aWrap {
   max-height: 600px;
@@ -179,8 +159,8 @@ $container: 1200px;
 }
 
 .faq__a {
-  font-size: 16px;        /* 15 → 16 */
-  line-height: 1.95;      /* 1.9 → 1.95 */
+  font-size: 16px;
+  line-height: 1.95;
   padding: 12px 0 22px;
 }
 .faq__item:not(.is-open) .faq__a { padding: 0; margin: 0; }
@@ -188,7 +168,9 @@ $container: 1200px;
 /* 條列清單 */
 .faq__bullets { margin-top: 6px; }
 .faq__bullet {
-  position: relative; padding-left: 22px; line-height: 1.95;
+  position: relative;
+  padding-left: 22px;
+  line-height: 1.95;
   &::before { content: "•"; position: absolute; left: 0; top: 0; color: $brand; }
 }
 
@@ -203,226 +185,83 @@ $container: 1200px;
   border: 1px dashed $line;
 }
 
-/* ===== 高亮（與 JSX 的 <mark> 搭配） ===== */
+/* ===== 高亮 ===== */
 .faq mark {
-  background: #fff2b2;  /* 柔和黃 */
+  background: #fff2b2;
   color: inherit;
   padding: 0 .12em;
   border-radius: .2em;
   box-decoration-break: clone;
 }
 
-/* ===== 底部波浪（背景 repeat-x 單向滑動，或搭配 SVG path 動畫） =====
-   說明：
-   1) 若改用背景圖，可在 JSX 以 style 設定 background-image。
-   2) 目前仍保留 SVG path 動畫設定（見下方 .faq__wave-container）。
-*/
-.faq__wave {
-  --wave-height: 120px;   /* 可由 JSX 覆蓋，如 140px */
-  --wave-speed:  36s;     /* 可由 JSX 覆蓋，如 18s（越小越快） */
-  --wave-scale:  1;       /* 可由 JSX 覆蓋，如 1.2 */
-  --wave-opacity: 1;      /* 可由 JSX 覆蓋，如 0.9 */
-
-  position: relative;
-  width: 100%;
-  height: var(--wave-height);
-  overflow: hidden;
-
-  /* 備援：若未在 JSX 指定背景圖，可啟用下行 */
-  /* background-image: url("../assets/images/FAQ-BG.svg"); */
-  background-repeat: repeat-x;
-  background-size: auto calc(var(--wave-height) * var(--wave-scale));
-  background-position: 0 100%; /* 靠底對齊 */
-
-  opacity: var(--wave-opacity);
-  animation: faq-wave-slide var(--wave-speed) linear infinite;
-  will-change: background-position;
-}
-
-@keyframes faq-wave-slide {
-  from { background-position-x: 0; }
-  to   { background-position-x: 100%; } /* 左→右單向 */
-}
-
-/* ===== SVG wave（與你 JSX 的 <svg class="faq__wave"> 相容） ===== */
+/* ===== 波浪動畫（只保留三條線） ===== */
 .faq__wave-container {
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 260px;
   overflow: hidden;
-  background: rgba(219, 205, 183, 0.05);
 
-  .faq__wave {
-    width: 100%;
-    height: 180%;
-    transform: scaleX(1.3) scaleY(1) rotate(-7deg);
+  /* 預設桌機 */
+  margin-top: -120px;
 
-    .faq__path {
-      fill: none;
-      stroke-width: 4;
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 400;
-      animation: faq-draw 12s ease-in-out infinite;
-      stroke: #DBCDB7;
-    }
-
-    .faq__path2 {
-      fill: none;
-      stroke-width: 4;
-      stroke-dasharray: 400;
-      stroke-dashoffset: 1000;
-      animation: faq-draw2 15s ease-in-out infinite;
-      stroke: #DBCDB7;
-    }
-
-    .faq__path3 {
-      fill: none;
-      stroke-width: 4;
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 2000;
-      animation: faq-draw3 14s ease-in-out infinite;
-      stroke: #DBCDB7;
-    }
-
-    .faq__path4 {
-      fill: none;
-      stroke-width: 4;
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 3000;
-      animation: faq-draw4 12s ease-in-out infinite;
-      stroke: #DBCDB7;
-    }
-
-    .faq__path5 {
-      fill: none;
-      stroke-width: 4;
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 4000;
-      animation: faq-draw5 12s ease-in-out infinite;
-      stroke: #DBCDB7;
-    }
-
-    .faq__path6 {
-      fill: none;
-      stroke-width: 4;
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 5000;
-      animation: faq-draw6 20s ease-in-out infinite;
-      stroke: #DBCDB7;
-    }
-
-    .faq__path7 {
-      fill: none;
-      stroke-width: 3;
-      stroke-dasharray: 800;
-      stroke-dashoffset: 6000;
-      animation: faq-draw7 18s ease-in-out infinite;
-      stroke: #DBCDB7;
-    }
-
-    .faq__path8 {
-      fill: none;
-      stroke-width: 2.5;
-      stroke-dasharray: 600;
-      stroke-dashoffset: 7000;
-      animation: faq-draw8 22s ease-in-out infinite;
-      stroke: #DBCDB7;
-    }
-  }
+  /* 🔥 避免波浪擋住 FAQ 點擊 */
+  pointer-events: none;
 }
+
+.faq__wave {
+  width: 100%;
+  height: 200%;
+  transform: scaleX(1.2) rotate(-6deg);
+}
+
+.faq__wave .faq__path,
+.faq__wave .faq__path2,
+.faq__wave .faq__path3 {
+  fill: none;
+  stroke-width: 4;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 4000;
+  stroke: #DBCDB7;
+  animation: faq-draw 12s ease-in-out infinite;
+}
+.faq__wave .faq__path2 { animation: faq-draw2 15s ease-in-out infinite; }
+.faq__wave .faq__path3 { animation: faq-draw3 18s ease-in-out infinite; }
 
 @keyframes faq-draw   { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
 @keyframes faq-draw2  { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
 @keyframes faq-draw3  { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
-@keyframes faq-draw4  { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
-@keyframes faq-draw5  { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
-@keyframes faq-draw6  { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
-@keyframes faq-draw7  { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
-@keyframes faq-draw8  { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
-
-/* 使用者偏好減少動效（無障礙）：關閉波浪動畫與 path 動畫 */
-@media (prefers-reduced-motion: reduce) {
-  .faq__wave { animation: none; }
-  .faq__wave .faq__path,
-  .faq__wave .faq__path2,
-  .faq__wave .faq__path3,
-  .faq__wave .faq__path4,
-  .faq__wave .faq__path5,
-  .faq__wave .faq__path6,
-  .faq__wave .faq__path7,
-  .faq__wave .faq__path8 { animation: none; }
-}
 
 /* ===== RWD ===== */
 @media (max-width: 1024px) {
   .faq__container { padding-left: 40px; padding-right: 40px; }
-  .faq__searchBox { flex-basis: 460px; max-width: 460px; min-width: 300px; }
+  .faq__searchBox { flex-basis: 460px; max-width: 460px; }
 
   .faq__wave-container {
-    height: 350px;
-
-    .faq__wave {
-      width: 140%;
-      transform: scaleX(1.4) scaleY(1.6) rotate(-6deg);
-    }
+    margin-top: -100px;
+    height: 240px;
+    pointer-events: none;
   }
 }
+
 @media (max-width: 820px) {
-  .faq__title     { font-size: 30px; }    /* 28 → 30 */
-  .faq__searchBox { flex-basis: 360px; max-width: 360px; min-width: 280px; }
-  .faq__searchBox input { height: 40px; font-size: 15.5px; }
+  .faq__title { font-size: 30px; }
+  .faq__searchBox { flex-basis: 360px; max-width: 360px; }
 
   .faq__wave-container {
-    height: 300px;
-
-    .faq__wave {
-      width: 130%;
-      transform: scaleX(1.3) scaleY(1.4) rotate(-6deg);
-    }
+    margin-top: -80px;
+    height: 220px;
+    pointer-events: none;
   }
 }
+
 @media (max-width: 560px) {
   .faq__container { padding-left: 24px; padding-right: 24px; }
-  .faq__header    { overflow-x: auto; }
-  .faq__searchBox { flex-basis: 300px; max-width: 300px; min-width: 260px; }
-  .faq__title     { font-size: 28px; }
+  .faq__searchBox { flex-basis: 300px; max-width: 300px; }
+  .faq__title { font-size: 28px; }
 
   .faq__wave-container {
-    height: 250px;
-
-    .faq__wave {
-      width: 120%;
-      transform: scaleX(1.2) scaleY(1.2) rotate(-6deg);
-
-      .faq__path, .faq__path2, .faq__path3 { stroke-width: 2; }
-      .faq__path4, .faq__path5, .faq__path6, .faq__path7, .faq__path8 { stroke-width: 1.5; }
-    }
-  }
-}
-
-/* Mobile-specific wave improvements */
-@media (max-width: 480px) {
-  .faq__wave-container {
+    margin-top: -60px;
     height: 200px;
-
-    .faq__wave {
-      width: 110%;
-      transform: scaleX(1.1) scaleY(1.0) rotate(-6deg);
-
-      .faq__path, .faq__path2, .faq__path3 { stroke-width: 2.5; }
-    }
-  }
-}
-
-@media (max-width: 360px) {
-  .faq__wave-container {
-    height: 180px;
-
-    .faq__wave {
-      width: 100%;
-      transform: scaleX(1.0) scaleY(0.9) rotate(-6deg);
-
-      .faq__path, .faq__path2, .faq__path3 { stroke-width: 2; }
-    }
+    pointer-events: none;
   }
 }
