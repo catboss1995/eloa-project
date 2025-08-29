@@ -65,7 +65,7 @@ const Topbar = () => {
           >
             產品資訊
             <span className={`dropdown-arrow ${isProductDropdownOpen ? 'open' : ''}`}>
-              ▽
+              ▼
             </span>
           </div>
           
