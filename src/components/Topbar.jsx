@@ -1,12 +1,15 @@
+import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
 import "../scss/styleTopbar.scss"
 import "../scss/buttonEffects.scss" // 引入按鈕效果樣式
 import topbarLogo from "../assets/images/topbarLogo.png"
 import topbarMember from "../assets/images/topbarMember.png"
 import topbarBag from "../assets/images/topbarBag.png"
-import { Link } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useCart } from "../data/CartContext"
 
 const Topbar = () => {
+  const {state, dispatch} = useCart();
+
   const [scrolled, setScrolled] = useState(false)
   const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false)
 
@@ -92,9 +95,10 @@ const Topbar = () => {
         <Link to="/Member" className="btn-effect function-btn user-btn">
           <img src={topbarMember} alt="memberIcon" id="topbar-member" />
         </Link>
-        <Link to="/ShopCart" className="btn-effect function-btn cart-btn">
+        <div className="btn-effect function-btn cart-btn" onClick={()=>{ dispatch ({type: "TOGGLE_CART"})}}>
           <img src={topbarBag} alt="bagIcon" id="topbar-bag" />
-        </Link>
+          ({state.items.reduce((sum,i)=>sum + i.qty,0)})
+        </div>
       </div>
     </nav>
   )

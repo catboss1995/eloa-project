@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-
+import { useCart } from '../data/CartContext'
 import "../scss/styleProductInfo.scss"
 import GlassmorphismButton from '../components/GlassmorphismButton'
 // display 區
@@ -37,6 +37,7 @@ import avatar4 from "../assets/images/feedback-card-avatar4.avif"
 import avatar5 from "../assets/images/feedback-card-avatar5.avif"
 import avatar6 from "../assets/images/feedback-card-avatar6.avif"
 import avatar7 from "../assets/images/feedback-card-avatar7.avif"
+import { useNavigate } from 'react-router-dom'
 
 // display 區元件
 const PicQueue = () => {
@@ -95,6 +96,9 @@ const DescArea = () => {
     navigator.clipboard.writeText("ELOA2025");
     alert("已複製優惠碼：ELOA2025");
   };
+  const { dispatch } = useCart();
+  const navigate = useNavigate();
+  const product = {id:5, name:"Glow Pen \n 智慧亮膚導入筆", price:4280, img:calmieFront};
   return (
     <div className="product-text-area">
       <h2 className="title">ELOA GlowPen 智慧亮膚導入筆</h2>
@@ -128,17 +132,25 @@ const DescArea = () => {
           <button onClick={() => setQuantity((q) => q + 1)}>+</button>
         </div>
         <div className="buttons">
-          <GlassmorphismButton text={"加入購物車"} className="add-cart" />
-          <GlassmorphismButton text={"立即購買"} className="but-now" />
+          <div className="add-item" onClick={()=>{ dispatch ({type: "ADD_ITEM", payload:{...product, qty:quantity} })}}>
+            <GlassmorphismButton text={"加入購物車"} className="add-cart" />
+          </div>
+          <div className="direct-item"  onClick={()=>{
+            dispatch({type: "DIRECT_BUY", payload:{...product, qty: quantity}});
+            navigate("/CheckOut");
+          }}>
+            <GlassmorphismButton text={"立即購買"} className="but-now" />
+          </div>
         </div>
       </div>
     </div>
   )
 }
 const AddOnProduct = () => {
+  const {dispatch} = useCart();
   const addOnProducts = [
     {
-      id: 1,
+      id: 6,
       src: essence,
       alt: "光彩賦活精華",
       productName: "光彩賦活精華",
@@ -147,10 +159,11 @@ const AddOnProduct = () => {
       productDesc1: "珍稀植萃精華｜溫和調理，改善膚色不均",
       productDesc2: "多重玻尿酸｜深層補水，強化保濕屏障",
       productDesc3: "維他命B5｜修護乾燥，增強肌膚韌性",
-      productPrice: "NT$1980"
+      productPrice: "NT$1980",
+      price: 1980
     },
     {
-      id: 2,
+      id: 7,
       src: gel,
       alt: "Calmie 專用舒緩凝膠",
       productName: "Calmie 專用舒緩凝膠",
@@ -159,9 +172,22 @@ const AddOnProduct = () => {
       productDesc1: "洋甘菊、積雪草、玻尿酸",
       productDesc2: "質地：清爽透明凝膠，快速吸收",
       productDesc3: " ",
-      productPrice: "NT$1980"
+      productPrice: "NT$1980",
+      price: 1980
     }
-  ]
+  ];
+  const handleAddToCart = (product) => {
+    dispatch({
+      type: "ADD_ITEM",
+      payload: {
+        id: product.id,
+        name: product.productName,
+        price: product.price,
+        img: product.src,
+        qty:1
+      }
+    });
+  }
   return (
     addOnProducts.map((addOnProduct) => (
       <div className="add-on-card" key={addOnProduct.id}>
@@ -177,7 +203,7 @@ const AddOnProduct = () => {
           <p className="desc">{addOnProduct.productDesc3}</p>
           <p className="price">加購價 {addOnProduct.productPrice}</p>
         </div>
-        <div className="add-on-button">
+        <div className="add-on-button" onClick={()=>handleAddToCart(addOnProduct)}>
           <GlassmorphismButton text={"加入此商品"} />
         </div>
       </div>

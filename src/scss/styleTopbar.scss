@@ -63,6 +63,12 @@ nav {
             width: 100%;
         }
     }
+    .cart-btn {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        color: $light-brown5;
+    }
 }
 
 .nav-right img {
