@@ -29,7 +29,7 @@ const NewsSection = () => {
     { date: "2024.08.01", title: "【ELOA官網會員日 抽獎專區】登入會員即抽ELOA高效美容儀新品", category: "本月活動", img: newsLine5 },
     { date: "2024.07.25", title: "【ELOA團隊榮獲設計大獎】ELOA團隊憑藉創新科技與優雅設計，勇奪國際殊榮", category: "媒體報導", img: newsLine1 },
     { date: "2024.07.15", title: "【ELOA榮獲國際美妝肯定】ELOA持續向國際舞台邁進，榮獲日本美妝大賞", category: "媒體報導", img: newsAward },
-    { date: "2024.07.13", title: "【ELOA新品首次公開亮相】ELOA智慧面罩於中華美妝展盛大發表，現場反應熱烈", category: "本月新品", img: newsLine2 },
+    { date: "2024.07.13", title: "【ELOA新品首次公開亮相】ELOA智慧面罩於國際展會中盛大發表，現場反應熱烈", category: "本月新品", img: newsLine2 },
     { date: "2024.07.01", title: "【ELOA支持熱音公益計畫】ELOA以行動回饋社會，攜手熱心公益活動", category: "媒體報導", img: newsLine3 },
   ];
 
