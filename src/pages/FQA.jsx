@@ -17,7 +17,6 @@ const escapeHtml = (str = "") =>
 
 const highlightHTML = (text = "", query = "") => {
   if (!query) return escapeHtml(text);
-  // 轉成安全的 RegExp（支援多字元）
   const q = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const re = new RegExp(q, "gi");
   return escapeHtml(text).replace(re, (m) => `<mark>${escapeHtml(m)}</mark>`);
@@ -37,7 +36,6 @@ const FaqItem = ({ id, question, answer, defaultOpen = false, query = "" }) => {
       >
         <span
           className="faq__qtext"
-          // 問題高亮
           dangerouslySetInnerHTML={{ __html: highlightHTML(question, query) }}
         />
         <span className={`faq__chevron ${open ? "is-open" : ""}`} aria-hidden>⌄</span>
@@ -45,7 +43,6 @@ const FaqItem = ({ id, question, answer, defaultOpen = false, query = "" }) => {
 
       <div id={`panel-${id}`} className="faq__aWrap" role="region" aria-hidden={!open}>
         <div className="faq__a">
-          {/* 答案可能是字串或 bullets 陣列 */}
           {typeof answer === "string" ? (
             <p dangerouslySetInnerHTML={{ __html: highlightHTML(answer, query) }} />
           ) : Array.isArray(answer) ? (
@@ -59,7 +56,7 @@ const FaqItem = ({ id, question, answer, defaultOpen = false, query = "" }) => {
               ))}
             </div>
           ) : (
-            answer /* 其他 JSX 就原樣渲染 */
+            answer
           )}
         </div>
       </div>
@@ -70,20 +67,20 @@ const FaqItem = ({ id, question, answer, defaultOpen = false, query = "" }) => {
 const FaqPage = () => {
   const [search, setSearch] = useState("");
 
-  // FAQ 資料（把 bullets 寫成陣列，讓每條可高亮）
+  // FAQ 完整資料
   const faqGroups = [
     {
       name: "產品",
       items: [
         {
           id: "p1",
-          q: "如何選擇適合自己的美容儀型號？",
-          a: "先依膚況與想改善的需求挑選功能，例如清潔、導入、按摩等。建議從日常最常用的功能開始，之後再依需求升級。"
+          q: "如何選擇適合我的美容儀器？",
+          a: "選擇時應根據肌膚狀況和需求挑選產品，例如想要提升清潔效果、導入保養品成分或是按摩放鬆。建議初學者可從日常最常使用的功能開始，之後再依需求升級。"
         },
         {
           id: "p2",
-          q: "產品是否通過安全檢測認證？",
-          a: "我們依相關法規與國際標準進行品管與檢測，並提供保固，以確保產品的安全性與可靠性。"
+          q: "產品是否通過安全認證？",
+          a: "是的，我們的所有產品均通過了國際認可的安全認證，如 CE、FDA 等，並符合台灣的相關法規標準，確保產品的安全性和有效性。"
         },
       ],
     },
@@ -92,17 +89,17 @@ const FaqPage = () => {
       items: [
         {
           id: "s1",
-          q: "在台灣有專櫃或實體據點嗎？",
-          a: "目前於北中南皆有合作門市，可至「門市查詢」頁面查看地址與營業時間，歡迎到店體驗。"
+          q: "在台灣有哪些實體店鋪？",
+          a: "我們在台灣各大城市設有實體店鋪，包括台北、台中、高雄等地。您可以在我們的官網上查詢最近的店鋪位置，或者致電客服獲取詳細信息。"
         },
         {
           id: "s2",
           q: "實體店鋪提供哪些服務？",
           a: [
-            "產品體驗與使用說明",
-            "保固登記與售後服務",
-            "清潔保養示範",
-            "現場結帳與發票開立",
+            "產品展示和試用",
+            "專業顧問咨詢",
+            "個性化皮膚測試",
+            "售後服務和支持",
           ],
         },
       ],
@@ -112,13 +109,18 @@ const FaqPage = () => {
       items: [
         {
           id: "o1",
-          q: "線上購物如何保障支付安全？",
-          a: "本網站採用加密連線並提供多元安全支付方式，例如信用卡與行動支付等，請放心使用。"
+          q: "線上購物如何保證支付安全？",
+          a: "我們的網站採用 SSL 加密技術，確保您的支付信息安全無虞。同時，我們支持多種安全的支付方式，如信用卡、PayPal、Line Pay 等。"
         },
         {
           id: "o2",
-          q: "下單後如何查詢訂單進度？",
-          a: "登入會員中心 → 訂單查詢，即可查看處理狀態、物流與發票資訊。"
+          q: "線上購物後如何查詢訂單狀態？",
+          a: "您可以在訂單確認後，通過我們的官網或手機應用查詢訂單狀態。我們也會通過電子郵件和短信及時通知您訂單的進展情況。"
+        },
+        {
+          id: "o3",
+          q: "線上購物支持退換貨嗎？",
+          a: "是的，我們提供 7 天無理由退換貨服務。請確保產品未使用且包裝完好，您可以聯繫客服申請退換貨。"
         },
       ],
     },
@@ -127,20 +129,32 @@ const FaqPage = () => {
       items: [
         {
           id: "m1",
-          q: "如何獲得最新消息與活動？",
-          a: "追蹤我們的 Facebook / Instagram，或訂閱電子報即可第一時間收到更新。"
+          q: "如何獲取最新的產品信息和優惠活動？",
+          a: "您可以通過關注我們的官方 Facebook、Instagram，或訂閱我們的電子報以獲取最新信息。"
+        },
+        {
+          id: "m2",
+          q: "如何成為會員並享受更多優惠？",
+          a: [
+            "專屬折扣和優惠券",
+            "積分兌換禮品",
+            "生日禮物和特別活動邀請",
+          ],
+        },
+        {
+          id: "m3",
+          q: "台灣地區的配送和運費如何計算？",
+          a: "我們提供全台免運服務，訂單金額超過 NT$6,000 即可享受免運優惠。一般訂單將在 1–3 個工作日內送達。"
         },
       ],
     },
   ];
 
-  // 提取文字用於過濾
   const itemText = (item) => {
     const ans = Array.isArray(item.a) ? item.a.join(" ") : (typeof item.a === "string" ? item.a : "");
     return `${item.q} ${ans}`.toLowerCase();
   };
 
-  // 套用過濾（問題或答案包含搜尋字即保留）
   const filteredGroups = faqGroups
     .map(group => ({
       ...group,
@@ -151,10 +165,9 @@ const FaqPage = () => {
   return (
     <div className="faq">
       <div className="faq__container">
-        {/* 標題（左）＋ 搜尋列（右） */}
+        {/* 標題＋搜尋列 */}
         <div className="faq__header">
           <h1 className="faq__title">常見問題</h1>
-
           <div className="faq__searchBox">
             <img src={faqSearchIcon} alt="搜尋" className="faq__searchIcon" />
             <input
@@ -173,7 +186,6 @@ const FaqPage = () => {
             <section className="faq__group" key={group.name}>
               <div className="faq__groupName">{group.name}</div>
               <div className="faq__divider" />
-
               {group.items.map(item => (
                 <FaqItem
                   key={item.id}
@@ -190,7 +202,7 @@ const FaqPage = () => {
         )}
       </div>
 
-      {/* 你的 Wave 動畫保持不動（如無需可移除） */}
+      {/* ✅ 保持原本三條波浪線 */}
       <div className="faq__wave-container">
         <svg className="faq__wave" width="1920" height="488" viewBox="0 0 1920 488" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path className="faq__path" d="M208.863 58.998C244.123 94.1923 284.345 126.708 333.043 145.893C398.99 171.879 486.795 169.486 539.805 120.705C600.845 64.5352 635.825 8.68169 733.779 1.42916C802.848 -3.68673 884.91 20.7492 922.864 72.8109C945.392 103.702 957.808 139.558 976.506 172.45C1021.36 251.325 1097.27 270.074 1186.28 227.943C1228.79 207.825 1276.91 184.563 1321.76 198.03C1380.57 215.68 1402.76 288.596 1463.93 298.948C1497.35 304.606 1530.6 289.093 1562.65 277.823C1638.93 250.964 1670.6 309.436 1739.8 302.033C1757.16 300.182 1772.9 291.741 1789.89 287.859C1807.44 283.857 1841.82 287.874 1835.73 309.993" stroke="url(#faq_paint0_linear)" strokeWidth="1.0073" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
