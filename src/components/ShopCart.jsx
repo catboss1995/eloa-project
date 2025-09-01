@@ -12,7 +12,7 @@ const ShopCart = () => {
   const totalPrice = state.items.reduce((sum, item) => sum + item.price * item.qty, 0);
   const shopNote = "溫馨提示：\n取件需核對證件資訊與收件人資訊是否一致的，麻煩使用真實資訊；\n地址需要市/縣+區/鄉/鎮+路名+門牌 號；\n英文地址物流無法配送";
   return (
-    <div className={`cart-drawer ${state.isOpen ? "open" : ""}`}>
+    <div className={`cart-drawer ${state.isOpen ? "open" : ""}`} >
       <div className="cart-header">
         <div className="shop-cart-icon" onClick={() => dispatch({ type: "CLOSE_CART" })}>
           <img src={shopCartIcon} alt="shopCartIcon" />
@@ -38,7 +38,7 @@ const ShopCart = () => {
                   <img src={item.img} alt={item.name} />
                   <div className='cart-item-info'>
                     <p>{item.name}</p>
-                    <p>單價：{item.price}</p>
+                    <p>單價：{item.price.toLocaleString()}</p>
                     <div className='qty-control-button'>
                       數量：
                       <button onClick={()=>dispatch({type: "UPDATE_QTY", payload:{id:item.id, qty: item.qty-1}})}>-</button>
@@ -50,7 +50,7 @@ const ShopCart = () => {
               ))}
             </div>
             <div className="order-total">
-              小計：${totalPrice}
+              小計：$ {totalPrice.toLocaleString()}
             </div>
 
           </>
