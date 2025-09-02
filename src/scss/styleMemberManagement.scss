@@ -1,0 +1,233 @@
+@use "./styleReset.scss" as *;
+
+.member-management-sec {
+    height: 100vh;
+    padding: 100px 100px 50px;
+
+    .member-management-decorate {
+        position: absolute;
+        width: 100%;
+        height: 80%;
+        object-fit: cover;
+        left: 0;
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    #top {
+        top: 0;
+    }
+
+    #bottom {
+        bottom: 0;
+    }
+
+    .member-content-sec {
+        display: flex;
+        height: 100%;
+        gap: 20px;
+
+        .member-option-area {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .member-option {
+                background-color: $beige1;
+                border-radius: 5px;
+                flex: 1;
+                min-width: 300px;
+                max-width: 300px;
+                filter: drop-shadow(0 4px 4px $black-20);
+                transition: all 0.3s ease;
+                img {
+                    height: 36px;
+                }
+                &:not(:first-child) {
+                    display: flex;
+                    padding: 12px 64px;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                &:hover:not(:first-child) {
+                    
+                    transform: translateY(-2px);
+                }
+
+                &.active {
+                    
+                    
+                    img {
+                        filter: brightness(0.7) drop-shadow(2px 2px 4px $black-20);
+                    }
+                }
+
+            }
+
+            #member-info-card {
+                flex: 3;
+                justify-items: center;
+                padding-top: 20px;
+
+                img {
+                    height: 48px;
+                    margin-bottom: 20px;
+                }
+
+                p {
+                    text-align: center;
+                }
+            }
+        }
+
+        .member-option-content {
+            display: flex;
+            position: relative;
+            right: 0;
+            height: 80%;
+            width: 100%;
+            border-radius: 8px;
+            background-color: $white-60;
+            filter: drop-shadow(0 4px 4px $black-20);
+            justify-content: center;
+
+            .edit-member-info-content {
+                max-width: 700px;
+                min-width: 500px;
+                height: 100%;
+                padding: 0;
+
+                .member-form {
+                    background: $white;
+                    padding: 30px;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 4px $black-20;
+
+                    .form-group {
+                        margin-bottom: 20px;
+
+                        .address-row {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr auto;
+                            gap: 12px;
+                            margin-bottom: 12px;
+
+                            @media (max-width: 480px) {
+                                grid-template-columns: 1fr;
+                                gap: 8px;
+                            }
+                        }
+
+                        label {
+                            display: block;
+                            margin-bottom: 8px;
+                        }
+
+                        input,
+                        .address-select {
+                            width: 100%;
+                            padding: 12px;
+                            border: 1px solid $natural-gray100;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            transition: border-color 0.3s ease;
+
+                            &:focus {
+                                outline: none;
+                                border-color: $light-brown4;
+                            }
+
+                            &:disabled {
+                                background-color: $natural-gray70;
+                                cursor: not-allowed;
+                            }
+                        }
+
+                    }
+
+                    .form-actions {
+                        margin-top: 30px;
+                        text-align: center;
+
+                        .edit-btn {
+                            background-color: $light-brown4;
+                            color: $white;
+                            padding: 12px 24px;
+                            border: none;
+                            border-radius: 4px;
+                            cursor: pointer;
+                            font-size: 16px;
+                            transition: background-color 0.3s ease;
+
+                            &:hover {
+                                background-color: $light-brown5;
+                            }
+                        }
+
+                        .edit-actions {
+                            display: flex;
+                            gap: 15px;
+                            justify-content: center;
+
+                            .save-btn {
+                                background-color: $light-brown4;
+                                color: $white;
+                                padding: 12px 24px;
+                                border: none;
+                                border-radius: 4px;
+                                cursor: pointer;
+                                font-size: 16px;
+                                transition: background-color 0.3s ease;
+
+                                &:hover {
+                                    background-color: $light-brown5;
+                                }
+                            }
+
+                            .cancel-btn {
+                                background-color: $light-brown4;
+                                color: $white;
+                                padding: 12px 24px;
+                                border: none;
+                                border-radius: 4px;
+                                cursor: pointer;
+                                font-size: 16px;
+                                transition: background-color 0.3s ease;
+
+                                &:hover {
+                                    background-color: $light-brown5;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .member-management-sec {
+        padding: 20px;
+
+        .member-content-sec {
+            flex-direction: column;
+
+            .member-option-area {
+                flex-direction: row;
+                overflow-x: auto;
+
+                .member-option {
+                    min-width: 250px;
+                    flex-shrink: 0;
+                }
+            }
+
+            .member-option-content {
+                padding: 20px;
+            }
+        }
+    }
+}
