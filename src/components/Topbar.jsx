@@ -6,13 +6,14 @@ import topbarLogo from "../assets/images/topbarLogo.png"
 import topbarMember from "../assets/images/topbarMember.png"
 import topbarBag from "../assets/images/topbarBag.png"
 import { useCart } from "../data/CartContext"
+import MemberSystem from "../data/MemberSystem"
 
 const Topbar = () => {
-  const {state, dispatch} = useCart();
-
+  const currentUser = MemberSystem.getCurrentUser();  
+  const { state, dispatch } = useCart();
   const [scrolled, setScrolled] = useState(false)
   const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false)
-
+  
   // 產品資料
   const products = [
     { id: 1, name: "Master IX \n全效肌膚管理儀", path: "/ProductMasterIX" },
@@ -62,7 +63,7 @@ const Topbar = () => {
       <div className="nav-right">
         {/* 產品資訊下拉菜單 */}
         <div className="dropdown-container">
-          <div 
+          <div
             className="text-link btn-effect nav-link dropdown-trigger"
             onClick={handleProductClick}
           >
@@ -71,7 +72,7 @@ const Topbar = () => {
               ▼
             </span>
           </div>
-          
+
           {isProductDropdownOpen && (
             <div className="dropdown-menu">
               {products.map((product) => (
@@ -92,12 +93,13 @@ const Topbar = () => {
         <Link to="/Article" className="text-link btn-effect nav-link">肌膚學苑</Link>
         <Link to="/FQA" className="text-link btn-effect nav-link">常見問題</Link>
         <Link to="/News" className="text-link btn-effect nav-link">最新消息</Link>
-        <Link to="/Member" className="btn-effect function-btn user-btn">
+        <Link to={currentUser?"/MemberManagement":"/Member"} 
+          className="btn-effect function-btn user-btn">
           <img src={topbarMember} alt="memberIcon" id="topbar-member" />
         </Link>
-        <div className="btn-effect function-btn cart-btn" onClick={()=>{ dispatch ({type: "TOGGLE_CART"})}}>
+        <div className="btn-effect function-btn cart-btn" onClick={() => { dispatch({ type: "TOGGLE_CART" }) }}>
           <img src={topbarBag} alt="bagIcon" id="topbar-bag" />
-          ({state.items.reduce((sum,i)=>sum + i.qty,0)})
+          ({state.items.reduce((sum, i) => sum + i.qty, 0)})
         </div>
       </div>
     </nav>
