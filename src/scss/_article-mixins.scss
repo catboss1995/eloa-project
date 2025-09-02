@@ -381,8 +381,7 @@
 // 生成間距工具類別
 @mixin generate-spacing-utilities {
 
-    @each $name,
-    $value in $article-spacing {
+    $value in vars.$article-spacing {
         .m-#{$name} {
             margin: $value !important;
         }
