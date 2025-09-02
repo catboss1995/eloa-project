@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import MemberSystem from '../data/MemberSystem'
 import "../scss/member.scss"
 // 引入圖片
@@ -8,6 +9,14 @@ import memberBG from "../assets/images/member-bg.avif"
 import logo from "../assets/images/topbarlogo.png"
 
 const Member = () => {
+  const navigate = useNavigate();
+  // 若為登入狀態，直接跳轉到會員管理頁面
+  useEffect(()=>{
+    const currentUser = MemberSystem.getCurrentUser();
+    if (currentUser) {
+      navigate("/MemberManagement");
+    }
+  },[navigate]);
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     email: '',
@@ -63,6 +72,7 @@ const Member = () => {
       if (isLogin) {
         const user = MemberSystem.login(formData.email, formData.password);
         alert(`登入成功！歡迎回來，${user.username || user.email}！`);
+        navigate("/MemberManagement");
       } else {
         const newUser = MemberSystem.register({
           email: formData.email,
