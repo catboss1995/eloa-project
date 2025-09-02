@@ -1,0 +1,32 @@
+@use '../article-variables' as vars;
+@use '../article-mixins' as mixins;
+
+.stepFlow {
+    display: flex;
+    flex-direction: column;
+    gap: article-spacing(section-gap);
+    margin: article-spacing(section-gap) 0;
+
+    // 空狀態
+    &.empty {
+        @include flex-center;
+        min-height: 200px;
+        color: article-color(text-secondary);
+        font-style: italic;
+    }
+
+    .stepItem {
+        @include article-step-card;
+    }
+
+    // 圖片載入狀態
+    .image-loading {
+        @include flex-center;
+        @include skeleton-loading;
+        width: 100%;
+        height: 100%;
+        border-radius: article-radius(image-radius);
+        color: article-color(text-secondary);
+        font-size: article-font-size(font-size-sm);
+    }
+}

@@ -1,4 +1,5 @@
 @use "styleReset" as *;
+@use "sass:color";
 
 .checkout-page {
     min-height: 100vh;
@@ -350,7 +351,7 @@
                             white-space: nowrap;
 
                             &:hover:not(:disabled) {
-                                background: darken($light-brown1, 8%);
+                                background: color.adjust($light-brown1, $lightness: -8%);
                             }
 
                             &:disabled {

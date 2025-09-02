@@ -1,0 +1,431 @@
+/* 修復跑版問題的樣式 */
+
+/* 重置和基礎樣式 */
+* {
+  box-sizing: border-box;
+}
+
+.sensitive-skincare-guide {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* 修復浮動導航的位置問題 */
+.floating-nav {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 1rem;
+  padding: 0.8rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  min-width: 120px;
+  max-width: 200px;
+}
+
+/* 修復導航進度條 */
+.nav-progress {
+  height: 3px;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 2px;
+  margin-bottom: 0.8rem;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* 修復導航項目佈局 */
+.nav-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  border: none;
+  background: transparent;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
+  color: #666;
+  text-align: left;
+  width: 100%;
+}
+
+.nav-item:hover {
+  background: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+}
+
+.nav-item.active {
+  background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.nav-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.nav-text {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 修復時間軸佈局 */
+.interactive-timeline {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 2rem;
+  padding: 0.8rem 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 90vw;
+  overflow-x: auto;
+}
+
+.timeline-track {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-width: max-content;
+}
+
+.timeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: 0.8rem;
+  transition: all 0.3s ease;
+  min-width: 60px;
+}
+
+.step-circle {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(102, 126, 234, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.timeline-step.active .step-circle {
+  background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+}
+
+.step-number {
+  font-weight: 600;
+  color: #667eea;
+  font-size: 0.8rem;
+}
+
+.timeline-step.active .step-number {
+  color: white;
+}
+
+.step-label {
+  font-size: 0.7rem;
+  color: #666;
+  font-weight: 500;
+  text-align: center;
+}
+
+.timeline-step.active .step-label {
+  color: #667eea;
+  font-weight: 600;
+}
+
+/* 修復主要內容區域 */
+.article-container.modern-layout {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* 修復背景 */
+.artistic-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.bg-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* 修復簡介區域 */
+.modern-intro {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  margin: 2rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.intro-content {
+  position: relative;
+  z-index: 1;
+}
+
+.intro-icon-large {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.article-title.gradient-text {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.intro-text-large {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 1.5rem 0;
+  color: #444;
+}
+
+.highlight-pink {
+  background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}
+
+.highlight-mint {
+  background: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}
+
+.intro-decorative-line {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+  margin: 1.5rem auto;
+  border-radius: 2px;
+}
+
+/* 修復分隔線 */
+.artistic-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem 0;
+  gap: 1rem;
+}
+
+.divider-line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #667eea 50%, transparent 100%);
+}
+
+.divider-line.gradient {
+  background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+  height: 3px;
+  border-radius: 2px;
+}
+
+.divider-icon {
+  font-size: 1.5rem;
+}
+
+.divider-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #667eea;
+  white-space: nowrap;
+  padding: 0 1rem;
+}
+
+/* 修復卡片佈局 */
+.premium-section {
+  margin: 3rem 0;
+}
+
+.card-3d {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.enhanced-content {
+  position: relative;
+}
+
+.section-number {
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 1rem;
+  opacity: 0.3;
+  position: absolute;
+  top: -1rem;
+  right: 0;
+}
+
+.section-title {
+  margin: 1rem 0 2rem 0;
+  font-size: 2rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.content-cards {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.content-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.content-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .floating-nav {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin: 1rem;
+    width: calc(100% - 2rem);
+    max-width: none;
+  }
+  
+  .nav-items {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .nav-item {
+    flex: 1;
+    min-width: 70px;
+    justify-content: center;
+    padding: 0.5rem 0.3rem;
+  }
+  
+  .nav-text {
+    display: none;
+  }
+  
+  .interactive-timeline {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    transform: none;
+    margin: 2rem 1rem;
+    width: calc(100% - 2rem);
+  }
+  
+  .article-container.modern-layout {
+    padding: 0.5rem;
+  }
+  
+  .modern-intro {
+    padding: 1.5rem 1rem;
+    margin: 1rem 0;
+  }
+  
+  .article-title.gradient-text {
+    font-size: 2rem;
+  }
+  
+  .intro-text-large {
+    font-size: 1rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .card-3d {
+    padding: 1.5rem 1rem;
+  }
+  
+  .section-number {
+    font-size: 2rem;
+    position: relative;
+    top: 0;
+    right: 0;
+    display: block;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+}

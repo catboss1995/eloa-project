@@ -1,0 +1,531 @@
+/**
+ * 文章樣式工具檔案
+ * 提供常用的 mixin、函數和樣式工具
+ * 減少樣式重複，提高開發效率
+ */
+
+@use './article-variables' as vars;
+@use "sass:map";
+
+// 重新導出函數以便外部使用
+@function article-color($color-name) {
+    @return vars.article-color($color-name);
+}
+
+@function article-spacing($space-name) {
+    @return vars.article-spacing($space-name);
+}
+
+@function article-font-size($size-name) {
+    @return vars.article-font-size($size-name);
+}
+
+// =============================================================================
+// 通用工具 Mixin
+// =============================================================================
+
+// 清除浮動
+@mixin clearfix {
+    &::after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+// Flexbox 置中
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// 骨架載入動畫
+@mixin skeleton-loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+// 隱藏元素但保留對螢幕閱讀器的可訪問性
+@mixin sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+// 絕對置中
+@mixin absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// Flex 居中
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// 文字漸變效果
+@mixin text-gradient($gradient) {
+    background: $gradient;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+// =============================================================================
+// 文章特定 Mixin
+// =============================================================================
+
+// 文章標題樣式
+@mixin article-title($level: 1) {
+    font-family: map.get(vars.$article-typography, font-family);
+    font-weight: map.get(vars.$article-typography, font-weight-bold);
+    color: vars.article-color(text-primary);
+    line-height: map.get(vars.$article-typography, line-height-tight);
+    margin-bottom: vars.article-spacing(paragraph-gap);
+
+    @if $level==1 {
+        font-size: vars.article-font-size(font-size-3xl);
+
+        @include vars.article-breakpoint(sm) {
+            font-size: vars.article-font-size(font-size-2xl);
+        }
+    }
+
+    @else if $level==2 {
+        font-size: vars.article-font-size(font-size-2xl);
+
+        @include vars.article-breakpoint(sm) {
+            font-size: vars.article-font-size(font-size-xl);
+        }
+    }
+
+    @else if $level==3 {
+        font-size: vars.article-font-size(font-size-xl);
+
+        @include vars.article-breakpoint(sm) {
+            font-size: vars.article-font-size(font-size-lg);
+        }
+    }
+}
+
+// 文章段落樣式
+@mixin article-paragraph {
+    font-family: map.get(vars.$article-typography, font-family);
+    font-size: vars.article-font-size(font-size-base);
+    font-weight: map.get(vars.$article-typography, font-weight-normal);
+    line-height: map.get(vars.$article-typography, line-height-relaxed);
+    color: vars.article-color(text-primary);
+    margin-bottom: vars.article-spacing(paragraph-gap);
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+// 問題框樣式
+@mixin article-question-box {
+    background: vars.article-color(bg-secondary);
+    border-left: 4px solid vars.article-color(primary-lighter);
+    border-radius: vars.article-radius(radius-lg);
+    padding: vars.article-spacing(space-5);
+    margin: vars.article-spacing(section-gap) 0;
+
+    .questionTitle {
+        @include article-title(3);
+        margin-bottom: vars.article-spacing(space-3);
+        color: vars.article-color(primary);
+    }
+
+    .questionDesc {
+        @include article-paragraph;
+        margin-bottom: 0;
+        font-style: italic;
+    }
+}
+
+// 步驟卡片樣式
+@mixin article-step-card {
+    @include vars.article-card;
+    display: flex;
+    align-items: center;
+    gap: vars.article-spacing(space-6);
+    margin-bottom: vars.article-spacing(section-gap);
+
+    &.reverse {
+        flex-direction: row-reverse;
+
+        @include vars.article-breakpoint(sm) {
+            flex-direction: column;
+        }
+    }
+
+    @include vars.article-breakpoint(sm) {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .stepNumber {
+        @include flex-center;
+        width: map.get(vars.$article-components, step-number-size);
+        height: map.get(vars.$article-components, step-number-size);
+        background: vars.article-color(primary);
+        color: white;
+        border-radius: 50%;
+        font-size: vars.article-font-size(font-size-xl);
+        font-weight: map.get(vars.$article-typography, font-weight-bold);
+        flex-shrink: 0;
+    }
+
+    .stepImageContainer {
+        @include vars.article-image-container;
+        width: 200px;
+        height: 150px;
+        flex-shrink: 0;
+
+        @include vars.article-breakpoint(sm) {
+            width: 100%;
+            height: 200px;
+        }
+    }
+
+    .stepContent {
+        flex: 1;
+
+        .stepTitle {
+            @include article-title(3);
+        }
+
+        .stepDesc {
+            @include article-paragraph;
+        }
+    }
+}
+
+// 提示項目樣式
+@mixin article-tip-item {
+    @include vars.article-card;
+    display: flex;
+    align-items: flex-start;
+    gap: vars.article-spacing(space-4);
+    margin-bottom: vars.article-spacing(list-gap);
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    .tipNumber {
+        @include flex-center;
+        width: 32px;
+        height: 32px;
+        background: vars.article-color(primary-lighter);
+        color: white;
+        border-radius: 50%;
+        font-size: vars.article-font-size(font-size-sm);
+        font-weight: map.get(vars.$article-typography, font-weight-medium);
+        flex-shrink: 0;
+    }
+
+    .tipContent {
+        flex: 1;
+
+        .tipTitle {
+            @include article-title(3);
+            font-size: vars.article-font-size(font-size-md);
+            margin-bottom: vars.article-spacing(space-2);
+        }
+
+        .tipDesc {
+            @include article-paragraph;
+            font-size: vars.article-font-size(font-size-sm);
+            margin-bottom: 0;
+        }
+
+        .tipNote {
+            display: block;
+            font-size: vars.article-font-size(font-size-xs);
+            color: vars.article-color(text-secondary);
+            margin-top: vars.article-spacing(space-2);
+            font-style: italic;
+        }
+    }
+}
+
+// 分隔線樣式
+@mixin article-divider {
+    display: flex;
+    align-items: center;
+    margin: vars.article-spacing(section-gap) 0;
+
+    &::before,
+    &::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: vars.article-color(border-medium);
+    }
+
+    .dividerText {
+        padding: 0 vars.article-spacing(space-4);
+        font-size: vars.article-font-size(font-size-sm);
+        font-weight: map.get(vars.$article-typography, font-weight-medium);
+        color: vars.article-color(text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+}
+
+// 圖片網格樣式
+@mixin article-image-grid($columns: 3) {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    gap: vars.article-spacing(space-4);
+    margin: vars.article-spacing(section-gap) 0;
+
+    @include vars.article-breakpoint(md) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include vars.article-breakpoint(sm) {
+        grid-template-columns: 1fr;
+    }
+
+    .imageItem {
+        @include vars.article-image-container;
+        text-align: center;
+
+        img {
+            border-radius: vars.article-radius(image-radius);
+        }
+
+        .imageCaption {
+            margin-top: vars.article-spacing(space-2);
+            font-size: vars.article-font-size(font-size-sm);
+            color: vars.article-color(text-secondary);
+        }
+
+        &.square img {
+            aspect-ratio: 1;
+        }
+
+        &.rounded img {
+            border-radius: 50%;
+            aspect-ratio: 1;
+        }
+    }
+}
+
+// =============================================================================
+// 動畫 Mixin
+// =============================================================================
+
+// 淡入動畫
+@mixin fade-in($duration: 0.3s, $delay: 0s) {
+    opacity: 0;
+    animation: fadeIn $duration ease-out $delay forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+// 滑入動畫
+@mixin slide-in-up($duration: 0.5s, $delay: 0s, $distance: 30px) {
+    opacity: 0;
+    transform: translateY($distance);
+    animation: slideInUp $duration ease-out $delay forwards;
+}
+
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// 懸停效果
+@mixin hover-lift {
+    transition: vars.article-transition(transition-transform);
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+}
+
+// =============================================================================
+// 工具類別生成器
+// =============================================================================
+
+// 生成間距工具類別
+@mixin generate-spacing-utilities {
+
+    @each $name,
+    $value in $article-spacing {
+        .m-#{$name} {
+            margin: $value !important;
+        }
+
+        .mt-#{$name} {
+            margin-top: $value !important;
+        }
+
+        .mr-#{$name} {
+            margin-right: $value !important;
+        }
+
+        .mb-#{$name} {
+            margin-bottom: $value !important;
+        }
+
+        .ml-#{$name} {
+            margin-left: $value !important;
+        }
+
+        .mx-#{$name} {
+            margin-left: $value !important;
+            margin-right: $value !important;
+        }
+
+        .my-#{$name} {
+            margin-top: $value !important;
+            margin-bottom: $value !important;
+        }
+
+        .p-#{$name} {
+            padding: $value !important;
+        }
+
+        .pt-#{$name} {
+            padding-top: $value !important;
+        }
+
+        .pr-#{$name} {
+            padding-right: $value !important;
+        }
+
+        .pb-#{$name} {
+            padding-bottom: $value !important;
+        }
+
+        .pl-#{$name} {
+            padding-left: $value !important;
+        }
+
+        .px-#{$name} {
+            padding-left: $value !important;
+            padding-right: $value !important;
+        }
+
+        .py-#{$name} {
+            padding-top: $value !important;
+            padding-bottom: $value !important;
+        }
+    }
+}
+
+// 生成文字工具類別
+@mixin generate-text-utilities {
+
+    @each $name,
+    $value in $article-typography {
+        @if str-index($name, 'font-size') {
+            .text-#{str-slice($name, 11)} {
+                font-size: $value !important;
+            }
+        }
+
+        @if str-index($name, 'font-weight') {
+            .font-#{str-slice($name, 13)} {
+                font-weight: $value !important;
+            }
+        }
+    }
+
+    .text-left {
+        text-align: left !important;
+    }
+
+    .text-center {
+        text-align: center !important;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+
+    .text-justify {
+        text-align: justify !important;
+    }
+
+    @each $name,
+    $value in $article-colors {
+        @if str-index($name, 'text') {
+            .#{$name} {
+                color: $value !important;
+            }
+        }
+    }
+}
+
+// =============================================================================
+// 載入樣式 Mixin
+// =============================================================================
+
+// 骨架屏效果
+@mixin skeleton-loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+// 載入指示器
+@mixin loading-spinner($size: 32px, $color: vars.article-color(primary)) {
+    width: $size;
+    height: $size;
+    border: 3px solid vars.article-color(border-light);
+    border-top: 3px solid $color;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
