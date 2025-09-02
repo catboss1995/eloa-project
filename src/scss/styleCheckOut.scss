@@ -350,7 +350,7 @@
                             white-space: nowrap;
 
                             &:hover:not(:disabled) {
-                                background: darken($light-brown1, 8%);
+                                background: $light-brown2;
                             }
 
                             &:disabled {
