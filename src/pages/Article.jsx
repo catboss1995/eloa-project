@@ -1,9 +1,25 @@
-import React, { useState, useEffect, useRef } from 'react';
+// src/pages/Article.jsx
+import { animate, scroll, inView, stagger } from "motion";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from 'react-router-dom';
 // 引入 SCSS 樣式
 import "../scss/styleAcademy.scss";
 // 引入文章數據
 import articlesData from '../data/articlesData';
+
+// 檢查環境變量
+const isProduction = import.meta.env.PROD;
+const enableAnimations = import.meta.env.VITE_ENABLE_ANIMATIONS !== 'false';
+const animationDelay = parseInt(import.meta.env.VITE_ANIMATION_DELAY || '100');
+const debugMode = import.meta.env.VITE_DEBUG_MODE === 'true';
+const useMotionFallback = false; // 修改為 false，不強制啟用備用方案
+
+// 調試日誌函數
+const log = (...args) => {
+  if (debugMode) {
+    console.log('[Animation Debug]', ...args);
+  }
+};
 
 // 直接使用 CDN URL 替代本地圖片路徑
 const articlesPic01 = "https://ik.imagekit.io/8sle6rwoo/articlesPic01.png";
@@ -30,9 +46,21 @@ const Article = () => {
   const [showSearchInput, setShowSearchInput] = useState(false);
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [animationsInitialized, setAnimationsInitialized] = useState(false);
+  const [useFallbackAnimations, setUseFallbackAnimations] = useState(false);
   
-  // 創建引用來追蹤搜尋區域的DOM元素
+  // 創建引用來追蹤DOM元素
   const searchRef = useRef(null);
+  const centerBoxRef = useRef(null);
+  const leftTextRef = useRef(null);
+  const rightTextRef = useRef(null);
+  const navWrapRef = useRef(null);
+  const articleCardsRef = useRef([]);
+  const sectionHeadersRef = useRef([]);
+
+  // 重置引用數組
+  articleCardsRef.current = [];
+  sectionHeadersRef.current = [];
 
   // 使用從數據文件導入的文章數據
   const allArticles = articlesData.map(article => ({
@@ -129,9 +157,27 @@ const Article = () => {
     }
   };
 
+  // 添加卡片引用的函數
+  const addToRefs = (el) => {
+    if (el && !articleCardsRef.current.includes(el)) {
+      articleCardsRef.current.push(el);
+    }
+  };
+
+  // 添加區塊標題引用的函數
+  const addToHeaderRefs = (el) => {
+    if (el && !sectionHeadersRef.current.includes(el)) {
+      sectionHeadersRef.current.push(el);
+    }
+  };
+
   // 渲染文章卡片
   const renderArticleCard = (article) => (
-    <div key={article.id} className={`articleCard ${article.reverse ? 'reverse' : ''}`}>
+    <div 
+      key={article.id} 
+      className={`articleCard ${article.reverse ? 'reverse' : ''} ${useFallbackAnimations ? 'animate-fallback' : ''}`}
+      ref={addToRefs}
+    >
       <div className="cardText">
         <h4 className="cardTitle">{article.title}</h4>
         <p className="cardDesc">{article.description}</p>
@@ -143,24 +189,324 @@ const Article = () => {
     </div>
   );
 
+  // 安全的動畫函數
+  const safeAnimate = (element, keyframes, options) => {
+    if (!enableAnimations) return;
+    
+    try {
+      log(`Animating element:`, element);
+      return animate(element, keyframes, options);
+    } catch (error) {
+      console.error('Animation error:', error);
+      setUseFallbackAnimations(true);
+      
+      // 如果啟用了備用方案，則使用基本的 CSS 類
+      if (element) {
+        if (Array.isArray(element)) {
+          element.forEach(el => {
+            if (el) el.classList.add('animate-fallback');
+          });
+        } else if (element) {
+          element.classList.add('animate-fallback');
+        }
+      }
+      return null;
+    }
+  };
+
+  // 初始化動畫
+  const initializeAnimations = () => {
+    log('Initializing animations');
+    
+    if (animationsInitialized) {
+      log('Animations already initialized, skipping');
+      return;
+    }
+    
+    try {
+      // 嘗試使用 Motion 庫動畫
+      // 中央標題動畫
+      if (centerBoxRef.current) {
+        // 設置初始 y 偏移
+        // 重要：移除初始樣式設置，避免干擾動畫-0827-pm 4.12
+        // centerBoxRef.current.style.transform = 'translateY(-80px)';
+        
+        // 使用單一動畫同時處理透明度和位置，避免多個動畫互相干擾
+        safeAnimate(
+          centerBoxRef.current, 
+          { 
+            opacity: [0, 1],
+            transform: ['translateY(-80px)', 'translateY(0)'] 
+          }, 
+          { 
+            duration: 1.2, 
+            easing: [0.17, 0.55, 0.55, 1] 
+          }
+        );
+      }
+
+      // 左側文字動畫
+      if (leftTextRef.current) {
+        safeAnimate(
+          leftTextRef.current, 
+          { opacity: [0, 1], transform: ['translateX(-50px)', 'translateX(0)'] }, 
+          { duration: 1, delay: 0.3 }
+        );
+      }
+
+      // 右側文字動畫
+      if (rightTextRef.current) {
+        safeAnimate(
+          rightTextRef.current, 
+          { opacity: [0, 1], transform: ['translateX(50px)', 'translateX(0)'] }, 
+          { duration: 1, delay: 0.3 }
+        );
+      }
+
+      // 導航按鈕動畫
+      if (navWrapRef.current) {
+        const navButtons = navWrapRef.current.querySelectorAll('.navBtn');
+        safeAnimate(
+          navButtons, 
+          { opacity: [0, 1], transform: ['translateY(20px)', 'translateY(0)'] }, 
+          { 
+            delay: stagger(0.1, { start: 0.6 }), 
+            duration: 0.7,
+            easing: "ease-out"
+          }
+        );
+      }
+    } catch (error) {
+      console.error('Failed to initialize animations with Motion library:', error);
+      setUseFallbackAnimations(true);
+      
+      // 應用備用動畫類
+      if (centerBoxRef.current) centerBoxRef.current.classList.add('animate-fallback');
+      if (leftTextRef.current) leftTextRef.current.classList.add('animate-fallback');
+      if (rightTextRef.current) rightTextRef.current.classList.add('animate-fallback');
+      
+      if (navWrapRef.current) {
+        const navButtons = navWrapRef.current.querySelectorAll('.navBtn');
+        navButtons.forEach((btn, index) => {
+          btn.classList.add('animate-fallback');
+          btn.style.animationDelay = `${0.6 + (index * 0.1)}s`;
+        });
+      }
+    }
+    
+    setAnimationsInitialized(true);
+    log('Animations initialized successfully');
+  };
+
+  // 頁面載入動畫
+  useEffect(() => {
+    log('Setting up page load animations');
+    
+    // 檢測 Motion 庫是否可用
+    try {
+      const testAnimate = animate(document.createElement('div'), { opacity: [0, 1] }, { duration: 0.1 });
+      testAnimate.cancel();
+      log('Motion library test successful');
+    } catch (error) {
+      console.warn('Motion library not working properly, using fallback animations', error);
+      setUseFallbackAnimations(true);
+    }
+    
+    // 如果文檔已經加載完成，直接初始化
+    if (document.readyState === 'complete') {
+      log('Document already loaded');
+      setTimeout(initializeAnimations, animationDelay);
+    } else {
+      // 否則等待 window.onload 事件
+      log('Waiting for window load event');
+      const handleLoad = () => {
+        log('Window loaded');
+        setTimeout(initializeAnimations, animationDelay);
+      };
+      
+      window.addEventListener('load', handleLoad);
+      
+      // 清理函數
+      return () => {
+        window.removeEventListener('load', handleLoad);
+      };
+    }
+  }, []);
+
+  // 設置滾動觸發動畫
+  useEffect(() => {
+    if (!enableAnimations) return;
+    
+    log('Setting up scroll animations');
+    
+    if (useFallbackAnimations) {
+      // 使用 Intersection Observer 作為備用
+      try {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-fallback');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        
+        // 觀察卡片和標題
+        articleCardsRef.current.forEach(card => observer.observe(card));
+        sectionHeadersRef.current.forEach(header => observer.observe(header));
+        
+        return () => observer.disconnect();
+      } catch (error) {
+        console.error('Error setting up Intersection Observer:', error);
+      }
+    } else {
+      // 為文章卡片設置滾動動畫
+      articleCardsRef.current.forEach((card, index) => {
+        try {
+          inView(card, () => {
+            safeAnimate(
+              card, 
+              { opacity: [0, 1], transform: ['scale(0.95) translateY(70px)', 'scale(1) translateY(0)'] }, 
+              { 
+                duration: 1.5, 
+                delay: 0.1 * index,
+                easing: "ease-out" 
+              }
+            );
+          }, { margin: "-10% 0px -10% 0px", amount: 0.001 });
+        } catch (error) {
+          console.error('Error setting up card scroll animation:', error);
+          card.classList.add('animate-fallback');
+        }
+      });
+
+      // 為區塊標題設置滾動動畫
+      sectionHeadersRef.current.forEach((header) => {
+        try {
+          inView(header, () => {
+            safeAnimate(
+              header, 
+              { opacity: [0, 1], transform: ['translateX(-30px)', 'translateX(0)'] }, 
+              { duration: 0.8, easing: "ease-out" }
+            );
+          }, { margin: "-15% 0px -15% 0px" });
+        } catch (error) {
+          console.error('Error setting up header scroll animation:', error);
+          header.classList.add('animate-fallback');
+        }
+      });
+    }
+
+    // 設置滾動視差效果
+    try {
+      const imgOverflows = document.querySelectorAll('.imgOverflow');
+      
+      if (imgOverflows.length > 0) {
+        log(`Setting up parallax for ${imgOverflows.length} images`);
+        
+        if (useFallbackAnimations) {
+          // 簡單的視差效果
+          const handleScroll = () => {
+            const scrollY = window.scrollY;
+            imgOverflows.forEach((img) => {
+              try {
+                const imgTop = img.getBoundingClientRect().top + scrollY;
+                const offset = (scrollY - imgTop) * 0.1;
+                img.style.transform = `translateY(${Math.min(Math.max(offset, -20), 20)}px)`;
+              } catch (error) {
+                console.error('Error in parallax effect:', error);
+              }
+            });
+          };
+          
+          window.addEventListener('scroll', handleScroll);
+          return () => window.removeEventListener('scroll', handleScroll);
+        } else {
+          const scrollHandler = scroll(
+            ({ y }) => {
+              const scrollY = window.scrollY;
+              imgOverflows.forEach((img) => {
+                try {
+                  const imgTop = img.getBoundingClientRect().top + scrollY;
+                  const offset = (scrollY - imgTop) * 0.1;
+                  img.style.transform = `translateY(${Math.min(Math.max(offset, -20), 20)}px)`;
+                } catch (error) {
+                  console.error('Error in parallax effect:', error);
+                }
+              });
+            }
+          );
+          
+          // 返回清理函數
+          return () => {
+            if (scrollHandler && typeof scrollHandler.cancel === 'function') {
+              scrollHandler.cancel();
+            }
+          };
+        }
+      }
+    } catch (error) {
+      console.error('Error setting up parallax effect:', error);
+    }
+  }, [isSearching, filteredArticles, useFallbackAnimations]);
+
+  // 搜尋輸入框動畫
+  useEffect(() => {
+    if (!enableAnimations) return;
+    
+    if (showSearchInput) {
+      const searchInput = document.querySelector('.searchInputWrap');
+      if (searchInput) {
+        if (useFallbackAnimations) {
+          searchInput.classList.add('animate-fallback');
+        } else {
+          safeAnimate(
+            searchInput, 
+            { opacity: [0, 1], width: ["0%", "100%"] }, 
+            { duration: 0.8, easing: "ease-out" }
+          );
+        }
+      }
+    }
+  }, [showSearchInput, useFallbackAnimations]);
+
   return (
     <div className="acadPage">
       {/* 主視覺區塊 */}
       <section className="hero">
-        <div className="leftText">變美的地圖</div>
-        <div className="rightText">從理解肌膚開始。</div>
-        <div className="centerBox">
+        <div 
+          className={`leftText ${useFallbackAnimations ? 'animate-fallback' : ''}`} 
+          ref={leftTextRef} 
+          style={{ opacity: 0 }}
+        >
+          變美的地圖
+        </div>
+        <div 
+          className={`rightText ${useFallbackAnimations ? 'animate-fallback' : ''}`} 
+          ref={rightTextRef} 
+          style={{ opacity: 0 }}
+        >
+          從理解肌膚開始。
+        </div>
+        <div 
+          className={`centerBox ${useFallbackAnimations ? 'animate-fallback' : ''}`} 
+          ref={centerBoxRef} 
+          style={{ opacity: 0 }}
+        >
           <h2 className="mainTitle">肌膚知識學苑</h2>
           <p className="subTitle">Your Skin Intelligence Space</p>
         </div>
-        <div className="navWrap">
+        <div className="navWrap" ref={navWrapRef}>
           <div ref={searchRef} className="searchContainer">
-            <div className={`navBtn searchBtn ${showSearchInput ? 'active' : ''}`} onClick={handleSearchClick}>
+            <div 
+              className={`navBtn searchBtn ${showSearchInput ? 'active' : ''} ${useFallbackAnimations ? 'animate-fallback' : ''}`} 
+              onClick={handleSearchClick}
+            >
               <span className="searchIcon">⌕</span>
               <span>關鍵字搜尋</span>
             </div>
             {showSearchInput && (
-              <div className="searchInputWrap">
+              <div className={`searchInputWrap ${useFallbackAnimations ? 'animate-fallback' : ''}`}>
                 <input 
                   type="text" 
                   className="searchInput" 
@@ -173,25 +519,25 @@ const Article = () => {
             )}
           </div>
           <div 
-            className={`navBtn ${activeFilter === '膚質類型介紹' ? 'active' : ''}`} 
+            className={`navBtn ${activeFilter === '膚質類型介紹' ? 'active' : ''} ${useFallbackAnimations ? 'animate-fallback' : ''}`} 
             onClick={() => handleFilterClick('膚質類型介紹')}
           >
             膚質類型介紹
           </div>
           <div 
-            className={`navBtn ${activeFilter === '美容儀使用知識' ? 'active' : ''}`} 
+            className={`navBtn ${activeFilter === '美容儀使用知識' ? 'active' : ''} ${useFallbackAnimations ? 'animate-fallback' : ''}`} 
             onClick={() => handleFilterClick('美容儀使用知識')}
           >
             美容儀使用知識
           </div>
           <div 
-            className={`navBtn ${activeFilter === '教學影片' ? 'active' : ''}`} 
+            className={`navBtn ${activeFilter === '教學影片' ? 'active' : ''} ${useFallbackAnimations ? 'animate-fallback' : ''}`} 
             onClick={() => handleFilterClick('教學影片')}
           >
             教學影片
           </div>
           <div 
-            className={`navBtn ${activeFilter === '專家專欄' ? 'active' : ''}`} 
+            className={`navBtn ${activeFilter === '專家專欄' ? 'active' : ''} ${useFallbackAnimations ? 'animate-fallback' : ''}`} 
             onClick={() => handleFilterClick('專家專欄')}
           >
             專家專欄
@@ -202,7 +548,7 @@ const Article = () => {
       {/* 搜尋結果 */}
       {isSearching && (
         <section className="contentSec">
-          <div className="secHeader">
+          <div className={`secHeader ${useFallbackAnimations ? 'animate-fallback' : ''}`} ref={addToHeaderRefs}>
             <h3 className="secTitle">
               {activeFilter ? `${activeFilter}` : '搜尋結果'}
               {searchTerm && `: "${searchTerm}"`}
@@ -226,7 +572,7 @@ const Article = () => {
         <>
           {/* 保養科學堂 */}
           <section className="contentSec">
-            <div className="secHeader">
+            <div className={`secHeader ${useFallbackAnimations ? 'animate-fallback' : ''}`} ref={addToHeaderRefs}>
               <h3 className="secTitle">保養科學堂</h3>
             </div>
             
@@ -237,7 +583,7 @@ const Article = () => {
 
           {/* 模式教學室 */}
           <section className="contentSec beigeBg">
-            <div className="secHeader">
+            <div className={`secHeader ${useFallbackAnimations ? 'animate-fallback' : ''}`} ref={addToHeaderRefs}>
               <h3 className="secTitle">模式教學室</h3>
             </div>
             
@@ -248,7 +594,7 @@ const Article = () => {
 
           {/* 問題肌研究所 */}
           <section className="contentSec">
-            <div className="secHeader">
+            <div className={`secHeader ${useFallbackAnimations ? 'animate-fallback' : ''}`} ref={addToHeaderRefs}>
               <h3 className="secTitle">問題肌研究所</h3>
             </div>
             

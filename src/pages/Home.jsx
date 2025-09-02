@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 // 共用元件區
 import ButtonStyle from "../components/ButtonStyle"
 // primary 區
-import primaryVideo from "../assets/video/bennerMv.Mp4"
+const primaryVideo = "https://res.cloudinary.com/dmfzxhrua/video/upload/v1756198688/bennerMv_nv0tq1.mp4"
 import primarybg1 from "../assets/images/banner_1.png"
 import primarybg2 from "../assets/images/banner2.png"
 import primarybg3 from "../assets/images/banner_3.png"
@@ -16,12 +16,12 @@ import primarypd4 from "../assets/images/primary-1-product4.svg"
 import logo from "../assets/images/topbarlogo.png"
 // promote 區
 import promoteSecBg from "../assets/images/promoteSec-bg.svg"
-import frontPic from "../assets/images/frontPic.svg"
-import backPic from "../assets/images/backPic.svg"
+import frontPic from "../assets/images/frontPic.avif"
+import backPic from "../assets/images/backPic.avif"
 // product 區
 import decorate1 from "../assets/images/product-sec-bg-decorate.svg"
 import decorateHuman from "../assets/images/product-sec-bg-decorate-human.svg"
-import decorateProducts from "../assets/images/product-sec-bg-decorate-products.svg"
+import decorateProducts from "../assets/images/product-sec-bg-decorate-products.webp"
 import cardProduct1 from "../assets/images/product-sec-card-product1.svg"
 import cardProduct2 from "../assets/images/product-sec-card-product2.svg"
 import cardProduct3 from "../assets/images/product-sec-card-product3.svg"
@@ -36,18 +36,18 @@ import newArrivalSkin from "../assets/images/NewArrivalIcon.svg"
 import nextVector from "../assets/images/nextVector.svg"
 import prevVector from "../assets/images/prevVector.svg"
 // feedback 區
-import avatar1 from "../assets/images/feedback-card-avatar1.svg"
-import avatar2 from "../assets/images/feedback-card-avatar2.svg"
-import avatar3 from "../assets/images/feedback-card-avatar3.svg"
-import avatar4 from "../assets/images/feedback-card-avatar4.svg"
-import avatar5 from "../assets/images/feedback-card-avatar5.svg"
-import avatar6 from "../assets/images/feedback-card-avatar6.svg"
-import avatar7 from "../assets/images/feedback-card-avatar7.svg"
+import avatar1 from "../assets/images/feedback-card-avatar1.avif"
+import avatar2 from "../assets/images/feedback-card-avatar2.avif"
+import avatar3 from "../assets/images/feedback-card-avatar3.avif"
+import avatar4 from "../assets/images/feedback-card-avatar4.avif"
+import avatar5 from "../assets/images/feedback-card-avatar5.avif"
+import avatar6 from "../assets/images/feedback-card-avatar6.avif"
+import avatar7 from "../assets/images/feedback-card-avatar7.avif"
 // knowledge 區
-import KnowledgeCardBG1 from "../assets/images/knowledgeCard1bg.svg"
+import KnowledgeCardBG1 from "../assets/images/knowledgeCard1bg.avif"
 import KnowledgeCardBG2 from "../assets/images/knowledgeCard2bg.svg"
-import KnowledgeCardBG3 from "../assets/images/knowledgeCard3bg.svg"
-import KnowledgeCardBG4 from "../assets/images/knowledgeCard4bg.svg"
+import KnowledgeCardBG3 from "../assets/images/knowledgeCard3bg.avif"
+import KnowledgeCardBG4 from "../assets/images/knowledgeCard4bg.avif"
 // app 區
 import appBG from "../assets/images/app-sec-bg.svg"
 import appHuman from "../assets/images/app-sec-human.svg"
@@ -116,7 +116,7 @@ const FeedbackCard = ({ customer }) => {
   )
 }
 
-const CustomerFeedbackCarousel = () => {
+const CustomerFeedbackCarousel = ({sortNum}) => {
   const customers = [
     {
       id: 1,
@@ -165,7 +165,7 @@ const CustomerFeedbackCarousel = () => {
   const arrCustomers = [...customers, ...customers]
   return (
     <div className="feedback-carousel-wrapper">
-      <div className="feedback-carousel-track">
+      <div className="feedback-carousel-track" id={`sort-num${sortNum}`}>
         {arrCustomers.map((customer, index) => (
           <div key={`${customer.id}-${index}`} className="feedback-carousel-item">
             <FeedbackCard customer={customer} />
@@ -485,7 +485,6 @@ const Home = () => {
             entry.target.classList.add("show");
           } else {
             entry.target.classList.remove("show"); 
-            // ❗ 如果你要「動畫只跑一次就保留」，這行拿掉
           }
         });
       },
@@ -593,8 +592,8 @@ const Home = () => {
         <div id="feedback-container">
           <p className="feedback-zh">”每一份美麗，都有她的故事”</p>
           <p className="feedback-en">— Behind every beauty, there's her own story.  —</p>
-          <CustomerFeedbackCarousel />
-          <CustomerFeedbackCarousel />
+          <CustomerFeedbackCarousel sortNum={1}/>
+          <CustomerFeedbackCarousel sortNum={2}/>
         </div>
       </section>
       <section className="h100-vh" id="knowledge-sec">
