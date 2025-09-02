@@ -1,0 +1,574 @@
+/* 互動元素和卡片樣式 */
+
+/* 現代簡介 */
+.modern-intro {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 2rem;
+  padding: 3rem;
+  margin: 3rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.intro-content {
+  position: relative;
+  z-index: 1;
+}
+
+.intro-icon-large {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.intro-text-large {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin: 2rem 0;
+}
+
+.highlight-pink {
+  background: var(--secondary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+.highlight-mint {
+  background: var(--mint-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.intro-decorative-line {
+  width: 100px;
+  height: 4px;
+  background: var(--primary-gradient);
+  margin: 2rem auto;
+  border-radius: 2px;
+  animation: expand 2s ease-in-out infinite;
+}
+
+@keyframes expand {
+  0%, 100% { width: 100px; }
+  50% { width: 150px; }
+}
+
+/* 動畫效果 */
+.animate-in {
+  animation: slideInUp 1s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 高級圖片段落 */
+.premium-section {
+  margin: 4rem 0;
+}
+
+.card-3d {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 2rem;
+  padding: 3rem;
+  transition: all 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-3d:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-hover);
+}
+
+.floating-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.floating-image img {
+  transition: transform 0.5s ease;
+}
+
+.floating-image:hover img {
+  transform: scale(1.1) rotate(2deg);
+}
+
+.image-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%);
+  animation: rotate 10s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.floating-image:hover .image-glow {
+  opacity: 1;
+}
+
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.floating-dot {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.dot-1 {
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.dot-2 {
+  top: 20%;
+  right: 15%;
+  animation-delay: 1s;
+}
+
+.dot-3 {
+  bottom: 15%;
+  left: 20%;
+  animation-delay: 2s;
+}
+
+.enhanced-content {
+  position: relative;
+}
+
+.section-number {
+  font-size: 4rem;
+  font-weight: 900;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 1rem;
+  opacity: 0.3;
+  position: absolute;
+  top: -2rem;
+  right: 0;
+}
+
+.section-title {
+  margin: 1rem 0 2rem 0;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.content-cards {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.content-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.content-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.content-card .card-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* 藝術分隔線 */
+.artistic-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4rem 0;
+  position: relative;
+}
+
+.artistic-divider.major {
+  margin: 6rem 0;
+}
+
+.divider-icon {
+  font-size: 2rem;
+  margin: 0 2rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.divider-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+}
+
+.divider-line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #667eea 50%, transparent 100%);
+}
+
+.divider-line.gradient {
+  background: var(--primary-gradient);
+  height: 3px;
+  border-radius: 2px;
+}
+
+/* 互動提示網格 */
+.interactive-tips {
+  margin: 4rem 0;
+}
+
+.tips-container {
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-number.large {
+  font-size: 6rem;
+  font-weight: 900;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  opacity: 0.2;
+  display: block;
+}
+
+.section-subtitle {
+  font-size: 2rem;
+  margin: 1rem 0;
+  color: #333;
+}
+
+.premium-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.interactive-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 2rem;
+  padding: 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive-card.red {
+  --card-color: #ff6b6b;
+}
+
+.interactive-card.yellow {
+  --card-color: #ffd93d;
+}
+
+.interactive-card.green {
+  --card-color: #6bcf7f;
+}
+
+.interactive-card.blue {
+  --card-color: #4d96ff;
+}
+
+.tip-icon-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+.tip-icon {
+  font-size: 3rem;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.icon-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, var(--card-color, #667eea) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0.3;
+  transition: all 0.3s ease;
+}
+
+.interactive-card:hover .icon-glow {
+  opacity: 0.6;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.card-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.interactive-card:hover .card-shine {
+  left: 100%;
+}
+
+.hover-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hover-particles .particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--card-color, #667eea);
+  border-radius: 50%;
+  animation: particleFloat 1s ease-out forwards;
+}
+
+.hover-particles .particle:nth-child(1) {
+  top: 20%;
+  left: 30%;
+  animation-delay: 0s;
+}
+
+.hover-particles .particle:nth-child(2) {
+  top: 40%;
+  right: 25%;
+  animation-delay: 0.2s;
+}
+
+.hover-particles .particle:nth-child(3) {
+  bottom: 30%;
+  left: 40%;
+  animation-delay: 0.4s;
+}
+
+@keyframes particleFloat {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-20px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(0);
+  }
+}
+
+/* 互動問答框 */
+.interactive-question {
+  margin: 4rem 0;
+  text-align: center;
+}
+
+.question-container {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 2rem;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.question-icon-large {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: lightBulb 3s ease-in-out infinite;
+}
+
+@keyframes lightBulb {
+  0%, 100% { 
+    filter: brightness(1);
+    transform: scale(1);
+  }
+  50% { 
+    filter: brightness(1.3);
+    transform: scale(1.1);
+  }
+}
+
+.question-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.question-content {
+  margin-top: 2rem;
+}
+
+.question-desc {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.stat-highlight {
+  font-size: 2rem;
+  font-weight: 900;
+  background: var(--secondary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding: 0 0.5rem;
+}
+
+.fact-visualization {
+  margin-top: 2rem;
+}
+
+.fact-bar {
+  display: flex;
+  height: 60px;
+  background: #f0f0f0;
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar-segment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+.bar-segment.perceived {
+  background: var(--secondary-gradient);
+}
+
+.bar-segment.actual {
+  background: var(--mint-gradient);
+}
+
+.bar-segment span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 1rem;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .modern-intro {
+    padding: 2rem 1.5rem;
+  }
+  
+  .intro-text-large {
+    font-size: 1.1rem;
+  }
+  
+  .card-3d {
+    padding: 2rem 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .premium-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .interactive-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .question-container {
+    padding: 2rem 1.5rem;
+  }
+  
+  .fact-bar {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .bar-segment {
+    height: 40px;
+    width: 100% !important;
+  }
+}

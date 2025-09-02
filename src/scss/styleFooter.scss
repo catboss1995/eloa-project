@@ -19,11 +19,13 @@ h3 {
     display: flex;
     justify-content: space-between;
     padding: 20px 50px;
+    
     #leftArea {
         display: flex;
         flex-direction: column;
         width: 100%;
         margin-left: 50px;
+        
         #logo {
             height: 40px;
             object-fit: contain;
@@ -75,6 +77,83 @@ h3 {
                 width: 30px;
             }
         }
+    }
+
+    // 響應式設計 - 小螢幕 (768px 以下)
+    @media (max-width: 768px) {
+        flex-direction: column; // 1、2改1列式：左右區域垂直排列
+        padding: 20px;
+        gap: 30px;
+        
+        #leftArea {
+            margin-left: 0;
+            width: 100%;
+            
+            #logo {
+                margin-bottom: 20px;
+            }
+            
+            p {
+                margin-bottom: 5px;
+            }
+            
+            // 隱藏桌面版社交媒體圖標
+            #socials {
+                display: none;
+            }
+        }
+        
+        #rightArea {
+            width: 100%;
+            align-self: flex-start;
+            
+            #siteMap {
+                margin-top: 20px;
+                gap: 15px;
+                
+                li a {
+                    font-size: $font16-light;
+                }
+            }
+            
+            // 隱藏桌面版工具圖標
+            #tools {
+                display: none;
+            }
+        }
+    }
+}
+
+// 手機版圖標區域（預設隱藏）
+#bottomIcons {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: $white;
+    
+    #socialsMobile {
+        display: flex;
+        gap: 15px;
+        
+        .socBtn {
+            width: 24px;
+            height: 24px;
+        }
+    }
+    
+    #toolsMobile {
+        display: flex;
+        gap: 20px;
+        
+        a {
+            width: 28px;
+        }
+    }
+    
+    // 小螢幕顯示，大螢幕隱藏
+    @media (max-width: 768px) {
+        display: flex;
     }
 }
 

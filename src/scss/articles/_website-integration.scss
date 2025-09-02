@@ -1,0 +1,1477 @@
+/* 符合網站設計系統的敏感肌文章樣式 */
+@use '../styleReset.scss' as *;
+
+/* 頂部進度條樣式 - 固定在 topbar 下面 */
+.top-progress-bar {
+    position: fixed;
+    top: 64px; /* topbar 高度 */
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(230, 219, 201, 0.3);
+    z-index: 999;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, $light-brown3, $light-brown4);
+    width: 0%;
+    transition: width 0.3s ease;
+    position: relative;
+    
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+        animation: article-shimmer 2s infinite;
+    }
+}
+
+.sensitive-skincare-guide {
+    font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+    background-color: $beige0;
+    color: $dark-brown2;
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden; /* 防止動畫溢出 */
+
+    * {
+        font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+    }
+}
+
+/* 保留精美的進入動畫 */
+@keyframes article-fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes article-fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes article-fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes article-pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes article-shimmer {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
+/* 浮動粒子動畫 */
+@keyframes article-float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes article-floatSlow {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(180deg);
+    }
+}
+
+/* 重新設計浮動導航，避免擋到 logo */
+.floating-nav {
+    position: fixed;
+    top: 0;
+    right: 30px;
+    background: transparent; /* 完全透明背景 */
+    backdrop-filter: none; /* 移除毛玻璃效果 */
+    border-radius: 25px;
+    padding: 15px 10px;
+    box-shadow: none; /* 移除陰影 */
+    border: none;
+    transition: all 0.3s ease;
+    animation: article-slideInRight 0.8s ease-out 1s forwards;
+    
+    &:hover {
+        background: transparent; /* hover 時也保持透明 */
+        box-shadow: none;
+    }
+}
+
+@keyframes article-slideInRight {
+    to {
+        opacity: 1;
+
+    }
+}
+
+/* 修復進度條背景 */
+.nav-progress {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: transparent; /* 移除白色背景 */
+    border-radius: 3px 3px 0 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, $light-brown3, $light-brown4);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+    position: relative;
+    
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+        animation: article-shimmer 2s infinite;
+    }
+}
+
+.nav-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 40%;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: $dark-brown2;
+    font-size: 12px;
+    font-weight: 400;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(196, 178, 154, 0.2), transparent);
+        transition: left 0.5s ease;
+    }
+    
+    &:hover {
+        background: linear-gradient(135deg, $beige1, $beige2);
+        color: $dark-brown1;
+        transform: translateX(-3px);
+        box-shadow: 0 4px 15px rgba(72, 39, 13, 0.1);
+        
+        &::before {
+            left: 100%;
+        }
+        
+        .nav-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+    }
+    
+    &.active {
+        background: linear-gradient(135deg, $light-brown3, $light-brown4);
+        color: $white;
+        transform: translateX(-5px);
+        box-shadow: 0 6px 20px rgba(196, 178, 154, 0.3);
+        
+        .nav-icon {
+            transform: scale(1.1);
+        }
+    }
+}
+
+.nav-icon {
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.nav-text {
+    font-family: 'Noto Sans TC', sans-serif;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    max-width: 0;
+    overflow: hidden;
+}
+
+.floating-nav:hover .nav-text {
+    opacity: 1;
+    transform: translateX(0);
+    max-width: 80px;
+}
+
+/* 保留美麗的背景粒子，但放在內容後面 */
+.artistic-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1; /* 確保在內容後面 */
+    overflow: hidden;
+}
+
+.bg-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(248, 249, 245, 0.8) 0%,
+        rgba(243, 239, 230, 0.6) 25%,
+        rgba(240, 232, 219, 0.4) 50%,
+        rgba(244, 241, 234, 0.6) 75%,
+        rgba(248, 249, 245, 0.8) 100%
+    );
+    animation: article-shimmer 8s ease-in-out infinite;
+}
+
+.floating-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.particle-0 {
+    width: 4px;
+    height: 4px;
+    background: $light-brown3;
+    top: 20%;
+    left: 10%;
+    animation: article-float 6s ease-in-out infinite;
+    animation-delay: 0s;
+}
+
+.particle-1 {
+    width: 6px;
+    height: 6px;
+    background: $light-brown4;
+    top: 60%;
+    left: 80%;
+    animation: article-floatSlow 8s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+.particle-2 {
+    width: 3px;
+    height: 3px;
+    background: $beige4;
+    top: 80%;
+    left: 20%;
+    animation: article-float 7s ease-in-out infinite;
+    animation-delay: 4s;
+}
+
+.particle-3 {
+    width: 5px;
+    height: 5px;
+    background: $light-brown2;
+    top: 30%;
+    left: 70%;
+    animation: article-floatSlow 9s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+/* 移除底部時間軸，改用簡單的頁內導航 */
+.interactive-timeline {
+    display: none !important;
+}
+
+/* 主要內容區域 - 符合網站風格 */
+.article-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    background: transparent; /* 改為透明背景 */
+    position: relative;
+    z-index: 1;
+}
+
+.article-container.modern-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    background: transparent; /* 改為透明背景 */
+    position: relative;
+    z-index: 1;
+}
+
+/* 簡化版本的基本樣式 */
+.content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.article-title {
+    font-size: $font32-light;
+    color: $dark-brown1;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+.intro-text {
+    font-size: $font16-light;
+    color: $dark-brown2;
+    text-align: center;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+
+.section-title {
+    font-size: $font24-light;
+    color: $dark-brown1;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+/* 區段樣式 - 添加動畫效果，使用柔和背景 */
+.intro-section,
+.features-section,
+.steps-section,
+.products-section,
+.tips-section,
+.conclusion-section {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: rgba(255, 254, 253, 0.8); /* 更柔和的半透明白色 */
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(72, 39, 13, 0.08);
+    border: 1px solid $beige4;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: article-fadeInUp 0.8s ease-out forwards;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(72, 39, 13, 0.12);
+        background: rgba(255, 254, 253, 0.95);
+    }
+}
+
+/* 錯開動畫時間 */
+.intro-section {
+    animation-delay: 0.1s;
+}
+
+.features-section {
+    animation-delay: 0.2s;
+}
+
+.steps-section {
+    animation-delay: 0.3s;
+}
+
+.products-section {
+    animation-delay: 0.4s;
+}
+
+.tips-section {
+    animation-delay: 0.5s;
+}
+
+.conclusion-section {
+    animation-delay: 0.6s;
+}
+
+/* 特徵網格 */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.feature-card {
+    background: $beige1;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid $beige3;
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: article-fadeInUp 0.6s ease-out forwards;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.6s ease;
+    }
+    
+    &:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 12px 30px rgba(72, 39, 13, 0.15);
+        
+        &::before {
+            left: 100%;
+        }
+        
+        .feature-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+    }
+}
+
+/* 錯開特徵卡片動畫 */
+.feature-card:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+.feature-card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.feature-card:nth-child(3) {
+    animation-delay: 0.5s;
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.feature-card h3 {
+    font-size: $font18-light;
+    color: $dark-brown1;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+}
+
+.feature-card p {
+    font-size: $font14-light;
+    color: $dark-brown2;
+    line-height: 1.6;
+}
+
+/* 步驟容器 */
+.steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: $beige1;
+    border-radius: 12px;
+    border: 1px solid $beige3;
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: article-fadeInLeft 0.6s ease-out forwards;
+    transition: all 0.3s ease;
+    position: relative;
+    
+    &:hover {
+        transform: translateX(5px);
+        box-shadow: 0 8px 25px rgba(72, 39, 13, 0.12);
+        background: linear-gradient(135deg, $beige1 0%, $beige2 100%);
+        
+        .step-number {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(196, 178, 154, 0.4);
+        }
+    }
+}
+
+/* 錯開步驟動畫 */
+.step-item:nth-child(1) {
+    animation-delay: 0.4s;
+}
+
+.step-item:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.step-item:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.step-item:nth-child(4) {
+    animation-delay: 0.7s;
+}
+
+.step-number {
+    background: linear-gradient(135deg, $light-brown3 0%, $light-brown4 100%);
+    color: $white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $font18-light;
+    font-weight: 600;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(196, 178, 154, 0.3);
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(135deg, $light-brown2, $light-brown5);
+        border-radius: 50%;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    &:hover::before {
+        opacity: 1;
+    }
+}
+
+.step-content h3 {
+    font-size: $font18-light;
+    color: $dark-brown1;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+}
+
+.step-content p {
+    font-size: $font14-light;
+    color: $dark-brown2;
+    line-height: 1.6;
+}
+
+/* 產品網格 */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.product-card {
+    background: $beige1;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid $beige3;
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    animation: article-fadeInUp 0.8s ease-out forwards;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 1;
+        pointer-events: none;
+    }
+    
+    &:hover {
+        transform: translateY(-15px) scale(1.03);
+        box-shadow: 0 20px 40px rgba(72, 39, 13, 0.15);
+        
+        &::before {
+            opacity: 1;
+        }
+        
+        .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            background: linear-gradient(135deg, $beige1 0%, $beige2 100%);
+        }
+    }
+}
+
+/* 錯開產品卡片動畫 */
+.product-card:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.product-card:nth-child(2) {
+    animation-delay: 0.6s;
+}
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.product-info {
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.product-info h3 {
+    font-size: $font18-light;
+    color: $dark-brown1;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+}
+
+.product-info p {
+    font-size: $font14-light;
+    color: $dark-brown2;
+    line-height: 1.6;
+}
+
+/* 小貼士容器 */
+.tips-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.tip-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: $beige1;
+    border-radius: 12px;
+    border: 1px solid $beige3;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: article-fadeInUp 0.6s ease-out forwards;
+    transition: all 0.3s ease;
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(135deg, $light-brown3, $light-brown4);
+        border-radius: 0 2px 2px 0;
+        transform: scaleY(0);
+        transition: transform 0.3s ease;
+    }
+    
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(72, 39, 13, 0.1);
+        padding-left: 2rem;
+        
+        &::before {
+            transform: scaleY(1);
+        }
+        
+        .tip-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+    }
+}
+
+/* 錯開小貼士動畫 */
+.tip-item:nth-child(1) {
+    animation-delay: 0.6s;
+}
+
+.tip-item:nth-child(2) {
+    animation-delay: 0.7s;
+}
+
+.tip-item:nth-child(3) {
+    animation-delay: 0.8s;
+}
+
+.tip-item:nth-child(4) {
+    animation-delay: 0.9s;
+}
+
+.tip-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.tip-item p {
+    font-size: $font14-light;
+    color: $dark-brown2;
+    line-height: 1.6;
+}
+
+/* 結論樣式 */
+.conclusion-text {
+    font-size: $font16-light;
+    color: $dark-brown2;
+    line-height: 1.7;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .article-container {
+    padding: 1rem 0.5rem;
+  }
+  
+  .content-wrapper {
+    padding: 0.5rem;
+  }
+  
+  .features-grid,
+  .products-grid,
+  .tips-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .step-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .article-title {
+    font-size: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.3rem;
+  }
+  
+  /* 移動設備上的浮動導航調整 */
+  .floating-nav {
+    right: 10px;
+    top: auto;
+    bottom: 20px;
+    transform: none;
+    animation: article-slideInUp 0.8s ease-out 1s forwards;
+    opacity: 0;
+    transform: translateY(60px);
+    
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+  
+  @keyframes article-slideInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .nav-items {
+    flex-direction: row;
+    gap: 4px;
+  }
+  
+  .nav-item {
+    padding: 6px 8px;
+    min-width: 35px;
+  }
+  
+  .nav-text {
+    display: none; /* 移動設備上只顯示圖標 */
+  }
+  
+  .nav-icon {
+    font-size: 16px;
+  }
+}/* 修正標題大小 - 符合網站字體系統 */
+.article-title.gradient-text {
+    font-size: $font32-light;
+    /* 使用網站的字體大小變數 */
+    font-weight: 700;
+    color: $dark-brown1;
+    /* 使用網站的主色 */
+    background: none;
+    /* 移除漸層 */
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    background-clip: initial;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+/* 修正內文大小 */
+.intro-text-large {
+    font-size: $font16-light;
+    /* 使用標準字體大小 */
+    line-height: 1.7;
+    margin: 1.5rem 0;
+    color: $dark-brown2;
+}
+
+/* 簡化高亮文字 */
+.highlight-pink {
+    color: $light-brown6;
+    font-weight: 500;
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    background-clip: initial;
+}
+
+.highlight-mint {
+    color: $brown1;
+    font-weight: 500;
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    background-clip: initial;
+}
+
+/* 簡化裝飾線 */
+.intro-decorative-line {
+    width: 60px;
+    height: 2px;
+    background: $light-brown6;
+    margin: 1.5rem auto;
+    border-radius: 1px;
+}
+
+/* 簡化分隔線 */
+.artistic-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3rem 0;
+    gap: 1rem;
+}
+
+.divider-line {
+    flex: 1;
+    height: 1px;
+    background: $beige4;
+}
+
+.divider-line.gradient {
+    background: $light-brown6;
+    height: 2px;
+}
+
+.divider-icon {
+    font-size: 1.2rem;
+    color: $light-brown6;
+}
+
+.divider-text {
+    font-size: $font18-light;
+    font-weight: 500;
+    color: $dark-brown1;
+    padding: 0 1rem;
+}
+
+/* 簡化卡片設計 */
+.card-3d,
+.interactive-card,
+.product-card,
+.timeline-card,
+.question-container {
+    background: rgba(255, 254, 253, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid $beige4;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 6px rgba(72, 39, 13, 0.06);
+    transition: all 0.3s ease;
+}
+
+.card-3d:hover,
+.interactive-card:hover,
+.product-card:hover,
+.timeline-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(72, 39, 13, 0.12);
+}
+
+/* 移除 3D 效果和複雜動畫 */
+.enhanced-content {
+    position: relative;
+}
+
+.section-number {
+    font-size: $font48-light;
+    font-weight: 300;
+    color: $beige4;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    opacity: 0.7;
+    position: absolute;
+    top: -1rem;
+    right: 0;
+}
+
+.section-title {
+    margin: 1rem 0 1.5rem 0;
+    font-size: $font24-light;
+    color: $dark-brown1;
+    font-weight: 500;
+}
+
+.section-subtitle {
+    font-size: $font18-light;
+    margin: 1rem 0;
+    color: $dark-brown1;
+    font-weight: 500;
+}
+
+/* 簡化內容卡片 */
+.content-cards {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.content-card {
+    background: $beige1;
+    border: 1px solid $beige4;
+    border-radius: 6px;
+    padding: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.content-card:hover {
+    background: rgba(255, 254, 253, 0.85);
+    backdrop-filter: blur(8px);
+    border-color: $light-brown6;
+}
+
+.card-icon {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    display: block;
+    color: $light-brown6;
+}
+
+/* 簡化網格佈局 */
+.premium-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.interactive-card {
+    text-align: center;
+    min-height: auto;
+}
+
+.tip-icon-container {
+    margin-bottom: 1rem;
+}
+
+.tip-icon {
+    font-size: 2rem;
+    color: $light-brown6;
+}
+
+.interactive-card h3 {
+    font-size: $font16-light;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    color: $dark-brown1;
+}
+
+.interactive-card p {
+    font-size: $font14-light;
+    line-height: 1.6;
+    color: $dark-brown2;
+}
+
+/* 問答框樣式 */
+.interactive-question {
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.question-icon-large {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: $light-brown6;
+}
+
+.question-title {
+    font-size: $font18-light;
+    margin-bottom: 1rem;
+    color: $dark-brown1;
+    font-weight: 500;
+}
+
+.question-desc {
+    font-size: $font16-light;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: $dark-brown2;
+}
+
+.stat-highlight {
+    font-size: $font18-light;
+    font-weight: 700;
+    color: $light-brown6;
+}
+
+/* 簡化視覺化圖表 */
+.fact-bar {
+    display: flex;
+    height: 40px;
+    background: $beige2;
+    border-radius: 20px;
+    overflow: hidden;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.bar-segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $white;
+    font-weight: 500;
+    font-size: $font14-light;
+}
+
+.bar-segment.perceived {
+    background: $light-brown6;
+}
+
+.bar-segment.actual {
+    background: $brown1;
+}
+
+/* 簡化時間軸 */
+.skincare-steps {
+    margin: 3rem 0;
+}
+
+.steps-timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: transparent; /* 移除白色背景，改為透明 */
+}
+
+.timeline-progress {
+    height: 100%;
+    background: linear-gradient(90deg, $light-brown3, $light-brown4);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 1px;
+}
+
+.timeline-item {
+    display: flex;
+    margin: 2rem 0;
+    padding-left: 80px;
+    position: relative;
+}
+
+.step-number {
+    position: absolute;
+    left: 15px;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background: $light-brown6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $font14-light;
+    font-weight: 500;
+    color: $white;
+    border: 2px solid $white;
+}
+
+.step-icon {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: $light-brown6;
+}
+
+.step-title {
+    font-size: $font16-light;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    color: $dark-brown1;
+}
+
+.step-description {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: $dark-brown2;
+    font-size: $font14-light;
+}
+
+.step-tips {
+    background: $beige1;
+    border-left: 3px solid $light-brown6;
+    padding: 0.8rem 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+    font-size: $font14-light;
+    color: $dark-brown2;
+}
+
+/* 產品推薦 */
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.product-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid $beige4;
+}
+
+.product-badge {
+    background: $light-brown6;
+    color: $white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.product-name {
+    font-size: $font16-light;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    color: $dark-brown1;
+}
+
+.feature-tag {
+    background: $beige2;
+    color: $dark-brown2;
+    padding: 0.2rem 0.5rem;
+    border-radius: 10px;
+    font-size: 12px;
+    margin: 0.1rem;
+    border: 1px solid $beige4;
+}
+
+.product-price {
+    font-size: $font16-light;
+    font-weight: 600;
+    color: $light-brown6;
+    margin: 1rem 0;
+}
+
+.product-action {
+    background: $light-brown6;
+    color: $white;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: $font14-light;
+    transition: all 0.3s ease;
+}
+
+.product-action:hover {
+    background: $light-brown5;
+    transform: translateY(-1px);
+}
+
+/* 專家建議區域 */
+.expert-advice {
+    margin: 3rem 0;
+}
+
+.expert-container {
+    background: $beige1;
+    border: 1px solid $beige4;
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.expert-avatar {
+    width: 60px;
+    height: 60px;
+    background: $light-brown6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: $white;
+    margin-right: 1.5rem;
+}
+
+.expert-info h3 {
+    font-size: $font16-light;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    color: $dark-brown1;
+}
+
+.expert-title {
+    color: $brown1;
+    font-size: $font14-light;
+    font-weight: 400;
+}
+
+.expert-quote {
+    background: rgba(255, 254, 253, 0.7);
+    backdrop-filter: blur(8px);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    line-height: 1.7;
+    border-left: 4px solid $light-brown6;
+    color: $dark-brown2;
+}
+
+.point-item {
+    display: flex;
+    align-items: flex-start;
+    margin: 0.8rem 0;
+    padding: 0.8rem;
+    background: rgba(255, 254, 253, 0.7);
+    backdrop-filter: blur(8px);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.point-item:hover {
+    background: $beige2;
+}
+
+.point-icon {
+    color: $light-brown6;
+    margin-right: 0.8rem;
+    margin-top: 0.1rem;
+}
+
+/* 總結區域 */
+.conclusion-section {
+    margin: 3rem 0;
+}
+
+.conclusion-container {
+    background: $gradient-light-dark5;
+    border: 1px solid $beige4;
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+}
+
+.conclusion-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: $light-brown6;
+}
+
+.conclusion-title {
+    font-size: $font24-light;
+    margin-bottom: 1.5rem;
+    color: $dark-brown1;
+    font-weight: 500;
+}
+
+.conclusion-text {
+    font-size: $font16-light;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    color: $dark-brown2;
+}
+
+.conclusion-cta {
+    background: $light-brown6;
+    color: $white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-size: $font16-light;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.conclusion-cta:hover {
+    background: $light-brown5;
+    transform: translateY(-1px);
+}
+
+/* 移除所有複雜動畫和效果 */
+.animate-in,
+.hover-particles,
+.card-shine,
+.image-glow,
+.floating-elements,
+.icon-glow,
+.step-glow,
+.product-glow,
+.quote-mark,
+.conclusion-decorations {
+    display: none !important;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .article-container.modern-layout {
+        padding: 1rem 0.5rem;
+    }
+
+    .modern-intro {
+        padding: 1.5rem 1rem;
+        margin: 1rem 0;
+    }
+
+    .article-title.gradient-text {
+        font-size: $font24-light;
+    }
+
+    .section-title {
+        font-size: $font18-light;
+    }
+
+    .section-number {
+        font-size: $font32-light;
+        position: relative;
+        top: 0;
+        right: 0;
+        display: block;
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .premium-grid,
+    .recommendations-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .timeline-line {
+        left: 20px;
+    }
+
+    .timeline-item {
+        padding-left: 60px;
+    }
+
+    .step-number {
+        left: 10px;
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+    }
+}

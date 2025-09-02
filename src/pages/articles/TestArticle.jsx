@@ -1,5 +1,5 @@
 import React from 'react';
-import ArticleBase from './ArticleBase';
+import ArticleBase from '../../components/article/ArticleBase'; // 使用重構版的 ArticleBase
 import ArticleIntro from '../../components/article/ArticleIntro';
 import ArticleSection from '../../components/article/ArticleSection';
 import ArticleDivider from '../../components/article/ArticleDivider';

@@ -1,0 +1,172 @@
+/* 全域樣式重置和最終修復 */
+
+/* 確保正確的盒模型 */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 重置和基礎樣式 */
+.sensitive-skincare-guide {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 確保所有圖片響應式 */
+.sensitive-skincare-guide img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 確保所有按鈕樣式一致 */
+.sensitive-skincare-guide button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.sensitive-skincare-guide button:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* 確保所有文字選擇有適當的顏色 */
+.sensitive-skincare-guide ::selection {
+  background: rgba(102, 126, 234, 0.3);
+  color: #333;
+}
+
+/* 確保 Grid 容器正確顯示 */
+.premium-grid,
+.recommendations-grid,
+.content-cards {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* 確保浮動元素不會溢出 */
+.floating-nav,
+.interactive-timeline {
+  max-width: calc(100vw - 20px);
+}
+
+/* 確保所有卡片有最小高度 */
+.interactive-card,
+.product-card,
+.timeline-card,
+.card-3d {
+  min-height: 120px;
+}
+
+/* 確保文字不會溢出容器 */
+.sensitive-skincare-guide h1,
+.sensitive-skincare-guide h2,
+.sensitive-skincare-guide h3,
+.sensitive-skincare-guide p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* 確保長文字內容有適當的行高 */
+.sensitive-skincare-guide p {
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+/* 確保所有漸層文字在不支援的瀏覽器中有備用顏色 */
+.gradient-text,
+.highlight-pink,
+.highlight-mint,
+.stat-highlight {
+  color: #667eea; /* 備用顏色 */
+}
+
+/* 確保動畫性能 */
+.sensitive-skincare-guide * {
+  will-change: auto;
+}
+
+.card-3d,
+.interactive-card,
+.product-card {
+  will-change: transform;
+}
+
+/* 減少動畫如果用戶偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .sensitive-skincare-guide * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 高對比度模式支援 */
+@media (prefers-contrast: high) {
+  .sensitive-skincare-guide {
+    background: white;
+  }
+  
+  .card-3d,
+  .interactive-card,
+  .product-card,
+  .timeline-card,
+  .modern-intro,
+  .question-container {
+    background: white;
+    border: 2px solid #333;
+  }
+  
+  .gradient-text,
+  .highlight-pink,
+  .highlight-mint,
+  .stat-highlight {
+    color: #000 !important;
+    -webkit-text-fill-color: #000 !important;
+  }
+}
+
+/* 確保在小螢幕上有適當的邊距 */
+@media (max-width: 480px) {
+  .article-container.modern-layout {
+    padding: 0.5rem;
+  }
+  
+  .modern-intro,
+  .card-3d,
+  .question-container {
+    margin: 1rem 0;
+    padding: 1rem;
+  }
+  
+  .interactive-card {
+    padding: 1rem;
+    min-height: 100px;
+  }
+  
+  .product-card {
+    padding: 1rem;
+  }
+  
+  .timeline-card {
+    padding: 1rem;
+  }
+  
+  .article-title.gradient-text {
+    font-size: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.3rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1.4rem;
+  }
+}

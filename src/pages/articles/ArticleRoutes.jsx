@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import FaceWashingSteps from './FaceWashingSteps';
-import SensitiveSkinGuide from './SensitiveSkinGuide';
+import SensitiveSkinGuide from './SensitiveSkinCareGuide'; // 更新引用路径
 import ArticleNotFound from './ArticleNotFound';
 
 // 文章路由管理組件
