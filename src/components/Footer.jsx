@@ -54,6 +54,28 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      {/* 3、4放一列：社交媒體和工具圖標在小螢幕上同一行 */}
+      <div id="bottomIcons">
+        <div id="socialsMobile">
+          <img src={xIcon} alt="x" className="socBtn fx xIcon" />
+          <img src={igIcon} alt="instagram" className="socBtn fx igIcon" />
+          <img src={fbIcon} alt="facebook" className="socBtn fx fbIcon" />
+        </div>
+        <div id="toolsMobile">
+          <Link to="/Member">
+            <img src={memberIcon} alt="member" className="toolIco fx user" />
+          </Link>
+          <Link to="/ShopCart">
+            <img src={shopCartIcon} alt="shopCart" className="toolIco fx cart" />
+          </Link>
+          <Link to="/FQA">
+            <img src={fqa} alt="questions" className="toolIco fx msg" />
+          </Link>
+          <Link to="/News">
+            <img src={newsIcon} alt="news" className="toolIco fx news" />
+          </Link>
+        </div>
+      </div>
       <div id="copyright">
         <p>ELOA © 2025  eloa.com</p>
       </div>

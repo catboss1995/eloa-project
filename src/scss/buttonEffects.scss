@@ -1,32 +1,32 @@
 @use "./styleReset" as *;
-// 全局按鈕效果樣式組件
 
+// 基礎特效優化 - 使用 transform 代替多屬性動畫
 .fx {
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease; // 只使用 transform 提高性能
   cursor: pointer;
   position: relative;
+  will-change: transform; // 提示瀏覽器優化動畫
   
-  // 懸停效果 - 上浮動畫
   &:hover {
     transform: translateY(-5px);
   }
   
-  // 點擊效果
   &:active {
     transform: scale(0.95);
   }
 }
 
-// 社交媒體圖標特定樣式
+// 社群媒體按鈕優化
 .socBtn {
   opacity: 0.8;
+  transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+  will-change: transform, opacity; // 優化動畫性能
   
   &:hover {
     opacity: 1;
     filter: brightness(1.2);
   }
   
-  // 添加輕微旋轉效果
   &.xIcon:hover {
     transform: translateY(-5px) rotate(5deg);
   }
@@ -40,15 +40,17 @@
   }
 }
 
-// 功能按鈕樣式
+// 工具列圖標優化 - 分離動畫屬性
 .toolIco {
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: filter 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform, filter; // 優化動畫性能
   
   &:hover {
     filter: drop-shadow(0 5px 15px rgba(202, 174, 129, 0.3));
   }
   
-  // 懸停時添加底部邊框或下劃線效果
+  // 優化底線效果
   &::after {
     content: '';
     position: absolute;
@@ -57,7 +59,8 @@
     width: 0;
     height: 2px;
     background-color: $light-brown2;
-    transition: all 0.3s ease;
+    transition: width 0.3s ease, left 0.3s ease;
+    will-change: width, left; // 優化動畫性能
   }
   
   &:hover::after {
@@ -66,7 +69,7 @@
   }
 }
 
-// 導航鏈接效果
+// 導航連結優化
 .navLk {
   position: relative;
   
@@ -79,6 +82,7 @@
     height: 2px;
     background-color: $light-brown2;
     transition: width 0.3s ease;
+    will-change: width; // 優化動畫性能
   }
   
   &:hover::after {
@@ -86,35 +90,35 @@
   }
 }
 
-// 購物車按鈕特殊效果
+// 購物車動畫優化 - 減少複雜度
 .cart {
   &:hover {
     animation: wiggle 0.5s ease;
   }
 }
 
-// 購物車搖晃動畫
+// 優化搖晃動畫 - 使用 transform
 @keyframes wiggle {
   0%, 100% { transform: translateY(-5px) rotate(0); }
   25% { transform: translateY(-5px) rotate(5deg); }
   75% { transform: translateY(-5px) rotate(-5deg); }
 }
 
-// 會員按鈕特殊效果
+// 會員按鈕優化
 .user {
   &:hover {
     animation: pulse 1s infinite;
   }
 }
 
-// 脈衝動畫
+// 優化脈衝動畫
 @keyframes pulse {
   0% { transform: translateY(-5px) scale(1); }
   50% { transform: translateY(-5px) scale(1.1); }
   100% { transform: translateY(-5px) scale(1); }
 }
 
-// 訊息按鈕特殊效果
+// 訊息按鈕優化 - 減少複雜度
 .msg {
   overflow: hidden;
   
@@ -128,6 +132,7 @@
     background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.3s ease;
+    will-change: opacity, transform; // 優化動畫性能
   }
   
   &:hover::before {
@@ -136,15 +141,16 @@
   }
 }
 
-// 漣漪效果動畫
+// 優化漣漪動畫
 @keyframes ripple {
   from { transform: scale(0.5); opacity: 0.5; }
   to { transform: scale(1.5); opacity: 0; }
 }
 
-// 卡片懸停效果
+// 卡片懸停優化 - 分離動畫屬性
 .cardFx {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform, box-shadow; // 優化動畫性能
   
   &:hover {
     transform: translateY(-10px);
@@ -152,9 +158,9 @@
   }
 }
 
-// 按鈕懸停效果
+// 按鈕懸停優化
 .btnHover {
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease; // 減少不必要的屬性
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -169,10 +175,26 @@
     background: rgba(255, 255, 255, 0.1);
     transform: translateX(-100%);
     transition: transform 0.3s ease;
+    will-change: transform; // 優化動畫性能
     z-index: -1;
   }
   
   &:hover::before {
     transform: translateX(0);
+  }
+}
+
+// 添加觸控設備優化
+@media (hover: none) {
+  // 在觸控設備上禁用某些懸停效果，提高性能
+  .fx:hover,
+  .navLk:hover::after,
+  .toolIco:hover::after {
+    transform: none;
+  }
+  
+  .cardFx:hover {
+    transform: none;
+    box-shadow: none;
   }
 }
