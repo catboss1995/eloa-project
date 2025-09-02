@@ -1,4 +1,4 @@
-/* src/scss/styleFqa.scss — ELOA FAQ (最終版整合) */
+/* src/scss/styleFqa.scss — ELOA FAQ (最終版 + 新箭頭動畫) */
 @use "./styleReset" as *;
 
 $brand: #5B4C39;
@@ -90,13 +90,24 @@ $container: 1200px;
 }
 .faq__divider { height: 1px; background: $line; margin-bottom: 16px; }
 
-/* ===== Item ===== */
+/* ===== Item (收合/展開分層效果) ===== */
 .faq__item {
   border: none;
   border-bottom: 1px solid $line;
   background: transparent;
+  transition: all .3s ease;
+
+  & + .faq__item { margin-top: 0; }
+
+  /* 展開時變成卡片 */
+  &.is-open {
+    border: 1px solid #e3d9cf;
+    border-radius: 10px;
+    background: #fdfcfb;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.05);
+  }
 }
-.faq__item + .faq__item { margin-top: 0; }
 
 /* ===== 問題列（按鈕） ===== */
 .faq__q {
@@ -110,7 +121,7 @@ $container: 1200px;
   justify-content: space-between;
   gap: 12px;
   width: 100%;
-  padding: 16px 0 16px 20px; /* 🔥 左邊留 20px 空間 */
+  padding: 16px 20px;
   text-align: left;
   border: 0;
   background: transparent;
@@ -122,26 +133,35 @@ $container: 1200px;
 
   transition: transform .2s ease;
   transform-origin: center;
-  z-index: 0;
 }
 .faq__q:hover {
   transform: translateY(-2px) scale(1.02);
 }
 .faq__item.is-open .faq__q {
+  background: #f5f0ea;
+  border-radius: 10px 10px 0 0;
   transform: translateY(-1px) scale(1.01);
 }
 
-/* ===== chevron (箭頭) ===== */
+/* ===== chevron (箭頭動畫 - 全新版本) ===== */
 .faq__chevron {
   display: inline-block;
-  font-size: 32px; /* 🔥 箭頭再大一點 */
-  transition: transform .25s ease, font-size .2s ease;
+  font-size: 28px;
+  transform: rotate(0deg);
+  transition: transform .35s cubic-bezier(.25,.8,.5,1.2); /* 點擊展開/收合立即有動畫 + 回彈 */
 }
-.faq__q:hover .faq__chevron {
-  transform: scale(1.3);
-}
+
+/* 展開時 → 向上旋轉 */
 .faq__chevron.is-open {
-  transform: rotate(180deg) scale(1.3);
+  transform: rotate(180deg);
+}
+
+/* Hover → 微縮放，不改旋轉角度 */
+.faq__q:hover .faq__chevron {
+  transform: scale(1.1) rotate(0deg);
+}
+.faq__item.is-open .faq__q:hover .faq__chevron {
+  transform: scale(1.1) rotate(180deg);
 }
 
 /* ===== 答案內容 ===== */
@@ -149,21 +169,29 @@ $container: 1200px;
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height .35s ease, opacity .25s ease;
+  transition: max-height .35s ease, opacity .25s ease, padding .25s ease;
   pointer-events: none;
+  background: #fff;
+  border-radius: 0 0 10px 10px;
 }
+
 .faq__item.is-open .faq__aWrap {
   max-height: 600px;
   opacity: 1;
   pointer-events: auto;
+  padding: 16px 20px 22px;
+  border-top: 1px solid #e3d9cf;
 }
 
 .faq__a {
   font-size: 16px;
   line-height: 1.95;
+  padding: 0;
+  margin: 0;
+}
+.faq__item.is-open .faq__a {
   padding: 12px 0 22px;
 }
-.faq__item:not(.is-open) .faq__a { padding: 0; margin: 0; }
 
 /* 條列清單 */
 .faq__bullets { margin-top: 6px; }
@@ -201,10 +229,7 @@ $container: 1200px;
   height: 260px;
   overflow: hidden;
 
-  /* 預設桌機 */
   margin-top: -120px;
-
-  /* 🔥 避免波浪擋住 FAQ 點擊 */
   pointer-events: none;
 }
 
@@ -239,7 +264,6 @@ $container: 1200px;
   .faq__wave-container {
     margin-top: -100px;
     height: 240px;
-    pointer-events: none;
   }
 }
 
@@ -250,7 +274,6 @@ $container: 1200px;
   .faq__wave-container {
     margin-top: -80px;
     height: 220px;
-    pointer-events: none;
   }
 }
 
@@ -262,6 +285,5 @@ $container: 1200px;
   .faq__wave-container {
     margin-top: -60px;
     height: 200px;
-    pointer-events: none;
   }
 }
