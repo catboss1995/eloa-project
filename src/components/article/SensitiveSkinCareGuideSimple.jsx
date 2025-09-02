@@ -2,24 +2,90 @@ import React, { useState, useEffect } from 'react';
 import '../../scss/articles/_website-integration.scss';
 
 const SensitiveSkinCareGuideSimple = () => {
-  // 簡化狀態管理 - 只保留閱讀進度
+  // 狀態管理
   const [readingProgress, setReadingProgress] = useState(0);
+  const [activeSection, setActiveSection] = useState(0);
 
-  // 簡化滾動監聽
+  // 滾動監聽和區段偵測
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY;
       const maxHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = Math.min(scrolled / maxHeight, 1);
       setReadingProgress(progress);
+
+      // 偵測當前活動區段
+      const sections = document.querySelectorAll('.intro-section, .features-section, .steps-section, .products-section, .tips-section, .conclusion-section');
+      let currentSection = 0;
+      
+      sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+          currentSection = index;
+        }
+      });
+      
+      setActiveSection(currentSection);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // 區段導航功能
+  const scrollToSection = (index) => {
+    const sections = document.querySelectorAll('.intro-section, .features-section, .steps-section, .products-section, .tips-section, .conclusion-section');
+    if (sections[index]) {
+      sections[index].scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
+  };
+
   return (
     <div className="sensitive-skincare-guide">
+      {/* 右側浮動導航 - 不會擋到 logo */}
+      <nav className="floating-nav">
+        <div className="nav-progress">
+          <div 
+            className="progress-bar" 
+            style={{ width: `${readingProgress * 100}%` }}
+          ></div>
+        </div>
+        <div className="nav-items">
+          {[
+            { name: '介紹', icon: '🌸' },
+            { name: '特徵', icon: '🔍' },
+            { name: '步驟', icon: '📋' },
+            { name: '產品', icon: '💎' },
+            { name: '建議', icon: '💡' },
+            { name: '結論', icon: '✨' }
+          ].map((item, index) => (
+            <button
+              key={index}
+              className={`nav-item ${activeSection === index ? 'active' : ''}`}
+              onClick={() => scrollToSection(index)}
+              title={item.name}
+            >
+              <span className="nav-icon">{item.icon}</span>
+              <span className="nav-text">{item.name}</span>
+            </button>
+          ))}
+        </div>
+      </nav>
+
+      {/* 美麗的背景動畫 - 不會擋到主要內容 */}
+      <div className="artistic-background">
+        <div className="bg-gradient"></div>
+        <div className="floating-particles">
+          <div className="particle particle-0"></div>
+          <div className="particle particle-1"></div>
+          <div className="particle particle-2"></div>
+          <div className="particle particle-3"></div>
+        </div>
+      </div>
+
       {/* 主要內容區域 */}
       <article className="article-container">
         {/* 標題區段 */}
@@ -120,10 +186,10 @@ const SensitiveSkinCareGuideSimple = () => {
           </div>
         </section>
 
-        {/* 注意事項 */}
+        {/* 護理建議 */}
         <section className="tips-section">
           <div className="content-wrapper">
-            <h2 className="section-title">護理小貼士</h2>
+            <h2 className="section-title">護理小撇步</h2>
             <div className="tips-container">
               <div className="tip-item">
                 <div className="tip-icon">💡</div>

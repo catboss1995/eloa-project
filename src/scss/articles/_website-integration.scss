@@ -1,5 +1,36 @@
 /* 符合網站設計系統的敏感肌文章樣式 */
-@import '../styleReset.scss';
+@use '../styleReset.scss' as *;
+
+/* 頂部進度條樣式 - 固定在 topbar 下面 */
+.top-progress-bar {
+    position: fixed;
+    top: 64px; /* topbar 高度 */
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(230, 219, 201, 0.3);
+    z-index: 999;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, $light-brown3, $light-brown4);
+    width: 0%;
+    transition: width 0.3s ease;
+    position: relative;
+    
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+        animation: article-shimmer 2s infinite;
+    }
+}
 
 .sensitive-skincare-guide {
     font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
@@ -8,21 +39,309 @@
     line-height: 1.6;
     min-height: 100vh;
     position: relative;
+    overflow-x: hidden; /* 防止動畫溢出 */
 
     * {
         font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
     }
 }
 
-/* 移除浮動導航，避免擋到 logo */
-.floating-nav {
-    display: none !important;
+/* 保留精美的進入動畫 */
+@keyframes article-fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* 移除背景粒子和藝術背景 */
-.artistic-background,
+@keyframes article-fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes article-fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes article-pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes article-shimmer {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
+/* 浮動粒子動畫 */
+@keyframes article-float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes article-floatSlow {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(180deg);
+    }
+}
+
+/* 重新設計浮動導航，避免擋到 logo */
+.floating-nav {
+    position: fixed;
+    top: 0;
+    right: 30px;
+    background: transparent; /* 完全透明背景 */
+    backdrop-filter: none; /* 移除毛玻璃效果 */
+    border-radius: 25px;
+    padding: 15px 10px;
+    box-shadow: none; /* 移除陰影 */
+    border: none;
+    transition: all 0.3s ease;
+    animation: article-slideInRight 0.8s ease-out 1s forwards;
+    
+    &:hover {
+        background: transparent; /* hover 時也保持透明 */
+        box-shadow: none;
+    }
+}
+
+@keyframes article-slideInRight {
+    to {
+        opacity: 1;
+
+    }
+}
+
+/* 修復進度條背景 */
+.nav-progress {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: transparent; /* 移除白色背景 */
+    border-radius: 3px 3px 0 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, $light-brown3, $light-brown4);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+    position: relative;
+    
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+        animation: article-shimmer 2s infinite;
+    }
+}
+
+.nav-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 40%;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: $dark-brown2;
+    font-size: 12px;
+    font-weight: 400;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(196, 178, 154, 0.2), transparent);
+        transition: left 0.5s ease;
+    }
+    
+    &:hover {
+        background: linear-gradient(135deg, $beige1, $beige2);
+        color: $dark-brown1;
+        transform: translateX(-3px);
+        box-shadow: 0 4px 15px rgba(72, 39, 13, 0.1);
+        
+        &::before {
+            left: 100%;
+        }
+        
+        .nav-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+    }
+    
+    &.active {
+        background: linear-gradient(135deg, $light-brown3, $light-brown4);
+        color: $white;
+        transform: translateX(-5px);
+        box-shadow: 0 6px 20px rgba(196, 178, 154, 0.3);
+        
+        .nav-icon {
+            transform: scale(1.1);
+        }
+    }
+}
+
+.nav-icon {
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.nav-text {
+    font-family: 'Noto Sans TC', sans-serif;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    max-width: 0;
+    overflow: hidden;
+}
+
+.floating-nav:hover .nav-text {
+    opacity: 1;
+    transform: translateX(0);
+    max-width: 80px;
+}
+
+/* 保留美麗的背景粒子，但放在內容後面 */
+.artistic-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1; /* 確保在內容後面 */
+    overflow: hidden;
+}
+
+.bg-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(248, 249, 245, 0.8) 0%,
+        rgba(243, 239, 230, 0.6) 25%,
+        rgba(240, 232, 219, 0.4) 50%,
+        rgba(244, 241, 234, 0.6) 75%,
+        rgba(248, 249, 245, 0.8) 100%
+    );
+    animation: article-shimmer 8s ease-in-out infinite;
+}
+
 .floating-particles {
-    display: none !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.particle-0 {
+    width: 4px;
+    height: 4px;
+    background: $light-brown3;
+    top: 20%;
+    left: 10%;
+    animation: article-float 6s ease-in-out infinite;
+    animation-delay: 0s;
+}
+
+.particle-1 {
+    width: 6px;
+    height: 6px;
+    background: $light-brown4;
+    top: 60%;
+    left: 80%;
+    animation: article-floatSlow 8s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+.particle-2 {
+    width: 3px;
+    height: 3px;
+    background: $beige4;
+    top: 80%;
+    left: 20%;
+    animation: article-float 7s ease-in-out infinite;
+    animation-delay: 4s;
+}
+
+.particle-3 {
+    width: 5px;
+    height: 5px;
+    background: $light-brown2;
+    top: 30%;
+    left: 70%;
+    animation: article-floatSlow 9s ease-in-out infinite;
+    animation-delay: 1s;
 }
 
 /* 移除底部時間軸，改用簡單的頁內導航 */
@@ -35,14 +354,18 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1rem;
-    background-color: $beige0;
+    background: transparent; /* 改為透明背景 */
+    position: relative;
+    z-index: 1;
 }
 
 .article-container.modern-layout {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1rem;
-    background-color: $beige0;
+    background: transparent; /* 改為透明背景 */
+    position: relative;
+    z-index: 1;
 }
 
 /* 簡化版本的基本樣式 */
@@ -75,7 +398,7 @@
     font-weight: 300;
 }
 
-/* 區段樣式 */
+/* 區段樣式 - 添加動畫效果，使用柔和背景 */
 .intro-section,
 .features-section,
 .steps-section,
@@ -84,10 +407,46 @@
 .conclusion-section {
     margin: 3rem 0;
     padding: 2rem;
-    background: $white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(72, 39, 13, 0.08);
+    background: rgba(255, 254, 253, 0.8); /* 更柔和的半透明白色 */
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(72, 39, 13, 0.08);
     border: 1px solid $beige4;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: article-fadeInUp 0.8s ease-out forwards;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(72, 39, 13, 0.12);
+        background: rgba(255, 254, 253, 0.95);
+    }
+}
+
+/* 錯開動畫時間 */
+.intro-section {
+    animation-delay: 0.1s;
+}
+
+.features-section {
+    animation-delay: 0.2s;
+}
+
+.steps-section {
+    animation-delay: 0.3s;
+}
+
+.products-section {
+    animation-delay: 0.4s;
+}
+
+.tips-section {
+    animation-delay: 0.5s;
+}
+
+.conclusion-section {
+    animation-delay: 0.6s;
 }
 
 /* 特徵網格 */
@@ -101,20 +460,59 @@
 .feature-card {
     background: $beige1;
     padding: 1.5rem;
-    border-radius: 8px;
+    border-radius: 12px;
     text-align: center;
     border: 1px solid $beige3;
-    transition: transform 0.3s ease;
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: article-fadeInUp 0.6s ease-out forwards;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.6s ease;
+    }
+    
+    &:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 12px 30px rgba(72, 39, 13, 0.15);
+        
+        &::before {
+            left: 100%;
+        }
+        
+        .feature-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+    }
 }
 
-.feature-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(72, 39, 13, 0.12);
+/* 錯開特徵卡片動畫 */
+.feature-card:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+.feature-card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.feature-card:nth-child(3) {
+    animation-delay: 0.5s;
 }
 
 .feature-icon {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
 .feature-card h3 {
@@ -144,22 +542,76 @@
     gap: 1.5rem;
     padding: 1.5rem;
     background: $beige1;
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid $beige3;
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: article-fadeInLeft 0.6s ease-out forwards;
+    transition: all 0.3s ease;
+    position: relative;
+    
+    &:hover {
+        transform: translateX(5px);
+        box-shadow: 0 8px 25px rgba(72, 39, 13, 0.12);
+        background: linear-gradient(135deg, $beige1 0%, $beige2 100%);
+        
+        .step-number {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(196, 178, 154, 0.4);
+        }
+    }
+}
+
+/* 錯開步驟動畫 */
+.step-item:nth-child(1) {
+    animation-delay: 0.4s;
+}
+
+.step-item:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.step-item:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.step-item:nth-child(4) {
+    animation-delay: 0.7s;
 }
 
 .step-number {
-    background: $light-brown3;
+    background: linear-gradient(135deg, $light-brown3 0%, $light-brown4 100%);
     color: $white;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: $font16-light;
-    font-weight: 500;
+    font-size: $font18-light;
+    font-weight: 600;
     flex-shrink: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(196, 178, 154, 0.3);
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(135deg, $light-brown2, $light-brown5);
+        border-radius: 50%;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    &:hover::before {
+        opacity: 1;
+    }
 }
 
 .step-content h3 {
@@ -185,31 +637,75 @@
 
 .product-card {
     background: $beige1;
-    border-radius: 8px;
+    border-radius: 16px;
     overflow: hidden;
     border: 1px solid $beige3;
-    transition: transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    animation: article-fadeInUp 0.8s ease-out forwards;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 1;
+        pointer-events: none;
+    }
+    
+    &:hover {
+        transform: translateY(-15px) scale(1.03);
+        box-shadow: 0 20px 40px rgba(72, 39, 13, 0.15);
+        
+        &::before {
+            opacity: 1;
+        }
+        
+        .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            background: linear-gradient(135deg, $beige1 0%, $beige2 100%);
+        }
+    }
 }
 
-.product-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(72, 39, 13, 0.12);
+/* 錯開產品卡片動畫 */
+.product-card:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.product-card:nth-child(2) {
+    animation-delay: 0.6s;
 }
 
 .product-image {
     width: 100%;
     height: 200px;
     overflow: hidden;
+    position: relative;
 }
 
 .product-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.4s ease;
 }
 
 .product-info {
     padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
 }
 
 .product-info h3 {
@@ -239,13 +735,64 @@
     gap: 1rem;
     padding: 1.5rem;
     background: $beige1;
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid $beige3;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: article-fadeInUp 0.6s ease-out forwards;
+    transition: all 0.3s ease;
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(135deg, $light-brown3, $light-brown4);
+        border-radius: 0 2px 2px 0;
+        transform: scaleY(0);
+        transition: transform 0.3s ease;
+    }
+    
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(72, 39, 13, 0.1);
+        padding-left: 2rem;
+        
+        &::before {
+            transform: scaleY(1);
+        }
+        
+        .tip-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+    }
+}
+
+/* 錯開小貼士動畫 */
+.tip-item:nth-child(1) {
+    animation-delay: 0.6s;
+}
+
+.tip-item:nth-child(2) {
+    animation-delay: 0.7s;
+}
+
+.tip-item:nth-child(3) {
+    animation-delay: 0.8s;
+}
+
+.tip-item:nth-child(4) {
+    animation-delay: 0.9s;
 }
 
 .tip-icon {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     flex-shrink: 0;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
 .tip-item p {
@@ -266,35 +813,73 @@
 
 /* 響應式設計 */
 @media (max-width: 768px) {
-    .article-container {
-        padding: 1rem 0.5rem;
+  .article-container {
+    padding: 1rem 0.5rem;
+  }
+  
+  .content-wrapper {
+    padding: 0.5rem;
+  }
+  
+  .features-grid,
+  .products-grid,
+  .tips-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .step-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .article-title {
+    font-size: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.3rem;
+  }
+  
+  /* 移動設備上的浮動導航調整 */
+  .floating-nav {
+    right: 10px;
+    top: auto;
+    bottom: 20px;
+    transform: none;
+    animation: article-slideInUp 0.8s ease-out 1s forwards;
+    opacity: 0;
+    transform: translateY(60px);
+    
+    &:hover {
+      transform: translateY(-5px);
     }
-
-    .content-wrapper {
-        padding: 0.5rem;
+  }
+  
+  @keyframes article-slideInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-
-    .features-grid,
-    .products-grid,
-    .tips-container {
-        grid-template-columns: 1fr;
-    }
-
-    .step-item {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .article-title {
-        font-size: 1.5rem;
-    }
-
-    .section-title {
-        font-size: 1.3rem;
-    }
-}
-
-/* 修正標題大小 - 符合網站字體系統 */
+  }
+  
+  .nav-items {
+    flex-direction: row;
+    gap: 4px;
+  }
+  
+  .nav-item {
+    padding: 6px 8px;
+    min-width: 35px;
+  }
+  
+  .nav-text {
+    display: none; /* 移動設備上只顯示圖標 */
+  }
+  
+  .nav-icon {
+    font-size: 16px;
+  }
+}/* 修正標題大小 - 符合網站字體系統 */
 .article-title.gradient-text {
     font-size: $font32-light;
     /* 使用網站的字體大小變數 */
@@ -385,7 +970,8 @@
 .product-card,
 .timeline-card,
 .question-container {
-    background: $white;
+    background: rgba(255, 254, 253, 0.7);
+    backdrop-filter: blur(8px);
     border: 1px solid $beige4;
     border-radius: 8px;
     padding: 1.5rem;
@@ -449,7 +1035,8 @@
 }
 
 .content-card:hover {
-    background: $white;
+    background: rgba(255, 254, 253, 0.85);
+    backdrop-filter: blur(8px);
     border-color: $light-brown6;
 }
 
@@ -572,7 +1159,15 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background: $beige4;
+    background: transparent; /* 移除白色背景，改為透明 */
+}
+
+.timeline-progress {
+    height: 100%;
+    background: linear-gradient(90deg, $light-brown3, $light-brown4);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 1px;
 }
 
 .timeline-item {
@@ -734,7 +1329,8 @@
 }
 
 .expert-quote {
-    background: $white;
+    background: rgba(255, 254, 253, 0.7);
+    backdrop-filter: blur(8px);
     border-radius: 6px;
     padding: 1.5rem;
     margin: 1.5rem 0;
@@ -749,7 +1345,8 @@
     align-items: flex-start;
     margin: 0.8rem 0;
     padding: 0.8rem;
-    background: $white;
+    background: rgba(255, 254, 253, 0.7);
+    backdrop-filter: blur(8px);
     border-radius: 6px;
     transition: all 0.3s ease;
 }
