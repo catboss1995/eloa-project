@@ -1,6 +1,7 @@
 // context/CartContext.jsx
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 const CartContext = createContext();
+
 
 const cartReducer = (state, action) => {
   switch (action.type) {
@@ -60,7 +61,17 @@ const cartReducer = (state, action) => {
 };
 
 export const CartProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(cartReducer, { items: [], isOpen: false });
+  const localData = localStorage.getItem("cart");
+  const initialState = localData
+    ? JSON.parse(localData)
+    : { items: [], isOpen: false };
+
+  const [state, dispatch] = useReducer(cartReducer, initialState);
+
+  // ✅ 監聽 state.items 改變時，存回 localStorage
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(state));
+  }, [state]);
   return (
     <CartContext.Provider value={{ state, dispatch }}>
       {children}

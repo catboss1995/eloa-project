@@ -1,12 +1,13 @@
 @use "styleReset" as *;
 
+
 .cart-drawer {
   position: fixed;
   top: 64px;
-  right: -400px;
+  right: -408px;
   width: 400px;
   height: calc(100vh - 64px);
-  background: #fff;
+  background: $white;
   box-shadow: -2px 0 8px $black-40;
   transition: right 0.3s ease-in-out;
   display: flex;
@@ -69,6 +70,10 @@
       justify-content: flex-start;
       overflow-y: scroll;
       height: 380px;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
       .cart-item {
         justify-content: space-between;
