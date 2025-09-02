@@ -42,8 +42,8 @@ function AppContent() {
         <Route path='/article/:slug' element={<ArticleRouter/>}/>
         <Route path="/FQA" element={<FQA />} />
         <Route path="/Member" element={<Member />} />
-        <Route path="/News" element={<News />} />
-        <Route path="/NewsList" element={<NewsList />} />
+       <Route path="/News" element={<News />} />
+      <Route path="/NewsList/:slug" element={<NewsList />} />
         <Route path="/ProductCalmie" element={<ProductCalmie />} />
         <Route path="/ProductAuraClean" element={<ProductAuraClean />} />
         <Route path="/ProductCleanShot" element={<ProductCleanShot />} />
