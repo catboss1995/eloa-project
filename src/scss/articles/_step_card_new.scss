@@ -1,5 +1,5 @@
-@use '../article-variables' as vars;
-@use '../article-mixins' as mixins;
+@use '../_article-variables' as vars;
+@use '../_article-mixins' as mixins;
 
 .stepFlow {
     display: flex;
