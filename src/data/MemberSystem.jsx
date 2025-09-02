@@ -1,6 +1,7 @@
 import React from 'react'
 
 const STORAGE_KEY = 'users';
+const CURRENT_USER_KEY = 'currentUser';
 
 const MemberSystem = {
   // 從 localStorage 取得用戶資料
@@ -42,7 +43,17 @@ const MemberSystem = {
     if (!user) {
       throw new Error('電子郵件或密碼錯誤');
     }
+    localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));    
     return user;
+  },
+  // 取得當前登入用戶
+  getCurrentUser: ()=>{
+    const user = localStorage.getItem(CURRENT_USER_KEY);
+    return user ? JSON.parse(user) : null ;
+  },
+  // 登出
+  logout : () => {
+    localStorage.removeItem(CURRENT_USER_KEY);
   },
 
   // 檢查 email 是否存在
