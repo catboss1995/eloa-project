@@ -6,16 +6,19 @@ import topbarLogo from "../assets/images/topbarLogo.png"
 import topbarMember from "../assets/images/topbarMember.png"
 import topbarBag from "../assets/images/topbarBag.png"
 import { useCart } from "../data/CartContext"
+import MemberSystem from "../data/MemberSystem"
 
 const Topbar = () => {
-  const {state, dispatch} = useCart();
+  
 
   // 導航狀態控制
+  const currentUser = MemberSystem.getCurrentUser();  
+  const { state, dispatch } = useCart();
   const [scrolled, setScrolled] = useState(false)
   const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isMobileProductOpen, setIsMobileProductOpen] = useState(false) // 新增：專門控制手機版產品選單
-
+  
   // 產品資料
   const products = [
     { id: 1, name: "Master IX - 全效肌膚管理儀", path: "/ProductMasterIX" },
@@ -115,7 +118,7 @@ const Topbar = () => {
       <div className="nav-right desktop-nav">
         {/* 桌面版選單 - 保持不變 */}
         <div className="dropdown-container">
-          <div 
+          <div
             className="text-link btn-effect nav-link dropdown-trigger"
             onClick={handleProductClick}
           >
@@ -124,7 +127,7 @@ const Topbar = () => {
               ▼
             </span>
           </div>
-          
+
           {isProductDropdownOpen && (
             <div className="dropdown-menu">
               {products.map((product) => (
@@ -145,12 +148,13 @@ const Topbar = () => {
         <Link to="/Article" className="text-link btn-effect nav-link">肌膚學苑</Link>
         <Link to="/FQA" className="text-link btn-effect nav-link">常見問題</Link>
         <Link to="/News" className="text-link btn-effect nav-link">最新消息</Link>
-        <Link to="/Member" className="btn-effect function-btn user-btn">
+        <Link to={currentUser?"/MemberManagement":"/Member"} 
+          className="btn-effect function-btn user-btn">
           <img src={topbarMember} alt="memberIcon" id="topbar-member" />
         </Link>
-        <div className="btn-effect function-btn cart-btn" onClick={handleCartClick}>
+        <div className="btn-effect function-btn cart-btn" onClick={() => { dispatch({ type: "TOGGLE_CART" }) }}>
           <img src={topbarBag} alt="bagIcon" id="topbar-bag" />
-          ({cartItemCount})
+          ({state.items.reduce((sum, i) => sum + i.qty, 0)})
         </div>
       </div>
 
