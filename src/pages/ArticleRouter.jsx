@@ -4,13 +4,14 @@ import articlesData from '../data/articlesData';
 
 // 導入所有文章組件
 import FaceWashingSteps from './articles/FaceWashingSteps';
-import SensitiveSkinCareGuide from './articles/SensitiveSkinCareGuide';
+import SensitiveSkinCareGuide from '../components/article/SensitiveSkinCareGuideSimple'; // 修正路徑
 import TestArticle from './articles/TestArticle';
+import TestSimpleArticle from './articles/TestSimpleArticle'; // 臨時測試組件
 
 // 文章路由映射表
 const articleComponents = {
   "face-washing-steps": FaceWashingSteps,
-  "sensitive-skin-care-guide": SensitiveSkinCareGuide, // 使用原始的敏感肌文章組件
+  "sensitive-skin-care-guide": SensitiveSkinCareGuide, // 使用重構版的敏感肌文章組件
   "test-article": TestArticle,
   // 隨著新文章添加，這裡可以繼續擴展
   // "beauty-device-guide": BeautyDeviceGuide,

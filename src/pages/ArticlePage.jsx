@@ -14,6 +14,9 @@ import ArticleImageGrid from '../components/article/ArticleImageGrid';
 import ArticleConclusion from '../components/article/ArticleConclusion';
 import ArticleFooter from '../components/article/ArticleFooter';
 
+// 導入新的藝術設計組件
+import SensitiveSkinCareGuideSimple from '../components/article/SensitiveSkinCareGuideSimple';
+
 /**
  * 文章頁面組件
  * 展示完整的文章內容，包含頭部、簡介、內容區塊、步驟、提示、結論和底部
@@ -127,7 +130,11 @@ const ArticlePage = () => {
 
   return (
     <div className="articleContainer">
-      {/* 文章頭部 */}
+      {/* 使用新的藝術設計組件 */}
+      <SensitiveSkinCareGuideSimple />
+      
+      {/* 原有的組件作為備用 */}
+      {/*
       <ArticleHeader 
         title={articleData.title}
         author={articleData.author}
@@ -135,12 +142,10 @@ const ArticlePage = () => {
         category={articleData.category}
       />
       
-      {/* 文章簡介 */}
       <ArticleIntro>
         {articleData.intro}
       </ArticleIntro>
       
-      {/* 圖文並茂的內容區塊 */}
       <ArticleImageSection 
         title="洗臉的重要性"
         image="/images/face-washing-importance.jpg"
@@ -157,13 +162,10 @@ const ArticlePage = () => {
         </p>
       </ArticleImageSection>
       
-      {/* 分隔線 */}
       <ArticleDivider text="正確的洗臉步驟" />
       
-      {/* 步驟流程 */}
       <ArticleStepFlow steps={washingSteps} />
       
-      {/* 內容區塊帶問題框 */}
       <ArticleSection 
         title="洗臉頻率：多少才合適？"
         questionBox={{
@@ -176,7 +178,6 @@ const ArticlePage = () => {
         以免破壞肌膚的自然保護屏障。
       </ArticleSection>
       
-      {/* 圓形圖片內容區塊 */}
       <ArticleImageSection 
         title="選擇合適的潔面產品"
         image="/images/cleansing-products.jpg"
@@ -193,23 +194,19 @@ const ArticlePage = () => {
         </p>
       </ArticleImageSection>
       
-      {/* 分隔線 */}
       <ArticleDivider text="常見洗臉誤區" />
       
-      {/* 提示集合 */}
       <ArticleTips title="常見的洗臉誤區" tips={washingMistakes} />
       
-      {/* 圖片網格 */}
       <ArticleImageGrid images={gridImages} />
       
-      {/* 結論 */}
       <ArticleConclusion 
         title="總結：健康肌膚從正確洗臉開始"
         paragraphs={conclusionParagraphs}
       />
       
-      {/* 文章底部 */}
       <ArticleFooter relatedArticles={articleData.relatedArticles} />
+      */}
     </div>
   );
 };
