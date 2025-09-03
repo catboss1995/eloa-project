@@ -21,64 +21,15 @@ const NewsSection = () => {
   const [activeTab, setActiveTab] = useState("全部");
   const [searchTerm, setSearchTerm] = useState("");
 
-  // ✅ 新結構：date / title / image / description / category
   const newsData = [
-    {
-      date: "2024.08.27",
-      title: "ELOA 主理人專訪",
-      image: newsInterview,
-      description: "用 ELOA 的好好時光，展望全新美肌體驗...",
-      category: "媒體報導",
-    },
-    {
-      date: "2024.08.20",
-      title: "ELOA 會員專屬派對驚喜特輯",
-      image: newsLine4,
-      description: "攜手共慶品牌榮耀時刻，共同慶賀 ELOA...",
-      category: "本月活動",
-    },
-    {
-      date: "2024.08.15",
-      title: "人氣 KOL 開箱 ELOA 美容儀",
-      image: newsUnboxing,
-      description: "美妝 KOL 實測體驗，分享真實心得...",
-      category: "媒體報導",
-    },
-    {
-      date: "2024.08.01",
-      title: "ELOA 官網會員日 抽獎專區",
-      image: newsLine5,
-      description: "登入會員即抽 ELOA 高效美容儀新品！...",
-      category: "本月活動",
-    },
-    {
-      date: "2024.07.25",
-      title: "ELOA 團隊榮獲設計大獎",
-      image: newsLine1,
-      description: "憑藉創新科技與優雅設計，勇奪國際殊榮...",
-      category: "媒體報導",
-    },
-    {
-      date: "2024.07.15",
-      title: "ELOA 榮獲國際美妝肯定",
-      image: newsAward,
-      description: "持續向國際舞台邁進，榮獲日本美妝大賞...",
-      category: "媒體報導",
-    },
-    {
-      date: "2024.07.13",
-      title: "ELOA 新品首次公開亮相",
-      image: newsLine2,
-      description: "智慧面罩於國際展會中盛大發表，現場反應熱烈...",
-      category: "本月新品",
-    },
-    {
-      date: "2024.07.01",
-      title: "ELOA 支持熱音公益計畫",
-      image: newsLine3,
-      description: "ELOA 以行動回饋社會，攜手熱心公益活動...",
-      category: "媒體報導",
-    },
+    { date: "2024.08.27", title: "ELOA 主理人專訪", image: newsInterview, description: "用 ELOA 的好好時光，展望全新美肌體驗...", category: "媒體報導" },
+    { date: "2024.08.20", title: "ELOA 會員專屬派對驚喜特輯", image: newsLine4, description: "攜手共慶品牌榮耀時刻，共同慶賀 ELOA...", category: "本月活動" },
+    { date: "2024.08.15", title: "人氣 KOL 開箱 ELOA 美容儀", image: newsUnboxing, description: "美妝 KOL 實測體驗，分享真實心得...", category: "媒體報導" },
+    { date: "2024.08.01", title: "ELOA 官網會員日 抽獎專區", image: newsLine5, description: "登入會員即抽 ELOA 高效美容儀新品！...", category: "本月活動" },
+    { date: "2024.07.25", title: "ELOA 團隊榮獲設計大獎", image: newsLine1, description: "憑藉創新科技與優雅設計，勇奪國際殊榮...", category: "媒體報導" },
+    { date: "2024.07.15", title: "ELOA 榮獲國際美妝肯定", image: newsAward, description: "持續向國際舞台邁進，榮獲日本美妝大賞...", category: "媒體報導" },
+    { date: "2024.07.13", title: "ELOA 新品首次公開亮相", image: newsLine2, description: "智慧面罩於國際展會中盛大發表，現場反應熱烈...", category: "本月新品" },
+    { date: "2024.07.01", title: "ELOA 支持熱音公益計畫", image: newsLine3, description: "ELOA 以行動回饋社會，攜手熱心公益活動...", category: "媒體報導" },
   ];
 
   const categories = ["全部", "本月新品", "本月活動", "媒體報導"];
@@ -114,28 +65,29 @@ const NewsSection = () => {
         <img src={newsBanner} alt="ELOA 最新消息 Banner" />
       </div>
 
-      {/* Tabs */}
-      <div className="news__tabs">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            className={`tab ${activeTab === cat ? "is-active" : ""}`}
-            onClick={() => setActiveTab(cat)}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
+      {/* Tabs + Search */}
+      <div className="news__header">
+        <div className="news__tabs">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              className={`tab ${activeTab === cat ? "is-active" : ""}`}
+              onClick={() => setActiveTab(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
 
-      {/* Search */}
-      <div className="news__search">
-        <img src={faqSearchIcon} alt="搜尋" className="search__icon" />
-        <input
-          type="text"
-          placeholder="關鍵字搜尋"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        <div className="news__search">
+          <img src={faqSearchIcon} alt="搜尋" className="search__icon" />
+          <input
+            type="text"
+            placeholder="關鍵字搜尋"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
       </div>
 
       {/* Cards */}
