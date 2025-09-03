@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import "../scss/styleCheckOut.scss"
 import { useCart } from '../data/CartContext'
 import MemberSystem from '../data/MemberSystem'
+import { useNavigate } from 'react-router-dom'
+
 
 const CheckOut = () => {
+  const navigate = useNavigate();
   const { state: cartState, dispatch } = useCart();
   const [formData, setFormData] = useState({
     customerType: 'individual', // individual or business
@@ -13,7 +16,7 @@ const CheckOut = () => {
     district: '',
     zipCode: '',
     address: '',
-    deliveryMethod: 'home',
+    deliveryMethod: '',
     notes: ''
   });
   const currentUser = MemberSystem.getCurrentUser();
@@ -79,8 +82,8 @@ const CheckOut = () => {
         district: currentUser.district || '',
         address: currentUser.address || '',
         // 自動計算郵遞區號
-        zipCode: currentUser.city && currentUser.district 
-          ? zipCodes[`${currentUser.city}-${currentUser.district}`] || '' 
+        zipCode: currentUser.city && currentUser.district
+          ? zipCodes[`${currentUser.city}-${currentUser.district}`] || ''
           : ''
       }));
     }
@@ -114,7 +117,7 @@ const CheckOut = () => {
       // 切換到「訂購人資訊」時，清空表單
       clearFormData();
     }
-    
+
     setFormData(prev => ({
       ...prev,
       customerType
@@ -151,12 +154,51 @@ const CheckOut = () => {
 
   const { subtotal, discount, total } = calculateTotal();
 
-  const handleSubmit = () => {
+  const handleSubmit = (formData) => {
+    if (!formData.name  || !formData.phone  || !formData.city  || !formData.district  || !formData.address || !formData.deliveryMethod){
+      return alert("資料請詳細填寫")
+    }
+    if (!currentUser) {
+      alert("未登入結帳將以簡訊通知貨品進度")
+      if (!formData.name  || !formData.phone  || !formData.city  || !formData.district  || !formData.address ) {
+        return alert("資料請詳細填寫")
+      } else {
+        return alert("送出訂單成功")
+      }
+    } else {
+      try {
+        // 準備訂單資料
+        const orderData = {
+          customerName: formData.name,
+          phone: formData.phone,
+          address: `${formData.city}${formData.district}${formData.address}`,
+          city: formData.city,
+          district: formData.district,
+          items: cartState.items, 
+          totalAmount: total, // 總金額
+          paymentMethod: '貨到付款',
+          deliveryMethod: formData.deliveryMethod
+        };
+        // 將訂單加到用戶資料中
+        MemberSystem.addOrderToUser(currentUser.id, orderData);
+
+        // 清空購物車
+        dispatch({type: "CLEAR_CART"}); 
+
+        alert("送出訂單成功");
+        navigate("/MemberManagement");
+
+      } catch (error) {
+        alert("訂單處理失敗：" + error.message);
+      }
+    }
     // 處理結帳邏輯
-    console.log('Form Data:', formData);
-    console.log('Cart Items:', cartState.items);
-    console.log('Total:', total);
-  };
+    // console.log('Form Data:', formData);
+    // console.log('Cart Items:', cartState.items);
+    // console.log('Total:', total);
+    // console.log(currentUser);
+  }
+
 
   return (
     <div className="checkout-page">
@@ -253,8 +295,8 @@ const CheckOut = () => {
                   <input
                     type="radio"
                     name="delivery"
-                    value="home"
-                    checked={formData.deliveryMethod === 'home'}
+                    value="宅配到府"
+                    checked={formData.deliveryMethod === '宅配到府'}
                     onChange={(e) => handleInputChange('deliveryMethod', e.target.value)}
                   />
                   <span>宅配到府</span>
@@ -263,8 +305,8 @@ const CheckOut = () => {
                   <input
                     type="radio"
                     name="delivery"
-                    value="store"
-                    checked={formData.deliveryMethod === 'store'}
+                    value="超商取貨"
+                    checked={formData.deliveryMethod === '超商取貨'}
                     onChange={(e) => handleInputChange('deliveryMethod', e.target.value)}
                   />
                   <span>超商取貨</span>
@@ -365,7 +407,7 @@ const CheckOut = () => {
 
           <button
             className="checkout-btn"
-            onClick={handleSubmit}
+            onClick={() => { handleSubmit(formData) }}
             disabled={cartState.items.length === 0}
           >
             確認結帳

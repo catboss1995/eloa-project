@@ -11,7 +11,8 @@ import memberInfoIcon from "../assets/images/subtractIcon.svg"
 
 const MemberManagement = () => {
     const navigate = useNavigate();
-    const [activeTab, setActiveTab] = useState("edit-member-info");
+    const [userOrders, setUserOrders] = useState([]);
+    const [activeTab, setActiveTab] = useState("order-list");
     const [editData, setEditData] = useState({
         username: "",
         email: "",
@@ -22,6 +23,16 @@ const MemberManagement = () => {
         birthday: ""
     });
     const [isEditing, setIsEditing] = useState(false);
+    //格式化日期
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('zh-TW');
+    };
+
+    // 格式化金額
+    const formatPrice = (price) => {
+        return `$ ${price.toLocaleString()}`;
+    };
     const handleSignout = () => {
         MemberSystem.logout();
         navigate("/home");
@@ -39,6 +50,10 @@ const MemberManagement = () => {
                 address: currentUser.address || "",
                 birthday: currentUser.birthday || ""
             });
+            // 載入用戶訂單資料
+            const orders = MemberSystem.getUserOrders(currentUser.id);
+            setUserOrders(orders);
+
         }
     }, []);
     // 輸入變更按鈕
@@ -94,7 +109,62 @@ const MemberManagement = () => {
         switch (activeTab) {
             case "order-list":
                 return (
-                    123
+                    <div className="order-list-content">
+                        <div className="order-header">
+                            <div className="order-header-item">訂單編號</div>
+                            <div className="order-header-item">產品名稱</div>
+                            <div className="order-header-item">訂單金額</div>
+                            <div className="order-header-item">付款方式</div>
+                            <div className="order-header-item">配送方式</div>
+                            <div className="order-header-item">配送狀態</div>
+                        </div>
+                        
+                        {userOrders.length === 0 ? (
+                            <div className="no-orders">
+                                <p>目前沒有訂單記錄</p>
+                            </div>
+                        ) : (
+                            userOrders.map((order) => (
+                                <div key={order.id} className="order-row">
+                                    <div className="order-item">{order.id}</div>
+                                    <div className="order-item product-info">
+                                        {order.items && order.items.length > 0 ? (
+                                            <div className="product-list">
+                                                {order.items.map((item, index) => (
+                                                    <div key={index} className="product-item">
+                                                        {item.img && (
+                                                            <img 
+                                                                src={item.img} 
+                                                                alt={item.name}
+                                                                className="order-image"
+                                                            />
+                                                        )}
+                                                        <span className="order-product-name">
+                                                            {item.name} x{item.qty}
+                                                        </span>
+                                                        
+                                                        
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        ) : (
+                                            <span>無商品資料</span>
+                                        )}
+                                    </div>
+                                    <div className="order-item">{formatPrice(order.totalAmount)}</div>
+                                    <div className="order-item">
+                                        <span className="payment-method">{order.paymentMethod}</span>
+                                    </div>
+                                    <div className="order-item">
+                                        <span className="delivery-method">{order.deliveryMethod}</span>
+                                    </div>
+                                    <div className="order-item">
+                                        <span className="delivery-status">{order.status}</span>
+                                    </div>
+                                </div>
+                            ))
+                        )}
+                    </div>
                 )
             case "edit-member-info":
                 return (

@@ -30,7 +30,10 @@ const cartReducer = (state, action) => {
       };
 
     case "CLEAR_CART":
-      return { ...state, items: [] };
+      // return { ...state, items: [] };
+      const clearedState = { ...state, items: [], isOpen: false };
+      localStorage.setItem("cart", JSON.stringify(clearedState));
+      return clearedState;
 
     case "DIRECT_BUY":
       const existDirect = state.items.find(i => i.id === action.payload.id);
