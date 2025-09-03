@@ -19,6 +19,7 @@ import ProductGlowPen from "./pages/ProductGlowPen";
 import ProductMasterIX from "./pages/ProductMasterIX";
 import ShopCart from "./components/ShopCart";
 import CheckOut from "./pages/CheckOut";
+import MemberManagement from "./pages/MemberManagement";
 
 import SkinRouter from "./skin/SkinRouter";
 import { useEffect } from "react";
@@ -42,8 +43,8 @@ function AppContent() {
         <Route path='/article/:slug' element={<ArticleRouter/>}/>
         <Route path="/FQA" element={<FQA />} />
         <Route path="/Member" element={<Member />} />
-       <Route path="/News" element={<News />} />
-      <Route path="/NewsList/:slug" element={<NewsList />} />
+        <Route path="/MemberManagement" element={<MemberManagement/>}></Route>
+        <Route path="/News" element={<News />} />
         <Route path="/ProductCalmie" element={<ProductCalmie />} />
         <Route path="/ProductAuraClean" element={<ProductAuraClean />} />
         <Route path="/ProductCleanShot" element={<ProductCleanShot />} />
