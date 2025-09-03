@@ -380,8 +380,7 @@
 
 // 生成間距工具類別
 @mixin generate-spacing-utilities {
-
-    $value in vars.$article-spacing {
+    @each $name, $value in vars.$article-spacing {
         .m-#{$name} {
             margin: $value !important;
         }
@@ -443,6 +442,7 @@
         }
     }
 }
+
 
 // 生成文字工具類別
 @mixin generate-text-utilities {
