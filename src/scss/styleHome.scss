@@ -74,6 +74,10 @@
             object-fit: cover;
             height: 55%;
             filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.5));
+
+            @media ($mediaMax1040) {
+                height: 45%;
+            }
         }
 
         .primary-caroual2 {
@@ -463,7 +467,11 @@
     .decorate {
         height: 40vh;
         position: absolute;
-        top: 30px
+        top: 30px;
+
+        @media ($mediaMax1040) {
+            height: 30vh;
+        }
     }
 
     #decorate-human {
@@ -471,12 +479,26 @@
         top: -50px;
         left: 150px;
         z-index: 10;
+
+        @media ($mediaMax1040) {
+            height: 40vh;
+        }
     }
 
     #decorate-products {
         height: 35vh;
         top: 120px;
         right: 100px;
+
+        @media ($mediaMax1200) {
+            height: 25vh;
+            top: 130px;
+        }
+
+        @media ($mediaMax1040) {
+            height: 20vh;
+            top: 90px;
+        }
     }
 
     .product-sec-layout {
@@ -489,13 +511,28 @@
 
         .product-sec-desc {
             width: 45%;
-            margin: 50px 0 0 200px;
+
+            @media ($mediaMax1200) {
+                align-self: flex-end;
+                width: 65%;
+            }
+
+            @media ($mediaMax1040) {
+                width: 35%;
+                align-self: center;
+
+            }
 
             #product-sec-desc-sm,
             #product-sec-desc-md,
             #product-sec-desc-xs {
                 margin-bottom: 16px;
                 font-weight: 400;
+
+                @media ($mediaMax1040) {
+                    justify-self: flex-start;
+                    margin-bottom: 4px;
+                }
             }
 
             #product-sec-desc-md {
@@ -514,17 +551,24 @@
         .product-sec-cards-container {
             position: relative;
             display: flex;
+            justify-content: center;
             width: 100%;
             height: 100%;
             gap: 20px;
+            // flex-wrap: wrap;
             padding: 60px 100px 0 100px;
+
+            @media ($mediaMax1040) {
+                padding-top: 10px;
+            }
 
             .product-sec-card {
                 display: flex;
-                flex: 1;
+                max-width: 350px;
+                min-width: 200px;
+
                 flex-direction: column;
                 height: 100%;
-                align-items: flex-start;
                 padding: 12px;
                 background-color: $beige1;
                 border-radius: 24px;
@@ -535,10 +579,26 @@
                     width: 100%;
                     height: 40vh;
 
+                    @media ($mediaMax1200) {
+                        height: 30vh;
+                    }
+
+                    @media ($mediaMax1040) {
+                        height: 20vh;
+                    }
+
                     .product-card-pic {
                         padding: 30px 0;
                         height: 40vh;
                         justify-self: center;
+
+                        @media ($mediaMax1200) {
+                            height: 30vh;
+                        }
+
+                        @media ($mediaMax1040) {
+                            height: 22vh;
+                        }
                     }
                 }
 
@@ -561,6 +621,7 @@
                         font-size: 12px;
                         @extend %multiple-lines;
                         -webkit-line-clamp: 1;
+
                     }
 
                     .next-buttom {
@@ -581,6 +642,14 @@
                         flex-wrap: wrap;
                         margin-bottom: 10px;
 
+                        @media ($mediaMax1200) {
+                            gap: 8px;
+                        }
+
+                        @media ($mediaMax1040) {
+                            gap: 5px;
+                        }
+
                         .product-sec-card-button {
                             display: inline-flex;
                             width: fit-content;
@@ -589,6 +658,16 @@
                             background: $white;
                             border-radius: 99px;
                             align-items: center;
+
+                            @media ($mediaMax1200) {
+                                height: 26px;
+                                padding: 4px 8px;
+                            }
+
+                            @media ($mediaMax1040) {
+                                height: 24px;
+                                padding: 4px 8px;
+                            }
 
                             .product-sec-card-icon {
                                 margin-right: 5px;
@@ -643,7 +722,8 @@
                 animation: scroll 30s linear infinite;
                 width: fit-content;
                 margin-bottom: 1rem;
-                &#sort-num2{
+
+                &#sort-num2 {
                     animation-delay: 1s;
                 }
 
@@ -674,6 +754,11 @@
                         align-items: flex-start;
                         gap: 1rem;
                         transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+                        @media ($mediaMax1040) {
+                            max-width: 270px;
+                            min-width: 270px;
+                        }
 
                         &:hover {
                             transform: translateY(-2px);
@@ -744,6 +829,7 @@
     .knowledge-content {
         padding: 0 100px;
         width: 100%;
+        height: 100vh;
 
         .knowledge-title {
             width: 100%;
@@ -752,6 +838,9 @@
             gap: 100px;
             display: flex;
             flex-direction: row;
+            @media ($mediaMax1200) {
+                padding-top: 50px;
+            }
 
             .knowledge-title-slogan {
                 border-bottom: 2px solid $white;
@@ -778,6 +867,7 @@
             justify-content: space-between;
             gap: 10px;
             padding-top: 50px;
+            height: 70%;
 
             .knowledge-card {
                 display: flex;
@@ -785,10 +875,19 @@
                 flex-direction: column;
                 justify-content: flex-end;
                 align-items: center;
-                height: 60vh;
-                width: 42vh;
+                flex: 1;
+                width: 100%;
+                height: 100%;
                 border-radius: 20px;
                 overflow: clip;
+                @media ($mediaMax1200) {
+                    height: 90%;
+                }
+                &:last-child {
+                    @media ($mediaMax1200) {
+                        display: none;
+                    } 
+                }
 
                 img {
                     position: absolute;
@@ -827,7 +926,7 @@
         padding: 0 100px;
         display: flex;
         justify-content: center;
-        padding-bottom: 200px;
+        padding-bottom: 100px;
     }
 }
 
@@ -912,6 +1011,8 @@
     $side-image-width: 400px;
     $transition-duration: 0.5s;
     $control-size: 30px;
+    $transition-X:400px;
+    
 
     .campaign-text-area {
         position: absolute;
@@ -969,6 +1070,7 @@
         position: absolute;
         transition: all $transition-duration cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
+        
 
         &--transitioning {
             transition-duration: $transition-duration;
@@ -978,11 +1080,19 @@
             transform: translateX(0) scale(1);
             z-index: 3;
             opacity: 1;
+            
 
             .image-wrapper {
                 width: $center-image-width;
                 height: 300px;
                 box-shadow: 0 20px 40px $black-20;
+                
+                @media ($mediaMax1200) {
+                    width: 500px;
+                }
+                @media ($mediaMax1200) {
+                    width: 400px;
+                }
             }
 
             .image-overlay {
@@ -991,14 +1101,23 @@
         }
 
         &--left {
-            transform: translateX(400px) scale(0.8);
+            transform: translateX($transition-X) scale(0.8);
             z-index: 2;
             opacity: 0.6;
-
+            @media ($mediaMax1200) {
+                transform: translateX(250px) scale(0.8);
+            }
+            @media ($mediaMax1040) {
+                transform: translateX(200px) scale(0.8);
+            }
             .image-wrapper {
                 width: $side-image-width;
                 height: 280px;
                 box-shadow: 0 10px 20px $black-20;
+                @media ($mediaMax1200) {
+                    width: 300px;                    
+                }
+                
             }
 
             .image-overlay {
@@ -1007,14 +1126,24 @@
         }
 
         &--right {
-            transform: translateX(-400px) scale(0.8);
+            transform: translateX(-$transition-X) scale(0.8);
             z-index: 2;
             opacity: 0.6;
+            @media ($mediaMax1200) {
+                transform: translateX(-250px) scale(0.8);
+            }
+            @media ($mediaMax1040) {
+                transform: translateX(-200px) scale(0.8);
+            }
 
             .image-wrapper {
                 width: $side-image-width;
                 height: 280px;
                 box-shadow: 0 10px 20px $black-20;
+                @media ($mediaMax1200) {
+                    width: 300px;                    
+                }
+                
             }
 
             .image-overlay {
@@ -1130,6 +1259,9 @@
                 width: 20px;
                 height: 20px;
             }
+            @media ($mediaMax1200) {
+                left: 10px;
+            }
         }
 
         &--right {
@@ -1138,6 +1270,9 @@
             img {
                 width: 20px;
                 height: 20px;
+            }
+            @media ($mediaMax1200) {
+                right: 10px;
             }
         }
 
@@ -1455,6 +1590,7 @@
     position: relative;
     padding: 0 100px;
     background: $gradient-light-dark2;
+    height: auto;
 
     .service-sec-text-area {
         padding-top: 100px;
@@ -1495,19 +1631,33 @@
         justify-content: center;
         padding-right: 80px;
         margin-top: 100px;
+        @media ($mediaMax1040) {
+            flex-wrap: wrap;
+        }
+
         .service-sec-icon-area {
             margin-right: -80px;
+            @media ($mediaMax1040) {
+                margin-right: -60px;
+            }
+            svg {
+                width: clamp(230px, 15vw, 250px);
+                height: clamp(230px, 15vw, 250px);
+            }
+
             .service-icon-container {
                 position: relative;
                 display: flex;
                 flex-direction: column;
-                gap:20px;
+                gap: 20px;
                 top: -50%;
                 align-items: center;
+
                 .service-icon {
-                    width: 9vh;    
+                    width: 9vh;
                 }
-                p{
+
+                p {
                     font-size: $font14-light;
                 }
 
@@ -1528,70 +1678,81 @@
     }
 
     &.show {
-        .service-sec-icon-area{
+        .service-sec-icon-area {
             &:nth-child(1) {
-                .service-icon-container{
+                .service-icon-container {
                     opacity: 0;
                     animation: fadeIn 1.5s linear forwards;
                 }
+
                 .draw-line {
                     path {
-                        animation: draw 1.5s linear forwards;               
+                        animation: draw 1.5s linear forwards;
                     }
                 }
             }
-            &:nth-child(2){
-                .service-icon-container{
+
+            &:nth-child(2) {
+                .service-icon-container {
                     opacity: 0;
                     animation: fadeIn 1.5s linear 0.5s forwards;
                 }
-                .draw-line{
+
+                .draw-line {
                     path {
-                        animation: draw 1.5s linear 0.5s forwards;               
+                        animation: draw 1.5s linear 0.5s forwards;
                     }
                 }
             }
-            &:nth-child(3){
-                .service-icon-container{
+
+            &:nth-child(3) {
+                .service-icon-container {
                     opacity: 0;
                     animation: fadeIn 1.5s linear 1s forwards;
                 }
-                .draw-line{
+
+                .draw-line {
                     path {
-                        animation: draw 1.5s linear 1s forwards;               
+                        animation: draw 1.5s linear 1s forwards;
                     }
                 }
             }
-            &:nth-child(4){
-                .service-icon-container{
+
+            &:nth-child(4) {
+                .service-icon-container {
                     opacity: 0;
                     animation: fadeIn 1.5s linear 1.5s forwards;
                 }
-                .draw-line{
+
+                .draw-line {
                     path {
-                        animation: draw 1.5s linear 1.5s forwards;               
+                        animation: draw 1.5s linear 1.5s forwards;
                     }
                 }
             }
-            &:nth-child(5){
-                .service-icon-container{
+
+            &:nth-child(5) {
+                .service-icon-container {
                     opacity: 0;
                     animation: fadeIn 1.5s linear 2s forwards;
                 }
-                .draw-line{
+
+                .draw-line {
                     path {
-                        animation: draw 1.5s linear 2s forwards;               
+                        animation: draw 1.5s linear 2s forwards;
                     }
                 }
             }
-            &:nth-child(6){
-                .service-icon-container{
+
+            &:nth-child(6) {
+                .service-icon-container {
                     opacity: 0;
                     animation: fadeIn 1.5s linear 2.5s forwards;
                 }
-                .draw-line{
+
+                .draw-line {
                     path {
-                        animation: draw 1.5s linear 2.5s forwards;               
+                        animation: draw 1.5s linear 2.5s forwards;
                     }
                 }
             }
@@ -1608,6 +1769,7 @@
         from {
             opacity: 0;
         }
+
         to {
             opacity: 1;
         }
