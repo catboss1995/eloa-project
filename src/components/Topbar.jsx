@@ -209,7 +209,7 @@ const Topbar = () => {
 
           {/* 3. 底部功能按鈕區域 */}
           <div className="mobile-menu-footer">
-            <Link to="/Member" className="mobile-function-btn" onClick={handleMobileNavClick}>
+            <Link to={currentUser?"/MemberManagement":"/Member"} className="mobile-function-btn" onClick={handleMobileNavClick}>
               <div className="icon-container">
                 <img src={topbarMember} alt="會員" />
               </div>

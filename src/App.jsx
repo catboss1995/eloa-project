@@ -11,6 +11,7 @@ import ArticleRouter from "./pages/ArticleRouter"
 import FQA from "./pages/FQA";
 import Member from "./pages/Member";
 import News from "./pages/News";
+import NewsList from "./pages/NewsList";
 import ProductCalmie from "./pages/ProductCalmie";
 import ProductAuraClean from "./pages/ProductAuraClean";
 import ProductCleanShot from "./pages/ProductCleanShot";
