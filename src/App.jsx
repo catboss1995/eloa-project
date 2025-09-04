@@ -12,6 +12,8 @@ import FQA from "./pages/FQA";
 import Member from "./pages/Member";
 import News from "./pages/News";
 import NewsList from "./pages/NewsList";
+import NewsPage from "./pages/NewsPage";
+import NewsRouter from "./pages/NewsRouter";
 import ProductCalmie from "./pages/ProductCalmie";
 import ProductAuraClean from "./pages/ProductAuraClean";
 import ProductCleanShot from "./pages/ProductCleanShot";
@@ -45,6 +47,8 @@ function AppContent() {
         <Route path="/Member" element={<Member />} />
         <Route path="/MemberManagement" element={<MemberManagement/>}></Route>
         <Route path="/News" element={<News />} />
+      <Route path="/NewsPage/:slug" element={<NewsPage />} />
+      <Route path="/NewsRouter/:slug" element={<NewsRouter />} />
         <Route path="/ProductCalmie" element={<ProductCalmie />} />
         <Route path="/ProductAuraClean" element={<ProductAuraClean />} />
         <Route path="/ProductCleanShot" element={<ProductCleanShot />} />
