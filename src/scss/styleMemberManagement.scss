@@ -37,28 +37,30 @@
                 background-color: $beige1;
                 border-radius: 5px;
                 flex: 1;
-                min-width: 300px;
-                max-width: 300px;
+                min-width: 250px;
+                max-width: 250px;
                 filter: drop-shadow(0 4px 4px $black-20);
                 transition: all 0.3s ease;
+
                 img {
                     height: 36px;
                 }
+
                 &:not(:first-child) {
                     display: flex;
-                    padding: 12px 64px;
+                    padding: 12px 48px;
                     justify-content: space-between;
                     align-items: center;
                 }
 
                 &:hover:not(:first-child) {
-                    
+
                     transform: translateY(-2px);
                 }
 
                 &.active {
-                    
-                    
+
+
                     img {
                         filter: brightness(0.7) drop-shadow(2px 2px 4px $black-20);
                     }
@@ -86,37 +88,235 @@
             display: flex;
             position: relative;
             right: 0;
-            height: 80%;
+            height: 100%;
             width: 100%;
             border-radius: 8px;
             background-color: $white-60;
             filter: drop-shadow(0 4px 4px $black-20);
             justify-content: center;
+            overflow-y: auto;
+            .order-list-content {
+                width: 100%;
+
+                .order-header {
+                    display: grid;
+                    grid-template-columns: 1fr 4fr 1fr 1fr 1fr 1fr;
+                    gap: 20px;
+                    padding: 15px 20px;
+                    background-color: $white-80;
+                    border-bottom: 2px solid $natural-gray100;
+
+                    .order-header-item {
+                        text-align: center;
+                        font-size: $font14-light;
+                    }
+                }
+
+                .order-row {
+                    display: grid;
+                    grid-template-columns: 1fr 4fr 1fr 1fr 1fr 1fr;
+                    gap: 20px;
+                    padding: 20px;
+                    border-bottom: 2px solid $natural-gray100;
+                    align-items: center;
+
+                    &:hover {
+                        background-color: $white-80;
+                    }
+
+                    .order-item {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: $font14-light;
+
+                        
+                    }
+                }
+
+                .product-list {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+
+                    .product-item {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        .order-image {
+                            width: 40px;
+                            height: 40px;
+                            object-fit: contain;
+                            
+                            
+                        }
+
+                        .order-product-name {
+                            display: flex;
+                            font-size: 12px;                            
+                            flex-wrap: nowrap;
+                        }
+                    }
+                }
+
+                .payment-method {
+                    background-color: #e3f2fd;
+                    color: #1976d2;
+                    padding: 4px 8px;
+                    border-radius: 12px;
+                    font-size: 12px;
+                    
+                }
+
+                .delivery-method {
+                    background-color: #f3e5f5;
+                    color: #7b1fa2;
+                    padding: 4px 8px;
+                    border-radius: 12px;
+                    font-size: 12px;
+                    
+                }
+
+                .delivery-status {
+                    background-color: #e8f5e8;
+                    color: #2e7d32;
+                    padding: 4px 8px;
+                    border-radius: 12px;
+                    font-size: 12px;
+                    
+                }
+
+                .no-orders {
+                    text-align: center;
+                    padding: 60px 20px;
+                    
+
+                    p {
+                        font-size: $font16-light;
+                        margin: 0;
+                    }
+                }
+            }
+            // order-rwd
+            @media (max-width: 1024px) {
+                .order-list-content {
+
+                    .order-header,
+                    .order-row {
+                        grid-template-columns: 1fr 4fr 1fr 1fr 1fr 1fr;
+                        gap: 10px;
+                        padding: 15px 10px;
+
+                        .order-header-item,
+                        .order-item {
+                            font-size: 12px;
+                        }
+                    }
+
+                    .product-list {
+                        .product-item {
+                            .product-image {
+                                width: 30px;
+                                height: 30px;
+                            }
+
+                            .product-name {
+                                font-size: 11px;
+                            }
+                        }
+                    }
+                }
+            }
+            @media (max-width: 768px) {
+                .order-list-content {
+                    .order-header {
+                        display: none; // 隱藏表頭
+                    }
+
+                    .order-row {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: stretch;
+                        padding: 20px;
+                        margin-bottom: 15px;
+                        border: 1px solid #dee2e6;
+                        border-radius: 8px;
+
+                        .order-item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            padding: 8px 0;
+                            border-bottom: 1px solid #f8f9fa;
+
+                            &:last-child {
+                                border-bottom: none;
+                            }
+
+                            &::before {
+                                content: attr(data-label);
+                                font-weight: 600;
+                                color: #495057;
+                                min-width: 80px;
+                            }
+
+                            &:nth-child(1)::before {
+                                content: "訂單編號:";
+                            }
+
+                            &:nth-child(2)::before {
+                                content: "產品:";
+                            }
+
+                            &:nth-child(3)::before {
+                                content: "金額:";
+                            }
+
+                            &:nth-child(4)::before {
+                                content: "付款:";
+                            }
+
+                            &:nth-child(5)::before {
+                                content: "配送:";
+                            }
+
+                            &:nth-child(6)::before {
+                                content: "狀態:";
+                            }
+                        }
+                    }
+
+                    .product-list {
+                        flex-direction: row;
+                        flex-wrap: wrap;
+
+                        .product-item {
+                            margin-bottom: 5px;
+                        }
+                    }
+                }
+            }
 
             .edit-member-info-content {
-                max-width: 700px;
-                min-width: 500px;
-                height: 100%;
-                padding: 0;
-
-                .member-form {
-                    background: $white;
-                    padding: 30px;
+                width: 80%;
+                max-width: 500px;
+                align-self: center;
+                .member-form {                    
                     border-radius: 8px;
-                    box-shadow: 0 2px 4px $black-20;
-
                     .form-group {
-                        margin-bottom: 20px;
+                        margin-bottom: 12px;
 
                         .address-row {
-                            display: grid;
-                            grid-template-columns: 1fr 1fr auto;
-                            gap: 12px;
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 8px;
                             margin-bottom: 12px;
-
                             @media (max-width: 480px) {
-                                grid-template-columns: 1fr;
-                                gap: 8px;
+                                gap: 4px;
+                            }
+                            .address-select {
+                                width: 30%;
                             }
                         }
 
@@ -148,13 +348,13 @@
                     }
 
                     .form-actions {
-                        margin-top: 30px;
+                        margin-top: 20px;
                         text-align: center;
 
                         .edit-btn {
                             background-color: $light-brown4;
                             color: $white;
-                            padding: 12px 24px;
+                            padding: 8px 16px;
                             border: none;
                             border-radius: 4px;
                             cursor: pointer;
@@ -174,7 +374,7 @@
                             .save-btn {
                                 background-color: $light-brown4;
                                 color: $white;
-                                padding: 12px 24px;
+                                padding: 8px 16px;
                                 border: none;
                                 border-radius: 4px;
                                 cursor: pointer;
@@ -189,7 +389,7 @@
                             .cancel-btn {
                                 background-color: $light-brown4;
                                 color: $white;
-                                padding: 12px 24px;
+                                padding: 8px 16px;
                                 border: none;
                                 border-radius: 4px;
                                 cursor: pointer;
@@ -204,6 +404,7 @@
                     }
                 }
             }
+
         }
     }
 }
