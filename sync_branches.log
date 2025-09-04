@@ -1,0 +1,91 @@
+[西元2025年09月05日 (星期五) 00時50分12秒    ] 開始同步分支
+Your branch is behind 'origin/main' by 2 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+Switched to branch 'main'
+From https://github.com/Ntub0623/eloa-project
+ * branch            main       -> FETCH_HEAD
+Updating 990fa56..155b512
+Fast-forward
+ sync_branches.sh | 47 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 sync_branches.sh
+No local changes to save
+正在同步分支: feature/home-page
+Your branch is up to date with 'origin/feature/home-page'.
+Switched to branch 'feature/home-page'
+Updating 990fa56..155b512
+Fast-forward (no commit created; -m option ignored)
+ sync_branches.sh | 47 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 sync_branches.sh
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+To https://github.com/Ntub0623/eloa-project.git
+   990fa56..155b512  feature/home-page -> feature/home-page
+分支 feature/home-page 同步成功。
+正在同步分支: feature/pei/ProductPage
+Your branch is up to date with 'origin/feature/pei/ProductPage'.
+Switched to branch 'feature/pei/ProductPage'
+Updating 990fa56..155b512
+Fast-forward (no commit created; -m option ignored)
+ sync_branches.sh | 47 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 sync_branches.sh
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+To https://github.com/Ntub0623/eloa-project.git
+   990fa56..155b512  feature/pei/ProductPage -> feature/pei/ProductPage
+分支 feature/pei/ProductPage 同步成功。
+正在同步分支: feature/pei/SkinTest
+Your branch is up to date with 'origin/feature/pei/SkinTest'.
+Switched to branch 'feature/pei/SkinTest'
+Updating 990fa56..155b512
+Fast-forward (no commit created; -m option ignored)
+ sync_branches.sh | 47 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 sync_branches.sh
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+To https://github.com/Ntub0623/eloa-project.git
+   990fa56..155b512  feature/pei/SkinTest -> feature/pei/SkinTest
+分支 feature/pei/SkinTest 同步成功。
+正在同步分支: feature/ravBoss
+Your branch is up to date with 'origin/feature/ravBoss'.
+Switched to branch 'feature/ravBoss'
+Merge made by the 'ort' strategy.
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+To https://github.com/Ntub0623/eloa-project.git
+   05664f6..dbfed35  feature/ravBoss -> feature/ravBoss
+分支 feature/ravBoss 同步成功。
+正在同步分支: feature/tim
+Your branch is up to date with 'origin/feature/tim'.
+Switched to branch 'feature/tim'
+Merge made by the 'ort' strategy.
+ sync_branches.sh | 47 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 sync_branches.sh
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+To https://github.com/Ntub0623/eloa-project.git
+   fccde06..7ac2ac6  feature/tim -> feature/tim
+分支 feature/tim 同步成功。
+略過分支: gh-pages
+略過分支: main
+正在同步分支: zoena
+Your branch is ahead of 'origin/zoena' by 20 commits.
+  (use "git push" to publish your local commits)
+Switched to branch 'zoena'
+Merge made by the 'ort' strategy.
+ sync_branches.sh | 47 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 sync_branches.sh
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+To https://github.com/Ntub0623/eloa-project.git
+   36e5c74..565b584  zoena -> zoena
+分支 zoena 同步成功。
+Your branch is up to date with 'origin/main'.
+Switched to branch 'main'
+No stash entries found.
+[西元2025年09月05日 (星期五) 00時50分25秒    ] 所有分支已同步完成！
