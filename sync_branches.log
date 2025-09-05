@@ -89,3 +89,102 @@ Your branch is up to date with 'origin/main'.
 Switched to branch 'main'
 No stash entries found.
 [西元2025年09月05日 (星期五) 00時50分25秒    ] 所有分支已同步完成！
+正在同步分支: feature/home-page
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+To https://github.com/Ntub0623/eloa-project.git
+ ! [rejected]        feature/home-page -> feature/home-page (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+分支 feature/home-page 同步成功。
+正在同步分支: feature/pei/ProductPage
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+error: src refspec feature/pei/ProductPage does not match any
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+分支 feature/pei/ProductPage 同步成功。
+正在同步分支: feature/pei/SkinTest
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+To https://github.com/Ntub0623/eloa-project.git
+ ! [rejected]        feature/pei/SkinTest -> feature/pei/SkinTest (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+分支 feature/pei/SkinTest 同步成功。
+正在同步分支: feature/ravBoss
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+To https://github.com/Ntub0623/eloa-project.git
+ ! [rejected]        feature/ravBoss -> feature/ravBoss (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+分支 feature/ravBoss 同步成功。
+正在同步分支: feature/tim
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+To https://github.com/Ntub0623/eloa-project.git
+ ! [rejected]        feature/tim -> feature/tim (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+分支 feature/tim 同步成功。
+略過分支: gh-pages
+略過分支: main
+正在同步分支: zoena
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+To https://github.com/Ntub0623/eloa-project.git
+ ! [rejected]        zoena -> zoena (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+分支 zoena 同步成功。
+M	sync_branches.log
+Your branch is up to date with 'origin/main'.
+Already on 'main'
+error: Your local changes to the following files would be overwritten by merge:
+	sync_branches.log
+Please commit your changes or stash them before you merge.
+Aborting
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   sync_branches.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+The stash entry is kept in case you need it again.
+[西元2025年09月05日 (星期五) 14時05分13秒    ] 所有分支已同步完成！
