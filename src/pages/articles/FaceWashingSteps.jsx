@@ -8,6 +8,7 @@ import ArticleTips from '../../components/article/ArticleTips';
 import ArticleConclusion from '../../components/article/ArticleConclusion';
 import articlesData from '../../data/articlesData';
 
+// 本文章頁面，負責呈現洗臉步驟的教學內容
 // 使用確定可用的圖片URL
 const heroImage = "https://ik.imagekit.io/8sle6rwoo/articlesPic02.png"; // 使用確定可用的圖片
 const step1Image = "https://placekitten.com/800/500"; // 

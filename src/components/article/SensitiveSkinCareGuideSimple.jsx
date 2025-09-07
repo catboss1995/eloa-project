@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../scss/articles/_website-integration.scss';
 
+// 敏感肌膚護理完整指南組件
 const SensitiveSkinCareGuideSimple = () => {
   // 狀態管理
   const [readingProgress, setReadingProgress] = useState(0);
