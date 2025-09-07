@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { useEffect, useState, useCallback } from "react"
 import "../scss/styleTopbar.scss"
-import "../scss/buttonEffects.scss" 
+import "../scss/buttonEffects.scss"
 import topbarLogo from "../assets/images/topbarLogo.png"
 import topbarMember from "../assets/images/topbarMember.png"
 import topbarBag from "../assets/images/topbarBag.png"
@@ -9,16 +9,16 @@ import { useCart } from "../data/CartContext"
 import MemberSystem from "../data/MemberSystem"
 
 const Topbar = () => {
-  
+
 
   // 導航狀態控制
-  const currentUser = MemberSystem.getCurrentUser();  
+  const currentUser = MemberSystem.getCurrentUser();
   const { state, dispatch } = useCart();
   const [scrolled, setScrolled] = useState(false)
   const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isMobileProductOpen, setIsMobileProductOpen] = useState(false) // 新增：專門控制手機版產品選單
-  
+
   // 產品資料
   const products = [
     { id: 1, name: "Master IX - 全效肌膚管理儀", path: "/ProductMasterIX" },
@@ -69,7 +69,7 @@ const Topbar = () => {
   }, [])
 
   const handleCartClick = useCallback(() => {
-    dispatch({type: "TOGGLE_CART"})
+    dispatch({ type: "TOGGLE_CART" })
     setIsMobileMenuOpen(false)
     setIsMobileProductOpen(false)
   }, [dispatch])
@@ -105,7 +105,7 @@ const Topbar = () => {
         <img src={topbarLogo} alt="logo" id="topbar-logo" />
       </Link>
 
-      <button 
+      <button
         className={`hamburger-btn ${isMobileMenuOpen ? 'active' : ''}`}
         onClick={handleMobileMenuToggle}
         aria-label="選單"
@@ -146,9 +146,9 @@ const Topbar = () => {
 
         <Link to="/skin" className="text-link btn-effect nav-link">我的膚況區</Link>
         <Link to="/Article" className="text-link btn-effect nav-link">肌膚學苑</Link>
-        <Link to="/FQA" className="text-link btn-effect nav-link">常見問題</Link>
         <Link to="/News" className="text-link btn-effect nav-link">最新消息</Link>
-        <Link to={currentUser?"/MemberManagement":"/Member"} 
+        <Link to="/FQA" className="text-link btn-effect nav-link">常見問題</Link>
+        <Link to={currentUser ? "/MemberManagement" : "/Member"}
           className="btn-effect function-btn user-btn">
           <img src={topbarMember} alt="memberIcon" id="topbar-member" />
         </Link>
@@ -169,7 +169,7 @@ const Topbar = () => {
             {/* 2. 只保留一個關閉按鈕 */}
             <div className="close-btn" onClick={() => setIsMobileMenuOpen(false)}></div>
           </div>
-            
+
           {/* 選單主體 */}
           <div className="mobile-menu-body">
             {/* 產品資訊 - 使用專門的狀態控制 */}
@@ -177,7 +177,7 @@ const Topbar = () => {
               <span>產品資訊</span>
               <span className={`mobile-arrow ${isMobileProductOpen ? 'open' : ''}`}>▼</span>
             </div>
-            
+
             {/* 產品子選單 - 使用專門的狀態控制 */}
             {isMobileProductOpen && (
               <div className="mobile-product-list">
@@ -199,17 +199,17 @@ const Topbar = () => {
             <Link to="/Article" className="mobile-menu-item" onClick={handleMobileNavClick}>
               <span>肌膚學苑</span>
             </Link>
-            <Link to="/FQA" className="mobile-menu-item" onClick={handleMobileNavClick}>
-              <span>常見問題</span>
-            </Link>
             <Link to="/News" className="mobile-menu-item" onClick={handleMobileNavClick}>
               <span>最新消息</span>
+            </Link>
+            <Link to="/FQA" className="mobile-menu-item" onClick={handleMobileNavClick}>
+              <span>常見問題</span>
             </Link>
           </div>
 
           {/* 3. 底部功能按鈕區域 */}
           <div className="mobile-menu-footer">
-            <Link to={currentUser?"/MemberManagement":"/Member"} className="mobile-function-btn" onClick={handleMobileNavClick}>
+            <Link to={currentUser ? "/MemberManagement" : "/Member"} className="mobile-function-btn" onClick={handleMobileNavClick}>
               <div className="icon-container">
                 <img src={topbarMember} alt="會員" />
               </div>
@@ -223,7 +223,7 @@ const Topbar = () => {
             </div>
           </div>
         </div>
-        
+
         {/* 背景遮罩 */}
         <div className="mobile-menu-overlay"></div>
       </div>

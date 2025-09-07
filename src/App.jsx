@@ -11,8 +11,6 @@ import ArticleRouter from "./pages/ArticleRouter"
 import FQA from "./pages/FQA";
 import Member from "./pages/Member";
 import News from "./pages/News";
-import NewsList from "./pages/NewsList";
-import NewsPage from "./pages/NewsPage";
 import NewsRouter from "./pages/NewsRouter";
 import ProductCalmie from "./pages/ProductCalmie";
 import ProductAuraClean from "./pages/ProductAuraClean";
@@ -47,8 +45,7 @@ function AppContent() {
         <Route path="/Member" element={<Member />} />
         <Route path="/MemberManagement" element={<MemberManagement/>}></Route>
         <Route path="/News" element={<News />} />
-      <Route path="/NewsPage/:slug" element={<NewsPage />} />
-      <Route path="/NewsRouter/:slug" element={<NewsRouter />} />
+        <Route path="/news/:slug" element={<NewsRouter />} />
         <Route path="/ProductCalmie" element={<ProductCalmie />} />
         <Route path="/ProductAuraClean" element={<ProductAuraClean />} />
         <Route path="/ProductCleanShot" element={<ProductCleanShot />} />
@@ -57,7 +54,6 @@ function AppContent() {
         <Route path="/ShopCart" element={<ShopCart />} />
         <Route path="/Checkout" element={<CheckOut/>} />
         <Route path="/skin/*" element={<SkinRouter />} />
-
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />
