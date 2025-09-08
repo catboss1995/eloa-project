@@ -81,4 +81,4 @@ git checkout $current_branch >> $LOG_FILE 2>&1
 # 恢復未提交的更改
 git stash pop >> $LOG_FILE 2>&1
 
-echo "[$(date)] 所有分支已同步完成！" | tee -a $LOG_FILE
+echo "[$(date)] 所有分支已同步完成！" | tee -a $LOG_FILE./sync_branches.sh

@@ -11,7 +11,7 @@ import ArticleRouter from "./pages/ArticleRouter" // 文章路由器組件
 import FQA from "./pages/FQA"; // 常見問題頁面
 import Member from "./pages/Member"; // 會員頁面
 import News from "./pages/News"; // 新聞頁面
-import NewsList from "./pages/NewsList"; // 新聞列表頁面.未添加
+import NewsRouter from "./pages/NewsRouter"; // 新聞列表頁面
 import ProductCalmie from "./pages/ProductCalmie"; // Calmie 產品頁面
 import ProductAuraClean from "./pages/ProductAuraClean"; // Aura Clean 產品頁面
 import ProductCleanShot from "./pages/ProductCleanShot"; // Clean Shot 產品頁面
@@ -21,7 +21,6 @@ import ShopCart from "./components/ShopCart"; // 購物車組件
 import CheckOut from "./pages/CheckOut"; // 結帳頁面
 import MemberManagement from "./pages/MemberManagement"; // 會員管理頁面
 import TestPreview from "./pages/TestPreview"; // 測試用組件
-
 import SkinRouter from "./skin/SkinRouter"; // 皮膚測試路由器組件
 import { useEffect } from "react"; // 引入 useEffect 
 import { CartProvider, useCart } from "./data/CartContext"; // 引入購物車上下文
@@ -45,8 +44,9 @@ function AppContent() {
         <Route path='/article/:slug' element={<ArticleRouter/>}/> {/* 動態文章頁面 */}
         <Route path="/FQA" element={<FQA />} /> {/* 常見問題頁面 */}
         <Route path="/Member" element={<Member />} /> {/* 會員頁面 */}
-        <Route path="/MemberManagement" element={<MemberManagement/>}></Route> {/* 會員管理頁面 */}
+        <Route path="/MemberManagement" element={<MemberManagement/>}> {/*會員管理頁面*/}
         <Route path="/News" element={<News />} /> {/* 新聞頁面 */}
+        <Route path="/news/:slug" element={<NewsRouter />} />
         <Route path="/ProductCalmie" element={<ProductCalmie />} /> {/* Calmie 產品頁面 */}
         <Route path="/ProductAuraClean" element={<ProductAuraClean />} /> {/* Aura Clean 產品頁面 */}
         <Route path="/ProductCleanShot" element={<ProductCleanShot />} /> {/* Clean Shot 產品頁面 */}
@@ -56,9 +56,7 @@ function AppContent() {
         <Route path="/Checkout" element={<CheckOut/>} /> {/* 結帳頁面 */}
         <Route path="/skin/*" element={<SkinRouter />} /> {/* 皮膚測試路由 */}
         <Route path="/testview" element={<TestPreview />} /> {/* 測試用路由 */}
-
         <Route path="*" element={<Navigate to="/" replace />} /> {/* 未匹配路由重定向到首頁 */}
-      </Routes>
       <Footer />
       <ShopCart/>      
     </>
