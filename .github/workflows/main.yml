@@ -18,10 +18,29 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'npm'
+        
+    # 只有當 package.json 存在時才執行
+    - name: Check if package.json exists
+      id: check_package
+      run: |
+        if [ -f package.json ]; then
+          echo "exists=true" >> $GITHUB_OUTPUT
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+        fi
         
     - name: Install dependencies
+      if: steps.check_package.outputs.exists == 'true'
       run: npm install
       
-    - name: Run build
-      run: npm run build
+    - name: Run tests
+      if: steps.check_package.outputs.exists == 'true'
+      run: npm test --if-present
+      
+    - name: Build project
+      if: steps.check_package.outputs.exists == 'true'
+      run: npm run build --if-present
+      
+    # 如果不是 Node.js 專案，至少檢查檔案
+    - name: List files
+      run: ls -la
