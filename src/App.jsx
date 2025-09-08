@@ -59,7 +59,7 @@ function AppContent() {
         <Route path="*" element={<Navigate to="/" replace />} /> {/* 未匹配路由重定向到首頁 */}
       <Footer />
       <ShopCart/>      
-    </>
+    <Routes/>
   );
 }
 function App() {
