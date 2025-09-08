@@ -56,7 +56,7 @@ const SensitiveSkinCareGuideSimple = () => {
                 </div>
                 <div className="nav-items">
                     {[
-                        { name: '介紹', icon: '🌸' }, //ICON到時需更換以保持視覺一致
+                        { name: '介紹', icon: '🌸' }, //圖標到時需更換以保持視覺一致
                         { name: '特徵', icon: '🔍' },
                         { name: '步驟', icon: '📋' },
                         { name: '產品', icon: '💎' },
