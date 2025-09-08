@@ -36,7 +36,7 @@ function AppContent() {
     dispatch({type: "CLOSE_CART"});
   },[pathname, dispatch])
   return (
-    <>      
+    <>
       <Topbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -44,7 +44,7 @@ function AppContent() {
         <Route path='/article/:slug' element={<ArticleRouter/>}/> {/* 動態文章頁面 */}
         <Route path="/FQA" element={<FQA />} /> {/* 常見問題頁面 */}
         <Route path="/Member" element={<Member />} /> {/* 會員頁面 */}
-        <Route path="/MemberManagement" element={<MemberManagement/>}> {/*會員管理頁面*/}
+        <Route path="/MemberManagement" element={<MemberManagement/>} /> {/*會員管理頁面*/}
         <Route path="/News" element={<News />} /> {/* 新聞頁面 */}
         <Route path="/news/:slug" element={<NewsRouter />} />
         <Route path="/ProductCalmie" element={<ProductCalmie />} /> {/* Calmie 產品頁面 */}
@@ -57,8 +57,9 @@ function AppContent() {
         <Route path="/skin/*" element={<SkinRouter />} /> {/* 皮膚測試路由 */}
         <Route path="/testview" element={<TestPreview />} /> {/* 測試用路由 */}
         <Route path="*" element={<Navigate to="/" replace />} /> {/* 未匹配路由重定向到首頁 */}
+      </Routes>
       <Footer />
-      <ShopCart/>      
+      <ShopCart/>
     </>
   );
 }

@@ -6,7 +6,7 @@ import "../scss/member.scss"
 import googleIcon from "../assets/images/GooglePlus.png"
 import fbIcon from "../assets/images/Facebook.png"
 import memberBG from "../assets/images/member-bg.avif"
-import logo from "../assets/images/topbarlogo.png"
+import logo from "../assets/images/topbarLogo.png"
 
 const Member = () => {
   const navigate = useNavigate();
