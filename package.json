@@ -9,9 +9,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
     "test": "echo \"No tests specified\" && exit 0",
-    "build": "echo \"No build process\" && exit 0",
     "start": "echo \"Starting project\""
   },
   "dependencies": {
