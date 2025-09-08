@@ -8,13 +8,14 @@ import ArticleTips from '../../components/article/ArticleTips';
 import ArticleConclusion from '../../components/article/ArticleConclusion';
 import articlesData from '../../data/articlesData';
 
+// 本文章頁面，負責呈現洗臉步驟的教學內容
 // 使用確定可用的圖片URL
 const heroImage = "https://ik.imagekit.io/8sle6rwoo/articlesPic02.png"; // 使用確定可用的圖片
-const step1Image = "https://placekitten.com/800/500"; // 
-const step2Image = "https://placekitten.com/801/500";
-const step3Image = "https://placekitten.com/802/500";
-const step4Image = "https://placekitten.com/803/500";
-const step5Image = "https://placekitten.com/804/500";
+const step1Image = "https://ik.imagekit.io/8sle6rwoo/articlesPic02.png"; // 
+const step2Image = "https://ik.imagekit.io/8sle6rwoo/articlesPic02.png";
+const step3Image = "https://ik.imagekit.io/8sle6rwoo/articlesPic02.png";
+const step4Image = "https://ik.imagekit.io/8sle6rwoo/articlesPic02.png";
+const step5Image = "https://ik.imagekit.io/8sle6rwoo/articlesPic02.png";
 
 const FaceWashingSteps = () => {
   // 獲取文章數據

@@ -1,289 +1,234 @@
-/* src/scss/styleFqa.scss — ELOA FAQ (最終版 + 新箭頭動畫) */
+/* src/scss/styleFqa.scss — 使用既有顏色變數版本 */
 @use "./styleReset" as *;
 
-$brand: #5B4C39;
-$line:  #D9D0C5;
-$container: 1200px;
 
 :root { --nav-h: 72px; }
 
-.faq {
-  color: $brand;
-  background: #fff;
-  font-family: "Noto Sans TC", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-  overflow: visible;
+.faqs {
+  background: $beige1;  // 使用既有的淺米色背景
+  font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+  min-height: 100vh;
 }
 
 .faq__container {
-  max-width: $container;
+  max-width: 800px;
   width: 100%;
   margin: 0 auto;
-  padding: calc(var(--nav-h) + 24px) 48px 0;
+  padding: calc(var(--nav-h) + 40px) 24px 40px;
   box-sizing: border-box;
-  overflow: visible;
 }
 
 /* ===== Header ===== */
 .faq__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  margin: 12px 0 36px;
-  white-space: nowrap;
-  overflow: visible;
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 .faq__title {
   margin: 0;
-  font-size: 34px;
-  font-weight: 800;
-  line-height: 1.05;
-  flex: 0 0 auto;
-}
-
-.faq__searchBox {
-  position: relative;
-  flex: 0 0 560px;
-  max-width: 560px;
-  min-width: 320px;
-  margin-right: 8px;
-}
-.faq__searchBox input {
-  width: 100%;
-  height: 42px;
-  padding: 11px 14px 11px 44px;
-  border: 1px solid $brand;
-  border-radius: 999px;
-  background-color: #fff;
-  color: $brand;
-  font-size: 16px;
-  outline: none;
-  transition: box-shadow .18s ease, border-color .18s ease;
-
-  &::placeholder { color: $brand; opacity: .8; }
-  &:hover  { border-color: $brand; }
-  &:focus  { border-color: $brand; box-shadow: 0 0 0 2px rgba(91,76,57,.15); }
-}
-.faq__searchIcon {
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 19px; height: 19px;
-  pointer-events: none;
-  opacity: .85;
-}
-
-/* ===== Group ===== */
-.faq__group {
-  margin: 40px 0 20px;
-  padding: 0 4px;
-  border: none;
-  background: transparent;
-}
-.faq__groupName {
-  font-weight: 700;
-  font-size: 21px;
-  margin-bottom: 12px;
-  color: $brand;
-}
-.faq__divider { height: 1px; background: $line; margin-bottom: 16px; }
-
-/* ===== Item (收合/展開分層效果) ===== */
-.faq__item {
-  border: none;
-  border-bottom: 1px solid $line;
-  background: transparent;
-  transition: all .3s ease;
-
-  & + .faq__item { margin-top: 0; }
-
-  /* 展開時變成卡片 */
-  &.is-open {
-    border: 1px solid #e3d9cf;
-    border-radius: 10px;
-    background: #fdfcfb;
-    margin-bottom: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,.05);
+  font-size: $font24-light;  // 使用既有字體大小變數
+  font-weight: 400;
+  color: $dark-brown2;       // 使用既有深棕色
+  letter-spacing: 0.5px;
+  
+  @media (#{$mediaMax767}) {   // 使用既有 RWD 斷點
+    font-size: $font20-light;
   }
 }
 
-/* ===== 問題列（按鈕） ===== */
-.faq__q {
-  font-weight: 700;
-  font-size: 17px;
-  line-height: 1.75;
-  color: $brand;
+/* ===== FAQ List ===== */
+.faq__list {
+  background: $white;        // 使用既有白色
+  border-radius: 0;
+  overflow: hidden;
+  // border-top: 2px solid $dark-brown1;    // 使用既有深棕色作為邊框
+  // border-bottom: 2px solid $dark-brown1;
+  // box-shadow: 0 2px 8px $black-10;       // 使用既有黑色透明度
+}
 
+/* ===== FAQ Items ===== */
+.faq__item {
+  border-bottom: 1px solid $natural-gray100;  // 使用既有灰色分隔線
+  
+  &:last-child {
+    border-bottom:50px;
+  }
+
+  
+
+}
+
+/* ===== 問題按鈕 ===== */
+.faq__q {
+  width: 100%;
+  padding: 20px 24px;
+  background: $white;        // 使用既有白色
+  border: none;
+  text-align: left;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  width: 100%;
-  padding: 16px 20px;
+  font-size: $font16-light;  // 使用既有字體大小
+  color: $dark-brown2;       // 使用既有深棕色
+  font-weight: 400;
+  line-height: 1.5;
+  transition: background-color 0.2s ease;
+
+  
+  /* 展開狀態時的樣式 */
+  .faq__item.is-open & {
+    background: $white;
+    border-bottom: 1px solid $natural-gray100;
+  }
+  
+  @media (#{$mediaMax767}) {
+    padding: 18px 20px;
+    font-size: $font14-light;
+  }
+}
+
+/* ===== 問題文字 ===== */
+.faq__qtext {
+  flex: 1;
   text-align: left;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-
-  outline: none !important;
-  box-shadow: none !important;
-  -webkit-tap-highlight-color: transparent;
-
-  transition: transform .2s ease;
-  transform-origin: center;
-}
-.faq__q:hover {
-  transform: translateY(-2px) scale(1.02);
-}
-.faq__item.is-open .faq__q {
-  background: #f5f0ea;
-  border-radius: 10px 10px 0 0;
-  transform: translateY(-1px) scale(1.01);
+  
+  strong {
+    color: $dark-brown1;     // 使用更深的棕色強調
+    font-weight: 500;
+    margin-right: 8px;
+    font-size: $font14-light;
+    
+    @media (#{$mediaMax767}) {
+      font-size: 13px;
+      margin-right: 6px;
+    }
+  }
 }
 
-/* ===== chevron (箭頭動畫 - 全新版本) ===== */
+/* ===== 展開/收起符號 ===== */
 .faq__chevron {
-  display: inline-block;
-  font-size: 28px;
-  transform: rotate(0deg);
-  transition: transform .35s cubic-bezier(.25,.8,.5,1.2); /* 點擊展開/收合立即有動畫 + 回彈 */
+  font-size: $font18-light;
+  font-weight: 300;
+  color: $brown2;            // 使用中等棕色
+  flex-shrink: 0;
+  margin-left: 16px;
+  transition: transform 0.2s ease;
+  
+  @media (#{$mediaMax767}) {
+    font-size: $font16-light;
+    margin-left: 12px;
+  }
 }
 
-/* 展開時 → 向上旋轉 */
-.faq__chevron.is-open {
-  transform: rotate(180deg);
-}
-
-/* Hover → 微縮放，不改旋轉角度 */
-.faq__q:hover .faq__chevron {
-  transform: scale(1.1) rotate(0deg);
-}
-.faq__item.is-open .faq__q:hover .faq__chevron {
-  transform: scale(1.1) rotate(180deg);
-}
-
-/* ===== 答案內容 ===== */
+/* ===== 答案區域 ===== */
 .faq__aWrap {
   max-height: 0;
-  opacity: 0;
   overflow: hidden;
-  transition: max-height .35s ease, opacity .25s ease, padding .25s ease;
-  pointer-events: none;
-  background: #fff;
-  border-radius: 0 0 10px 10px;
-}
-
-.faq__item.is-open .faq__aWrap {
-  max-height: 600px;
-  opacity: 1;
-  pointer-events: auto;
-  padding: 16px 20px 22px;
-  border-top: 1px solid #e3d9cf;
+  background: $beige2;       // 使用既有米色背景
+  transition: max-height 0.3s ease-in-out;
+  
+  .faq__item.is-open & {
+    max-height: 400px;
+  }
 }
 
 .faq__a {
-  font-size: 16px;
-  line-height: 1.95;
-  padding: 0;
-  margin: 0;
-}
-.faq__item.is-open .faq__a {
-  padding: 12px 0 22px;
-}
-
-/* 條列清單 */
-.faq__bullets { margin-top: 6px; }
-.faq__bullet {
-  position: relative;
-  padding-left: 22px;
-  line-height: 1.95;
-  &::before { content: "•"; position: absolute; left: 0; top: 0; color: $brand; }
-}
-
-/* ===== 搜尋結果空狀態 ===== */
-.faq__noResult {
-  margin: 12px 4px 40px;
-  padding: 14px 16px;
-  border-radius: 10px;
-  background: #faf7f3;
-  color: $brand;
-  font-size: 15.5px;
-  border: 1px dashed $line;
-}
-
-/* ===== 高亮 ===== */
-.faq mark {
-  background: #fff2b2;
-  color: inherit;
-  padding: 0 .12em;
-  border-radius: .2em;
-  box-decoration-break: clone;
-}
-
-/* ===== 波浪動畫（只保留三條線） ===== */
-.faq__wave-container {
-  position: relative;
-  width: 100%;
-  height: 260px;
-  overflow: hidden;
-
-  margin-top: -120px;
-  pointer-events: none;
-}
-
-.faq__wave {
-  width: 100%;
-  height: 200%;
-  transform: scaleX(1.2) rotate(-6deg);
-}
-
-.faq__wave .faq__path,
-.faq__wave .faq__path2,
-.faq__wave .faq__path3 {
-  fill: none;
-  stroke-width: 4;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 4000;
-  stroke: #DBCDB7;
-  animation: faq-draw 12s ease-in-out infinite;
-}
-.faq__wave .faq__path2 { animation: faq-draw2 15s ease-in-out infinite; }
-.faq__wave .faq__path3 { animation: faq-draw3 18s ease-in-out infinite; }
-
-@keyframes faq-draw   { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
-@keyframes faq-draw2  { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
-@keyframes faq-draw3  { 0% { stroke-dashoffset: 4000; } 100% { stroke-dashoffset: 0; } }
-
-/* ===== RWD ===== */
-@media (max-width: 1024px) {
-  .faq__container { padding-left: 40px; padding-right: 40px; }
-  .faq__searchBox { flex-basis: 460px; max-width: 460px; }
-
-  .faq__wave-container {
-    margin-top: -100px;
-    height: 240px;
+  padding: 20px 24px;
+  color: $dark-brown3;       // 使用既有深棕色
+  font-size: $font14-light;
+  line-height: 1.6;
+  font-weight: 400;
+  background: $beige2;       // 使用既有米色背景
+  border-top: 1px solid $natural-gray100;  // 使用既有灰色分隔線
+  
+  @media (#{$mediaMax767}) {
+    padding: 18px 20px;
+    font-size: 13px;
+  }
+  
+  p {
+    margin: 0;
+    line-height: 1.6;
   }
 }
 
-@media (max-width: 820px) {
-  .faq__title { font-size: 30px; }
-  .faq__searchBox { flex-basis: 360px; max-width: 360px; }
-
-  .faq__wave-container {
-    margin-top: -80px;
-    height: 220px;
+/* ===== 項目符號列表 ===== */
+.faq__bullets {
+  .faq__bullet {
+    margin-bottom: 6px;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.6;
+    
+    &::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: $brown1;        // 使用既有棕色作為項目符號
+      font-weight: bold;
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
-@media (max-width: 560px) {
-  .faq__container { padding-left: 24px; padding-right: 24px; }
-  .faq__searchBox { flex-basis: 300px; max-width: 300px; }
-  .faq__title { font-size: 28px; }
+/* ===== 搜尋結果高亮 ===== */
+mark {
+  background: $light-brown1;  // 使用既有淺棕色作為高亮
+  padding: 0 2px;
+  border-radius: 2px;
+  color: $dark-brown2;
+}
 
-  .faq__wave-container {
-    margin-top: -60px;
-    height: 200px;
+/* ===== 無搜尋結果 ===== */
+.faq__empty {
+  text-align: center;
+  padding: 50px 24px;
+  color: $brown2;            // 使用既有棕色
+  font-size: $font16-light;
+  background: $white;
+  border-top: 2px solid $dark-brown1;
+  border-bottom: 2px solid $dark-brown1;
+  
+  @media (#{$mediaMax767}) {
+    padding: 40px 20px;
+    font-size: $font14-light;
   }
+}
+
+/* ===== 響應式調整 ===== */
+@media (#{$mediaMax767}) {
+  .faq__container {
+    padding: calc(var(--nav-h) + 20px) 16px 20px;
+  }
+  
+  .faq__header {
+    margin-bottom: 30px;
+  }
+  
+  .faq__list {
+    box-shadow: 0 1px 3px $black-10;
+  }
+}
+
+/* ===== 平滑動畫效果 ===== */
+.faq__item {
+  transition: all 0.2s ease;
+}
+
+.faq__q:focus {
+  outline: 2px solid $black-20;    // 使用既有透明黑色
+  outline-offset: -2px;
+}
+
+/* ===== 確保一致的視覺層次 ===== */
+.faq__item:first-child .faq__q {
+  border-top: none;
+}
+
+.faq__item:last-child .faq__q {
+  border-bottom: none;
 }

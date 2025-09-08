@@ -2,6 +2,11 @@ import React from 'react';
 import { CSS_CLASSES, DEFAULT_PROPS } from '../../config/articleConfig';
 
 /**
+ * ArticleTips：通常是「集合型」元件，
+ * 負責接收一組提示資料（例如陣列），
+ * 並用 map 或迴圈將多個提示逐一渲染出來。
+ * 筆記: 其原理為迭代資料(余老師教過)，呼叫單一型 ArticleTip 元件集成 TipItem
+ * 迭代資料的地址在config/articleConfig.js
  * 文章提示卡片組件 - 重構版本
  * 顯示一組提示信息，每個提示包含標題和描述
  * 使用統一的配置來提高程式碼一致性

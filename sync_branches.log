@@ -1,0 +1,563 @@
+[西元2025年09月05日 (星期五) 00時50分12秒    ] 開始同步分支
+Your branch is behind 'origin/main' by 2 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+Switched to branch 'main'
+From https://github.com/Ntub0623/eloa-project
+ * branch            main       -> FETCH_HEAD
+Updating 990fa56..155b512
+Fast-forward
+ sync_branches.sh | 47 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 sync_branches.sh
+No local changes to save
+正在同步分支: feature/home-page
+Your branch is up to date with 'origin/feature/home-page'.
+Switched to branch 'feature/home-page'
+Updating 990fa56..155b512
+Fast-forward (no commit created; -m option ignored)
+ sync_branches.sh | 47 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 sync_branches.sh
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+To https://github.com/Ntub0623/eloa-project.git
+   990fa56..155b512  feature/home-page -> feature/home-page
+分支 feature/home-page 同步成功。
+正在同步分支: feature/pei/ProductPage
+Your branch is up to date with 'origin/feature/pei/ProductPage'.
+Switched to branch 'feature/pei/ProductPage'
+Updating 990fa56..155b512
+Fast-forward (no commit created; -m option ignored)
+ sync_branches.sh | 47 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 sync_branches.sh
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+To https://github.com/Ntub0623/eloa-project.git
+   990fa56..155b512  feature/pei/ProductPage -> feature/pei/ProductPage
+分支 feature/pei/ProductPage 同步成功。
+正在同步分支: feature/pei/SkinTest
+Your branch is up to date with 'origin/feature/pei/SkinTest'.
+Switched to branch 'feature/pei/SkinTest'
+Updating 990fa56..155b512
+Fast-forward (no commit created; -m option ignored)
+ sync_branches.sh | 47 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 sync_branches.sh
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+To https://github.com/Ntub0623/eloa-project.git
+   990fa56..155b512  feature/pei/SkinTest -> feature/pei/SkinTest
+分支 feature/pei/SkinTest 同步成功。
+正在同步分支: feature/ravBoss
+Your branch is up to date with 'origin/feature/ravBoss'.
+Switched to branch 'feature/ravBoss'
+Merge made by the 'ort' strategy.
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+To https://github.com/Ntub0623/eloa-project.git
+   05664f6..dbfed35  feature/ravBoss -> feature/ravBoss
+分支 feature/ravBoss 同步成功。
+正在同步分支: feature/tim
+Your branch is up to date with 'origin/feature/tim'.
+Switched to branch 'feature/tim'
+Merge made by the 'ort' strategy.
+ sync_branches.sh | 47 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 sync_branches.sh
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+To https://github.com/Ntub0623/eloa-project.git
+   fccde06..7ac2ac6  feature/tim -> feature/tim
+分支 feature/tim 同步成功。
+略過分支: gh-pages
+略過分支: main
+正在同步分支: zoena
+Your branch is ahead of 'origin/zoena' by 20 commits.
+  (use "git push" to publish your local commits)
+Switched to branch 'zoena'
+Merge made by the 'ort' strategy.
+ sync_branches.sh | 47 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 sync_branches.sh
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+To https://github.com/Ntub0623/eloa-project.git
+   36e5c74..565b584  zoena -> zoena
+分支 zoena 同步成功。
+Your branch is up to date with 'origin/main'.
+Switched to branch 'main'
+No stash entries found.
+[西元2025年09月05日 (星期五) 00時50分25秒    ] 所有分支已同步完成！
+正在同步分支: feature/home-page
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+
+Everything up-to-date
+分支 feature/home-page 同步成功。
+正在同步分支: feature/new-faq-page
+
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+
+error: src refspec feature/new-faq-page does not match any
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+分支 feature/new-faq-page 同步成功。
+正在同步分支: feature/pei/newsPro
+
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+
+error: src refspec feature/pei/newsPro does not match any
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+分支 feature/pei/newsPro 同步成功。
+
+正在同步分支: feature/pei/ProductPage
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+
+Everything up-to-date
+
+分支 feature/pei/ProductPage 同步成功。
+正在同步分支: feature/pei/SkinTest
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+
+Everything up-to-date
+分支 feature/pei/SkinTest 同步成功。
+正在同步分支: feature/ravBoss
+M	sync_branches.log
+Your branch is up to date with 'origin/feature/ravBoss'.
+Already on 'feature/ravBoss'
+Already up to date.
+Everything up-to-date
+
+分支 feature/ravBoss 同步成功。
+正在同步分支: feature/tim
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+
+To https://github.com/Ntub0623/eloa-project.git
+ ! [rejected]        feature/tim -> feature/tim (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+分支 feature/tim 同步成功。
+略過分支: gh-pages
+略過分支: main
+正在同步分支: zoena
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+
+Everything up-to-date
+分支 zoena 同步成功。
+M	sync_branches.log
+Your branch is up to date with 'origin/feature/ravBoss'.
+Already on 'feature/ravBoss'
+
+error: Your local changes to the following files would be overwritten by merge:
+	sync_branches.log
+Please commit your changes or stash them before you merge.
+Aborting
+
+On branch feature/ravBoss
+Your branch is up to date with 'origin/feature/ravBoss'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   sync_branches.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+The stash entry is kept in case you need it again.
+
+[西元2025年09月08日 (星期一) 02時16分15秒    ] 所有分支已同步完成！
+正在同步分支: catboss1995-patch-1
+M	sync_branches.log
+Your branch and 'origin/catboss1995-patch-1' have diverged,
+and have 2 and 3 different commits each, respectively.
+  (use "git pull" if you want to integrate the remote branch with yours)
+Switched to branch 'catboss1995-patch-1'
+warning: in the working copy of 'sync_branches.log', LF will be replaced by CRLF the next time Git touches it
+Merge made by the 'ort' strategy.
+ .github/workflows/main.yml | 25 ++++++++++++++++++++++---
+ package.json               |  4 ++++
+ 2 files changed, 26 insertions(+), 3 deletions(-)
+To https://github.com/Ntub0623/eloa-project.git
+ ! [rejected]        catboss1995-patch-1 -> catboss1995-patch-1 (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. If you want to integrate the remote changes,
+hint: use 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+分支 catboss1995-patch-1 同步成功。
+正在同步分支: catboss1995-patch-1-1
+M	sync_branches.log
+Your branch is up to date with 'origin/catboss1995-patch-1-1'.
+Switched to branch 'catboss1995-patch-1-1'
+warning: in the working copy of 'sync_branches.log', LF will be replaced by CRLF the next time Git touches it
+Merge made by the 'ort' strategy.
+ .github/workflows/main.yml | 25 ++++++++++++++++++++++---
+ package.json               |  4 ++++
+ 2 files changed, 26 insertions(+), 3 deletions(-)
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+remote: 
+remote: Create a pull request for 'catboss1995-patch-1-1' on GitHub by visiting:        
+remote:      https://github.com/catboss1995/eloa-project/pull/new/catboss1995-patch-1-1        
+remote: 
+To https://github.com/Ntub0623/eloa-project.git
+ * [new branch]      catboss1995-patch-1-1 -> catboss1995-patch-1-1
+分支 catboss1995-patch-1-1 同步成功。
+正在同步分支: catboss1995-patch-1-2
+M	sync_branches.log
+Your branch is up to date with 'origin/catboss1995-patch-1-2'.
+Switched to branch 'catboss1995-patch-1-2'
+warning: in the working copy of 'sync_branches.log', LF will be replaced by CRLF the next time Git touches it
+Merge made by the 'ort' strategy.
+ .github/workflows/main.yml | 25 ++++++++++++++++++++++---
+ package.json               |  4 ++++
+ 2 files changed, 26 insertions(+), 3 deletions(-)
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+remote: 
+remote: Create a pull request for 'catboss1995-patch-1-2' on GitHub by visiting:        
+remote:      https://github.com/catboss1995/eloa-project/pull/new/catboss1995-patch-1-2        
+remote: 
+To https://github.com/Ntub0623/eloa-project.git
+ * [new branch]      catboss1995-patch-1-2 -> catboss1995-patch-1-2
+分支 catboss1995-patch-1-2 同步成功。
+正在同步分支: catboss1995-patch-2
+M	sync_branches.log
+Your branch is up to date with 'origin/catboss1995-patch-2'.
+Switched to branch 'catboss1995-patch-2'
+warning: in the working copy of 'sync_branches.log', LF will be replaced by CRLF the next time Git touches it
+Merge made by the 'ort' strategy.
+ .github/workflows/main.yml | 25 ++++++++++++++++++++++---
+ package.json               |  4 ++++
+ 2 files changed, 26 insertions(+), 3 deletions(-)
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+remote: 
+remote: Create a pull request for 'catboss1995-patch-2' on GitHub by visiting:        
+remote:      https://github.com/catboss1995/eloa-project/pull/new/catboss1995-patch-2        
+remote: 
+To https://github.com/Ntub0623/eloa-project.git
+ * [new branch]      catboss1995-patch-2 -> catboss1995-patch-2
+分支 catboss1995-patch-2 同步成功。
+正在同步分支: feature/home-page
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+To https://github.com/Ntub0623/eloa-project.git
+ ! [rejected]        feature/home-page -> feature/home-page (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+分支 feature/home-page 同步成功。
+正在同步分支: feature/new-faq-page
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+error: src refspec feature/new-faq-page does not match any
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+分支 feature/new-faq-page 同步成功。
+正在同步分支: feature/pei/newsPro
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+error: src refspec feature/pei/newsPro does not match any
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+分支 feature/pei/newsPro 同步成功。
+正在同步分支: feature/pei/ProductPage
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+error: src refspec feature/pei/ProductPage does not match any
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+分支 feature/pei/ProductPage 同步成功。
+正在同步分支: feature/pei/SkinTest
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+To https://github.com/Ntub0623/eloa-project.git
+ ! [rejected]        feature/pei/SkinTest -> feature/pei/SkinTest (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+分支 feature/pei/SkinTest 同步成功。
+正在同步分支: feature/ravBoss
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+To https://github.com/Ntub0623/eloa-project.git
+ ! [rejected]        feature/ravBoss -> feature/ravBoss (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+分支 feature/ravBoss 同步成功。
+正在同步分支: feature/tim
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+To https://github.com/Ntub0623/eloa-project.git
+ ! [rejected]        feature/tim -> feature/tim (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+分支 feature/tim 同步成功。
+略過分支: gh-pages
+略過分支: main
+正在同步分支: zoena
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+To https://github.com/Ntub0623/eloa-project.git
+ ! [rejected]        zoena -> zoena (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+分支 zoena 同步成功。
+M	sync_branches.log
+Your branch is up to date with 'origin/main'.
+Switched to branch 'main'
+error: Your local changes to the following files would be overwritten by merge:
+	sync_branches.log
+Please commit your changes or stash them before you merge.
+Aborting
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   sync_branches.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+The stash entry is kept in case you need it again.
+正在同步分支: catboss1995-patch-1
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+remote: 
+remote: Create a pull request for 'catboss1995-patch-1' on GitHub by visiting:        
+remote:      https://github.com/catboss1995/eloa-project/pull/new/catboss1995-patch-1        
+remote: 
+To https://github.com/Ntub0623/eloa-project.git
+ * [new branch]      catboss1995-patch-1 -> catboss1995-patch-1
+分支 catboss1995-patch-1 同步成功。
+正在同步分支: catboss1995-patch-1-1
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+remote: 
+remote: Create a pull request for 'catboss1995-patch-1-1' on GitHub by visiting:        
+remote:      https://github.com/catboss1995/eloa-project/pull/new/catboss1995-patch-1-1        
+remote: 
+To https://github.com/Ntub0623/eloa-project.git
+ * [new branch]      catboss1995-patch-1-1 -> catboss1995-patch-1-1
+分支 catboss1995-patch-1-1 同步成功。
+正在同步分支: catboss1995-patch-1-2
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+remote: 
+remote: Create a pull request for 'catboss1995-patch-1-2' on GitHub by visiting:        
+remote:      https://github.com/catboss1995/eloa-project/pull/new/catboss1995-patch-1-2        
+remote: 
+To https://github.com/Ntub0623/eloa-project.git
+ * [new branch]      catboss1995-patch-1-2 -> catboss1995-patch-1-2
+分支 catboss1995-patch-1-2 同步成功。
+正在同步分支: catboss1995-patch-2
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+remote: This repository moved. Please use the new location:        
+remote:   https://github.com/catboss1995/eloa-project.git        
+remote: 
+remote: Create a pull request for 'catboss1995-patch-2' on GitHub by visiting:        
+remote:      https://github.com/catboss1995/eloa-project/pull/new/catboss1995-patch-2        
+remote: 
+To https://github.com/Ntub0623/eloa-project.git
+ * [new branch]      catboss1995-patch-2 -> catboss1995-patch-2
+分支 catboss1995-patch-2 同步成功。
+正在同步分支: feature/home-page
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+To https://github.com/Ntub0623/eloa-project.git
+ ! [rejected]        feature/home-page -> feature/home-page (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+分支 feature/home-page 同步成功。
+正在同步分支: feature/new-faq-page
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+error: src refspec feature/new-faq-page does not match any
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+分支 feature/new-faq-page 同步成功。
+正在同步分支: feature/pei/newsPro
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+error: src refspec feature/pei/newsPro does not match any
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+分支 feature/pei/newsPro 同步成功。
+正在同步分支: feature/pei/ProductPage
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+error: src refspec feature/pei/ProductPage does not match any
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+分支 feature/pei/ProductPage 同步成功。
+正在同步分支: feature/pei/SkinTest
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+To https://github.com/Ntub0623/eloa-project.git
+ ! [rejected]        feature/pei/SkinTest -> feature/pei/SkinTest (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+分支 feature/pei/SkinTest 同步成功。
+正在同步分支: feature/ravBoss
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+To https://github.com/Ntub0623/eloa-project.git
+ ! [rejected]        feature/ravBoss -> feature/ravBoss (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+分支 feature/ravBoss 同步成功。
+正在同步分支: feature/tim
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+To https://github.com/Ntub0623/eloa-project.git
+ ! [rejected]        feature/tim -> feature/tim (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+分支 feature/tim 同步成功。
+略過分支: gh-pages
+略過分支: main
+正在同步分支: zoena
+error: Your local changes to the following files would be overwritten by checkout:
+	sync_branches.log
+Please commit your changes or stash them before you switch branches.
+Aborting
+Already up to date.
+To https://github.com/Ntub0623/eloa-project.git
+ ! [rejected]        zoena -> zoena (non-fast-forward)
+error: failed to push some refs to 'https://github.com/Ntub0623/eloa-project.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+分支 zoena 同步成功。
+M	sync_branches.log
+Your branch is up to date with 'origin/main'.
+Already on 'main'
+error: Your local changes to the following files would be overwritten by merge:
+	sync_branches.log
+Please commit your changes or stash them before you merge.
+Aborting
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   sync_branches.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+The stash entry is kept in case you need it again.

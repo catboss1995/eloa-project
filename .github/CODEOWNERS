@@ -1,0 +1,12 @@
+# 全域擁有者
+* @team-lead
+
+# 前端檔案
+*.html @frontend-team
+*.css @frontend-team
+*.js @frontend-team
+*.vue @frontend-team
+
+# 配置檔案
+package.json @team-lead
+webpack.config.js @team-lead

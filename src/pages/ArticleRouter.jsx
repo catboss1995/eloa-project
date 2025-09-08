@@ -4,7 +4,7 @@ import articlesData from '../data/articlesData';
 
 // 導入所有文章組件
 import FaceWashingSteps from './articles/FaceWashingSteps';
-import SensitiveSkinCareGuide from '../components/article/SensitiveSkinCareGuideSimple'; // 修正路徑
+import SensitiveSkinCareGuide from './articles/SensitiveSkinCareGuideSimple'; // 修正路徑
 import TestArticle from './articles/TestArticle';
 import TestSimpleArticle from './articles/TestSimpleArticle'; // 臨時測試組件
 

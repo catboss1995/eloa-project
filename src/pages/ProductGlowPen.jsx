@@ -6,7 +6,7 @@ import GlassmorphismButton from '../components/GlassmorphismButton'
 import calmieFront from "../assets/images/glow-pen-front.avif"
 import calmieLeft from "../assets/images/glow-pen-left.avif"
 import calmieBack from "../assets/images/glow-pen-right.avif"
-import coupon from "../assets/images/ProductInfo-coupon.svg"
+import coupon from "../assets/images/productInfo-coupon.svg"
 import essence from "../assets/images/essence.svg"
 import gel from "../assets/images/gel.svg"
 // descTab 區

@@ -2,7 +2,7 @@ import React from 'react';
 
 /**
  * ArticleIntro 組件
- * 用於顯示文章的簡介部分，通常位於文章開頭
+ * 用於顯示文章的導言或簡介部分，通常位於文章開頭
  * 設計風格接近附圖中的簡介文字區域
  * 
  * @param {Object} props 組件屬性

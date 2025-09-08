@@ -7,7 +7,7 @@ import { useArticleNavigation, useArticleShare, useImageLoader } from '../../hoo
 
 /**
  * ArticleBase 組件 - 重構版本
- * 文章頁面的基礎模板，提供統一的佈局和結構
+ * 文章頁面的基礎模板(可重用的 UI 元件)，提供統一的佈局和結構
  * 使用統一的配置和 Hook 來減少重複程式碼
  * 
  * @param {Object} props 組件屬性
