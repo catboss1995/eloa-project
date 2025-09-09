@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import "../scss/styleHome.scss"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 // 共用元件區
 import ButtonStyle from "../components/ButtonStyle"
 // 主要Banner 區
@@ -80,70 +80,55 @@ import circleIcon6 from "../assets/images/service-icon6.svg"
 // 主要Banner區元件
 const PrimaryCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(1);
-  const [isManualControl, setIsManualControl] = useState(false);
-  const [autoplayTimer, setAutoplayTimer] = useState(null);
+  const intervalRef = useRef(null);
 
-  // 自動輪播恢復函數
-  const resumeAutoplay = () => {
-    setIsManualControl(false);
-    if (autoplayTimer) {
-      clearTimeout(autoplayTimer);
+  // 啟動自動播放
+  const startAutoplay = () => {
+    // 清除現有的 interval（如果有的話）
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
     }
+    
+    // 啟動新的 interval
+    intervalRef.current = setInterval(() => {
+      setCurrentSlide((prev) => (prev === 5 ? 1 : prev + 1));
+    }, 5000);
   };
+
+  // 初始化自動播放
+  useEffect(() => {
+    startAutoplay();
+    
+    // 組件卸載時清理
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
 
   // 點擊指示器處理函數
   const handleIndicatorClick = (slideNumber) => {
+    // 立即切換到指定幻燈片
     setCurrentSlide(slideNumber);
-    setIsManualControl(true);
-
-    // 清除之前的計時器
-    if (autoplayTimer) {
-      clearTimeout(autoplayTimer);
-    }
-    // 5秒後恢復自動輪播
-    const timer = setTimeout(() => {
-      resumeAutoplay();
-    }, 5000);
-
-    setAutoplayTimer(timer);
+    
+    // 重新啟動自動播放計時器
+    // 這樣確保從手動點擊後，準確5秒後切換下一張
+    startAutoplay();
   };
-
-  // 清理計時器
-  useEffect(() => {
-    return () => {
-      if (autoplayTimer) {
-        clearTimeout(autoplayTimer);
-      }
-    };
-  }, [autoplayTimer]);
-
-  // 動態添加 CSS 類別到 section
-  useEffect(() => {
-    const section = document.getElementById('primary-sec');
-    if (section) {
-      if (isManualControl) {
-        section.classList.add('manual-control');
-      } else {
-        section.classList.remove('manual-control');
-      }
-    }
-  }, [isManualControl]);
 
   return (
     <>
-      <CarouselSlides
-        currentSlide={currentSlide}
-        isManualControl={isManualControl}
-      />
+      <CarouselSlides currentSlide={currentSlide} />
       <CarouselIndicators
         currentSlide={currentSlide}
-        isManualControl={isManualControl}
         onIndicatorClick={handleIndicatorClick}
       />
     </>
   );
 };
-const CarouselSlides = ({ currentSlide, isManualControl }) => {
+
+const CarouselSlides = ({ currentSlide }) => {
   const slideData = {
     slide1: {
       logo: logo,
@@ -196,10 +181,11 @@ const CarouselSlides = ({ currentSlide, isManualControl }) => {
       }
     ]
   };
+
   return (
     <>
       {/* 1 - 影片 */}
-      <div className={`primary-1 ${isManualControl && currentSlide === 1 ? 'active' : ''}`}>
+      <div className={`primary-1 ${currentSlide === 1 ? 'active' : ''}`}>
         <img src={slideData.slide1.logo} alt="logo" id="primary-logo" />
         <video
           src={slideData.slide1.video}
@@ -220,7 +206,7 @@ const CarouselSlides = ({ currentSlide, isManualControl }) => {
         return (
           <div
             key={slideNumber}
-            className={`primary-${slideNumber} ${isManualControl && currentSlide === slideNumber ? 'active' : ''}`}
+            className={`primary-${slideNumber} ${currentSlide === slideNumber ? 'active' : ''}`}
           >
             <picture>
               <source media="(max-width: 350px)" srcSet={slide.mobileBg} />
@@ -248,14 +234,14 @@ const CarouselSlides = ({ currentSlide, isManualControl }) => {
     </>
   );
 };
-const CarouselIndicators = ({ currentSlide, isManualControl, onIndicatorClick }) => {
+
+const CarouselIndicators = ({ currentSlide, onIndicatorClick }) => {
   return (
     <div className="carousel-indicators">
       {[1, 2, 3, 4, 5].map((slideNum) => (
         <div
           key={slideNum}
-          className={`indicator indicator-${slideNum} ${isManualControl && currentSlide === slideNum ? 'active' : ''
-            }`}
+          className={`indicator ${currentSlide === slideNum ? 'active' : ''}`}
           onClick={() => onIndicatorClick(slideNum)}
         />
       ))}

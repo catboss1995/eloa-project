@@ -32,7 +32,7 @@
         left: 0;
         display: flex;
         opacity: 0;
-        transition: opacity 0.5s ease-in-out;
+        transition: opacity 1s ease-in-out;
         @media ($mediaMax767) {
             flex-direction: column;
         }
@@ -109,45 +109,16 @@
             z-index: 1;
         }
     }
-
-    // 當手動控制模式啟用時，停用自動動畫並使用手動控制
-    &.manual-control {
-        .primary-1,
-        .primary-2,
-        .primary-3,
-        .primary-4,
-        .primary-5 {
-            // 停用所有動畫
-            animation: none !important;
-            opacity: 0 !important;
-
-            // 只有 active 的才顯示
-            &.active {
-                opacity: 1 !important;
-                z-index: 10 !important;
-            }
-        }
-
-        // 手動控制時的指示器樣式
-        .carousel-indicators .indicator {
-            animation: none !important;
-            background-color: $white-60 !important;
-            transform: scale(1) !important;
-            transition: all 0.3s ease;
-
-            &.active {
-                background-color: $white !important;
-                transform: scale(1.2) !important;
-            }
-        }
-    }
-
-    // 自動播放模式
-    .primary-1 {
+    .primary-1.active,
+    .primary-2.active,
+    .primary-3.active,
+    .primary-4.active,
+    .primary-5.active {
         opacity: 1;
-        z-index: 3;
-        animation: primary-1-cycle 25s infinite;
-
+        z-index: 10;        
+    }
+    .primary-1{
+        z-index: 3;    
         #primary-video {
             position: absolute;
             top: 0;
@@ -158,7 +129,6 @@
             opacity: 80%;
             z-index: 1;
         }
-
         #primary-logo {
             position: relative;
             display: block;
@@ -186,26 +156,6 @@
         }
     }
 
-    .primary-2 {
-        animation: primary-2-cycle 25s infinite;
-        z-index: 3;
-    }
-
-    .primary-3 {
-        animation: primary-3-cycle 25s infinite;
-        z-index: 3;
-    }
-
-    .primary-4 {
-        animation: primary-4-cycle 25s infinite;
-        z-index: 3;
-    }
-
-    .primary-5 {
-        animation: primary-5-cycle 25s infinite;
-        z-index: 3;
-    }
-
     // 指示器
     .carousel-indicators {
         position: absolute;
@@ -222,226 +172,16 @@
             border-radius: 99px;
             background-color: $white-40;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.5s ease;
 
             &:hover {
                 background-color: $white-60;
                 transform: scale(1.1);
             }
-
-            // 自動播放模式
-            &.indicator-1 {
-                animation: indicator-1-active 25s infinite;
-            }
-
-            &.indicator-2 {
-                animation: indicator-2-active 25s infinite;
-            }
-
-            &.indicator-3 {
-                animation: indicator-3-active 25s infinite;
-            }
-
-            &.indicator-4 {
-                animation: indicator-4-active 25s infinite;
-            }
-
-            &.indicator-5 {
-                animation: indicator-5-active 25s infinite;
-            }
-        }
-    }
-
-    // 指示器動畫
-    @keyframes indicator-1-active {
-
-        0%,
-        16% {
-            background-color: $white;
-            transform: scale(1.2);
-        }
-
-        20%,
-        96% {
-            background-color: $white-60;
-            transform: scale(1);
-        }
-
-        100% {
-            background-color: $white;
-            transform: scale(1.2);
-        }
-    }
-
-    @keyframes indicator-2-active {
-
-        0%,
-        16% {
-            background-color: $white-60;
-            transform: scale(1);
-        }
-
-        20%,
-        36% {
-            background-color: $white;
-            transform: scale(1.2);
-        }
-
-        40%,
-        100% {
-            background-color: $white-60;
-            transform: scale(1);
-        }
-    }
-
-    @keyframes indicator-3-active {
-
-        0%,
-        36% {
-            background-color: $white-60;
-            transform: scale(1);
-        }
-
-        40%,
-        56% {
-            background-color: $white;
-            transform: scale(1.2);
-        }
-
-        60%,
-        100% {
-            background-color: $white-60;
-            transform: scale(1);
-        }
-    }
-
-    @keyframes indicator-4-active {
-
-        0%,
-        56% {
-            background-color: $white-60;
-            transform: scale(1);
-        }
-
-        60%,
-        76% {
-            background-color: $white;
-            transform: scale(1.2);
-        }
-
-        80%,
-        100% {
-            background-color: $white-60;
-            transform: scale(1);
-        }
-    }
-
-    @keyframes indicator-5-active {
-
-        0%,
-        76% {
-            background-color: $white-60;
-            transform: scale(1);
-        }
-
-        80%,
-        96% {
-            background-color: $white;
-            transform: scale(1.2);
-        }
-
-        100% {
-            background-color: $white-60;
-            transform: scale(1);
-        }
-    }
-
-    // 輪播循環動畫
-    @keyframes primary-1-cycle {
-
-        0%,
-        20% {
-            opacity: 1;
-        }
-
-        24%,
-        96% {
-            opacity: 0;
-        }
-
-        100% {
-            opacity: 1;
-        }
-    }
-
-    @keyframes primary-2-cycle {
-
-        0%,
-        16% {
-            opacity: 0;
-        }
-
-        20%,
-        40% {
-            opacity: 1;
-        }
-
-        44%,
-        100% {
-            opacity: 0;
-        }
-    }
-
-    @keyframes primary-3-cycle {
-
-        0%,
-        36% {
-            opacity: 0;
-        }
-
-        40%,
-        60% {
-            opacity: 1;
-        }
-
-        64%,
-        100% {
-            opacity: 0;
-        }
-    }
-
-    @keyframes primary-4-cycle {
-
-        0%,
-        56% {
-            opacity: 0;
-        }
-
-        60%,
-        80% {
-            opacity: 1;
-        }
-
-        84%,
-        100% {
-            opacity: 0;
-        }
-    }
-
-    @keyframes primary-5-cycle {
-
-        0%,
-        76% {
-            opacity: 0;
-        }
-
-        80%,
-        96% {
-            opacity: 1;
-        }
-
-        100% {
-            opacity: 0;
+            &.active {
+                background-color: $white!important;
+                transform: scale(1.2)!important;
+            }            
         }
     }
 }
@@ -1706,6 +1446,10 @@
     padding: 0 100px;
     background: $gradient-light-dark2;
     height: auto;
+    @media ($mediaMax1040) {
+        padding: 0 50px;
+        
+    }
 
     .service-sec-text-area {
         padding-top: 100px;
@@ -1736,6 +1480,9 @@
                 font-weight: 200;
                 font-style: italic;
                 opacity: 1;
+                @media ($mediaMax767) {
+                    font-size: $font56-light;
+                }
             }
         }
     }
@@ -1749,6 +1496,11 @@
 
         @media ($mediaMax1040) {
             flex-wrap: wrap;
+            padding-right: 60px;
+            margin-top: 50px;
+        }
+        @media ($mediaMax767) {
+            padding-right: 30px;
         }
 
         .service-sec-icon-area {
@@ -1757,6 +1509,7 @@
             @media ($mediaMax1040) {
                 margin-right: -60px;
             }
+            
 
             svg {
                 width: clamp(230px, 15vw, 250px);
