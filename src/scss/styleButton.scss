@@ -3,13 +3,13 @@
 .button-container {
     display: inline-flex;
     width: fit-content;
-    height: 30px;
-    gap: 16px;
-    padding: 8px 24px;
+    height: 45px;
+    gap: 4px;
+    padding: 16px 24px;
     margin-top: 30px;
     background-color: $brown2;
     border: none;
-    border-radius: 999px;
+    border-radius: 30px;
     justify-content: flex-start;
     align-items: center;
     cursor: pointer;
