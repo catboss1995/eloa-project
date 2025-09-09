@@ -700,7 +700,6 @@ const FeedbackMessage = () => {
 const ProductInfo = () => {
   useEffect(() => {
     const sections = document.querySelectorAll("section:not(#product-display-sec)");
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -713,7 +712,6 @@ const ProductInfo = () => {
       },
       { threshold: 0.2 }
     );
-
     sections.forEach((sec) => observer.observe(sec));
 
     return () => {
