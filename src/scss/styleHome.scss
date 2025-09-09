@@ -156,6 +156,26 @@
         }
     }
 
+    .primary-2 {
+        animation: primary-2-cycle 25s infinite;
+        z-index: 3;
+    }
+
+    .primary-3 {
+        animation: primary-3-cycle 25s infinite;
+        z-index: 3;
+    }
+
+    .primary-4 {
+        animation: primary-4-cycle 25s infinite;
+        z-index: 3;
+    }
+
+    .primary-5 {
+        animation: primary-5-cycle 25s infinite;
+        z-index: 3;
+    }
+
     // 指示器
     .carousel-indicators {
         position: absolute;
