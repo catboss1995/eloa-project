@@ -23,11 +23,11 @@ const MemberManagement = () => {
         birthday: ""
     });
     const [isEditing, setIsEditing] = useState(false);
-    //格式化日期
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        return date.toLocaleDateString('zh-TW');
-    };
+    // TODO: Implement date formatting  
+    // const formatDate = (dateString) => {
+    //     const date = new Date(dateString);
+    //     return date.toLocaleDateString('zh-TW');
+    // };
 
     // 格式化金額
     const formatPrice = (price) => {

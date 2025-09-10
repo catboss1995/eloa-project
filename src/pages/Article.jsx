@@ -8,13 +8,13 @@ import "../scss/styleAcademy.scss";
 import articlesData from '../data/articlesData';
 
 // 檢查環境變量和瀏覽器支援
-const isProduction = import.meta.env.PROD;
+// const isProduction = import.meta.env.PROD; // TODO: Use for production optimizations
 const enableAnimations = import.meta.env.VITE_ENABLE_ANIMATIONS !== 'false';
 const animationDelay = parseInt(import.meta.env.VITE_ANIMATION_DELAY || '100');
 const debugMode = import.meta.env.VITE_DEBUG_MODE === 'true';
 const isBrowser = typeof window !== 'undefined';
 const isMotionSupported = isBrowser && typeof animate === 'function';
-const useMotionFallback = false || !isMotionSupported; // 如果不支持 Motion 庫，則啟用備用方案
+const useMotionFallback = !isMotionSupported; // 如果不支持 Motion 庫，則啟用備用方案
 
 // 調試日誌函數
 const log = (...args) => {
@@ -459,7 +459,7 @@ const Article = () => {
           return () => window.removeEventListener('scroll', handleScroll);
         } else {
           const scrollHandler = scroll(
-            ({ y }) => {
+            () => {
               const scrollY = window.scrollY;
               imgOverflows.forEach((img) => {
                 try {

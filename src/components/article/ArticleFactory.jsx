@@ -156,7 +156,7 @@ export const createSimpleArticle = (slug, paragraphs = [], heroImage = null) => 
   return createStandardArticle({
     slug,
     heroImage,
-    sections: paragraphs.map((paragraph, index) => ({
+    sections: paragraphs.map((paragraph) => ({
       type: 'text',
       title: paragraph.title,
       children: paragraph.content,
