@@ -210,7 +210,7 @@ const CarouselSlides = ({ currentSlide }) => {
           >
             <picture>
               <source media="(max-width: 350px)" srcSet={slide.mobileBg} />
-              <source media="(max-width: 768px)" srcSet={slide.tableBg} />
+              <source media="(max-width: 769px)" srcSet={slide.tableBg} />
               <img
                 src={slide.background}
                 alt="carousel background"
@@ -424,8 +424,8 @@ const KnowledgeCardContent = () => {
   return (
     cardContent.map((content) => {
       return (
-        <Link to={content.link}>
-          <KnowledgeCard key={content.id} content={content} />
+        <Link to={content.link} key={content.id}>
+          <KnowledgeCard content={content} />
         </Link>
       )
     })
