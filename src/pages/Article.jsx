@@ -14,7 +14,7 @@ const animationDelay = parseInt(import.meta.env.VITE_ANIMATION_DELAY || '100');
 const debugMode = import.meta.env.VITE_DEBUG_MODE === 'true';
 const isBrowser = typeof window !== 'undefined';
 const isMotionSupported = isBrowser && typeof animate === 'function';
-const useMotionFallback = false || !isMotionSupported; // 如果不支持 Motion 庫，則啟用備用方案
+const useMotionFallback = !isMotionSupported; // 如果不支持 Motion 庫，則啟用備用方案
 
 // 調試日誌函數
 const log = (...args) => {
