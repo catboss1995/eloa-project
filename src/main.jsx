@@ -5,7 +5,7 @@ import App from './App.jsx'
 import { HashRouter } from 'react-router-dom'
 
 // 添加性能監控 - 開發環境使用
-const isDevEnvironment = process.env.NODE_ENV === 'development'
+const isDevEnvironment = import.meta.env.DEV
 
 // 創建根元素
 const rootElement = document.getElementById('root')
