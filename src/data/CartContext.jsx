@@ -5,7 +5,7 @@ const CartContext = createContext();
 
 const cartReducer = (state, action) => {
   switch (action.type) {
-    case "ADD_ITEM":
+    case "ADD_ITEM": {
       const existingItem = state.items.find(i => i.id === action.payload.id);
       if (existingItem) {
         return {
@@ -17,6 +17,7 @@ const cartReducer = (state, action) => {
         };
       }
       return { ...state, isOpen: true, items: [...state.items, action.payload] };
+    }
 
     case "REMOVE_ITEM":
       return { ...state, items: state.items.filter(i => i.id !== action.payload) };
@@ -29,13 +30,14 @@ const cartReducer = (state, action) => {
         ).filter(i => i.qty > 0),
       };
 
-    case "CLEAR_CART":
+    case "CLEAR_CART": {
       // return { ...state, items: [] };
       const clearedState = { ...state, items: [], isOpen: false };
       localStorage.setItem("cart", JSON.stringify(clearedState));
       return clearedState;
+    }
 
-    case "DIRECT_BUY":
+    case "DIRECT_BUY": {
       const existDirect = state.items.find(i => i.id === action.payload.id);
       if (existDirect) {
         return {
@@ -48,6 +50,7 @@ const cartReducer = (state, action) => {
         };
       }
       return { ...state, items: [...state.items, action.payload] };
+    }
 
     case "TOGGLE_CART":
       return { ...state, isOpen: !state.isOpen };
