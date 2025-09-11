@@ -26,6 +26,7 @@ import logo from "../assets/images/topbarLogo.png"
 import promoteSecBg from "../assets/images/promoteSec-bg.avif"
 import frontPic from "../assets/images/frontPic.avif"
 import backPic from "../assets/images/backPic.avif"
+import promoteSecBgMobile from "../assets/images/sec2bg.avif"
 // product 區
 import decorate1 from "../assets/images/product-sec-bg-decorate.svg"
 import decorateHuman from "../assets/images/product-sec-bg-decorate-human.svg"
@@ -209,7 +210,7 @@ const CarouselSlides = ({ currentSlide }) => {
             className={`primary-${slideNumber} ${currentSlide === slideNumber ? 'active' : ''}`}
           >
             <picture>
-              <source media="(max-width: 350px)" srcSet={slide.mobileBg} />
+              <source media="(max-width: 450px)" srcSet={slide.mobileBg} />
               <source media="(max-width: 769px)" srcSet={slide.tableBg} />
               <img
                 src={slide.background}
@@ -722,13 +723,18 @@ const Home = () => {
         <PrimaryCarousel />
       </section>
       <section className='h100-vh' id="promote-sec" onWheel={ProductMouseMove}>
-        <img src={promoteSecBg} alt="promoteSecBg" id="promote-sec-bg" />
+        <picture>
+          <source media="(max-width: 450px)" srcSet={promoteSecBgMobile} />
+          <img src={promoteSecBg} alt="promoteSecBg" id="promote-sec-bg" />
+        </picture>
+
         <div className="container">
           <div className="productPic">
             <ProductImages offsetY={offsetY} backPic={backPic} frontPic={frontPic} />
           </div>
           <div className="productDesc">
             <h2>Master IX</h2>
+            <h2>全效肌膚管理儀</h2>
             <h3>每一道紋理，都有被逆轉的可能</h3>
             <p>當肌膚逐漸忘記年輕的模樣，</p>
             <p>ELOA Master IX 為您喚醒隱藏在深處的微光能量。</p>
