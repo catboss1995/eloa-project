@@ -1,7 +1,4 @@
 @use "./styleReset" as *;
-* {
-    // outline: 1px solid red; /* 用來視覺化邊界 */
-  }
 
 .info-h100-vh {
     position: relative;
@@ -589,6 +586,7 @@
     flex-direction: column;
     align-items: center;
     height: auto;
+    width: 100%;
 
     h2 {
         background-color: $beige5;
@@ -598,12 +596,15 @@
     }
 
     .faq-item {
-        width: 800px;
+        width: 50%;
         margin-bottom: 16px;
         border-color: $brown1 ;
         border-width: 3px;
         border-style: solid dashed;
         border-radius: 8px;
+        @media ($mediaMax1040) {
+            width: 90%;            
+        }
 
 
         .faq-question {
@@ -748,11 +749,20 @@
         &::-webkit-scrollbar{
             display: none;
         }
+        @media ($mediaMax1040) {
+            width: 700px;            
+        }
+        @media ($mediaMax767) {
+            width: 600px;
+        }
 
         .message-card {
             display: flex;
             gap: 50px;
             align-items: center;
+            @media ($mediaMax767) {
+                gap: 20px;
+            }
 
             img {
                 width: 60px;

@@ -26,20 +26,29 @@
     .primary-4,
     .primary-5 {
         position: absolute;
-        height: 100%;
+        height: 100vh;
         width: 100%;
         top: 0;
         left: 0;
         display: flex;
         opacity: 0;
+        transition: opacity 1s ease-in-out;
 
-        // transition: opacity 1s ease-in-out;
+        @media ($mediaMax767) {
+            flex-direction: column;
+        }
+
         .product-slogan,
         .product-slogan-right {
             width: 30%;
             z-index: 3;
             align-content: center;
             margin-left: 80px;
+
+            @media ($mediaMax767) {
+                width: 80%;
+                margin: 0 auto 0 50px;
+            }
 
             .slogan-en {
                 color: $white;
@@ -62,6 +71,11 @@
         .product-slogan-right {
             margin-left: auto;
             margin-right: 80px;
+
+            @media ($mediaMax767) {
+                margin: 0 auto 0 50px;
+                width: 50%;
+            }
         }
 
         .primary-product,
@@ -78,9 +92,18 @@
             @media ($mediaMax1040) {
                 height: 45%;
             }
+
+            @media ($mediaMax767) {
+                position: relative;
+                height: 35%;
+                width: auto;
+                margin: -100px auto 0 50px;
+                left: 10%;
+                top: 90%;
+            }
         }
 
-        .primary-caroual2 {
+        picture .primary-caroual2 {
             position: absolute;
             top: 0;
             left: 0;
@@ -91,10 +114,17 @@
         }
     }
 
-    .primary-1 {
+    .primary-1.active,
+    .primary-2.active,
+    .primary-3.active,
+    .primary-4.active,
+    .primary-5.active {
         opacity: 1;
+        z-index: 10;
+    }
+
+    .primary-1 {
         z-index: 3;
-        animation: primary-1-cycle 25s infinite;
 
         #primary-video {
             position: absolute;
@@ -117,6 +147,11 @@
             object-fit: contain;
             animation: slideInRight 3s ease-out forwards;
             opacity: 0;
+
+            @media ($mediaMax767) {
+                margin: auto auto;
+                width: 30%;
+            }
         }
 
         @keyframes slideInRight {
@@ -146,242 +181,17 @@
             border-radius: 99px;
             background-color: $white-40;
             cursor: pointer;
-            // transition: all 0.5s ease;
-            // border: 2px solid transparent;
+            transition: all 0.5s ease;
 
-            &.indicator-1 {
-                animation: indicator-1-active 25s infinite;
+            &:hover {
+                background-color: $white-60;
+                transform: scale(1.1);
             }
 
-            &.indicator-2 {
-                animation: indicator-2-active 25s infinite;
+            &.active {
+                background-color: $white !important;
+                transform: scale(1.2) !important;
             }
-
-            &.indicator-3 {
-                animation: indicator-3-active 25s infinite;
-            }
-
-            &.indicator-4 {
-                animation: indicator-4-active 25s infinite;
-            }
-
-            &.indicator-5 {
-                animation: indicator-5-active 25s infinite;
-            }
-        }
-    }
-
-    // 指示器動畫
-    @keyframes indicator-1-active {
-
-        0%,
-        16% {
-            background-color: $white;
-            transform: scale(1.2);
-        }
-
-        20%,
-        96% {
-            background-color: $white-60;
-            transform: scale(1);
-        }
-
-        100% {
-            background-color: $white;
-            transform: scale(1.2);
-        }
-    }
-
-    @keyframes indicator-2-active {
-
-        0%,
-        16% {
-            background-color: $white-60;
-            transform: scale(1);
-        }
-
-        20%,
-        36% {
-            background-color: $white;
-            transform: scale(1.2);
-        }
-
-        40%,
-        100% {
-            background-color: $white-60;
-            transform: scale(1);
-        }
-    }
-
-    @keyframes indicator-3-active {
-
-        0%,
-        36% {
-            background-color: $white-60;
-            transform: scale(1);
-        }
-
-        40%,
-        56% {
-            background-color: $white;
-            transform: scale(1.2);
-        }
-
-        60%,
-        100% {
-            background-color: $white-60;
-            transform: scale(1);
-        }
-    }
-
-    @keyframes indicator-4-active {
-
-        0%,
-        56% {
-            background-color: $white-60;
-            transform: scale(1);
-        }
-
-        60%,
-        76% {
-            background-color: $white;
-            transform: scale(1.2);
-        }
-
-        80%,
-        100% {
-            background-color: $white-60;
-            transform: scale(1);
-        }
-    }
-
-    @keyframes indicator-5-active {
-
-        0%,
-        76% {
-            background-color: $white-60;
-            transform: scale(1);
-        }
-
-        80%,
-        96% {
-            background-color: $white;
-            transform: scale(1.2);
-        }
-
-        100% {
-            background-color: $white-60;
-            transform: scale(1);
-        }
-    }
-
-    // 輪播動畫
-
-    .primary-2 {
-        animation: primary-2-cycle 25s infinite;
-        z-index: 3;
-    }
-
-    .primary-3 {
-        animation: primary-3-cycle 25s infinite;
-        z-index: 3;
-    }
-
-    .primary-4 {
-        animation: primary-4-cycle 25s infinite;
-        z-index: 3;
-    }
-
-    .primary-5 {
-        animation: primary-5-cycle 25s infinite;
-        z-index: 3;
-    }
-
-    @keyframes primary-1-cycle {
-
-        0%,
-        20% {
-            opacity: 1;
-        }
-
-        24%,
-        96% {
-            opacity: 0;
-        }
-
-        100% {
-            opacity: 1;
-        }
-    }
-
-    @keyframes primary-2-cycle {
-
-        0%,
-        16% {
-            opacity: 0;
-        }
-
-        20%,
-        40% {
-            opacity: 1;
-        }
-
-        44%,
-        100% {
-            opacity: 0;
-        }
-    }
-
-    @keyframes primary-3-cycle {
-
-        0%,
-        36% {
-            opacity: 0;
-        }
-
-        40%,
-        60% {
-            opacity: 1;
-        }
-
-        64%,
-        100% {
-            opacity: 0;
-        }
-    }
-
-    @keyframes primary-4-cycle {
-
-        0%,
-        56% {
-            opacity: 0;
-        }
-
-        60%,
-        80% {
-            opacity: 1;
-        }
-
-        84%,
-        100% {
-            opacity: 0;
-        }
-    }
-
-    @keyframes primary-5-cycle {
-
-        0%,
-        76% {
-            opacity: 0;
-        }
-
-        80%,
-        96% {
-            opacity: 1;
-        }
-
-        100% {
-            opacity: 0;
         }
     }
 }
@@ -389,7 +199,11 @@
 // 第二區推廣產品區
 #promote-sec {
     background: $gradient-light-dark3;
-    height: 930px;
+    height: 120vh; // 高度待調整，商品交互 偵測滑鼠滑動
+
+    @media ($mediaMax1040) {
+        height: 110vh;
+    }
 
     #promote-sec-bg {
         position: absolute;
@@ -409,22 +223,26 @@
             position: relative;
             flex: 1;
 
-            #backPic {
+            #backPic,
+            #frontPic {
                 position: absolute;
-                height: clamp(240px, 50vh, 320px);
-                bottom: 150px;
+                height: clamp(320px, 50vh, 480px);
+                object-fit: contain;
+                transition: transform 0.3s ease-out; // 平滑過渡
+                will-change: transform; // 提升動畫效能
+                pointer-events: none;
+            }
+
+            #backPic {
+                bottom: 200px;
                 right: -40px;
                 z-index: 3;
-                object-fit: contain;
             }
 
             #frontPic {
-                position: absolute;
-                height: clamp(240px, 50vh, 320px);
-                bottom: 300px;
+                bottom: 350px;
                 right: -70px;
                 z-index: 4;
-                object-fit: contain;
             }
         }
 
@@ -435,20 +253,41 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            margin-right: 100px;
+            margin: 0 150px 150px 0;
+
+            @media ($mediaMax1040) {
+                margin: 0 100px 100px 0;
+            }
+
+            @media ($mediaMax767) {
+                margin: 0 50px 50px 0;
+            }
 
             h2 {
                 font-size: $font48-light;
-                margin-bottom: 20px;
+                margin-bottom: 30px;
+
+                @media ($mediaMax1040) {
+                    font-size: $font40-light;
+                }
+
             }
 
             h3 {
-                font-size: $font24-light;
-                margin-bottom: 20px;
+                font-size: $font32-light;
+                margin-bottom: 30px;
+
+                @media ($mediaMax1040) {
+                    font-size: $font24-light;
+                }
             }
 
             p {
-                font-size: $font14-light
+                font-size: $font18-light;
+
+                @media ($mediaMax1040) {
+                    font-size: $font16-light;
+                }
             }
 
             a {
@@ -465,39 +304,58 @@
     padding-bottom: 30px;
 
     .decorate {
-        height: 40vh;
+        height: 40%;
         position: absolute;
         top: 30px;
 
         @media ($mediaMax1040) {
-            height: 30vh;
+            height: 30%;
+        }
+
+        @media ($mediaMax767) {
+            height: 20%;
         }
     }
 
     #decorate-human {
-        height: 55vh;
-        top: -50px;
-        left: 150px;
+        width: 35%;
+        top: 1%;
+        left: 5%;
+        transform: translate(-10%, -5%);
         z-index: 10;
 
         @media ($mediaMax1040) {
-            height: 40vh;
+            width: 35%;
+            left: 5%;
+            top: 5%;
+        }
+
+        @media ($mediaMax767) {
+            width: 30%;
+            left: 80%;
+            top: 3%;
+            transform: translate(-30%, -10%);
         }
     }
 
     #decorate-products {
-        height: 35vh;
-        top: 120px;
-        right: 100px;
+        width: 30%;
+        height: 28%;
+        top: 20%;
+        right: 8%;
+        transform: translate(8%, -20%);
 
         @media ($mediaMax1200) {
-            height: 25vh;
-            top: 130px;
+            width: 25%;
+            height: 24%;
         }
 
         @media ($mediaMax1040) {
-            height: 20vh;
-            top: 90px;
+            top: 15%;
+        }
+
+        @media ($mediaMax767) {
+            display: none;
         }
     }
 
@@ -520,7 +378,11 @@
             @media ($mediaMax1040) {
                 width: 35%;
                 align-self: center;
+            }
 
+            @media ($mediaMax767) {
+                align-self: start;
+                padding-left: 50px;
             }
 
             #product-sec-desc-sm,
@@ -555,45 +417,112 @@
             width: 100%;
             height: 100%;
             gap: 20px;
-            // flex-wrap: wrap;
             padding: 60px 100px 0 100px;
 
             @media ($mediaMax1040) {
                 padding-top: 10px;
+                flex-wrap: wrap;
+                padding: 20px 20px 0 20px;
             }
 
             .product-sec-card {
+                position: relative;
                 display: flex;
                 max-width: 350px;
-                min-width: 200px;
-
+                min-width: 250px;
                 flex-direction: column;
                 height: 100%;
-                padding: 12px;
+                padding: 16px;
                 background-color: $beige1;
                 border-radius: 24px;
+                opacity: 0;
+                transform: translateY(100px);
+                transition: all .5s ease, opacity 0.6s ease, transform 0.6s ease;
+
+
+                // z-index: 1;
+                &::before {
+                    opacity: 0;
+                    content: "";
+                    width: 104%;
+                    height: 104%;
+                    border-radius: 24px;
+                    background-image: linear-gradient(-45deg, $white-80, $beige2, $white-60);
+                    position: absolute;
+                    z-index: -1;
+                    top: -2%;
+                    left: -2%;
+                    filter: blur(1px);
+                    animation: gradient-shift 2.5s linear infinite;
+                    background-size: 200% 200%;
+                    /* 調整背景大小 */
+                    transition: opacity .5s ease, filter .5s ease;
+                }
+
+                &:hover::before {
+                    opacity: 1;
+                    filter: blur(5px);
+                }
+
+                @keyframes gradient-shift {
+                    0% {
+                        background-position: left top;
+                        /* 起始位置 */
+                    }
+
+                    25% {
+                        background-position: right top;
+                        /* 四分之一位置 */
+                    }
+
+                    50% {
+                        background-position: right bottom;
+                        /* 中間位置 */
+                    }
+
+                    75% {
+                        background-position: left bottom;
+                        /* 四分之三位置 */
+                    }
+
+                    100% {
+                        background-position: left top;
+                        /* 回到起始位置 */
+                    }
+                }
+
+                @media ($mediaMax1200) {
+                    min-width: 230px;
+                }
+
+                @media ($mediaMax1040) {
+                    min-width: 370px;
+                    gap: 10px;
+                    flex-direction: row;
+                }
 
                 .product-card-bg {
                     background: $gradient-light-dark7;
                     border-radius: 18px;
                     width: 100%;
-                    height: 40vh;
+                    height: 35vh;
 
                     @media ($mediaMax1200) {
-                        height: 30vh;
+                        height: 25vh;
                     }
 
                     @media ($mediaMax1040) {
                         height: 20vh;
+                        width: 25%;
                     }
 
                     .product-card-pic {
                         padding: 30px 0;
-                        height: 40vh;
+                        height: 35vh;
                         justify-self: center;
 
                         @media ($mediaMax1200) {
-                            height: 30vh;
+                            height: 25vh;
                         }
 
                         @media ($mediaMax1040) {
@@ -606,6 +535,11 @@
                     display: flex;
                     flex-direction: column;
                     padding-top: 20px;
+                    width: 100%;
+
+                    @media ($mediaMax1040) {
+                        padding-top: 0;
+                    }
 
                     .product-card-desc-en {
                         font-size: $font18-light;
@@ -624,8 +558,12 @@
 
                     }
 
-                    .next-buttom {
+                    a {
+                        width: fit-content;
                         align-self: flex-end;
+                    }
+
+                    .next-buttom {
                         background: $brown4;
                         width: 36px;
                         height: 36px;
@@ -658,6 +596,12 @@
                             background: $white;
                             border-radius: 99px;
                             align-items: center;
+                            transition: all 0.3s ease;
+
+                            &:hover {
+                                box-shadow: 0 0 4px 2px rgba($brown4, 0.9);
+                                transform: translateY(-2px);
+                            }
 
                             @media ($mediaMax1200) {
                                 height: 26px;
@@ -686,6 +630,34 @@
             }
         }
     }
+
+    &.show {
+        .product-sec-card {
+            &:nth-child(1) {
+                opacity: 1;
+                transform: translateY(0);
+                transition-delay: 0.1s;
+            }
+
+            &:nth-child(2) {
+                opacity: 1;
+                transform: translateY(0);
+                transition-delay: 0.3s;
+            }
+
+            &:nth-child(3) {
+                opacity: 1;
+                transform: translateY(0);
+                transition-delay: 0.5s;
+            }
+
+            &:nth-child(4) {
+                opacity: 1;
+                transform: translateY(0);
+                transition-delay: 0.7s;
+            }
+        }
+    }
 }
 
 // 第四區好評回應區
@@ -696,9 +668,17 @@
         justify-items: center;
         padding: 150px 100px;
 
+        @media ($mediaMax767) {
+            padding: 100px 30px;
+        }
+
         .feedback-zh,
         .feedback-en {
             font-size: $font32-light;
+
+            @media ($mediaMax767) {
+                font-size: $font24-light;
+            }
         }
 
         .feedback-zh {
@@ -751,13 +731,20 @@
                         min-width: 320px;
                         max-width: 320px;
                         display: flex;
-                        align-items: flex-start;
+                        align-items: center;
                         gap: 1rem;
                         transition: transform 0.3s ease, box-shadow 0.3s ease;
 
                         @media ($mediaMax1040) {
                             max-width: 270px;
                             min-width: 270px;
+                        }
+
+                        @media ($mediaMax767) {
+                            max-width: 210px;
+                            min-width: 210px;
+                            padding: .5rem;
+                            margin: 0 0.5rem;
                         }
 
                         &:hover {
@@ -829,7 +816,11 @@
     .knowledge-content {
         padding: 0 100px;
         width: 100%;
-        height: 100vh;
+        height: auto;
+
+        @media ($mediaMax1040) {
+            padding: 0 20px;
+        }
 
         .knowledge-title {
             width: 100%;
@@ -838,8 +829,14 @@
             gap: 100px;
             display: flex;
             flex-direction: row;
+
             @media ($mediaMax1200) {
                 padding-top: 50px;
+            }
+
+            @media ($mediaMax1040) {
+                flex-direction: column;
+                gap: 30px;
             }
 
             .knowledge-title-slogan {
@@ -848,6 +845,7 @@
                 p {
                     color: $white;
                     font-size: $font32-light;
+                    text-wrap: nowrap;
                 }
             }
 
@@ -857,6 +855,7 @@
                 p {
                     color: $white;
                     font-size: $font18-light;
+                    @extend %single-line;
                 }
             }
         }
@@ -864,58 +863,93 @@
         .knowledge-cards {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            justify-content: space-around;
             gap: 10px;
             padding-top: 50px;
-            height: 70%;
+            height: auto;
+            width: 100%;
+            flex-wrap: wrap;
 
-            .knowledge-card {
-                display: flex;
-                position: relative;
-                flex-direction: column;
-                justify-content: flex-end;
-                align-items: center;
-                flex: 1;
-                width: 100%;
-                height: 100%;
-                border-radius: 20px;
-                overflow: clip;
-                @media ($mediaMax1200) {
-                    height: 90%;
+            @media ($mediaMax767) {
+                &>:last-child {
+                    display: none;
                 }
-                &:last-child {
-                    @media ($mediaMax1200) {
-                        display: none;
-                    } 
-                }
+            }
 
-                img {
-                    position: absolute;
-                    object-fit: cover;
-                    top: 0;
-                    left: 0;
-                    height: 100%;
-                    width: 100%;
-                }
-
-                .card-text-area {
-                    z-index: 2;
-                    background-color: $white-80;
+            a {
+                opacity: 0;
+                transform: translateY(50px) scale(0.5) rotateX(20deg);
+                transition: opacity 1s ease, transform 1s ease;
+                .knowledge-card {
+                    display: flex;
+                    position: relative;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    align-items: center;
+                    width: 40vh;
+                    height: 70vh;
                     border-radius: 20px;
-                    width: 100%;
-                    padding: 5px;
-
-                    .card-text-small,
-                    .card-text-title {
-                        @extend %single-line;
+                    overflow: clip;
+                    transition: all 0.5s ease, boder .5s ease-in;
+    
+                    @media ($mediaMax1200) {
+                        height: 60vh;
+                        width: 30vh;
                     }
-
-                    .card-text-small {
-                        font-size: 12px;
+    
+                    @media ($mediaMax1040) {
+                        height: 50vh;
+                        width: 25vh;
                     }
-
-                    .card-text-title {
-                        font-size: $font14-light;
+    
+                    @media ($mediaMax1040) {
+                        height: 50vh;
+                        width: 30vh;
+                    }
+    
+                    img {
+                        position: absolute;
+                        object-fit: cover;
+                        top: 0;
+                        left: 0;
+                        height: 100%;
+                        width: 100%;
+                    }
+    
+                    .card-text-area {
+                        z-index: 2;
+                        background-color: $white-80;
+                        width: 100%;
+                        padding: 16px;
+                        height: 17%;
+                        transition: height 0.5s ease;
+    
+                        .card-text-small,
+                        .card-text-title {
+                            @extend %single-line;
+                        }
+    
+                        .card-text-small {
+                            font-size: 12px;
+                        }
+    
+                        .card-text-title {
+                            font-size: $font16-light;
+                        }
+                    }
+    
+                    &:hover {
+                        box-shadow: 0 6px 16px $black-40;
+                        transform: translateY(-5px);
+    
+                        .card-text-area {
+                            height: 70%;
+    
+                            .card-text-title {
+                                text-overflow: none;
+                                white-space: wrap;
+                            }
+                        }
                     }
                 }
             }
@@ -927,6 +961,40 @@
         display: flex;
         justify-content: center;
         padding-bottom: 100px;
+    }
+
+    &.show {
+        .knowledge-cards {
+            
+            >:nth-child(1) {                    
+                opacity: 1;
+                transform: translateY(0) scale(1) rotateX(0);
+                transition-delay: 0.2s;                  
+            }
+            >:nth-child(2) {
+                transition-delay: 0.4s;
+                opacity: 1;
+                transform: translateY(0) scale(1) rotateX(0);
+                }
+            
+            >:nth-child(3) {
+                
+                transition-delay: 0.6s;
+                opacity: 1;
+                transform: translateY(0) scale(1) rotateX(0);
+            
+            }
+            >:nth-child(4) {
+            
+                transition-delay: 0.8s;
+                opacity: 1;
+                transform: translateY(0) scale(1) rotateX(0);
+
+                
+            }
+
+            
+        }
     }
 }
 
@@ -996,6 +1064,11 @@
                 bottom: 0;
                 right: 100px;
                 transform: translateX(50px);
+
+                @media ($mediaMax1040) {
+                    height: 400px;
+                    right: 50px;
+                }
             }
         }
     }
@@ -1011,8 +1084,12 @@
     $side-image-width: 400px;
     $transition-duration: 0.5s;
     $control-size: 30px;
-    $transition-X:400px;
-    
+    $transition-X: 400px;
+
+    @media ($mediaMax1040) {
+        padding: 0 50px;
+    }
+
 
     .campaign-text-area {
         position: absolute;
@@ -1045,6 +1122,10 @@
         margin: 0 auto;
         padding: 40px 20px;
         position: relative;
+
+        @media ($mediaMax1040) {
+            padding: 40px 0;
+        }
     }
 
     .carousel-wrapper {
@@ -1070,7 +1151,7 @@
         position: absolute;
         transition: all $transition-duration cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
-        
+
 
         &--transitioning {
             transition-duration: $transition-duration;
@@ -1080,17 +1161,18 @@
             transform: translateX(0) scale(1);
             z-index: 3;
             opacity: 1;
-            
+
 
             .image-wrapper {
                 width: $center-image-width;
                 height: 300px;
                 box-shadow: 0 20px 40px $black-20;
-                
+
                 @media ($mediaMax1200) {
                     width: 500px;
                 }
-                @media ($mediaMax1200) {
+
+                @media ($mediaMax1040) {
                     width: 400px;
                 }
             }
@@ -1104,20 +1186,28 @@
             transform: translateX($transition-X) scale(0.8);
             z-index: 2;
             opacity: 0.6;
+
             @media ($mediaMax1200) {
                 transform: translateX(250px) scale(0.8);
             }
+
             @media ($mediaMax1040) {
                 transform: translateX(200px) scale(0.8);
             }
+
             .image-wrapper {
                 width: $side-image-width;
                 height: 280px;
                 box-shadow: 0 10px 20px $black-20;
+
                 @media ($mediaMax1200) {
-                    width: 300px;                    
+                    width: 300px;
                 }
-                
+
+                @media ($mediaMax767) {
+                    opacity: 0;
+                }
+
             }
 
             .image-overlay {
@@ -1129,9 +1219,11 @@
             transform: translateX(-$transition-X) scale(0.8);
             z-index: 2;
             opacity: 0.6;
+
             @media ($mediaMax1200) {
                 transform: translateX(-250px) scale(0.8);
             }
+
             @media ($mediaMax1040) {
                 transform: translateX(-200px) scale(0.8);
             }
@@ -1140,10 +1232,15 @@
                 width: $side-image-width;
                 height: 280px;
                 box-shadow: 0 10px 20px $black-20;
+
                 @media ($mediaMax1200) {
-                    width: 300px;                    
+                    width: 300px;
                 }
-                
+
+                @media ($mediaMax767) {
+                    opacity: 0;
+                }
+
             }
 
             .image-overlay {
@@ -1259,6 +1356,7 @@
                 width: 20px;
                 height: 20px;
             }
+
             @media ($mediaMax1200) {
                 left: 10px;
             }
@@ -1271,6 +1369,7 @@
                 width: 20px;
                 height: 20px;
             }
+
             @media ($mediaMax1200) {
                 right: 10px;
             }
@@ -1317,109 +1416,6 @@
         justify-content: center;
 
     }
-
-    // Responsive Design
-    @media (max-width: 1024px) {
-        .carousel-container {
-            max-width: 900px;
-        }
-
-        .carousel-slide {
-            &--center .image-wrapper {
-                width: 500px;
-                height: 350px;
-            }
-
-            &--left,
-            &--right {
-                transform: translateX(-280px) scale(0.75);
-
-                .image-wrapper {
-                    width: 350px;
-                    height: 280px;
-                }
-            }
-
-            &--right {
-                transform: translateX(280px) scale(0.75);
-            }
-        }
-    }
-
-    @media (max-width: 768px) {
-        .carousel-container {
-            padding: 20px 10px;
-        }
-
-        .carousel-wrapper {
-            height: 350px;
-        }
-
-        .carousel-slide {
-            &--center .image-wrapper {
-                width: 400px;
-                height: 280px;
-            }
-
-            &--left,
-            &--right {
-                transform: translateX(-220px) scale(0.7);
-
-                .image-wrapper {
-                    width: 280px;
-                    height: 200px;
-                }
-            }
-
-            &--right {
-                transform: translateX(220px) scale(0.7);
-            }
-        }
-
-        .carousel-control {
-            width: 40px;
-            height: 40px;
-
-            svg {
-                width: 20px;
-                height: 20px;
-            }
-        }
-
-        .image-title {
-            font-size: 1.2rem;
-
-            .carousel-slide--left &,
-            .carousel-slide--right & {
-                font-size: 1rem;
-            }
-        }
-    }
-
-    @media (max-width: 480px) {
-        .carousel-slide {
-
-            &--left,
-            &--right {
-                opacity: 0.3;
-                transform: translateX(-150px) scale(0.6);
-
-                .image-wrapper {
-                    width: 200px;
-                    height: 150px;
-                }
-            }
-
-            &--right {
-                transform: translateX(150px) scale(0.6);
-            }
-
-            &--center .image-wrapper {
-                width: 320px;
-                height: 240px;
-            }
-        }
-    }
 }
 
 // 第八、九區 news&stores 區
@@ -1459,6 +1455,11 @@
         width: 100%;
         height: auto;
         padding: 0 100px;
+
+        @media ($mediaMax1040) {
+            padding: 0;
+
+        }
 
         .news-content {
             display: flex;
@@ -1592,6 +1593,11 @@
     background: $gradient-light-dark2;
     height: auto;
 
+    @media ($mediaMax1040) {
+        padding: 0 50px;
+
+    }
+
     .service-sec-text-area {
         padding-top: 100px;
         display: flex;
@@ -1621,6 +1627,10 @@
                 font-weight: 200;
                 font-style: italic;
                 opacity: 1;
+
+                @media ($mediaMax767) {
+                    font-size: $font56-light;
+                }
             }
         }
     }
@@ -1631,15 +1641,25 @@
         justify-content: center;
         padding-right: 80px;
         margin-top: 100px;
+
         @media ($mediaMax1040) {
             flex-wrap: wrap;
+            padding-right: 60px;
+            margin-top: 50px;
+        }
+
+        @media ($mediaMax767) {
+            padding-right: 30px;
         }
 
         .service-sec-icon-area {
             margin-right: -80px;
+
             @media ($mediaMax1040) {
                 margin-right: -60px;
             }
+
+
             svg {
                 width: clamp(230px, 15vw, 250px);
                 height: clamp(230px, 15vw, 250px);

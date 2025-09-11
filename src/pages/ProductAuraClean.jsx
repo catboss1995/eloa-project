@@ -22,9 +22,9 @@ import tabTeaching4 from "../assets/images/desc-tab-teaching-4.svg"
 import beforePic1 from "../assets/images/1before.png"
 import beforePic2 from "../assets/images/2before.png"
 import beforePic3 from "../assets/images/3before.png"
-import afterPic1 from "../assets/images/1after.png"
-import afterPic2 from "../assets/images/2after.png"
-import afterPic3 from "../assets/images/3after.png"
+import afterPic1 from "../assets/images/1After.png"
+import afterPic2 from "../assets/images/2After.png"
+import afterPic3 from "../assets/images/3After.png"
 import beforeScroll from "../assets/images/before-scroll.png"
 import afterScroll from "../assets/images/after-scroll.png"
 // FAQ 區
@@ -700,7 +700,6 @@ const FeedbackMessage = () => {
 const ProductInfo = () => {
   useEffect(() => {
     const sections = document.querySelectorAll("section:not(#product-display-sec)");
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -713,7 +712,6 @@ const ProductInfo = () => {
       },
       { threshold: 0.2 }
     );
-
     sections.forEach((sec) => observer.observe(sec));
 
     return () => {

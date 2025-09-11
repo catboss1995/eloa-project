@@ -22,8 +22,8 @@ import SensitiveSkinCareGuideSimple from '../components/article/SensitiveSkinCar
  * 展示完整的文章內容，包含頭部、簡介、內容區塊、步驟、提示、結論和底部
  */
 const ArticlePage = () => {
-  // 模擬文章數據
-  const articleData = {
+  // TODO: Implement dynamic article data loading
+  // const articleData = {
     title: '每天洗臉的正確步驟與錯誤解析',
     category: '臉部清潔',
     author: {
@@ -37,10 +37,10 @@ const ArticlePage = () => {
       { id: 2, slug: 'cleansing-products', title: '如何選擇適合自己的洗面乳' },
       { id: 3, slug: 'morning-skincare', title: '早晨護膚的正確順序與重點' }
     ]
-  };
+  // };
 
-  // 洗臉步驟數據
-  const washingSteps = [
+  // TODO: Implement washing steps component
+  // const washingSteps = [
     {
       number: 1,
       title: '清潔雙手',
@@ -71,10 +71,10 @@ const ArticlePage = () => {
       description: '用清水徹底沖洗乾淨，確保沒有殘留的潔面產品，殘留物會導致肌膚敏感和粗糙。',
       image: '/images/rinse-face.jpg'
     }
-  ];
+  // ];
 
-  // 洗臉誤區數據
-  const washingMistakes = [
+  // TODO: Implement washing mistakes component
+  // const washingMistakes = [
     {
       title: '水溫過高',
       description: '熱水會破壞肌膚表面的保護層，導致水分流失和敏感問題。'
@@ -93,8 +93,8 @@ const ArticlePage = () => {
     }
   ];
 
-  // 圖片網格數據
-  const gridImages = [
+  // TODO: Implement grid images component  
+  // const gridImages = [
     {
       src: '/images/cleansing-foam.jpg',
       alt: '潔面產品',
@@ -119,14 +119,14 @@ const ArticlePage = () => {
       caption: '洗臉後立即進行保濕',
       square: true
     }
-  ];
+  // ];
 
-  // 結論段落
-  const conclusionParagraphs = [
+  // TODO: Implement conclusion paragraphs component
+  // const conclusionParagraphs = [
     '正確的洗臉方式是所有護膚步驟的基礎。溫和清潔、適當按摩、徹底沖洗，這些看似簡單的步驟實際上對肌膚健康至關重要。',
     '記住，洗臉的目的是清除髒污和多餘油脂，同時保留肌膚所需的天然保護層。過度清潔和使用不適合的產品都可能適得其反。',
-    '根據自己的膚質選擇合適的潔面產品，並堅持正確的洗臉步驟，你的肌膚將會越來越健康透亮。'
-  ];
+    // '根據自己的膚質選擇合適的潔面產品，並堅持正確的洗臉步驟，你的肌膚將會越來越健康透亮。'
+  // ];
 
   return (
     <div className="articleContainer">
