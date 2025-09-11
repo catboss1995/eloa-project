@@ -214,6 +214,7 @@
         height: 100%;
         object-fit: cover;
         // z-index: 1;
+        // z-index: 1;
     }
 
     .container {
@@ -223,15 +224,12 @@
         .productPic {
             position: relative;
             flex: 1;
-
-
             @media ($mediaMax767) {
                 position: absolute;
                 width: 100%;
                 height: 100%;
                 opacity: 0.5;
             }
-
             #backPic,
             #frontPic {
                 position: absolute;
@@ -246,16 +244,13 @@
                 bottom: 400px;
                 right: 200px;
                 z-index: 3;
-
                 @media (max-width:1600px) {
-                    bottom: 30%;
+                    bottom: 220px;
                 }
-
                 @media ($mediaMax767) {
                     right: 50%;
-                    
+                    bottom: 300px;
                 }
-
                 @media ($mediaMax450) {
                     right: 45%;
                 }
@@ -297,11 +292,10 @@
             @media ($mediaMax767) {
                 margin: 0 50px 50px 0;
             }
-
             @media ($mediaMax450) {
                 margin: 0;
                 z-index: 5;
-
+                
             }
 
             h2 {
@@ -336,9 +330,8 @@
                 @media ($mediaMax1040) {
                     font-size: $font24-light;
                 }
-
                 @media ($mediaMax767) {
-                    margin-bottom: 50px;
+                    margin-bottom: 50px;                    
                 }
             }
 
@@ -351,9 +344,8 @@
                 @media ($mediaMax1040) {
                     font-size: $font16-light;
                 }
-
                 @media ($mediaMax767) {
-                    margin-bottom: 10px;
+                    margin-bottom: 10px;                    
                 }
             }
 
@@ -531,7 +523,7 @@
             }
 
             @media ($mediaMax450) {
-                width: 70%;
+                width: 70%;                
             }
 
             #product-sec-desc-sm,
@@ -550,10 +542,9 @@
                 font-size: $font24-light;
                 font-weight: 500;
                 @extend %single-line;
-
                 @media ($mediaMax450) {
                     font-size: $font20-light;
-
+                    
                 }
             }
 
@@ -561,9 +552,8 @@
                 margin-bottom: 0;
                 @extend %multiple-lines;
                 -webkit-line-clamp: 3;
-
                 @media ($mediaMax450) {
-                    font-size: $font14-light;
+                    font-size: $font14-light;                    
                 }
             }
         }
@@ -673,9 +663,8 @@
                         height: 20vh;
                         width: 25%;
                     }
-
                     @media ($mediaMax450) {
-                        height: 15vh;
+                        height: 15vh;                        
                     }
 
                     .product-card-pic {
@@ -690,9 +679,8 @@
                         @media ($mediaMax1040) {
                             height: 22vh;
                         }
-
                         @media ($mediaMax450) {
-                            height: 17vh;
+                            height: 17vh;                        
                         }
                     }
                 }
@@ -1217,7 +1205,6 @@
         margin: 0 auto;
         gap: 100px;
         overflow: visible;
-
         @media (max-width:700px) {
             flex-direction: column;
         }
@@ -1227,7 +1214,6 @@
             z-index: 2;
             justify-content: center;
             align-content: center;
-
             @media ($mediaMax450) {
                 padding-top: 100px;
             }
@@ -1256,9 +1242,8 @@
                     height: 400px;
                     right: 50px;
                 }
-
                 @media ($mediaMax450) {
-                    height: 250px;
+                    height: 250px;                                        
                 }
             }
         }
@@ -1280,18 +1265,10 @@
     @media ($mediaMax1040) {
         padding: 0 50px;
     }
-
     @media (max-width:700px) {
         padding: 0 20px;
         height: 70vh;
     }
-
-    @media (max-width:700px) {
-        padding: 0 20px;
-        height: 70vh;
-    }
-
-
     .campaign-text-area {
         position: absolute;
         top: 24px;
@@ -1327,10 +1304,9 @@
         @media ($mediaMax1040) {
             padding-top: 80px;
         }
-
         @media ($mediaMax450) {
             padding-top: 80px;
-
+            
         }
     }
 
@@ -1342,10 +1318,9 @@
         align-items: center;
         justify-content: center;
         overflow: hidden;
-
         @media ($mediaMax1040) {
             height: 350px;
-
+            
         }
     }
 
@@ -1389,7 +1364,6 @@
                 @media ($mediaMax1040) {
                     width: 400px;
                 }
-
                 @media (max-width:700px) {
                     height: 200px;
                     width: 300px
@@ -1646,11 +1620,9 @@
     padding: 0 100px;
     height: auto;
     z-index: 1;
-
     @media ($mediaMax1040) {
-        padding: 0 50px;
+        padding: 0 50px;        
     }
-
     @media ($mediaMax450) {
         padding: 0 20px;
     }
@@ -1718,9 +1690,8 @@
                 font-size: $font16-light;
                 align-self: center;
                 @extend %single-line;
-
                 @media ($mediaMax450) {
-                    font-size: $font14-light;
+                    font-size: $font14-light;                    
                 }
             }
         }
@@ -1759,22 +1730,22 @@
                     align-self: center;
                 }
 
-                .store-name {
-                    font-size: $font24-light;
-                    justify-self: center;
-                }
+            &:nth-child(3) {
+                padding-top: 50px;
+            }
 
-                .store-address {
-                    font-size: $font18-light;
-                    justify-self: center;
-                }
+            .store-map {
+                // width: 10wh;
+                max-width: 350px;
+                // height: 10vh;
+                max-height: 350px;
 
-                .leaflet-top {
-                    top: 50%;
+                img {
+                    border-radius: 999px;
                 }
-
-                .leaflet-left {
-                    left: 5%;
+                @media ($mediaMax1040) {
+                    max-width: 200px;
+                    max-height: 200px;                    
                 }
 
                 .leaflet-bottom {
@@ -1906,7 +1877,7 @@
     @media ($mediaMax1040) {
         padding: 0 50px;
     }
-
+    
 
     .service-sec-text-area {
         padding-top: 100px;
@@ -1983,7 +1954,6 @@
                 gap: 20px;
                 top: -50%;
                 align-items: center;
-
                 @media ($mediaMax1040) {
                     top: -80%;
                 }
