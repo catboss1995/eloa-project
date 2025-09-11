@@ -31,3 +31,5 @@ Thumbs.db
 
 # 測試覆蓋率
 /coverage
+# 本機端歷史
+.history/
