@@ -53,6 +53,7 @@
             .slogan-en {
                 color: $white;
                 font-size: $font32-light;
+                font-family: playfair, serif;
                 font-weight: 400;
                 line-height: 48px;
                 text-shadow: 2px 2px 4px $dark-brown1;
@@ -265,7 +266,22 @@
 
             h2 {
                 font-size: $font48-light;
+                font-family: Joanna, serif;
                 margin-bottom: 30px;
+                -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+                clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+                transform: translateY(-50px);
+                opacity: 0;
+                animation: titleAnimation 3s ease infinite;
+
+                &:nth-of-type(2) {
+                    font-size: $font40-light;
+                    position: relative;
+                    top: -90px;
+                    animation-delay: 1.5s;
+                    margin-bottom: 0;
+                }
+
 
                 @media ($mediaMax1040) {
                     font-size: $font40-light;
@@ -284,6 +300,9 @@
 
             p {
                 font-size: $font18-light;
+                opacity: 0;
+                transition: all 1s ease;
+                transform: translateY(5px);
 
                 @media ($mediaMax1040) {
                     font-size: $font16-light;
@@ -295,6 +314,60 @@
             }
         }
     }
+
+    &.show {
+        .productDesc {
+            p {
+                &:nth-of-type(1) {
+                    opacity: 1;
+                    transform: translateY(0);
+                    transition-delay: 0.4s;
+                }
+
+                &:nth-of-type(2) {
+                    opacity: 1;
+                    transform: translateY(0);
+                    transition-delay: 0.8s;
+                }
+
+                &:nth-of-type(3) {
+                    opacity: 1;
+                    transform: translateY(0);
+                    transition-delay: 1.2s;
+                }
+
+                &:nth-of-type(4) {
+                    opacity: 1;
+                    transform: translateY(0);
+                    transition-delay: 1.6s;
+                }
+            }
+        }
+    }
+
+    @keyframes titleAnimation {
+        0% {
+            transform: translateY(-50px);
+            opacity: 0;
+            -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+            clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+        }
+
+        50% {
+            transform: translateY(0);
+            opacity: 1;
+            -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+            clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15%);
+        }
+
+        100% {
+            transform: translateY(50px);
+            opacity: 0;
+            -webkit-clip-path: polygon(100% 0, 100% -0%, 0 100%, 0 100%);
+            clip-path: polygon(100% 0, 100% -0%, 0 100%, 0 100%);
+        }
+    }
+
 }
 
 // 第三區產品卡片區
@@ -880,6 +953,7 @@
                 opacity: 0;
                 transform: translateY(50px) scale(0.5) rotateX(20deg);
                 transition: opacity 1s ease, transform 1s ease;
+
                 .knowledge-card {
                     display: flex;
                     position: relative;
@@ -891,22 +965,22 @@
                     border-radius: 20px;
                     overflow: clip;
                     transition: all 0.5s ease, boder .5s ease-in;
-    
+
                     @media ($mediaMax1200) {
                         height: 60vh;
                         width: 30vh;
                     }
-    
+
                     @media ($mediaMax1040) {
                         height: 50vh;
                         width: 25vh;
                     }
-    
+
                     @media ($mediaMax1040) {
                         height: 50vh;
                         width: 30vh;
                     }
-    
+
                     img {
                         position: absolute;
                         object-fit: cover;
@@ -915,7 +989,7 @@
                         height: 100%;
                         width: 100%;
                     }
-    
+
                     .card-text-area {
                         z-index: 2;
                         background-color: $white-80;
@@ -923,28 +997,28 @@
                         padding: 16px;
                         height: 17%;
                         transition: height 0.5s ease;
-    
+
                         .card-text-small,
                         .card-text-title {
                             @extend %single-line;
                         }
-    
+
                         .card-text-small {
                             font-size: 12px;
                         }
-    
+
                         .card-text-title {
                             font-size: $font16-light;
                         }
                     }
-    
+
                     &:hover {
                         box-shadow: 0 6px 16px $black-40;
                         transform: translateY(-5px);
-    
+
                         .card-text-area {
                             height: 70%;
-    
+
                             .card-text-title {
                                 text-overflow: none;
                                 white-space: wrap;
@@ -965,35 +1039,37 @@
 
     &.show {
         .knowledge-cards {
-            
-            >:nth-child(1) {                    
+
+            >:nth-child(1) {
                 opacity: 1;
                 transform: translateY(0) scale(1) rotateX(0);
-                transition-delay: 0.2s;                  
+                transition-delay: 0.2s;
             }
+
             >:nth-child(2) {
                 transition-delay: 0.4s;
                 opacity: 1;
                 transform: translateY(0) scale(1) rotateX(0);
-                }
-            
+            }
+
             >:nth-child(3) {
-                
+
                 transition-delay: 0.6s;
                 opacity: 1;
                 transform: translateY(0) scale(1) rotateX(0);
-            
+
             }
+
             >:nth-child(4) {
-            
+
                 transition-delay: 0.8s;
                 opacity: 1;
                 transform: translateY(0) scale(1) rotateX(0);
 
-                
+
             }
 
-            
+
         }
     }
 }
@@ -1469,6 +1545,10 @@
             justify-content: space-around;
             border-bottom: 2px solid $brown3;
             line-height: 60px;
+            opacity: 0;
+            transform: translateY(5px);
+            transition: all 0.5s ease;
+
 
             .news-date {
                 font-size: $font24-light;
@@ -1584,6 +1664,41 @@
         }
 
     }
+
+    &.show {
+        .news-container {
+            >:nth-child(1) {
+                opacity: 1;
+                transform: translateY(0);
+                transition-delay: 0.2s;
+            }
+
+            >:nth-child(2) {
+                opacity: 1;
+                transform: translateY(0);
+                transition-delay: 0.4s;
+            }
+
+            >:nth-child(3) {
+                opacity: 1;
+                transform: translateY(0);
+                transition-delay: 0.6s;
+            }
+
+            >:nth-child(4) {
+                opacity: 1;
+                transform: translateY(0);
+                transition-delay: 0.8s;
+            }
+
+            >:nth-child(5) {
+                opacity: 1;
+                transform: translateY(0);
+                transition-delay: 1s;
+            }
+        }
+    }
+
 }
 
 // 第十區服務保障區
