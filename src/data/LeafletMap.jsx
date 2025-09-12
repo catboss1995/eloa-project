@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useState } from 'react';
-import storePic from "../assets/images/skintestStore.avif";
+import storePic from "../assets/images/skintestStore.png";
 import masterIcon from "../assets/images/master-front.avif"
 import L from 'leaflet';
 
@@ -48,7 +48,7 @@ export default function LeafletMap() {
                     style={{ height: "350px", width: "350px", marginBottom: '20px', borderRadius: "999px", overFlow:"visible" }}
                 >
                     <TileLayer
-                        url= "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                     />
                     <Marker position={loc.position} icon={storeIcon}>
