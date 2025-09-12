@@ -1,3 +1,5 @@
+@use "../styleReset" as *;
+
 /* src/scss/skin/_step4.scss
    step4：三段式頁面（桌面每段固定 1080px，高度）
    - Section1: 人物背景 + 玻璃卡片（置中，下移）
@@ -5,14 +7,17 @@
    - Section3: 門市圖片 + 裝飾 + 右下圓形 CTA
 */
 
+
 /* 色彩變數，若專案有 global CSS variables 會自動覆蓋 */
 :root {
   --brand-brown: #8b6f62;
   --brand-brown-strong: #6f5a4f;
   --text-muted: #6f5a4f;
 
-  --sec-h: auto; /* mobile 預設：自動高度 */
-  --card-offset: 220px; /* 卡片下移量 (200~300px 可自行調整) */
+  --sec-h: auto;
+  /* mobile 預設：自動高度 */
+  --card-offset: 220px;
+  /* 卡片下移量 (200~300px 可自行調整) */
 }
 
 /* 桌面版 (≥1440px)：每段固定 1080px 高 */
@@ -28,6 +33,7 @@
   min-height: 0;
   overflow: visible;
   position: relative;
+  padding-top: 60px; // tim 增加
 }
 
 /* 每一段的共同樣式 */
@@ -56,8 +62,63 @@
 
 .step4-hero {
   position: relative;
-  z-index: 1; /* 蓋在背景上 */
+  z-index: 1;
+  margin-top: 150px;
+  /* 蓋在背景上 */
   width: 100%;
+
+  @media (max-width: 767px) {
+    .step4-sec {
+      position: absolute;
+      min-height: 667px;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 15px;
+      box-sizing: border-box;
+    }
+
+    .step4-sec--hero {
+      position: relative;
+
+      margin-top: 150px;
+
+      padding-bottom: 40px;
+      min-height: 667px;
+      height: 667px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .step4-card,
+    .glass-box {
+      position: static !important;
+      left: unset !important;
+      transform: none !important;
+      margin: 60px auto 0 auto !important; // 上方留 60px空間
+      width: 95%;
+      max-width: 380px;
+      padding: 20px 10px;
+      box-sizing: border-box;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+    }
+
+    .step4-sec--intro,
+    .step4-sec--store {
+      min-height: 667px;
+      height: 667px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }
 
 /* 玻璃卡片：絕對定位，水平置中，下移 */
@@ -72,11 +133,8 @@
   width: min(680px, 86%);
   text-align: center;
   z-index: 2;
-
-  /* 這一行可選，但很穩：用 grid 讓所有子項目水平置中 */
   display: grid;
   justify-items: center;
-
   &__product {
     /* 1) 圖片是 block，要靠 auto margin 置中 */
     display: block;
@@ -106,23 +164,95 @@
     color: var(--text-muted);
   }
 
-  .btn-next { margin-top: 6px; }
+  .btn-next {
+    margin-top: 6px;
+  }
+
+  .add-item {
+    margin-top: 16px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .add-cart {
+    padding: 12px 36px;
+    font-size: 18px;
+    border-radius: 24px;
+    background: var(--brand-brown);
+    color: $beige0;
+    font-weight: 700;
+    border: none;
+    box-shadow: 0 4px 16px rgba(139, 111, 98, 0.12);
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: var(--brand-brown-strong);
+    }
+  }
+
 }
+
+// 購物車彈窗樣式
+.cart-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+
+  &__content {
+    background: $beige0;
+    padding: 32px 48px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+    text-align: center;
+  }
+
+  button {
+    margin-top: 18px;
+    padding: 10px 36px;
+    font-size: 14px;
+    border-radius: 25px;
+    background: var(--brand-brown);
+    color: $beige0;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(139, 111, 98, 0.10);
+    transition: background 0.2s;
+
+    &:hover {
+      background: var(--brand-brown-strong);
+    }
+  }
+}
+
 
 /* ========== Section 2：標題 + 說明文字 ========== */
 .step4-sec--intro {
   .skin-card__title {
+    font-size: 24px;
     text-align: center;
+    padding: 250px 0px 0px 0px;
   }
+
   .line-wrap {
-  display: flex;
-  justify-content: center;
-  margin: 16px 0;
-}
-.line-wrap img {
-  max-width: 280px;
-  height: auto;
-}
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+  }
+
+  .line-wrap img {
+    max-width: 280px;
+    height: auto;
+  }
 
 
   .step4-intro {
@@ -132,9 +262,21 @@
   }
 
   .step4-intro__desc {
+    font-size: 16px;
     margin-top: 12px;
     line-height: 1.9;
     color: var(--text-muted);
+  }
+
+  @media (max-width: 767px) {
+    .skin-card__title {
+      font-size: 16px;
+      margin: -10px;
+    }
+
+    .step4-intro__desc {
+      font-size: 14px;
+    }
   }
 }
 
@@ -152,6 +294,7 @@
     &--left {
       left: -110px;
     }
+
     &--right {
       right: -110px;
       transform: scaleX(-1);
@@ -209,27 +352,136 @@
     }
   }
 }
-/* 行動版：回到正常 flow（避免留大片上邊距）*/
-@media (max-width: 1439.98px){
-  .step4-card{
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    margin-inline: auto;
+
+/* RWD 響應式斷點 */
+@media (max-width: 767px) {
+
+  // 手機版樣式
+  .step4-sec {
+    height: auto;
+    padding: 20px 15px;
+  }
+
+  .step4-card {
+    width: 90%;
+    padding: 20px;
+
+    &__product {
+      width: clamp(50px, 8vw, 80px);
+    }
+
+    &__title {
+      font-size: clamp(16px, 4.5vw, 18px);
+    }
+
+    &__desc {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  }
+
+  .step4-sec--intro {
+    .step4-intro {
+      width: 95%;
+    }
+
+    .line-wrap img {
+      max-width: 200px;
+    }
+  }
+
+  .step4-sec--store {
+    .step4-store {
+      &__imgWrap {
+        width: 100%;
+        border-radius: 0;
+      }
+
+      &__fab {
+        width: clamp(80px, 10vw, 120px);
+        height: clamp(80px, 10vw, 120px);
+        right: 10px;
+        bottom: 10px;
+        font-size: 12px;
+      }
+    }
   }
 }
 
-/* 桌面版：絕對定位置中，往下偏移 */
-@media (min-width: 1440px){
-  .step4-sec--hero .step4-card{
-    position: absolute;
-    top: 50px;        /* 200~300 自行調 */
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 0;
+
+//測試
+@media (min-width: 768px) and (max-width: 1048px) {
+  .skin-page glass-box {
+    width: 80px;
+    // right: 10px;
+    top: 15px;
+    padding: 50px;
+  }
+
+
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+
+  // 平板版樣式
+  .step4-sec {
+    height: 780px;
+    padding: 20px 20px;
+  }
+
+  .step4-card {
+    width: min(600px, 80%);
+
+    &__product {
+      width: clamp(80px, 12vw, 100px);
+    }
+  }
+
+  .step4-sec--store {
+    .step4-store {
+      &__imgWrap {
+        width: min(90%, 1000px);
+      }
+
+      &__fab {
+        width: clamp(100px, 12vw, 140px);
+        height: clamp(100px, 12vw, 140px);
+      }
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+
+  // 大螢幕（1400px 以上）
+  .step4-sec {
+    height: 780px;
+  }
+
+  .step4-card {
     width: min(680px, 86%);
-    text-align: center;
-    z-index: 2;
+    top: 50px;
+
+    &__product {
+      width: clamp(70px, 10vw, 100px);
+    }
+  }
+
+  .step4-sec--store {
+    .step4-store {
+      &__decor {
+        display: block;
+      }
+
+      &__imgWrap {
+        width: min(1080px, 92vw);
+      }
+
+      &__fab {
+        width: clamp(120px, 13vw, 160px);
+        height: clamp(120px, 13vw, 160px);
+        font-size: 10px;
+      }
+    }
   }
 }
