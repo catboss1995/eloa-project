@@ -24,8 +24,8 @@ import primarypd4 from "../assets/images/primary-1-product4.svg"
 import logo from "../assets/images/topbarLogo.png"
 // promote 區
 import promoteSecBg from "../assets/images/promoteSec-bg.avif"
-import frontPic from "../assets/images/frontPic.avif"
-import backPic from "../assets/images/backPic.avif"
+import frontPic from "../assets/images/master-front.avif"
+import backPic from "../assets/images/master-back.avif"
 import promoteSecBgMobile from "../assets/images/sec2bg.avif"
 // product 區
 import decorate1 from "../assets/images/product-sec-bg-decorate.svg"
