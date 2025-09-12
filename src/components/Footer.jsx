@@ -9,8 +9,11 @@ import shopCartIcon from "../assets/images/shopCart.svg"
 import fqa from "../assets/images/fqaVector.svg"
 import newsIcon from "../assets/images/news.svg"
 import { Link } from "react-router-dom"
+import { useCart } from "../data/CartContext"
+
 
 const Footer = () => {
+  const {dispatch} = useCart();
   return (
     <footer>
       <div id="ftrMain">
@@ -42,9 +45,9 @@ const Footer = () => {
             <Link to="/Member">
               <img src={memberIcon} alt="member" className="toolIco fx user" />
             </Link>
-            <Link to="/ShopCart">
+            <div className="cart-icon-resize" onClick={() => { dispatch({ type: "TOGGLE_CART" }) }}>
               <img src={shopCartIcon} alt="shopCart" className="toolIco fx cart" />
-            </Link>
+            </div>
             <Link to="/FQA">
               <img src={fqa} alt="questions" className="toolIco fx msg" />
             </Link>
@@ -65,9 +68,9 @@ const Footer = () => {
           <Link to="/Member">
             <img src={memberIcon} alt="member" className="toolIco fx user" />
           </Link>
-          <Link to="/ShopCart">
+          <div className="cart-icon-resize" onClick={() => { dispatch({ type: "TOGGLE_CART" }) }}>
             <img src={shopCartIcon} alt="shopCart" className="toolIco fx cart" />
-          </Link>
+          </div>
           <Link to="/FQA">
             <img src={fqa} alt="questions" className="toolIco fx msg" />
           </Link>
