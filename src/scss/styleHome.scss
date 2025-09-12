@@ -1035,7 +1035,6 @@
             height: auto;
             width: 100%;
             flex-wrap: wrap;
-
             a {
                 opacity: 0;
                 transform: translateY(50px) scale(0.5) rotateX(20deg);
@@ -1166,6 +1165,9 @@
     position: relative;
     height: 600px;
     padding: 0 100px;
+    @media ($mediaMax767) {
+        padding: 0 40px;
+    }
 
     @media ($mediaMax767) {
         padding: 0 40px;
