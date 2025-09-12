@@ -44,3 +44,16 @@ jobs:
     # 如果不是 Node.js 專案，至少檢查檔案
     - name: List files
       run: ls -la
+
+# --- 新手友善附註 ---
+# 這個檔案是 GitHub Actions 的 workflow 設定，讓專案在推送或 PR 時自動執行 CI/CD。
+# 主要流程：
+# 1. 觸發時機：main 或 develop 分支 push，main 分支 PR。
+# 2. build job：在 Ubuntu 環境執行。
+# 3. 步驟說明：
+#    - Checkout code：抓取最新程式碼。
+#    - Setup Node.js：設定 Node.js 版本（這裡用 18）。
+#    - 檢查 package.json 是否存在，決定是否執行 npm 相關指令。
+#    - 安裝套件、執行測試、建置專案（如果是 Node.js 專案）。
+#    - 如果不是 Node.js 專案，至少會列出所有檔案。
+# 這樣可以確保每次推送或 PR 都會自動檢查、測試、建置，提升程式碼品質與協作效率。
