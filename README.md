@@ -8,6 +8,12 @@
 - 創建按鈕與互動效果庫 (buttonEffects.scss)
 - 實驗滾動響應效果 & 模組化 SCSS 測試
 - 新增開發者共同說明書 GUIDE.md (google的朋友說建議寫一下)
+.
+.
+.
+### - 2025-09-12
+- 預計開發文章頁後端，要做登入/編輯/插入圖片/選擇排版模板/選擇動畫，類Bolg系統
+- 採用「Monorepo」方案，前端（Vite + React）和後端（Payload CMS / Node.js）就會放在同一個 repository 下的不同子資料夾
 
 ## Tim
 ### - 2025-08-15
