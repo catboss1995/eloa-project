@@ -13,6 +13,10 @@
   display: flex;
   flex-direction: column;
   z-index: 998;
+  @media ($mediaMax767) {
+    top: 60px;
+    height: calc(100vh - 60px);
+  }
 
   &.open {
     right: 0;

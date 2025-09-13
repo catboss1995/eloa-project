@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import "../scss/styleHome.scss"
 import { useEffect, useRef, useState } from "react"
+import LeafletMap from "../data/LeafletMap"
 // 共用元件區
 import ButtonStyle from "../components/ButtonStyle"
 // 主要Banner 區
@@ -89,7 +90,7 @@ const PrimaryCarousel = () => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
-    
+
     // 啟動新的 interval
     intervalRef.current = setInterval(() => {
       setCurrentSlide((prev) => (prev === 5 ? 1 : prev + 1));
@@ -99,7 +100,7 @@ const PrimaryCarousel = () => {
   // 初始化自動播放
   useEffect(() => {
     startAutoplay();
-    
+
     // 組件卸載時清理
     return () => {
       if (intervalRef.current) {
@@ -112,7 +113,7 @@ const PrimaryCarousel = () => {
   const handleIndicatorClick = (slideNumber) => {
     // 立即切換到指定幻燈片
     setCurrentSlide(slideNumber);
-    
+
     // 重新啟動自動播放計時器
     // 這樣確保從手動點擊後，準確5秒後切換下一張
     startAutoplay();
@@ -599,18 +600,6 @@ const NewsContent = () => {
   )
 }
 
-const StoreInfo = ({ storeMap, storeName, storeAddress }) => {
-  return (
-    <div className="store-info">
-      <div className="store-map">
-        <img src={storeMap} alt="storeGoogleMap" />
-      </div>
-      <p className="store-name">{storeName}</p>
-      <p className="store-address">{storeAddress}</p>
-    </div>
-  )
-}
-
 // 服務保障區元件
 const CircleBoxes = ({ circlePath }) => {
   return (
@@ -842,17 +831,18 @@ const Home = () => {
           <NewsContent />
         </div>
         <div className="stores-container">
-          <StoreInfo storeMap={storeMap1} storeName={"南京店"} storeAddress={"台南市大安區忠孝東路十段88號"} />
-          <StoreInfo storeMap={storeMap1} storeName={"東京店"} storeAddress={"台東市大安區忠孝東路十段88號"} />
           <div className="store-info">
-            <div className="info-container">
-              <div className="info-title-box">
-                <p className="info-title">店鋪情報</p>
-              </div>
-              <p className="info-content">歡迎前往實體銷售據點<br />
-                親自體驗、諮詢、購買</p>
-            </div>
+            <LeafletMap />            
           </div>
+          
+          <div className="info-container">
+            <div className="info-title-box">
+              <p className="info-title">店鋪情報</p>
+            </div>
+            <p className="info-content">歡迎前往實體銷售據點<br />
+              親自體驗、諮詢、購買</p>
+          </div>
+          
         </div>
         <div className="news-store-decorate">
           <img src={decorate2} alt="decorate" />
