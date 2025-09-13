@@ -1735,11 +1735,9 @@
         @media (max-width:1078px) {
             height: auto;
         }
-
         @media ($mediaMax450) {
             flex-direction: column-reverse;
         }
-
         .store-info {
             display: flex;
             flex-wrap: wrap;
@@ -1837,8 +1835,7 @@
             position: absolute;
             right: 100px;
             bottom: -15px;
-
-            @media (max-width:1078px) {
+            @media (max-width:1078px) {                
                 right: 0;
             }
 
@@ -1854,10 +1851,9 @@
                 &:nth-child(2) {
                     color: $white;
                 }
-
                 @media (max-width:1078px) {
                     font-size: $font32-light;
-                    right: 0;
+                    right: 0;                 
                 }
             }
         }
