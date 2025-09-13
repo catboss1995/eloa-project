@@ -1,5 +1,6 @@
 import styles from "../../scss/SkinTest.module.scss";
 import { useNavigate } from "react-router-dom";
+const skinBg = "https://ik.imagekit.io/rgyxmrxzs/skin-bg.png?updatedAt=1757574221401";
 
 export default function SkinLanding() {
   const nav = useNavigate();

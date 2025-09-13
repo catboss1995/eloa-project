@@ -36,6 +36,11 @@ $brand-brown-light: var(--brand-brown-light, #b89f92);
 
 /* ---------- 膠囊按鈕 ---------- */
 .pill {
+  max-width: 100%;
+  width:  100%;;
+  overflow: hidden;
+  flex-wrap: wrap;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -57,6 +62,7 @@ $brand-brown-light: var(--brand-brown-light, #b89f92);
   &:hover {
     transform: translateY(-1px);
   }
+
   &:focus-visible {
     outline: 0;
     box-shadow: 0 0 0 3px rgba(139, 111, 98, 0.22);
@@ -70,7 +76,35 @@ $brand-brown-light: var(--brand-brown-light, #b89f92);
       0 0 0 2px #fff inset,
       0 6px 18px rgba(149, 118, 96, 0.18);
   }
+
+  // 新增平板尺寸的特定樣式
+  @media screen and (min-width: 768px) and (max-width: 1039px) {
+    display: flex;
+    padding: 14px 20px; // 縮小內距
+    font-size: 14px; // 稍微縮小字體
+    max-width: 100%; // 確保不會超出容器
+    box-sizing: border-box; // 使 padding 計算在寬度內
+  }
+
+  // 桌面斷點
+  @media screen and (min-width: 1040px) {
+    .pill {
+      // 原始桌面樣式
+      padding: 16px 26px;
+      font-size: clamp(15px, 1.5vw, 16px);
+    }
+  }
+
+  // 移動裝置尺寸
+  @media screen and (max-width: 767px) {
+    display: flex;
+    padding: 12px 18px; // 更小的內距
+    font-size: 13px; // 更小的字體
+    max-width: 100%;
+    box-sizing: border-box;
+  }
 }
+
 
 /* ---------- 底部：圓點＋下一步 ---------- */
 .skin-footer {
@@ -78,9 +112,11 @@ $brand-brown-light: var(--brand-brown-light, #b89f92);
   display: flex;
   align-items: center;
   gap: 18px;
-  justify-content: center; /* 手機置中 */
+  justify-content: center;
+  /* 手機置中 */
   flex-wrap: wrap;
 }
+
 .skin-footer--split {
   /* 桌機左右分散 */
   justify-content: space-between;
@@ -91,10 +127,13 @@ $brand-brown-light: var(--brand-brown-light, #b89f92);
 .skin-footer {
   margin-top: clamp(18px, 2.6vw, 28px);
   display: flex;
-  flex-direction: column; /* 垂直排列：按鈕在上、圓點在下 */
-  align-items: center; /* 水平置中 */
+  flex-direction: column;
+  /* 垂直排列：按鈕在上、圓點在下 */
+  align-items: center;
+  /* 水平置中 */
   justify-content: center;
-  gap: 12px; /* 按鈕和圓點的距離 */
+  gap: 12px;
+  /* 按鈕和圓點的距離 */
 }
 
 /* 讓按鈕真的置中 */
@@ -127,6 +166,7 @@ $brand-brown-light: var(--brand-brown-light, #b89f92);
       0 2px 6px rgba(149, 118, 96, 0.14);
     opacity: 0.95;
   }
+
   .dot.is-active {
     width: 16px;
     height: 8px;

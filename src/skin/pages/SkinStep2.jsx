@@ -9,6 +9,7 @@ import styles from "../../scss/SkinTest.module.scss";
 // 內部元件樣式（標題 / 膠囊按鈕 / 進度點 / 下一步）
 import "../../scss/skin/_step.scss";
 
+
 const OPTIONS = [
   { id: "basic",    label: "基礎保養" },
   { id: "deep",     label: "深層護理" },
