@@ -42,7 +42,7 @@
   }
 
   .cart-body {
-    flex: 1;
+    flex: 2;
 
     .empty-status,
     .full-status {
@@ -141,6 +141,7 @@
   .cart-footer {
     display: flex;
     flex-direction: column;
+    flex:1;
 
     .note-area {
       white-space: pre-line;

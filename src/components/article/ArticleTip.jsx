@@ -3,7 +3,7 @@ import React from 'react';
 /**
  * ArticleTip 組件
  * 用於顯示單個提示項目，包含編號、標題和描述
- * 設計風格接近附圖中的提示卡片
+ * ArticleTip：通常是「單一提示」元件，負責顯示一則提示的內容（例如標題、描述）。
  * 
  * @param {Object} props 組件屬性
  * @param {number} props.number 提示的編號

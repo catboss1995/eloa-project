@@ -78,7 +78,8 @@ $gradient-light-dark7: linear-gradient(to top ,#DACBB4, #F4F0E5);
     white-space: nowrap;
 }
 // RWD
-$mediaMax767: "max-width:767px";
+$mediaMax450: "max-width:451px";
+$mediaMax767: "max-width:769px";
 $mediaMax1040: "max-width:1040px";
 $mediaMax1200: "max-width:1200px";
 
@@ -114,7 +115,7 @@ ruby, section, summary, time, mark, audio, video {
 
 /* 基本字體設定 */
 body {
-    font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif,'Playfair Display',''Abril Fatface', serif';
+    font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif,'Playfair Display','Abril Fatface', 'serif';
     font-size: $font16-light;
     line-height: 1.5;
     color: $dark-brown2;

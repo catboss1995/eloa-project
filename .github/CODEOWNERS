@@ -1,0 +1,23 @@
+# 全域擁有者
+* @catboss1995
+
+# 前端檔案
+*.html @catboss1995
+*.css @catboss1995
+*.js @catboss1995
+*.vue @catboss1995
+
+# 資料庫相關
+# 後端檔案
+*.ts @catboss1995
+
+# 配置檔案
+package.json @catboss1995
+webpack.config.js @team-lead
+
+# --- 新手友善附註 ---
+# CODEOWNERS 檔案可以指定誰負責審查哪些檔案或目錄。
+# 當有人對這些檔案發 Pull Request，GitHub 會自動要求這些人審查。
+# 格式：路徑/檔案 @GitHub帳號 或 @團隊名稱
+# 例如：*.js @frontend-team 代表所有 .js 檔案由 frontend-team 負責。
+# 這有助於團隊協作與程式碼品質控管，新手也能快速了解責任分配。

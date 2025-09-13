@@ -6,7 +6,7 @@ import GlassmorphismButton from '../components/GlassmorphismButton'
 import calmieFront from "../assets/images/aura-clean-front.avif"
 import calmieLeft from "../assets/images/aura-clean-left.avif"
 import calmieBack from "../assets/images/aura-clean-back.avif"
-import coupon from "../assets/images/ProductInfo-coupon.svg"
+import coupon from "../assets/images/productInfo-coupon.svg"
 import essence from "../assets/images/essence.svg"
 import gel from "../assets/images/gel.svg"
 // descTab 區
@@ -22,9 +22,9 @@ import tabTeaching4 from "../assets/images/desc-tab-teaching-4.svg"
 import beforePic1 from "../assets/images/1before.png"
 import beforePic2 from "../assets/images/2before.png"
 import beforePic3 from "../assets/images/3before.png"
-import afterPic1 from "../assets/images/1after.png"
-import afterPic2 from "../assets/images/2after.png"
-import afterPic3 from "../assets/images/3after.png"
+import afterPic1 from "../assets/images/1After.png"
+import afterPic2 from "../assets/images/2After.png"
+import afterPic3 from "../assets/images/3After.png"
 import beforeScroll from "../assets/images/before-scroll.png"
 import afterScroll from "../assets/images/after-scroll.png"
 // FAQ 區
@@ -700,7 +700,6 @@ const FeedbackMessage = () => {
 const ProductInfo = () => {
   useEffect(() => {
     const sections = document.querySelectorAll("section:not(#product-display-sec)");
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -713,7 +712,6 @@ const ProductInfo = () => {
       },
       { threshold: 0.2 }
     );
-
     sections.forEach((sec) => observer.observe(sec));
 
     return () => {

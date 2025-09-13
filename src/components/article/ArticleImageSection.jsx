@@ -19,7 +19,7 @@ const ArticleImageSection = ({
   children, 
   image, 
   imageAlt, 
-  imageOnRight = true, 
+  // imageOnRight = true, // TODO: Implement image positioning
   roundImage = false 
 }) => {
   return (
