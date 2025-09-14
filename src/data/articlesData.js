@@ -20,11 +20,11 @@ const articlesData = [
     title: "每天洗臉的正確步驟與常見錯誤解析",
     description:
       "洗臉是日常保養中最基礎的一步，但你真的洗對了嗎？錯誤的洗臉方式可能會讓肌膚越洗越乾、甚至引發粉刺與敏感。了解正確洗臉的五大步驟，改善NG行為，讓肌膚越洗越健康！",
-    category: "教學影片",
+    category: "保養知識",
     keywords: ["洗臉", "步驟", "錯誤", "粉刺", "敏感", "保養"],
-    publishDate: "2025/07/15",
+    publishDate: "2024/09/14",
     author: {
-      name: "專業美容師 林美玲",
+      name: "ELOA 美容專家團隊",
       image: "https://cdn.pixabay.com/photo/2015/04/02/06/25/cat-mia-703407_640.jpg" // 頭貼
     }
   },
@@ -39,7 +39,7 @@ const articlesData = [
     publishDate: "2025/05/20",
     author: {
       name: "美容科技專家 陳志明",
-      image: "https://placekitten.com/102/102" // 頭貼
+      image: "https://cdn.pixabay.com/photo/2025/09/03/13/33/cat-9813484_640.jpg" // 頭貼
     }
   },
   {
@@ -53,7 +53,7 @@ const articlesData = [
     publishDate: "2025/04/05",
     author: {
       name: "時尚美容編輯 李佳芸",
-      image: "https://placekitten.com/103/103" // 頭貼
+      image: "https://cdn.pixabay.com/photo/2025/08/09/16/51/wildlife-9764923_640.jpg" // 頭貼
     }
   },
   {
@@ -67,7 +67,7 @@ const articlesData = [
     publishDate: "2025/03/18",
     author: {
       name: "保養品研發專家 張雅琪",
-      image: "https://placekitten.com/104/104" // 頭貼
+      image: "https://cdn.pixabay.com/photo/2023/11/02/11/32/woman-8360359_640.jpg" // 頭貼
     }
   },
   {
@@ -81,7 +81,7 @@ const articlesData = [
     publishDate: "2025/02/25",
     author: {
       name: "專業按摩師 吳俊宏",
-      image: "https://placekitten.com/105/105" // 頭貼
+      image: "https://cdn.pixabay.com/photo/2025/09/05/18/50/cow-9817881_640.jpg" // 頭貼
     }
   }
 ];

@@ -3,19 +3,24 @@ import { useParams, Navigate } from 'react-router-dom';
 import articlesData from '../data/articlesData';
 
 // 導入所有文章組件
-import FaceWashingSteps from './articles/FaceWashingSteps';
-import SensitiveSkinCareGuide from './articles/SensitiveSkinCareGuideSimple'; // 修正路徑
+import Article1 from './articles/Article1';
+import Article2 from './articles/Article2';
+import Article3 from './articles/Article3';
+import Article4 from './articles/Article4';
+import Article5 from './articles/Article5';
 import TestArticle from './articles/TestArticle';
-import TestSimpleArticle from './articles/TestSimpleArticle'; // 臨時測試組件
+import Article6 from './articles/Article6';
 
 // 文章路由映射表
 const articleComponents = {
-  "face-washing-steps": FaceWashingSteps,
-  "sensitive-skin-care-guide": SensitiveSkinCareGuide, // 使用重構版的敏感肌文章組件
+  "face-washing-steps": Article2, // 使用新的洗臉文章組件
+  "sensitive-skin-care-guide": Article1, // 使用重構版的敏感肌文章組件
   "test-article": TestArticle,
+  "beauty-device-guide": Article3, // 添加美容儀器指南
+  "seasonal-skincare": Article4, // 添加換季保養文章
+  "hydration-explained": Article5, // 保濕大解析文章
+  "facial-massage-techniques": Article6, // 臉部按摩技巧
   // 隨著新文章添加，這裡可以繼續擴展
-  // "beauty-device-guide": BeautyDeviceGuide,
-  // 等等...
 };
 
 // 文章路由器組件
