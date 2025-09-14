@@ -6,6 +6,7 @@ node_modules/
 # 構建檔案
 /dist
 /build
+.vite/
 
 # 環境變數
 .env
