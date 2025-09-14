@@ -1,0 +1,1148 @@
+/* 網站主色調版本 */
+
+/* 引入網站色彩變數 */
+@use '../styleReset.scss'as *;
+
+/* 全域設定 */
+.elegant-article {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    line-height: 1.7;
+    color: $dark-brown2;
+    background: $beige0;
+    min-height: 100vh;
+    margin-top: 64px;
+    /* 考慮頂部導航欄高度 */
+
+    /* 柔和的全域動畫 */
+    * {
+        transition: all 0.2s ease;
+    }
+}
+
+/* 主容器 - 簡潔的中心對齊 */
+.elegant-container {
+    max-width: 50%;
+    margin: 0 auto;
+    padding: 90px;
+    position: relative;
+
+    /* 進入動畫 - 將這些聲明移到嵌套規則之前 */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: gentleFadeIn 0.8s ease forwards;
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    /* 為側邊欄預留空間 - 嵌套規則放在聲明之後 */
+    @media (min-width: 1200px) {
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 80px;
+        /* 增加左邊距給側邊欄 */
+    }
+}
+
+
+@keyframes gentleFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .elegant-container {
+        padding: 60px 24px 60px;
+        max-width: none;
+    }
+}
+
+/* 標題設計 */
+.elegant-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 24px;
+
+    /* 咖啡色漸變 - 修正：使用現代語法 */
+    background: linear-gradient(135deg, $dark-brown1 0%, $brown2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    /* 添加 fallback */
+}
+
+/* 麵包屑導航 */
+.breadcrumb {
+    background-color: transparent;
+    width: auto;
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+    font-size: 0.9rem;
+
+    .breadcrumb-item {
+        display: flex;
+        align-items: center;
+        color: $brown3;
+        text-decoration: none;
+        transition: color 0.2s ease;
+
+        svg {
+            margin-right: 6px;
+            font-size: 0.8rem;
+        }
+
+        &:hover {
+            color: $light-brown6;
+        }
+    }
+
+    .breadcrumb-separator {
+        margin: 0 12px;
+        color: $beige4;
+        font-size: 0.7rem;
+    }
+
+    .breadcrumb-current {
+        color: $dark-brown2;
+        font-weight: 500;
+    }
+}
+
+/* 文章標題區域 */
+.article-header {
+    margin-bottom: 30px;
+}
+
+/* 文章元信息 */
+.article-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding: 24px 0;
+    border-top: 1px solid rgb(167 143 117 / 15%);
+    /* 修正：使用現代 rgba 語法 */
+    border-bottom: 1px solid rgb(167 143 117 / 15%);
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+
+    .author-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        margin-right: 16px;
+        object-fit: cover;
+        border: 2px solid rgb(185 142 76 / 20%);
+        /* 修正：使用現代 rgba 語法 */
+    }
+
+    .author-details {
+
+        .author-name,
+        .publish-date {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: $brown3;
+            margin: 2px 0;
+
+            svg {
+                margin-right: 6px;
+                font-size: 0.8rem;
+                color: $beige4;
+            }
+        }
+
+        .author-name {
+            font-weight: 500;
+            color: $dark-brown2;
+        }
+    }
+}
+
+/* 文章操作按鈕 */
+.article-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid rgb(167 143 117 / 30%);
+    /* 修正：使用現代 rgba 語法 */
+    border-radius: 20px;
+    color: $brown3;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    svg {
+        margin-right: 6px;
+        font-size: 0.8rem;
+    }
+
+    &:hover {
+        background: rgb(185 142 76 / 10%);
+        /* 修正：使用現代 rgba 語法 */
+        border-color: rgb(185 142 76 / 50%);
+        color: $light-brown6;
+    }
+
+    &.bookmarked {
+        background: rgb(185 142 76 / 15%);
+        /* 修正：使用現代 rgba 語法 */
+        border-color: $light-brown6;
+        color: $light-brown6;
+    }
+}
+
+/* 分享菜單 */
+.share-container {
+    position: relative;
+}
+
+.share-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background: white;
+    border: 1px solid rgb(167 143 117 / 20%);
+    /* 修正：使用現代 rgba 語法 */
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 10%);
+    /* 修正：使用現代 rgba 語法 */
+    z-index: 100;
+    min-width: 140px;
+
+    button {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 8px 12px;
+        background: transparent;
+        border: none;
+        border-radius: 6px;
+        color: $brown3;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        svg {
+            margin-right: 8px;
+            font-size: 0.9rem;
+        }
+
+        &:hover {
+            background: rgb(185 142 76 / 10%);
+            /* 修正：使用現代 rgba 語法 */
+            color: $light-brown6;
+        }
+    }
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+    .article-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .article-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .breadcrumb {
+        font-size: 0.8rem;
+
+        .breadcrumb-separator {
+            margin: 0 8px;
+        }
+    }
+}
+
+/* 副標題 */
+.elegant-subtitle {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: $brown3;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+/* 極簡進度條 */
+.progress-indicator {
+    position: fixed;
+    top: 64px;
+    /* 在頂部導航欄下方 */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgb(0 0 0 / 5%);
+    /* 修正：使用現代 rgba 語法 */
+    z-index: 100;
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, $light-brown6 0%, $light-brown2 100%);
+        width: 0;
+        transition: width 0.1s ease;
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 8px;
+            height: 100%;
+            background: rgb(255 255 255 / 80%);
+            /* 修正：使用現代 rgba 語法 */
+            box-shadow: 0 0 8px rgb(185 142 76 / 30%);
+        }
+    }
+}
+
+/* 目錄導航 - 固定側邊欄 */
+.table-of-contents {
+    position: fixed;
+    top: 30%;
+    left: 40px;
+    transform: translateY(-50%);
+    background: rgb(255 255 255 / 95%);
+    /* 修正：使用現代 rgba 語法 */
+    backdrop-filter: blur(20px);
+    border: 1px solid rgb(167 143 117 / 20%);
+    /* 修正：使用現代 rgba 語法 */
+    border-radius: 16px;
+    padding: 20px;
+    min-width: 260px;
+    max-width: 10em;
+    height: 500px;
+    /* 高度 */
+    overflow-y: auto;
+    z-index: 1000;
+    /* 提高層級確保在最上層 */
+    box-shadow: 0 8px 32px rgb(0 0 0 / 10%);
+    /* 修正：使用現代 rgba 語法 */
+
+    /* 隱藏在小螢幕 */
+    @media (max-width: 1200px) {
+        display: none;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: $dark-brown2;
+        margin: 0 0 0 0;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-size: 0.875rem;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin: 10px 0;
+            /* 增加項目間距 */
+
+            a {
+                display: flex;
+                align-items: center;
+                padding: 12px 16px;
+                /* 增加內邊距 */
+                color: $brown3;
+                text-decoration: none;
+                border-radius: 8px;
+                font-size: 0.95rem;
+                /* 略微增加字體大小 */
+                line-height: 1.4;
+                /* 增加行高 */
+                transition: all 0.2s ease;
+                white-space: nowrap;
+                /* 防止文字換行 */
+
+                &::before {
+                    content: '';
+                    width: 6px;
+                    height: 6px;
+                    background: $beige4;
+                    border-radius: 50%;
+                    margin-right: 12px;
+                    transition: all 0.2s ease;
+                }
+
+                &:hover {
+                    background: rgb(185 142 76 / 10%);
+                    /* 修正：使用現代 rgba 語法 */
+                    color: $light-brown6;
+                    transform: translateX(4px);
+
+                    &::before {
+                        background: $light-brown6;
+                    }
+                }
+
+                &.active {
+                    background: rgb(185 142 76 / 15%);
+                    /* 修正：使用現代 rgba 語法 */
+                    color: $light-brown6;
+                    font-weight: 500;
+
+                    &::before {
+                        background: $light-brown6;
+                        transform: scale(1.2);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* 移動版目錄導航 - 完全隱藏 */
+.mobile-table-of-contents {
+    display: none;
+    /* 始終隱藏 */
+}
+
+/* 內容區塊 */
+.content-section {
+    margin: 60px 0;
+
+    &:first-of-type {
+        margin-top: 40px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: $dark-brown1;
+        margin: 0 0 24px 0;
+        line-height: 1.3;
+        position: relative;
+
+        /* 微妙的左側標記 */
+        &::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 4px;
+            width: 4px;
+            height: 60%;
+            background: linear-gradient(to bottom, $light-brown6, $light-brown2);
+            border-radius: 2px;
+            opacity: 0.8;
+        }
+    }
+
+    p {
+        font-size: 0.9rem;
+        line-height: 1.7;
+        color: $brown2;
+        margin-bottom: 1.5em;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    ul,
+    ol {
+        padding-left: 24px;
+        margin: 1.5em 0;
+
+        li {
+            margin: 8px 0;
+            color: $brown2;
+            line-height: 1.6;
+        }
+    }
+}
+
+/* 提示卡片 - 現代扁平設計 */
+.tip-card {
+    background: $beige1;
+    border-left: 4px solid $light-brown6;
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    margin: 24px 0;
+    position: relative;
+
+    .tip-icon {
+        position: absolute;
+        top: 20px;
+        left: -14px;
+        width: 28px;
+        height: 28px;
+        background: $light-brown6;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 0.875rem;
+    }
+
+    .tip-content {
+        font-size: 0.8rem;
+        color: $brown3;
+        line-height: 1.6;
+        margin-left: 8px;
+
+        strong {
+            color: $dark-brown2;
+            font-weight: 600;
+        }
+    }
+
+    /* 不同類型的提示卡片 */
+    &.warning {
+        background: #faf6f0;
+        border-color: $brown1;
+
+        .tip-icon {
+            background: $brown1;
+        }
+    }
+
+    &.success {
+        background: #f5f7f2;
+        border-color: $light-brown3;
+
+        .tip-icon {
+            background: $light-brown3;
+        }
+    }
+
+    &.error {
+        background: #faf3f3;
+        border-color: $brown2;
+
+        .tip-icon {
+            background: $brown2;
+        }
+    }
+}
+
+/* 產品卡片 */
+.product-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin: 40px 0;
+
+    .product-card {
+        background: white;
+        border: 1px solid rgb(167 143 117 / 15%);
+        /* 修正：使用現代 rgba 語法 */
+        border-radius: 16px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgb(167 143 117 / 15%);
+            /* 修正：使用現代 rgba 語法 */
+            border-color: rgb(185 142 76 / 30%);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: $beige1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                max-width: 80%;
+                max-height: 80%;
+                object-fit: contain;
+            }
+        }
+
+        .product-info {
+            padding: 20px;
+
+            h3 {
+                font-size: 1rem;
+                font-weight: 600;
+                color: $dark-brown1;
+                margin: 0 0 8px 0;
+            }
+
+            p {
+                font-size: 0.8rem;
+                color: $brown3;
+                margin: 0;
+                line-height: 1.5;
+            }
+        }
+    }
+}
+
+.table-cellH3 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $dark-brown1;
+    margin: 20px 0 16px 0;
+    position: relative;
+}
+
+/* 步驟列表 */
+.step-list {
+    margin: 32px 0;
+
+    .step-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 24px;
+        padding: 20px 0;
+        border-bottom: 1px solid rgb(167 143 117 / 10%);
+        /* 修正：使用現代 rgba 語法 */
+
+        &:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, $light-brown6, $light-brown2);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-right: 16px;
+            margin-top: 2px;
+        }
+
+        .step-content {
+            flex: 1;
+
+            h4 {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: $dark-brown1;
+                margin: 0 0 8px 0;
+            }
+
+            p {
+                font-size: 0.95rem;
+                color: $brown3;
+                line-height: 1.6;
+                margin: 0;
+            }
+        }
+    }
+}
+
+/* 返回頂部按鈕 */
+.scroll-to-top {
+    position: fixed;
+    bottom: 32px;
+    left: 32px;
+    /* 改為靠左 */
+    width: 48px;
+    height: 48px;
+    background: $light-brown6;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgb(185 142 76 / 30%);
+    /* 修正：使用現代 rgba 語法 */
+    opacity: 0;
+
+    transition: all 0.3s ease;
+    z-index: 50;
+
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    &:hover {
+        background: $brown1;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgb(185 142 76 / 40%);
+        /* 修正：使用現代 rgba 語法 */
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .scroll-to-top {
+        bottom: 24px;
+        left: 24px;
+        /* 移動端也改為靠左 */
+        width: 44px;
+        height: 44px;
+    }
+}
+
+/* 滾動動畫 */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+
+    &.in-view {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 圖片優化 */
+.article-image {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 32px 0;
+    box-shadow: 0 8px 24px rgb(167 143 117 / 15%);
+    /* 修正：使用現代 rgba 語法 */
+
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    &:hover img {
+        transform: scale(1.02);
+    }
+}
+
+/* 文章內容增強 */
+.article-content {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        background: linear-gradient(135deg, $dark-brown1, $brown1);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        /* 添加 fallback */
+        position: relative;
+        padding-bottom: 10px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, $light-brown6, transparent);
+            transition: width 0.8s ease;
+        }
+
+        &.in-view::after {
+            width: 60%;
+        }
+    }
+
+    p {
+        line-height: 1.8;
+        margin-bottom: 1.5em;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: $brown2;
+        }
+    }
+}
+
+/* 移動端優化 */
+@media (max-width: 480px) {
+    .elegant-container {
+        padding: 32px 20px 50px;
+    }
+
+    .elegant-title {
+        margin-bottom: 16px;
+    }
+
+    .table-of-contents {
+        padding: 20px;
+        margin: 32px 0;
+    }
+
+    .content-section {
+        margin: 40px 0;
+
+        h2::before {
+            left: -16px;
+        }
+    }
+
+    .product-showcase {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+/* 添加新的膚質卡片樣式 */
+.skin-type-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin: 24px 0;
+}
+
+.skin-type-card {
+    background: $beige1;
+    border: 1px solid rgb(167 143 117 / 15%);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgb(167 143 117 / 15%);
+    }
+
+    h4 {
+        color: $dark-brown1;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0 0 12px 0;
+    }
+
+    p {
+        color: $brown3;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin: 0;
+    }
+}
+
+/* 添加洗臉後護膚步驟樣式 */
+.aftercare-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.aftercare-step {
+    background: white;
+    border: 1px solid rgb(167 143 117 / 15%);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgb(167 143 117 / 15%);
+    }
+
+    h4 {
+        color: $dark-brown1;
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0 0 8px 0;
+    }
+
+    p {
+        color: $brown3;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin: 0;
+    }
+}
+
+/* 添加結語提示樣式 */
+.conclusion-tips {
+    background: $beige1;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 24px 0;
+
+    h4 {
+        color: $dark-brown1;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0 0 16px 0;
+    }
+
+    ul {
+        margin: 0;
+        padding-left: 20px;
+
+        li {
+            color: $brown3;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 8px 0;
+        }
+    }
+}
+
+// 添加到現有的 _elegant-design.scss 文件末尾
+
+// 文章圖片樣式
+.article-image-container {
+    margin: 2rem 0;
+    position: relative;
+
+    .article-main-image {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        display: block;
+    }
+
+    .article-side-image {
+        width: 45%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        float: left;
+        margin: 0 1.5rem 1rem 0;
+
+        &.right {
+            float: right;
+            margin: 0 0 1rem 1.5rem;
+        }
+    }
+
+    .image-caption {
+        font-size: 0.9rem;
+        color: #666;
+        text-align: center;
+        margin-top: 0.75rem;
+        font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+        .article-side-image {
+            width: 100%;
+            float: none;
+            margin: 0 0 1rem 0;
+
+            &.right {
+                float: none;
+                margin: 0 0 1rem 0;
+            }
+        }
+    }
+}
+
+// 清除浮動
+.content-section::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+// 比較表格樣式
+.comparison-chart {
+    margin: 2.5rem 0;
+
+    h3 {
+        margin-bottom: 1rem;
+    }
+
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+        .comparison-row {
+            display: flex;
+
+            &.header {
+                background-color: #f8f4f0;
+                font-weight: 600;
+            }
+
+            &:nth-child(even) {
+                background-color: #fafafa;
+            }
+
+            &:not(.header):hover {
+                background-color: #f5f5f5;
+            }
+        }
+
+        .comparison-cell {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #eee;
+
+            &:first-child {
+                flex: 0.8;
+                font-weight: 500;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .comparison-table {
+            font-size: 0.9rem;
+
+            .comparison-cell {
+                padding: 10px;
+            }
+        }
+    }
+}
+
+// 成分解析表格樣式
+.ingredients-analysis {
+    margin: 2.5rem 0;
+
+    h3 {
+        margin-bottom: 1rem;
+    }
+
+    .ingredients-table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+        .ingredients-row {
+            display: flex;
+
+            &.header {
+                background-color: #f0f4f8;
+                font-weight: 600;
+            }
+
+            &:nth-child(even) {
+                background-color: #fafafa;
+            }
+
+            &:not(.header):hover {
+                background-color: #f5f5f5;
+            }
+        }
+
+        .ingredients-cell {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #eee;
+
+            &:first-child {
+                flex: 0.8;
+                font-weight: 500;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .ingredients-table {
+            font-size: 0.9rem;
+
+            .ingredients-cell {
+                padding: 10px;
+            }
+        }
+    }
+}
+
+// 急救產品推薦樣式
+.emergency-products {
+    margin: 2.5rem 0;
+
+    h3 {
+        margin-bottom: 1.5rem;
+    }
+
+    .emergency-product-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+
+        .emergency-product-item {
+            flex: 1 1 calc(33.333% - 1rem);
+            min-width: 250px;
+            display: flex;
+            align-items: flex-start;
+            background-color: #f9f9f9;
+            padding: 1.2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            &:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            }
+
+            .product-icon {
+                font-size: 2.5rem;
+                margin-right: 1rem;
+                line-height: 1;
+            }
+
+            .product-info {
+                h4 {
+                    margin: 0 0 0.5rem;
+                    font-size: 1.1rem;
+                }
+
+                p {
+                    margin: 0;
+                    font-size: 0.95rem;
+                    color: #666;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .emergency-product-list {
+            flex-direction: column;
+
+            .emergency-product-item {
+                width: 100%;
+            }
+        }
+    }
+}
