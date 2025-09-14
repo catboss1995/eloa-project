@@ -461,7 +461,6 @@
 }
 
 @media (max-width: 768px) {
-
     .articleCard,
     .articleCard.reverse {
         flex-direction: column;
@@ -473,23 +472,38 @@
 
     .leftText,
     .rightText {
-        font-size: 18px;
+        top: 60%;
+        font-size: 16px;
     }
 
+    // 改善導航按鈕在手機版的排列
     .navWrap {
         flex-wrap: wrap;
         padding: 0 5%;
         bottom: 5%;
+        gap: 8px; // 減小按鈕間距
+        justify-content: center; // 平均分配空間
+    }
+
+    // 縮小導航按鈕尺寸
+    .navBtn {
+        padding: 6px 12px;
+        font-size: 13px;
+        margin-bottom: 6px; // 增加垂直間距
     }
 
     .contentSec {
-        padding: 60px 0;
+        padding: 50px 0; // 減少垂直間距
     }
 
     .secTitle {
         font-size: 22px;
         padding: 10px 40px 10px 40px;
-        /* 左右間距一致 */
+    }
+
+    // 改善文章卡片間距
+    .articleList {
+        gap: 50px; // 減少卡片間距
     }
 
     .cardTitle {
@@ -498,15 +512,16 @@
 
     .cardDesc {
         font-size: 14px;
+        margin-bottom: 20px; // 減少底部間距
     }
 
     .cardText {
-        padding: 25px;
+        padding: 22px; // 減少內邊距
     }
 
     // 在小屏幕上調整圖片
     .cardImg {
-        min-height: 250px;
+        min-height: 220px; // 減少圖片高度
 
         .imgOverflow {
             top: -15px;
@@ -526,6 +541,7 @@
     .searchContainer {
         width: 100%;
         flex-wrap: wrap;
+        margin-bottom: 5px;
     }
 
     .searchInputWrap {
@@ -533,6 +549,12 @@
         order: 1;
         margin-top: 10px;
         margin-left: 0;
+    }
+    
+    // 調整搜尋按鈕在手機版的寬度
+    .searchBtn {
+        width: auto;
+        min-width: auto;
     }
 }
 
@@ -543,51 +565,146 @@
 
     .leftText {
         left: 5%;
+        font-size: 12px; // 減小字體
     }
 
     .rightText {
         right: 5%;
+        font-size: 16px; // 減小字體
+    }
+
+    // 進一步優化導航按鈕
+    .navWrap {
+        bottom: 8%; // 稍微上移
+        gap: 6px; // 進一步減小間距
     }
 
     .navBtn {
-        padding: 6px 15px;
+        padding: 5px 10px;
         font-size: 12px;
+        min-width: auto; // 讓按鈕根據內容自動調整寬度
     }
 
+    // 進一步減小文章列表間距
     .articleList {
-        gap: 60px;
-        padding: 0 5%;
+        gap: 40px; // 減少卡片間距
+        padding: 0 4%; // 減少左右間距
     }
 
+    // 減小卡片圖片高度
     .cardImg {
-        min-height: 200px;
+        min-height: 180px;
 
         .imgOverflow {
-            top: -10px;
-            left: -10px !important;
-            right: -10px !important;
-            bottom: -10px;
+            top: -8px;
+            left: -8px !important;
+            right: -8px !important;
+            bottom: -8px;
         }
     }
 
-    .secTitle {
-        font-size: 20px;
-        padding: 8px 30px 8px 30px;
-        /* 左右間距一致 */
-    }
-
-    .cardText {
-        padding: 20px;
-    }
-
+    // 調整卡片背景
     .articleCard::after {
-        top: 10px;
-        bottom: -10px;
-        left: 10px;
-        right: 10px;
+        top: 8px;
+        bottom: -8px;
+        left: 8px;
+        right: 8px;
+    }
+
+    // 調整區塊標題
+    .secTitle {
+        font-size: 18px; // 減小字體
+        padding: 8px 25px 8px 25px; // 減少內邊距
+    }
+
+    .secHeader {
+        margin-bottom: 30px; // 減少標題與內容間距
+    }
+
+    // 調整卡片文字區域
+    .cardText {
+        padding: 18px; // 減少內邊距
+    }
+
+    .cardTitle {
+        font-size: 16px; // 減小標題字體
+        padding-bottom: 12px; // 減少下邊距
+        margin-bottom: 12px; // 減少下邊距
+    }
+
+    .cardDesc {
+        font-size: 13px; // 減小描述字體
+        line-height: 1.5; // 減小行高
+        margin-bottom: 15px; // 減少下邊距
+    }
+
+    // 調整閱讀按鈕
+    .readBtn {
+        padding: 8px 20px; // 減少內邊距
+        font-size: 13px; // 減小字體
     }
 
     .noResults p {
-        font-size: 16px;
+        font-size: 14px; // 減小字體
+    }
+
+    // 調整底部曲線
+    .bottomCurve {
+        height: 70px; // 減少高度
+        margin-top: -35px; // 調整位置
+    }
+    
+    // 優化搜尋按鈕佈局
+    .searchContainer {
+        justify-content: center;
+    }
+}
+
+// 新增超小屏幕的媒體查詢
+@media (max-width: 360px) {
+    // 導航按鈕進一步優化
+    .navBtn {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+
+    // 減小卡片圖片高度
+    .cardImg {
+        min-height: 160px;
+    }
+
+    // 減小卡片文字區域內邊距
+    .cardText {
+        padding: 15px;
+    }
+
+    // 減小標題字體
+    .secTitle {
+        font-size: 12px;
+        padding: 6px 20px 6px 20px;
+    }
+
+    // 減小卡片標題字體
+    .cardTitle {
+        font-size: 15px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    // 減小卡片描述字體
+    .cardDesc {
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+
+    // 調整閱讀按鈕
+    .readBtn {
+        padding: 6px 15px;
+        font-size: 12px;
+    }
+    
+    // 調整導航按鈕容器
+    .navWrap {
+        gap: 5px;
     }
 }

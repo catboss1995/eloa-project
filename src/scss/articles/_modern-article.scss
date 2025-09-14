@@ -1,0 +1,802 @@
+/* 現代風格文章頁面樣式 */
+.modern-article {
+  font-family: 'Noto Sans TC', sans-serif;
+  color: #333;
+  line-height: 1.6;
+  
+  /* 全屏英雄區域 */
+  .hero-section {
+    position: relative;
+    height: 85vh;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 4rem;
+    
+    .hero-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+    
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+    }
+    
+    .hero-content {
+      position: absolute;
+      bottom: 10%;
+      left: 10%;
+      max-width: 60%;
+      color: #fff;
+      
+      .article-meta {
+        margin-bottom: 1rem;
+        
+        .category {
+          background-color: #bfa77a;
+          color: #fff;
+          padding: 0.3rem 0.8rem;
+          border-radius: 3px;
+          font-size: 0.9rem;
+          margin-right: 1rem;
+        }
+        
+        .date {
+          font-size: 0.9rem;
+          opacity: 0.8;
+        }
+      }
+      
+      .article-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+      }
+      
+      .article-intro {
+        font-size: 1.2rem;
+        max-width: 90%;
+        line-height: 1.8;
+      }
+    }
+  }
+  
+  /* 現代化浮動導航 */
+  .modern-floating-nav {
+    position: fixed;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100;
+    
+    .nav-progress {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background-color: rgba(168, 138, 106, 0.2);
+      z-index: -1;
+      
+      .progress-bar {
+        width: 100%;
+        background-color: #bfa77a;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+    }
+    
+    .nav-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      
+      .nav-item {
+        display: flex;
+        align-items: center;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 50%;
+        background-color: #fff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        
+        &:hover, &.active {
+          background-color: #bfa77a;
+          transform: scale(1.1);
+          
+          .nav-icon {
+            color: #fff;
+          }
+          
+          .nav-text {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        .nav-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #bfa77a;
+        }
+        
+        .nav-text {
+          position: absolute;
+          right: calc(100% + 10px);
+          white-space: nowrap;
+          background-color: #bfa77a;
+          color: #fff;
+          padding: 0.3rem 0.8rem;
+          border-radius: 3px;
+          font-size: 0.9rem;
+          opacity: 0;
+          transform: translateX(10px);
+          transition: all 0.3s ease;
+        }
+      }
+    }
+  }
+  
+  /* 主要內容區域 */
+  .article-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    
+    .content-section {
+      margin-bottom: 8rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+      
+      &.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .section-header {
+        margin-bottom: 3rem;
+        text-align: center;
+        
+        .section-title {
+          font-size: 2.5rem;
+          font-weight: 700;
+          color: #5a4a3b;
+          margin-bottom: 1rem;
+        }
+        
+        .section-divider {
+          width: 60px;
+          height: 3px;
+          background-color: #bfa77a;
+          margin: 0 auto;
+        }
+      }
+    }
+    
+    /* 特徵與成因部分 */
+    .features-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      
+      .text-content {
+        .section-subtitle {
+          font-size: 1.8rem;
+          color: #8a614d;
+          margin-bottom: 2rem;
+        }
+        
+        .feature-list {
+          list-style: none;
+          padding: 0;
+          
+          li {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            
+            .highlight {
+              color: #bfa77a;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      
+      .visual-content {
+        .image-wrapper {
+          position: relative;
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+          
+          img {
+            width: 100%;
+            height: auto;
+            display: block;
+          }
+          
+          .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0,0,0,0.6);
+            color: #fff;
+            padding: 0.8rem;
+            font-size: 0.9rem;
+            text-align: center;
+          }
+        }
+      }
+      
+      .tipsGrid-horizontal {
+        grid-column: 1 / -1;
+        margin-top: 3rem;
+      }
+    }
+    
+    /* 護理步驟部分 */
+    .steps-content {
+      .steps-intro {
+        text-align: center;
+        margin-bottom: 3rem;
+        
+        .highlighted-text {
+          font-size: 1.3rem;
+          color: #8a614d;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+      }
+      
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        margin-bottom: 4rem;
+        
+        .step-card {
+          background-color: #f8f3ee;
+          padding: 2rem;
+          border-radius: 10px;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+          transition: transform 0.3s ease;
+          
+          &:hover {
+            transform: translateY(-10px);
+          }
+          
+          .step-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            
+            .step-number {
+              font-size: 2.5rem;
+              font-weight: 700;
+              color: #bfa77a;
+            }
+          }
+          
+          .step-title {
+            font-size: 1.3rem;
+            color: #5a4a3b;
+            margin-bottom: 1rem;
+          }
+          
+          .step-desc {
+            color: #666;
+            line-height: 1.6;
+          }
+        }
+      }
+      
+      .steps-visual {
+        text-align: center;
+        
+        img {
+          max-width: 100%;
+          border-radius: 10px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .image-caption {
+          margin-top: 1rem;
+          color: #777;
+          font-size: 0.9rem;
+        }
+      }
+    }
+    
+    /* 產品挑選部分 */
+    .products-content {
+      .selection-criteria {
+        margin-bottom: 4rem;
+        
+        .section-subtitle {
+          font-size: 1.8rem;
+          color: #8a614d;
+          margin-bottom: 2rem;
+          text-align: center;
+        }
+        
+        .criteria-list {
+          max-width: 800px;
+          margin: 0 auto;
+          list-style: none;
+          padding: 0;
+          
+          li {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            
+            .highlight {
+              color: #bfa77a;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      
+      .recommended-products {
+        .section-subtitle {
+          font-size: 1.8rem;
+          color: #8a614d;
+          margin-bottom: 2rem;
+          text-align: center;
+        }
+        
+        .products-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 3rem;
+          
+          .product-card {
+            display: flex;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            
+            &:hover {
+              transform: translateY(-10px);
+            }
+            
+            .product-image {
+              flex: 0 0 40%;
+              
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+            
+            .product-info {
+              flex: 1;
+              padding: 1.5rem;
+              
+              h4 {
+                font-size: 1.3rem;
+                color: #5a4a3b;
+                margin-bottom: 0.5rem;
+              }
+              
+              p {
+                color: #666;
+                margin-bottom: 1rem;
+              }
+              
+              .product-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                
+                .tag {
+                  background-color: #f0e6d9;
+                  color: #8a614d;
+                  padding: 0.3rem 0.8rem;
+                  border-radius: 20px;
+                  font-size: 0.8rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    /* 急救與自我檢測部分 */
+    .emergency-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      
+      .emergency-steps, .self-check {
+        .section-subtitle {
+          font-size: 1.8rem;
+          color: #8a614d;
+          margin-bottom: 2rem;
+        }
+      }
+      
+      .emergency-steps {
+        .numbered-list {
+          padding-left: 1.5rem;
+          
+          li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+          }
+        }
+      }
+      
+      .self-check {
+        .check-description {
+          margin-bottom: 2rem;
+          font-size: 1.1rem;
+        }
+        
+        .tips-container {
+          .tip-item.modern {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            
+            .tip-icon {
+              margin-right: 1rem;
+              margin-top: 0.2rem;
+            }
+            
+            p {
+              margin: 0;
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+      
+      .emergency-visual {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-top: 2rem;
+        
+        img {
+          max-width: 100%;
+          border-radius: 10px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .image-caption {
+          margin-top: 1rem;
+          color: #777;
+          font-size: 0.9rem;
+        }
+      }
+    }
+    
+    /* 生活習慣部分 */
+    .lifestyle-content {
+      .lifestyle-tips {
+        margin-bottom: 4rem;
+        
+        .section-subtitle {
+          font-size: 1.8rem;
+          color: #8a614d;
+          margin-bottom: 2rem;
+          text-align: center;
+        }
+        
+        .tips-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2rem;
+          
+          .lifestyle-tip {
+            background-color: #f8f3ee;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            
+            &:hover {
+              transform: translateY(-10px);
+            }
+            
+            .tip-icon {
+              margin-bottom: 1rem;
+            }
+            
+            h4 {
+              font-size: 1.3rem;
+              color: #5a4a3b;
+              margin-bottom: 0.8rem;
+            }
+            
+            p {
+              color: #666;
+            }
+          }
+        }
+      }
+      
+      .lifestyle-visual {
+        text-align: center;
+        
+        img {
+          max-width: 100%;
+          border-radius: 10px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .image-caption {
+          margin-top: 1rem;
+          color: #777;
+          font-size: 0.9rem;
+        }
+      }
+    }
+    
+    /* 結論部分 */
+    .conclusion-section {
+      .modern-conclusion {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        
+        .conclusion-text {
+          flex: 1;
+          font-size: 1.3rem;
+          line-height: 1.8;
+          color: #5a4a3b;
+          font-style: italic;
+        }
+        
+        .conclusion-image {
+          flex: 1;
+          
+          img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+          }
+        }
+      }
+    }
+    
+    /* 相關文章部分 */
+    .related-articles {
+      margin-bottom: 6rem;
+      
+      .articles-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin-top: 3rem;
+        
+        .article-card {
+          display: flex;
+          background-color: #fff;
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+          transition: transform 0.3s ease;
+          
+          &:hover {
+            transform: translateY(-10px);
+          }
+          
+          .article-image {
+            flex: 0 0 40%;
+            
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+          
+          .article-info {
+            flex: 1;
+            padding: 1.5rem;
+            
+            h3 {
+              font-size: 1.3rem;
+              color: #5a4a3b;
+              margin-bottom: 0.8rem;
+            }
+            
+            p {
+              color: #666;
+              margin-bottom: 1rem;
+            }
+            
+            .read-more {
+              display: inline-flex;
+              align-items: center;
+              color: #bfa77a;
+              text-decoration: none;
+              font-weight: 600;
+              
+              svg {
+                margin-left: 0.5rem;
+                transition: transform 0.3s ease;
+              }
+              
+              &:hover svg {
+                transform: translateX(5px);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  /* 作者信息部分 */
+  .author-section {
+    max-width: 800px;
+    margin: 0 auto 6rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: #f8f3ee;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    
+    .author-image {
+      flex: 0 0 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #bfa77a;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    
+    .author-info {
+      flex: 1;
+      
+      .author-name {
+        font-size: 1.5rem;
+        color: #5a4a3b;
+        margin-bottom: 0.5rem;
+      }
+      
+      .author-bio {
+        color: #666;
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
+/* 響應式設計 */
+@media (max-width: 1200px) {
+  .modern-article {
+    .hero-section {
+      .hero-content {
+        max-width: 70%;
+        
+        .article-title {
+          font-size: 3rem;
+        }
+      }
+    }
+    
+    .article-content {
+      .steps-content .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .modern-article {
+    .hero-section {
+      height: 70vh;
+      
+      .hero-content {
+        max-width: 80%;
+        
+        .article-title {
+          font-size: 2.5rem;
+        }
+      }
+    }
+    
+    .modern-floating-nav {
+      display: none;
+    }
+    
+    .article-content {
+      .features-content,
+      .emergency-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .products-content .recommended-products .products-grid,
+      .lifestyle-content .lifestyle-tips .tips-grid,
+      .related-articles .articles-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .conclusion-section .modern-conclusion {
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .modern-article {
+    .hero-section {
+      height: 60vh;
+      
+      .hero-content {
+        left: 5%;
+        max-width: 90%;
+        
+        .article-title {
+          font-size: 2rem;
+        }
+        
+        .article-intro {
+          font-size: 1rem;
+        }
+      }
+    }
+    
+    .article-content {
+      padding: 0 1rem;
+      
+      .content-section .section-header .section-title {
+        font-size: 2rem;
+      }
+      
+      .steps-content .steps-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .author-section {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+}
