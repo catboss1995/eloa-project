@@ -5,6 +5,9 @@
     height: 100vh;
     padding: 0 50px;
     background-color: $white;
+    @media ($mediaMax450) {
+        padding: 0 20px;
+    }
 
     &:not(#product-display-sec) {
         opacity: 0;
@@ -28,6 +31,9 @@
         display: flex;
         gap: 50px;
         margin-bottom: 50px;
+        @media ($mediaMax450) {
+            flex-wrap: wrap;
+        }
 
         .product-pic-area {
             position: relative;
@@ -227,6 +233,10 @@
             padding: 20px 40px;
             background-color: $beige1;
             border-radius: 12px;
+            @media ($mediaMax450) {
+                min-width: 100%;
+                flex-direction: column;
+            }
 
             .add-on-pic {
                 img {
@@ -239,6 +249,10 @@
                 width: 60%;
                 padding: 0 30px;
                 text-wrap: nowrap;
+                @media ($mediaMax450) {
+                    width: 100%;
+                    padding: 0;
+                }
 
                 .name {
                     font-size: $font18-light;
@@ -472,6 +486,9 @@
     gap: 50px;
     height: auto;
     justify-content: center;
+    @media ($mediaMax450) {
+        flex-wrap: wrap;
+    }
 
     .text-area {
         justify-items: center;
@@ -755,6 +772,9 @@
         @media ($mediaMax767) {
             width: 600px;
         }
+        @media ($mediaMax450) {
+            width: 390px;
+        }
 
         .message-card {
             display: flex;
@@ -763,7 +783,10 @@
             @media ($mediaMax767) {
                 gap: 20px;
             }
-
+            @media ($mediaMax450) {
+                flex-wrap: wrap;
+                border-bottom: 1px solid $light-brown3;
+            }
             img {
                 width: 60px;
                 height: 60px;
@@ -784,7 +807,8 @@
                 gap: 5px;
                 color: $beige5;
                 font-size: $font18-light;
-            }
+            }            
+            
         }
     }
 
