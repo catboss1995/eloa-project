@@ -424,37 +424,31 @@
         width: 100%;
         height: 40%;
         left: 0;
-
         @media ($mediaMax1200) {
             height: 30%;
-            top: 60px;
+            top:60px;
         }
-
         @media ($mediaMax767) {
             height: 20%;
             top: 30px;
         }
-
+    
         #decorate-human {
             position: absolute;
             width: 35%;
             height: 100%;
-            top: -10%;
-
+            top:-10%;
             @media (max-width:1200px) {
                 top: 10%;
             }
-
             @media ($mediaMax1040) {
                 width: 35%;
                 left: 5%;
                 top: -10%;
             }
-
             @media (max-width:800px) {
                 display: none;
             }
-
             @media ($mediaMax767) {
                 display: block;
                 width: 30%;
@@ -462,7 +456,6 @@
                 top: 3%;
                 transform: translate(-30%, -10%);
             }
-
             @media ($mediaMax450) {
                 width: 25%;
                 left: 70%;
@@ -470,24 +463,24 @@
                 top: 10%;
             }
         }
-
+    
         #decorate-products {
             position: absolute;
             width: 30%;
             height: 100%;
             top: 20%;
             right: 8%;
-
-
+            
+    
             @media ($mediaMax1200) {
-                top: 45%
+                top:45%
             }
-
+    
             @media ($mediaMax1040) {
                 top: 15%;
                 height: 90%;
             }
-
+    
             @media (max-width:800px) {
                 display: none;
             }
@@ -1327,11 +1320,9 @@
         align-items: center;
         justify-content: center;
     }
-
     a {
         position: absolute;
     }
-
     .carousel-slide {
         transition: all $transition-duration cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
@@ -1346,7 +1337,6 @@
             transform: translateX(0) scale(1);
             z-index: 3;
             opacity: 1;
-
             .image-wrapper {
                 width: $center-image-width;
                 height: 300px;
