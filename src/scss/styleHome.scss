@@ -436,6 +436,7 @@
             height: 30%;
             top: 60px;
         }
+
         @media ($mediaMax767) {
             height: 20%;
             top: 30px;
@@ -1276,6 +1277,7 @@
     @media ($mediaMax1040) {
         padding: 0 50px;
     }
+
     @media (max-width:700px) {
         padding: 0 20px;
         height: 70vh;
