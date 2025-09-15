@@ -412,66 +412,77 @@
     background: $gradient-light-dark4;
     height: auto;
     padding-bottom: 30px;
+    position: relative;
 
-    .decorate {
-        height: 40%;
+    .decorate-box {
         position: absolute;
+        display: flex;
         top: 30px;
-
-        @media ($mediaMax1040) {
+        width: 100%;
+        height: 40%;
+        left: 0;
+        @media ($mediaMax1200) {
             height: 30%;
+            top:60px;
         }
-
         @media ($mediaMax767) {
             height: 20%;
+            top: 30px;
         }
-    }
-
-    #decorate-human {
-        width: 35%;
-        top: 1%;
-        left: 5%;
-        transform: translate(-10%, -5%);
-        z-index: 10;
-
-        @media ($mediaMax1040) {
+    
+        #decorate-human {
+            position: absolute;
             width: 35%;
-            left: 5%;
-            top: 5%;
+            height: 100%;
+            top:-10%;
+            @media (max-width:1200px) {
+                top: 10%;
+            }
+            @media ($mediaMax1040) {
+                width: 35%;
+                left: 5%;
+                top: -10%;
+            }
+            @media (max-width:800px) {
+                display: none;
+            }
+            @media ($mediaMax767) {
+                display: block;
+                width: 30%;
+                left: 80%;
+                top: 3%;
+                transform: translate(-30%, -10%);
+            }
+            @media ($mediaMax450) {
+                width: 25%;
+                left: 70%;
+                transform: translate(-10%);
+                top: 10%;
+            }
         }
-
-        @media ($mediaMax767) {
+    
+        #decorate-products {
+            position: absolute;
             width: 30%;
-            left: 80%;
-            top: 3%;
-            transform: translate(-30%, -10%);
-        }
-        @media ($mediaMax450) {
-            width: 25%;
-            left: 70%;
-            transform: translate(-10%);
-        }
-    }
-
-    #decorate-products {
-        width: 30%;
-        height: 28%;
-        top: 20%;
-        right: 8%;
-        transform: translate(8%, -20%);
-
-        @media ($mediaMax1200) {
-            width: 25%;
-            height: 24%;
+            height: 100%;
+            top: 20%;
+            right: 8%;
+            
+    
+            @media ($mediaMax1200) {
+                top:45%
+            }
+    
+            @media ($mediaMax1040) {
+                top: 15%;
+                height: 90%;
+            }
+    
+            @media (max-width:800px) {
+                display: none;
+            }
         }
 
-        @media ($mediaMax1040) {
-            top: 15%;
-        }
-
-        @media ($mediaMax767) {
-            display: none;
-        }
     }
 
     .product-sec-layout {
@@ -480,14 +491,15 @@
         flex-direction: column;
         width: 100%;
         align-items: center;
-        z-index: 99;
+        z-index: 9;
 
         .product-sec-desc {
+            margin-top: 30px;
             width: 45%;
 
             @media ($mediaMax1200) {
                 align-self: flex-end;
-                width: 65%;
+                width: 75%;
             }
 
             @media ($mediaMax1040) {
@@ -559,7 +571,7 @@
                 flex-direction: column;
                 height: 100%;
                 padding: 16px;
-                background-color: $beige1;
+                background-color: $beige0;
                 border-radius: 24px;
                 opacity: 0;
                 transform: translateY(100px);
@@ -1304,9 +1316,10 @@
         align-items: center;
         justify-content: center;
     }
-
-    .carousel-slide {
+    a {
         position: absolute;
+    }
+    .carousel-slide {
         transition: all $transition-duration cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
 
@@ -1316,11 +1329,10 @@
         }
 
         &--center {
+            position: relative;
             transform: translateX(0) scale(1);
             z-index: 3;
             opacity: 1;
-
-
             .image-wrapper {
                 width: $center-image-width;
                 height: 300px;
@@ -1411,6 +1423,7 @@
         }
 
         &--hidden {
+            width: 0;
             transform: scale(0);
             opacity: 0;
             z-index: 1;
