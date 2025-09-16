@@ -1,0 +1,40 @@
+@use "./styleReset" as *;
+/* 返回頂部按鈕 */
+.scroll-to-top {
+    position: fixed;
+    bottom: 32px;
+    left: 32px;
+    /* 改為靠左 */
+    width: 48px;
+    height: 48px;
+    background: $light-brown6;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgb(185 142 76 / 30%);
+    /* 修正：使用現代 rgba 語法 */
+    opacity: 0;
+
+    transition: all 0.3s ease;
+    z-index: 50;
+
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    &:hover {
+        background: $brown1;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgb(185 142 76 / 40%);
+        /* 修正：使用現代 rgba 語法 */
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}

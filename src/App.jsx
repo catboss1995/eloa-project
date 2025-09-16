@@ -4,6 +4,7 @@ import "./App.css"; // 引入全局樣式
 
 import Topbar from "./components/Topbar"; // 頂部導航欄組件
 import Footer from "./components/Footer"; // 頁腳組件
+import ScrollToTop from "./components/ScrollToTop"; // 回到頂部按鈕組件
 
 import Home from "./pages/Home"; // 首頁
 import Article from "./pages/Article"; // 文章列表頁面
@@ -59,6 +60,7 @@ function AppContent() {
         <Route path="*" element={<Navigate to="/" replace />} /> {/* 未匹配路由重定向到首頁 */}
       </Routes>
       <Footer />
+      <ScrollToTop />
       <ShopCart/>
     </>
   );

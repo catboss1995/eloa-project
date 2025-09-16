@@ -65,6 +65,15 @@ import appHuman from "../assets/images/app-sec-human.svg"
 import campaginCarousel1 from "../assets/images/campaign-carousel-1.png"
 import campaginCarousel2 from "../assets/images/campaign-carousel-2.png"
 import campaginCarousel3 from "../assets/images/campaign-carousel-3.jpg"
+const newsImage1 = "https://ik.imagekit.io/rgyxmrxzs/newsImage1.png?updatedAt=1757152726594"; // 週年慶
+const newsImage2 = "https://ik.imagekit.io/rgyxmrxzs/newsImage2?updatedAt=1757152301899"; // 秋季體驗禮
+const newsImage3 = "https://ik.imagekit.io/rgyxmrxzs/newsImage3?updatedAt=1757152364670"; // 團購優惠
+const newsImage4 = "https://ik.imagekit.io/rgyxmrxzs/newsImage4?updatedAt=1757152418617"; // 好友分享
+const newsImage5 = "https://ik.imagekit.io/rgyxmrxzs/newsImage5?updatedAt=1757152446578";  // 會員折扣
+const newsImage6 ="https://ik.imagekit.io/rgyxmrxzs/newsImage6?updatedAt=1757152467936"; // 學生優惠
+const newsImage7 = "https://ik.imagekit.io/rgyxmrxzs/newsImage7?updatedAt=1757152486404";   // 系統升級
+const newsImage8 = "https://ik.imagekit.io/rgyxmrxzs/newsImage8?updatedAt=1757152522651";    // Calmie上市
+const newsImage9 = "https://ik.imagekit.io/rgyxmrxzs/newsImage9?updatedAt=1757152555449";     // 代言人
 // news & stores 區
 import decorate2 from "../assets/images/news-store-decorate1.svg"
 import decorate3 from "../assets/images/news-store-decorate2.svg"
@@ -439,22 +448,67 @@ const ImageCarousel = () => {
   const images = [
     {
       id: 1,
-      src: campaginCarousel1,
+      src: newsImage1,
       alt: 'ELOA Award Image',
-      title: '這是什麼?'
+      title: 'ELOA週年慶限定狂歡',
+      slug: "anniversary-sale",
     },
     {
       id: 2,
-      src: campaginCarousel2,
+      src: newsImage2,
       alt: 'ELOA Exhibition',
-      title: '我是誰我在哪?'
+      title: '秋季新品體驗禮開跑',
+      slug: "autumn-experience-gift",
     },
     {
       id: 3,
-      src: campaginCarousel3,
+      src: newsImage3,
       alt: 'ELOA Team',
-      title: '你們看是傻X'
-    }
+      title: '限時團購優惠專案',
+      slug: "group-purchase-offer",
+    },
+    {
+      id: 4,
+      src: newsImage4,
+      alt: 'ELOA Team',
+      title: '好友分享賞雙重回饋',
+      slug: "friend-referral-rewards",
+    },
+    {
+      id: 5,
+      src: newsImage5,
+      alt: 'ELOA Team',
+      title: '會員專屬週限時折扣',
+      slug: "member-weekly-discount",
+    },
+    {
+      id: 6,
+      src: newsImage6,
+      alt: 'ELOA Team',
+      title: '開學季學生專屬優惠',
+      slug: "student-discount",
+    },
+    {
+      id: 7,
+      src: newsImage7,
+      alt: 'ELOA Team',
+      title: '官網會員系統全面升級完成',
+      slug: "website-upgrade",
+    },
+    {
+      id: 8,
+      src: newsImage8,
+      alt: 'ELOA Team',
+      title: 'Calmié冷敷舒緩儀正式上市',
+      slug: "calmie-launch",
+    },
+    {
+      id: 9,
+      src: newsImage9,
+      alt: 'ELOA Team',
+      title: '品牌代言人李佳穎分享美容心得',
+      slug: "spokesperson-interview",
+    },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -501,22 +555,23 @@ const ImageCarousel = () => {
           {images.map((image, index) => {
             const position = getImagePosition(index);
             return (
-              <div
-                key={image.id}
-                className={`carousel-slide carousel-slide--${position} ${isTransitioning ? 'carousel-slide--transitioning' : ''
-                  }`}
-              >
-                <div className="image-wrapper">
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="carousel-image"
-                  />
-                  <div className="image-overlay">
-                    <h3 className="image-title">{image.title}</h3>
+              <Link to={`/news/${image.slug}`} key={image.id}>
+                <div                  
+                  className={`carousel-slide carousel-slide--${position} ${isTransitioning ? 'carousel-slide--transitioning' : ''
+                    }`}
+                >
+                  <div className="image-wrapper">
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="carousel-image"
+                    />
+                    <div className="image-overlay">
+                      <h3 className="image-title">{image.title}</h3>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
@@ -566,28 +621,28 @@ const NewsContent = () => {
   const newsArr = [
     {
       id: 1,
-      date: "2024.7.1",
+      date: "2024.8.6",
       desc: "【ELOA官網會員日 獨家福利開放中】加入會員即可抽ELOA高效美容儀新品，消費滿$3,000再享專屬折扣與禮物包，快來搶先入手！"
     },
     {
       id: 2,
-      date: "2024.7.1",
-      desc: "【ELOA官網會員日 獨家福利開放中】加入會員即可抽ELOA高效美容儀新品，消費滿$3,000再享專屬折扣與禮物包，快來搶先入手！"
+      date: "2024.7.30",
+      desc: "【夏日保養季 加碼送好禮】活動期間凡購買任一美容儀，結帳即贈「舒緩凝膠旅行組」，幫助肌膚清涼保水，夏日保養無負擔！"
     },
     {
       id: 3,
-      date: "2024.7.1",
-      desc: "【ELOA官網會員日 獨家福利開放中】加入會員即可抽ELOA高效美容儀新品，消費滿$3,000再享專屬折扣與禮物包，快來搶先入手！"
+      date: "2024.7.2",
+      desc: "【ELOA新品 Calmié 冷敷舒緩儀 上市】專為敏感與曬後肌設計的冷敷美容儀正式登場！即日起至 8/15，搶先購買享 9 折優惠，再送專屬配件。"
     },
     {
       id: 4,
       date: "2024.7.1",
-      desc: "【ELOA官網會員日 獨家福利開放中】加入會員即可抽ELOA高效美容儀新品，消費滿$3,000再享專屬折扣與禮物包，快來搶先入手！"
+      desc: "【好友推薦計畫 開跑】邀請好友註冊並完成首購，您與好友各獲得 NT$300 購物金，次次購物更划算，快來一起美麗！"
     },
     {
       id: 5,
-      date: "2024.7.1",
-      desc: "【ELOA官網會員日 獨家福利開放中】加入會員即可抽ELOA高效美容儀新品，消費滿$3,000再享專屬折扣與禮物包，快來搶先入手！"
+      date: "2024.6.24",
+      desc: "【ELOA 週年慶 限定狂歡】全館商品最低 85 折，再享滿額加贈「肌膚修護禮盒」。會員專屬抽獎同步開跑，頭獎可得旗艦美容儀一台！"
     }
   ]
 
@@ -736,9 +791,12 @@ const Home = () => {
         </div>
       </section>
       <section className="h100-vh" id="product-sec">
-        <img src={decorate1} alt="bg-decorate" className="decorate" />
-        <img src={decorateHuman} alt="bg-decorate-human" className="decorate" id="decorate-human" />
-        <img src={decorateProducts} alt="bg-decorate-products" className="decorate" id="decorate-products" />
+        {/* 開始調整 */}
+        <div className="decorate-box">
+          {/* <img src={decorate1} alt="bg-decorate" id="decorate" /> */}
+          <img src={decorateHuman} alt="bg-decorate-human" className="decorate" id="decorate-human" />
+          <img src={decorateProducts} alt="bg-decorate-products" className="decorate" id="decorate-products" />
+        </div>
         <div className="product-sec-layout">
           <div className="product-sec-desc">
             <p id="product-sec-desc-sm">找出你的肌膚節奏</p>
