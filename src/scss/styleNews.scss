@@ -43,24 +43,31 @@
 .news__hero-title {
   font-family: 'Abril Fatface', serif;
   font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 160;
+  font-weight: 400; // 修正 font-weight
   color: $beige0;
   letter-spacing: 0.2em;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-  margin: 0;
+  margin: 0 0 0 470px; // 簡化 margin
   text-transform: uppercase;
-  margin: 0 0 0px 470px;
+  
+  .char {
+    opacity: 0;
+    display: inline-block;
+    transform-origin: center;
+    transition: all 0.3s ease; // 添加過渡效果
+  }
 
   // 平板版調整
   @media (max-width: 1024px) and (min-width: 768px) {
-    margin: 0 0 0px 200px !important; // 減少左邊距
+    margin: 0 0 0 200px;
     font-size: clamp(2.8rem, 6vw, 4rem);
   }
 
   // 手機版
-  @media ($mediaMax767) {
+  @media (max-width: 767px) {
     font-size: clamp(2.5rem, 10vw, 4rem);
-    margin: 0 !important; // 完全移除邊距
+    margin: 0; // 移除邊距
+    text-align: center; // 可選：置中
   }
 }
 
@@ -245,7 +252,7 @@ button {
   transition: all 0.4s ease;
   text-decoration: none;
   position: relative;
-  opacity: 0;
+  opacity: 0.95;
   transform: translateY(20px);
   animation: news__fadeInUp 0.6s ease forwards;
 
@@ -265,7 +272,7 @@ button {
 
 @keyframes news__fadeInUp {
   to {
-    opacity: 1;
+    opacity: 0.95;
     transform: translateY(0);
   }
 }
