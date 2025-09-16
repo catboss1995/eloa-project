@@ -20,21 +20,24 @@
     .login-container {
         padding: 100px 0;
         justify-items: center;
+        align-content: center;
+        height: 100%;
 
         .login-card {
             position: relative;
             align-items: center;
             max-width: 450px;
             min-width: 450px;
-            width: 100%;
-            height: 80vh;
             padding: 20px 40px;
             border-radius: 20px;
             background: $white-20;
             backdrop-filter: blur(10px);
             filter: drop-shadow(4px 4px 2px $black-20);
             box-shadow: -6px -6px 2px $white-40;
-
+            @media ($mediaMax450) {
+                max-width: 350px;
+                min-width: 350px;
+            }
             .toggle-container {
                 display: flex;
                 background: $white-40;
