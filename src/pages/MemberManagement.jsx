@@ -8,6 +8,7 @@ import decorateBottom from "../assets/images/member-management-bg-bottom.svg"
 import memberAvatar from "../assets/images/member-avatar.png"
 import orderListIcon from "../assets/images/orderListIcon.svg"
 import memberInfoIcon from "../assets/images/subtractIcon.svg"
+import logoutIcon from "../assets/images/logoutIcon.svg"
 
 const MemberManagement = () => {
     const navigate = useNavigate();
@@ -301,9 +302,8 @@ const MemberManagement = () => {
                         <p>會員資料</p>
                     </div>
                     <div className="member-option" id="sign-out" onClick={handleSignout}>
-                        <div className="sign-out-button">
-                            登出
-                        </div>
+                        <img src={logoutIcon} alt="logout" />
+                        <p>登出</p>
                     </div>
                 </div>
                 <div className="member-option-content">
