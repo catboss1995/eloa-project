@@ -1,5 +1,24 @@
 @use "./styleReset" as *;
 
+@keyframes fadeInBg {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes floatUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInText {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes dotIn {
+  from { opacity: 0; transform: scale(0.7);}
+  to   { opacity: 1; transform: scale(1);}
+}
 
 .skin-page {
   position: relative;
@@ -16,41 +35,44 @@
     background-size: cover;
     background-position: center;
     filter: brightness(0.95);
+    animation: fadeInBg 1.2s cubic-bezier(.4,.8,.6,1) forwards;
   }
 
   .glass-box {
-    // 桌面版（預設）
     position: absolute;
-    top: 30%;
-    right: 5%;
-    transform: translateX(-50%);
-    width: 40%;
+    justify-self: center;
+    
+    // left: 30%;
+    top: 20%;
+    // transform: translate(-50%, -50%);
+    // width: 40%;
     background: $white-40;
     backdrop-filter: blur(20px);
     border-radius: 32px;
-    padding: 70px;
+    padding: 90px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     text-align: center;
+    opacity: 0;
+    animation: floatUp 1s cubic-bezier(.4,.8,.6,1) 0.5s forwards;
 
 
     // 平板版
-
     @media screen and (min-width: 768px) and (max-width: 1048px) {
-      width: 90%;
-      right: 50%;
-      transform: translateX(50%);
-      top: 25%;
+      // width: 90%;
       padding: 50px;
+      // left: 50%;
+      top: 30%;
+      // transform: translate(-50%, -50%);
     }
 
     // 移動裝置版
     @media screen and (max-width: 767px) {
-      width: 90%;
-      right: 50%;
-      transform: translateX(50%);
-      top: 18%;
+      // width: 90%;
       padding: 30px;
       border-radius: 16px;
+      // left: 50%;
+      top: 30%;
+      // transform: translate(-50%, -50%);
     }
 
     .title {
@@ -59,6 +81,8 @@
       color: $dark-brown2;
       margin-bottom: 24px;
       text-align: center;
+      opacity: 0;
+      animation: fadeInText 0.8s cubic-bezier(.4,.8,.6,1) forwards;
 
       @media screen and (max-width: 767px) {
         font-size: 20px;
@@ -70,6 +94,8 @@
       color: $dark-brown2;
       margin-bottom: 12px;
       text-align: center;
+      opacity: 0;
+      animation: fadeInText 0.8s cubic-bezier(.4,.8,.6,1) forwards;
 
       @media screen and (max-width: 767px) {
         font-size: 14px;
@@ -86,9 +112,12 @@
       cursor: pointer;
       font-size: 14px;
       transition: background-color 0.3s ease;
+      
+      // animation: fadeInText 0.8s 1.3s cubic-bezier(.4,.8,.6,1) forwards;
 
       &:hover {
-        background-color: color adjust($light-brown2, 10%);
+        background-color: $light-brown3;
+        
       }
 
       @media screen and (max-width: 767px) {
@@ -107,6 +136,8 @@
         background-color: #ccc;
         border-radius: 50%;
         display: inline-block;
+        opacity: 0;
+        animation: dotIn 0.5s cubic-bezier(.4,.8,.6,1) forwards;
 
         &.active {
           background-color: #7a6040;
@@ -115,3 +146,12 @@
     }
   }
 }
+
+.dots .dot:nth-child(1) { animation-delay: 1.5s; }
+.dots .dot:nth-child(2) { animation-delay: 1.7s; }
+.dots .dot:nth-child(3) { animation-delay: 1.9s; }
+.dots .dot:nth-child(4) { animation-delay: 2.1s; }
+
+.skin-page .glass-box .title      { animation-delay: 0.7s; }
+.skin-page .glass-box .description:nth-of-type(1) { animation-delay: 0.9s; }
+.skin-page .glass-box .description:nth-of-type(2) { animation-delay: 1.1s; }
