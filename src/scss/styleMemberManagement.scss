@@ -48,12 +48,6 @@
                 }
                 
 
-                @media ($mediaMax1040) {
-                    min-width: 210px;
-                    max-width: 210px;
-                }
-                
-
                 img {
                     height: 36px;
                 }
@@ -500,28 +494,6 @@
     }
 }
 @media (max-width:400px) {
-    .member-option-content{
-        .edit-member-info-content {
-            padding-top: 0;
-        }
-    }
-    .member-management-sec {
-        height: auto;
-    }
-}
-
-@media (max-width: 530px) {    
-    .member-option-content{
-        .edit-member-info-content {
-            padding-top: 150px;
-        }
-    }
-    #member-info-card {
-        min-width: 100%;
-        max-width: 100%;
-    }
-}
-@media (max-width: 400px) {
     .member-option-content{
         .edit-member-info-content {
             padding-top: 0;
