@@ -11,9 +11,10 @@ import "../../scss/skin/_step.scss";
 
 
 const OPTIONS = [
-  { id: "basic",    label: "基礎保養" },
-  { id: "deep",     label: "深層護理" },
-  { id: "advanced", label: "進階保養" },
+  { id: "clean",   label: "清潔階段" },
+  { id: "import",  label: "導入階段" },
+  { id: "repair",  label: "修護階段" },
+  { id: "firm",    label: "緊實階段" },
 ];
 
 export default function SkinStep2() {
