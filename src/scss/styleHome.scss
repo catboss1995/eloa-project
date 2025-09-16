@@ -224,6 +224,7 @@
             position: relative;
             flex: 1;
 
+
             @media ($mediaMax767) {
                 position: absolute;
                 width: 100%;
@@ -1276,11 +1277,6 @@
 
     @media ($mediaMax1040) {
         padding: 0 50px;
-    }
-
-    @media (max-width:700px) {
-        padding: 0 20px;
-        height: 70vh;
     }
 
     @media (max-width:700px) {
