@@ -48,7 +48,7 @@ export default function LeafletMap() {
                     style={{ height: "350px", width: "350px", marginBottom: '20px', borderRadius: "999px", overFlow:"visible" }}
                 >
                     <TileLayer
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        url= "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                     />
                     <Marker position={loc.position} icon={storeIcon}>
