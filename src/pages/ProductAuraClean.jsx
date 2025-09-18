@@ -8,7 +8,7 @@ import calmieLeft from "../assets/images/aura-clean-left.avif"
 import calmieBack from "../assets/images/aura-clean-back.avif"
 import coupon from "../assets/images/productInfo-coupon.svg"
 import essence from "../assets/images/essence.svg"
-import gel from "../assets/images/gel.svg"
+import gel from "../assets/images/gel.avif"
 // descTab 區
 import tabProduct1 from "../assets/images/desc-tab-product-1.svg"
 import tabProduct2 from "../assets/images/desc-tab-product-2.svg"

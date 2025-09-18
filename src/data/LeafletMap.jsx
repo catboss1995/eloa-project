@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useState } from 'react';
-import storePic from "../assets/images/skintestStore.png";
+import storePic from "../assets/images/skintestStore.avif";
 import masterIcon from "../assets/images/master-front.avif"
 import L from 'leaflet';
 
