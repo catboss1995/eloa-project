@@ -232,6 +232,7 @@
                 height: 100%;
                 opacity: 0.5;
             }
+
             #backPic,
             #frontPic {
                 position: absolute;
@@ -253,7 +254,7 @@
 
                 @media ($mediaMax767) {
                     right: 50%;
-                    
+
                 }
 
                 @media ($mediaMax450) {
@@ -271,7 +272,7 @@
                 }
 
                 @media ($mediaMax767) {
-                    
+
                     right: 45%;
                 }
 
@@ -445,18 +446,27 @@
 
         #decorate-human {
             position: absolute;
-            width: 35%;
+            max-width: 250px;
+            min-width: 250px;
             height: 100%;
             top: -10%;
+            left: 10%;
 
             @media (max-width:1200px) {
+                max-width: 180px;
+                min-width: 180px;
                 top: 10%;
             }
 
             @media ($mediaMax1040) {
-                width: 35%;
-                left: 5%;
-                top: -10%;
+                max-width: 160px;
+                min-width: 160px;
+                left: 15%;
+                top: -7%;
+            }
+
+            @media (max-width:900px) {
+                left: 12%;
             }
 
             @media (max-width:800px) {
@@ -472,10 +482,12 @@
             }
 
             @media ($mediaMax450) {
-                width: 25%;
+                max-width: 100px;
+                min-width: 100px;
+                height: auto;
                 left: 70%;
                 transform: translate(-10%);
-                top: 10%;
+                top: 31%;
             }
         }
 
@@ -1047,22 +1059,15 @@
                     flex-direction: column;
                     justify-content: flex-end;
                     align-items: center;
-                    width: 40vh;
+                    width: 20vw;
                     height: 70vh;
                     border-radius: 20px;
                     overflow: clip;
                     transition: all 0.5s ease, boder .5s ease-in;
 
                     @media ($mediaMax1200) {
-                        height: 60vh;
-                        width: 30vh;
+                        height: 60vh;                     
                     }
-
-                    @media ($mediaMax1040) {
-                        height: 50vh;
-                        width: 25vh;
-                    }
-
                     @media ($mediaMax1040) {
                         height: 50vh;
                         width: 30vh;
@@ -1283,6 +1288,7 @@
         padding: 0 20px;
         height: 70vh;
     }
+
     .campaign-text-area {
         position: absolute;
         top: 24px;
