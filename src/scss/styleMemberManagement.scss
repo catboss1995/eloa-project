@@ -474,6 +474,15 @@
                     flex-direction: column;
                     justify-content: space-around;
                     clear: both;
+                    flex: none;
+                }
+                #order-list,
+                #edit-member-info,
+                #sign-out {
+                    padding: 8px 16px;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    clear: both;
                 }
             }
             .member-option-content {
