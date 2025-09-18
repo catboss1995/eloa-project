@@ -7,10 +7,18 @@ const FAQ = () => {
   const [openItems, setOpenItems] = useState({});
 
   const toggleItem = (index) => {
-    setOpenItems(prev => ({
-      ...prev,
-      [index]: !prev[index]
-    }));
+    setOpenItems(prev => {
+      // 如果已經展開，則收起；否則只展開這一題
+      if (prev[index]) {
+        return { ...prev, [index]: false };
+      } else {
+        // 只展開當前題目，其他全部收起
+        const newState = {};
+        Object.keys(prev).forEach(key => newState[key] = false);
+        newState[index] = true;
+        return newState;
+      }
+    });
   };
 
   // 更完整的 FAQ 數據
