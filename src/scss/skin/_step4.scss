@@ -126,15 +126,19 @@
 
 .step4-card {
   position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
+  justify-self: center;
+  top: 20%;
+  // position: absolute;
+  // top: 50px;
+  // left: 50%;
+  // transform: translateX(-50%);
   margin: 0;
   width: min(680px, 86%);
   text-align: center;
   z-index: 2;
   display: grid;
   justify-items: center;
+
   &__product {
     /* 1) 圖片是 block，要靠 auto margin 置中 */
     display: block;
@@ -452,8 +456,6 @@
 }
 
 @media (min-width: 1440px) {
-
-  // 大螢幕（1400px 以上）
   .step4-sec {
     height: 780px;
   }
@@ -480,8 +482,20 @@
       &__fab {
         width: clamp(120px, 13vw, 160px);
         height: clamp(120px, 13vw, 160px);
-        font-size: 10px;
+        font-size: 16px;
       }
     }
   }
+}
+
+.skin-page {
+  position: relative;
+}
+
+.skin-page .glass-box {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  // 其他樣式...
 }

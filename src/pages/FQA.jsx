@@ -49,8 +49,18 @@ const FAQ = () => {
     }
   ];
 
+  const allOpen = Object.values(openItems).every(Boolean);
+
   return (
     <div className="faq">
+      <video
+        className="faq__bg-video"
+        src="https://ik.imagekit.io/rgyxmrxzs/%E7%B6%B2%E9%A0%81%E5%9C%96%E7%89%87%E8%AA%BF%E6%95%B4%E5%B0%BA%E5%AF%B8%20(3).mp4?updatedAt=1757920733155"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
       <div className="faq__container">
         <header className="faq__header">
           <h1 className="faq__title">常見問題</h1>
@@ -59,7 +69,7 @@ const FAQ = () => {
           </p>
         </header>
         
-        <div className="faq__list" role="region" aria-label="常見問題列表">
+        <div className={`faq__list${allOpen ? " all-open" : ""}`} role="region" aria-label="常見問題列表">
           {faqData.length > 0 ? (
             faqData.map((item, index) => (
               <div 
