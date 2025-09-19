@@ -47,7 +47,7 @@ export default function SkinStep2() {
       {/* 玻璃擬態卡片：沿用 .glass-box，再加 .glass-box--step 調整位置/尺寸 */}
       <div className={`${styles["glass-box"]} ${styles["glass-box--step"]}`}>
         <h2 className="skin-card__title">
-          您的保養Routine到哪個階段？<span className="hint">（可複選）</span>
+          您的保養Routine到哪？<span className="hint">（可複選）</span>
         </h2>
 
         <div className="skin-grid">

@@ -5,7 +5,7 @@ import "../scss/member.scss"
 // 引入圖片
 import googleIcon from "../assets/images/GooglePlus.png"
 import fbIcon from "../assets/images/Facebook.png"
-import memberBG from "../assets/images/member-bg.avif"
+const memberBG = "https://ik.imagekit.io/rgyxmrxzs/memberBG%20?updatedAt=1758174807958"
 import logo from "../assets/images/topbarLogo.png"
 
 const Member = () => {

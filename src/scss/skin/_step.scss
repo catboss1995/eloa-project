@@ -36,11 +36,9 @@ $brand-brown-light: var(--brand-brown-light, #b89f92);
 
 /* ---------- 膠囊按鈕 ---------- */
 .pill {
-  max-width: 100%;
-  width:  100%;;
+  width:  100%;
   overflow: hidden;
   flex-wrap: wrap;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -100,7 +98,6 @@ $brand-brown-light: var(--brand-brown-light, #b89f92);
     display: flex;
     padding: 12px 18px; // 更小的內距
     font-size: 13px; // 更小的字體
-    max-width: 100%;
     box-sizing: border-box;
   }
 }
