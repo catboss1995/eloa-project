@@ -1066,8 +1066,9 @@
                     transition: all 0.5s ease, boder .5s ease-in;
 
                     @media ($mediaMax1200) {
-                        height: 60vh;                     
+                        height: 60vh;
                     }
+
                     @media ($mediaMax1040) {
                         height: 50vh;
                         width: 30vh;
@@ -1087,20 +1088,31 @@
                         background-color: $white-80;
                         width: 100%;
                         padding: 16px;
-                        height: 17%;
+                        height: 15%;                       
                         transition: height 0.5s ease;
-
+                        display: flex;
+                        flex-direction: column;
+                        // justify-content: space-around;
                         .card-text-small,
                         .card-text-title {
                             @extend %single-line;
+                            flex-shrink: 0;
                         }
 
                         .card-text-small {
                             font-size: 12px;
+                            height: 18px;
                         }
 
                         .card-text-title {
-                            font-size: $font16-light;
+                            font-size: $font18-light;
+                            padding-top: 5px;
+                        }
+                        .card-text-desc {
+                            opacity: 0;
+                            white-space: pre-wrap;
+                            transition: all 1s ease;
+                            margin-top: auto;
                         }
                     }
 
@@ -1109,12 +1121,7 @@
                         transform: translateY(-5px);
 
                         .card-text-area {
-                            height: 70%;
-
-                            .card-text-title {
-                                text-overflow: none;
-                                white-space: wrap;
-                            }
+                            height: 15%;
                         }
                     }
                 }
@@ -1399,7 +1406,7 @@
         }
 
         &--left {
-            transform: translateX($transition-X) scale(0.8);
+            transform: translateX(-$transition-X) scale(0.8);
             z-index: 2;
             opacity: 0.6;
 
@@ -1432,7 +1439,7 @@
         }
 
         &--right {
-            transform: translateX(-$transition-X) scale(0.8);
+            transform: translateX($transition-X) scale(0.8);
             z-index: 2;
             opacity: 0.6;
 
@@ -1489,6 +1496,7 @@
             background: linear-gradient(135deg, $light-brown5 0%, #f4e4c8 100%);
             opacity: 0.1;
             z-index: 1;
+            pointer-events: none;
         }
     }
 
@@ -1498,11 +1506,10 @@
         object-fit: cover;
         display: block;
         transition: transform $transition-duration ease;
-
-        .carousel-slide--center & {
-            &:hover {
-                transform: scale(1.05);
-            }
+    }
+    .carousel-slide--center {
+        .carousel-image:hover {
+            transform: scale(1.05);
         }
     }
 
@@ -1675,7 +1682,7 @@
             opacity: 1;
         }
     }
-
+    
     .news-container {
         width: 100%;
         height: auto;
@@ -1697,6 +1704,9 @@
             opacity: 0;
             transform: translateY(5px);
             transition: all 0.5s ease;
+            &:hover {
+                color: $dark-brown2;
+            }
 
             .news-date {
                 font-size: $font24-light;
@@ -1715,6 +1725,7 @@
                 font-size: $font16-light;
                 align-self: center;
                 @extend %single-line;
+                
 
                 @media ($mediaMax450) {
                     font-size: $font14-light;
@@ -1756,6 +1767,7 @@
 
                 &:nth-child(2) {
                     align-self: center;
+                    padding-left: 200px;
                 }
 
                 .store-name {
