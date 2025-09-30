@@ -153,7 +153,7 @@ const CarouselSlides = ({ currentSlide }) => {
         product: primarypd1,
         layout: 'right',
         slogan: {
-          en: "The Future of Skincare Begins With Light.",
+          en: "The Future of\n Skincare Begins With Light.",
           zh: "改寫肌膚的節奏，從這一束光開始。"
         }
       },
@@ -164,7 +164,7 @@ const CarouselSlides = ({ currentSlide }) => {
         product: primarypd2,
         layout: 'left',
         slogan: {
-          en: "The Power of Beauty Lives in Precision.",
+          en: "The Power of\n Beauty Lives in Precision.",
           zh: "讓美的力量，藏在每一段精準節奏中。"
         }
       },
@@ -175,7 +175,7 @@ const CarouselSlides = ({ currentSlide }) => {
         product: primarypd3,
         layout: 'right',
         slogan: {
-          en: "The Rhythm of Skincare Starts Within.",
+          en: "The Rhythm of\n Skincare Starts Within.",
           zh: "保養的節奏，從理解肌膚開始。"
         }
       },
@@ -186,7 +186,7 @@ const CarouselSlides = ({ currentSlide }) => {
         product: primarypd4,
         layout: 'left',
         slogan: {
-          en: "The Rhythm of Skincare Starts Within.",
+          en: "The Rhythm of\n Skincare Starts Within.",
           zh: "保養的節奏，從理解肌膚開始。"
         }
       }

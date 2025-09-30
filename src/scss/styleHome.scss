@@ -40,19 +40,20 @@
 
         .product-slogan,
         .product-slogan-right {
-            width: 30%;
+            width: 35%;
             z-index: 3;
             align-content: center;
             margin-left: 80px;
+            white-space: pre-line;
 
             @media ($mediaMax767) {
                 width: 80%;
-                margin: 0 auto 0 50px;
+                margin: -100px auto 0 50px;
             }
 
             .slogan-en {
                 color: $white;
-                font-size: $font32-light;
+                font-size: $font48-light;
                 font-family: playfair, serif;
                 font-weight: 400;
                 line-height: 48px;
@@ -61,7 +62,8 @@
 
             .slogan-zh {
                 color: $white;
-                font-size: $font16-light;
+                font-size: $font24-light;
+                padding-top: 20px;
                 font-weight: 500;
                 line-height: 36px;
                 letter-spacing: 2.4px;
@@ -74,8 +76,8 @@
             margin-right: 80px;
 
             @media ($mediaMax767) {
-                margin: 0 auto 0 50px;
-                width: 50%;
+                margin: -100px auto 0 50px;
+                width: 80%;
             }
         }
 
