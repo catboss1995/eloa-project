@@ -167,6 +167,11 @@
                             background: rgba(212, 165, 116, 0.05);
                         }
 
+                        &:has(input[type="radio"]:checked) {
+                            background: rgba(202, 174, 129, 0.15);
+                            border-color: $light-brown2;
+                        }
+
                         input[type="radio"] {
                             width: auto;
                             margin: 0;
@@ -174,12 +179,15 @@
                             &:checked+span {
                                 color: $light-brown1;
                                 font-weight: 600;
+                                opacity: 1;
                             }
                         }
 
                         span {
                             font-size: 16px;
                             transition: all 0.3s ease;
+                            color: $dark-brown2;
+                            opacity: 0.4;
                         }
                     }
                 }

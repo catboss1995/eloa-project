@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaLightbulb, FaThermometerHalf, FaRegClock, FaUserMd, FaChevronUp, FaExclamationTriangle, FaCheckCircle, FaInfoCircle, FaHome, FaChevronRight, FaUser, FaCalendarAlt, FaShare, FaBookmark, FaFacebook, FaTwitter, FaLinkedin, FaCopy, FaLine } from 'react-icons/fa';
 import '../../scss/articles/_elegant-design.scss';
 import articlesData from '../../data/articlesData';
+import useDocumentTitle from '../../hooks/useDocumentTitle';
 
 const Article3 = () => {
 	const [activeSection, setActiveSection] = useState(0);
@@ -114,6 +115,7 @@ const Article3 = () => {
 	};
 
 	return (
+		useDocumentTitle(articleData.title),
 		<article className="elegant-article">
 			{/* 進度條 */}
 			<div className="progress-indicator">

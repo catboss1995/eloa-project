@@ -39,11 +39,18 @@ const MemberSystem = {
   // 登入
   login: (email, password) => {
     const users = MemberSystem.getUsers();
-    const user = users.find(u => u.email === email && u.password === password);
-
-    if (!user) {
-      throw new Error('電子郵件或密碼錯誤');
+    
+    // 先檢查 email 是否存在
+    const userExists = users.find(u => u.email === email);
+    if (!userExists) {
+      throw new Error('此電子郵件尚未註冊，請先註冊帳號');
     }
+    
+    const user = users.find(u => u.email === email && u.password === password);
+    if (!user) {
+      throw new Error('密碼錯誤，請檢查您的密碼');
+    }
+
     if (!user.orders) {
       user.orders = [];
       const users = MemberSystem.getUsers();

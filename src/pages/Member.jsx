@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import MemberSystem from '../data/MemberSystem'
 import "../scss/member.scss"
+import useDocumentTitle from "../hooks/useDocumentTitle"
 // 引入圖片
 import googleIcon from "../assets/images/GooglePlus.png"
 import fbIcon from "../assets/images/Facebook.png"
@@ -103,6 +104,7 @@ const Member = () => {
     alert('密碼重設連結已發送至您的電子郵件');
   };
   return (
+    useDocumentTitle(isLogin ? "會員登入" : "會員註冊"),
     <section className="member-page">
       <div className="bg-box">
         <img src={memberBG} alt="member-background" id='member-bg' />
@@ -120,7 +122,7 @@ const Member = () => {
 
           <div className="login-form">
             <div className="form-group">
-              <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="請輸入電郵或手機號碼" className={errors.email ? 'error' : ''} />
+              <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="請輸入您的電子郵件" className={errors.email ? 'error' : ''} />
               {errors.email && <span className="error-text">{errors.email}</span>}
             </div>
 

@@ -2,10 +2,11 @@ import { Link } from "react-router-dom"
 import "../scss/styleHome.scss"
 import { useEffect, useRef, useState } from "react"
 import LeafletMap from "../data/LeafletMap"
+import useDocumentTitle from "../hooks/useDocumentTitle"
 // 共用元件區
 import ButtonStyle from "../components/ButtonStyle"
 // 主要Banner 區
-const primaryVideo = "https://res.cloudinary.com/dmfzxhrua/video/upload/v1756198688/bennerMv_nv0tq1.mp4"
+const primaryVideo = "https://res.cloudinary.com/dwth4zzrp/video/upload/v1759210856/bennerMv_fhabfh.mov"
 import primarybg1 from "../assets/images/banner_1.png"
 import primarybg2 from "../assets/images/banner2.png"
 import primarybg3 from "../assets/images/banner_3.png"
@@ -69,7 +70,7 @@ const newsImage2 = "https://ik.imagekit.io/rgyxmrxzs/newsImage2?updatedAt=175715
 const newsImage3 = "https://ik.imagekit.io/rgyxmrxzs/newsImage3?updatedAt=1757152364670"; // 團購優惠
 const newsImage4 = "https://ik.imagekit.io/rgyxmrxzs/newsImage4?updatedAt=1757152418617"; // 好友分享
 const newsImage5 = "https://ik.imagekit.io/rgyxmrxzs/newsImage5?updatedAt=1757152446578";  // 會員折扣
-const newsImage6 ="https://ik.imagekit.io/rgyxmrxzs/newsImage6?updatedAt=1757152467936"; // 學生優惠
+const newsImage6 = "https://ik.imagekit.io/rgyxmrxzs/newsImage6?updatedAt=1757152467936"; // 學生優惠
 const newsImage7 = "https://ik.imagekit.io/rgyxmrxzs/newsImage7?updatedAt=1757152486404";   // 系統升級
 const newsImage8 = "https://ik.imagekit.io/rgyxmrxzs/newsImage8?updatedAt=1757152522651";    // Calmie上市
 const newsImage9 = "https://ik.imagekit.io/rgyxmrxzs/newsImage9?updatedAt=1757152555449";     // 代言人
@@ -152,7 +153,7 @@ const CarouselSlides = ({ currentSlide }) => {
         product: primarypd1,
         layout: 'right',
         slogan: {
-          en: "The Future of Skincare Begins With Light.",
+          en: "The Future of\n Skincare Begins With Light.",
           zh: "改寫肌膚的節奏，從這一束光開始。"
         }
       },
@@ -163,7 +164,7 @@ const CarouselSlides = ({ currentSlide }) => {
         product: primarypd2,
         layout: 'left',
         slogan: {
-          en: "The Power of Beauty Lives in Precision.",
+          en: "The Power of\n Beauty Lives in Precision.",
           zh: "讓美的力量，藏在每一段精準節奏中。"
         }
       },
@@ -174,7 +175,7 @@ const CarouselSlides = ({ currentSlide }) => {
         product: primarypd3,
         layout: 'right',
         slogan: {
-          en: "The Rhythm of Skincare Starts Within.",
+          en: "The Rhythm of\n Skincare Starts Within.",
           zh: "保養的節奏，從理解肌膚開始。"
         }
       },
@@ -185,7 +186,7 @@ const CarouselSlides = ({ currentSlide }) => {
         product: primarypd4,
         layout: 'left',
         slogan: {
-          en: "The Rhythm of Skincare Starts Within.",
+          en: "The Rhythm of\n Skincare Starts Within.",
           zh: "保養的節奏，從理解肌膚開始。"
         }
       }
@@ -395,6 +396,7 @@ const KnowledgeCard = ({ content }) => {
       <div className="card-text-area">
         <p className="card-text-small">{content.small}</p>
         <p className="card-text-title">{content.title}</p>
+        <p className="card-text-desc">{content.desc}</p>
       </div>
     </div>
   )
@@ -407,28 +409,32 @@ const KnowledgeCardContent = () => {
       background: KnowledgeCardBG1,
       small: "不同季節環境變化大，保養方式也要跟著調整",
       title: "換季保養：秋冬、春夏肌膚護理",
-      link: "/article/sensitive-skin-care-guide"
+      link: "/article/sensitive-skin-care-guide",
+      desc: "每到季節交替，肌膚就容易出現乾癢、脫皮、泛紅、油水失衡等問題。\n不同季節環境變化大，保養方式也要跟著調整，才能讓你的臉一年四季都水嫩有光澤！"
     },
     {
       id: 2,
       background: KnowledgeCardBG2,
       small: "臉部按摩是最簡單、最划算的肌膚保養投資",
       title: "臉部按摩的好處與正確手法教學",
-      link: "/article/sensitive-skin-care-guide"
+      link: "/article/sensitive-skin-care-guide",
+      desc: "現代人對肌膚保養越來越講究，家用美容儀成為許多人日常保養的好幫手。\n但市面上美容儀百百款，該如何根據自己的膚質挑選適合的產品？\n本篇將從膚質分類、美容儀種類、選購重點到正確使用方式，一次解析！"
     },
     {
       id: 3,
       background: KnowledgeCardBG3,
       small: "分享正確洗臉流程、適合各膚質的洗面產品挑選",
       title: "每天洗臉的正確步驟與常見錯誤解析",
-      link: "/article/sensitive-skin-care-guide"
+      link: "/article/sensitive-skin-care-guide",
+      desc: "選擇適合自己膚質的洗面乳\n控制洗臉時間和頻率\n使用溫水，避免過冷或過熱\n動作輕柔，避免過度摩擦\n洗後立即保養，鎖住水分\n持之以恆，才能看到效果"
     },
     {
       id: 4,
       background: KnowledgeCardBG4,
       small: "只要掌握正確的護理原則與產品選擇",
       title: "敏感肌必看日常護理與產品挑選指南",
-      link: "/article/sensitive-skin-care-guide"
+      link: "/article/sensitive-skin-care-guide",
+      desc: "敏感肌雖然嬌嫩易感，但通過正確的護理方法和生活調整， 完全可以擁有健康穩定的肌膚狀態。\n記住「溫和、簡化、堅持」 的護理原則，給肌膚充分的時間恢復和適應。\n每個人的肌膚狀況不同，建議在專業皮膚科醫師的指導下， 制定最適合自己的護理方案。\n堅持正確護理，您的敏感肌 也能重現健康光采。"
     },
   ]
   return (
@@ -512,6 +518,7 @@ const ImageCarousel = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   // 處理輪播邏輯
   const goToNext = () => {
@@ -519,6 +526,29 @@ const ImageCarousel = () => {
     setIsTransitioning(true);
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     setTimeout(() => setIsTransitioning(false), 500);
+  };
+
+  // 自動播放的 useEffect
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+
+    const autoPlayInterval = setInterval(() => {
+      if (!isTransitioning) {
+        goToNext();
+      }
+    }, 3000); // 每3秒切換
+
+    // 清理函數
+    return () => clearInterval(autoPlayInterval);
+  }, [isAutoPlaying, isTransitioning, currentIndex]);
+
+  // 滑鼠懸停時暫停自動播放
+  const handleMouseEnter = () => {
+    setIsAutoPlaying(false);
+  };
+
+  const handleMouseLeave = () => {
+    setIsAutoPlaying(true);
   };
 
   const goToPrev = () => {
@@ -550,12 +580,14 @@ const ImageCarousel = () => {
         </button>
 
         {/* 圖片容器 */}
-        <div className="carousel-track">
+        <div className="carousel-track" >
           {images.map((image, index) => {
             const position = getImagePosition(index);
             return (
               <Link to={`/news/${image.slug}`} key={image.id}>
-                <div                  
+                <div
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                   className={`carousel-slide carousel-slide--${position} ${isTransitioning ? 'carousel-slide--transitioning' : ''
                     }`}
                 >
@@ -609,10 +641,10 @@ const ImageCarousel = () => {
 // 最新消息區與店舖資訊區元件
 const NewsStrip = ({ item }) => {
   return (
-    <div className="news-content">
+    <Link to={`/news/${item.url}`} className="news-content">
       <div className="news-date">{item.date}</div>
       <div className="news-desc">{item.desc}</div>
-    </div>
+    </Link>
   )
 }
 
@@ -621,27 +653,32 @@ const NewsContent = () => {
     {
       id: 1,
       date: "2024.8.6",
-      desc: "【ELOA官網會員日 獨家福利開放中】加入會員即可抽ELOA高效美容儀新品，消費滿$3,000再享專屬折扣與禮物包，快來搶先入手！"
+      desc: "【ELOA官網會員日 獨家福利開放中】加入會員即可抽ELOA高效美容儀新品，消費滿$3,000再享專屬折扣與禮物包，快來搶先入手！",
+      url: "member-weekly-discount",
     },
     {
       id: 2,
       date: "2024.7.30",
-      desc: "【夏日保養季 加碼送好禮】活動期間凡購買任一美容儀，結帳即贈「舒緩凝膠旅行組」，幫助肌膚清涼保水，夏日保養無負擔！"
+      desc: "【秋日保養季 加碼送好禮】活動期間凡購買任一美容儀，結帳即贈「舒緩凝膠旅行組」，幫助肌膚清涼保水，秋天保養無負擔！",
+      url: "autumn-experience-gift",
     },
     {
       id: 3,
       date: "2024.7.2",
-      desc: "【ELOA新品 Calmié 冷敷舒緩儀 上市】專為敏感與曬後肌設計的冷敷美容儀正式登場！即日起至 8/15，搶先購買享 9 折優惠，再送專屬配件。"
+      desc: "【ELOA新品 Calmié 冷敷舒緩儀 上市】專為敏感與曬後肌設計的冷敷美容儀正式登場！即日起至 8/15，搶先購買享 9 折優惠，再送專屬配件。",
+      url: "calmie-launch",
     },
     {
       id: 4,
       date: "2024.7.1",
-      desc: "【好友推薦計畫 開跑】邀請好友註冊並完成首購，您與好友各獲得 NT$300 購物金，次次購物更划算，快來一起美麗！"
+      desc: "【好友推薦計畫 開跑】邀請好友註冊並完成首購，您與好友各獲得 NT$300 購物金，次次購物更划算，快來一起美麗！",
+      url: "friend-referral-rewards",
     },
     {
       id: 5,
       date: "2024.6.24",
-      desc: "【ELOA 週年慶 限定狂歡】全館商品最低 85 折，再享滿額加贈「肌膚修護禮盒」。會員專屬抽獎同步開跑，頭獎可得旗艦美容儀一台！"
+      desc: "【ELOA 週年慶 限定狂歡】全館商品最低 85 折，再享滿額加贈「肌膚修護禮盒」。會員專屬抽獎同步開跑，頭獎可得旗艦美容儀一台！",
+      url: "anniversary-sale",
     }
   ]
 
@@ -727,6 +764,9 @@ const CircleItems = () => {
 
 
 const Home = () => {
+  // 設置首頁標題
+  useDocumentTitle("首頁");
+  
   const [offsetY, setOffsetY] = useState(0);
   const ProductMouseMove = (e) => {
     const scrollAmount = e.deltaY;
@@ -889,9 +929,9 @@ const Home = () => {
         </div>
         <div className="stores-container">
           <div className="store-info">
-            <LeafletMap />            
+            <LeafletMap />
           </div>
-          
+
           <div className="info-container">
             <div className="info-title-box">
               <p className="info-title">店鋪情報</p>
@@ -899,7 +939,7 @@ const Home = () => {
             <p className="info-content">歡迎前往實體銷售據點<br />
               親自體驗、諮詢、購買</p>
           </div>
-          
+
         </div>
         <div className="news-store-decorate">
           <img src={decorate2} alt="decorate" />

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "../scss/styleMemberManagement.scss"
 import MemberSystem from '../data/MemberSystem'
 import { useNavigate } from 'react-router-dom'
+import useDocumentTitle from "../hooks/useDocumentTitle"
 // 引入圖片
 import decorateTop from "../assets/images/member-management-bg-top.svg"
 import decorateBottom from "../assets/images/member-management-bg-bottom.svg"
@@ -283,6 +284,7 @@ const MemberManagement = () => {
         }
     }
     return (
+        useDocumentTitle(`尊榮的${currentUser.username}資訊`),
         <section className="member-management-sec">
             <img src={decorateTop} alt="decorateTop" className='member-management-decorate' id='top' />
             <img src={decorateBottom} alt="" className="member-management-decorate" id='bottom' />

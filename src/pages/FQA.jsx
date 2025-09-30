@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { GrAdd, GrClose } from "react-icons/gr";
 import "../scss/styleFqa.scss";
+import useDocumentTitle from "../hooks/useDocumentTitle"
 
 const FAQ = () => {
   const [openItems, setOpenItems] = useState({});
@@ -60,6 +61,7 @@ const FAQ = () => {
   const allOpen = Object.values(openItems).every(Boolean);
 
   return (
+    useDocumentTitle("常見問題"),
     <div className="faq">
       <video
         className="faq__bg-video"

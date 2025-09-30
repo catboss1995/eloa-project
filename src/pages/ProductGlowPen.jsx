@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useCart } from '../data/CartContext'
 import "../scss/styleProductInfo.scss"
 import GlassmorphismButton from '../components/GlassmorphismButton'
+import useDocumentTitle from '../hooks/useDocumentTitle'
 // display 區
 import calmieFront from "../assets/images/glow-pen-front.avif"
 import calmieLeft from "../assets/images/glow-pen-left.avif"
@@ -721,6 +722,7 @@ const ProductInfo = () => {
     };
   }, []);
   return (
+    useDocumentTitle("GlowPen"),
     <>
       <section className="info-h100-vh" id="product-display-sec">
         <div className="display-area">
@@ -737,7 +739,7 @@ const ProductInfo = () => {
       <section className="info-h100-vh" id="before-after-sec">
         <div className="bf-text-area">
           <p className="bf-title">美容儀使用後臉部對比</p>
-          <p className="bf-desc">立即啟動肌膚逆轉計畫，緊緻、提亮一機完成。<br />14天看見效果，數萬用戶一致推薦！</p>
+          <p className="bf-desc">立即啟動肌膚逆轉計畫，緊緻、提亮一機完成。<br />14天看見效果，數萬用戶一致推薦！( AI效果圖 )</p>
         </div>
         <div className="bf-effect-area">
           <BeforeAfterCard />
@@ -748,7 +750,7 @@ const ProductInfo = () => {
         <div className="text-area">
           <p>皮膚由暗沉、痘疤明顯→均勻透亮，煥發健康光澤</p>
           <p>僅<span>14</span>天</p>
-          <p>*ai效果圖，請勿認真</p>
+          {/* <p>*ai效果圖，請勿認真</p> */}
         </div>
       </section>
       <section className="info-h100-vh" id="faq-sec">

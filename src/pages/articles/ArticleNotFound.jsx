@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router-dom';
-
+import useDocumentTitle from '../../hooks/useDocumentTitle';
 // 文章未找到頁面
 const ArticleNotFound = () => {
+  useDocumentTitle('文章未找到');
   return (
     <div className="articleContentPage">
       <div className="breadcrumb">

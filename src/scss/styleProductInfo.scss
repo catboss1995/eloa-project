@@ -310,7 +310,7 @@
 
             .tabs-button {
                 position: relative;
-                border: 1px solid $dark-brown1;
+                border: 1px solid $beige0;
                 padding: 10px 30px 20px;
                 bottom: -10px;
                 background-color: $beige0;
@@ -320,7 +320,8 @@
                 }
 
                 &.active {
-                    background-color: $beige5;
+                    
+                    background-color: $beige1;
                 }
             }
         }
