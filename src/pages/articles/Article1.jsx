@@ -380,7 +380,7 @@ const Article1 = () => {
 							</div>
 							<div className="product-card">
 								<div className="product-image">
-									<img src="/src/assets/images/gel.svg" alt="Calmie 專用舒緩凝膠" />
+									<img src="/src/assets/images/gel.avif" alt="Calmie 專用舒緩凝膠" />
 								</div>
 								<div className="product-info">
 									<h3>Calmie 專用舒緩凝膠</h3>
