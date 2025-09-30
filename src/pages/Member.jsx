@@ -18,7 +18,9 @@ const Member = () => {
       navigate("/MemberManagement");
     }
   },[navigate]);
+  
   const [isLogin, setIsLogin] = useState(true);
+  const [showHint, setShowHint] = useState(true); // 控制提示文字顯示
   const [formData, setFormData] = useState({
     email: '',
     username: '',
@@ -31,6 +33,11 @@ const Member = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+
+    // 當 email 開始輸入時隱藏提示
+    if (name === 'email' && value.length > 0 && showHint) {
+      setShowHint(false);
+    }
 
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
@@ -94,6 +101,7 @@ const Member = () => {
     setFormData({ email: '', username: '', password: '', confirmPassword: '' });
     setErrors({});
     setAgreeTerms(false);
+    setShowHint(true); // 重置提示狀態
   };
 
   const handleForgotPassword = () => {
@@ -135,6 +143,10 @@ const Member = () => {
 
             <div className="form-group">
               <input type="password" name="password" value={formData.password} onChange={handleInputChange} placeholder="密碼" className={errors.password ? 'error' : ''} />
+              {/* 只在登入模式、email 為空時顯示提示 */}
+              {isLogin && formData.email === '' && showHint && !errors.email && (
+                <span className="hint-text">沒有會員請先註冊</span>
+              )}
               {errors.password && <span className="error-text">{errors.password}</span>}
             </div>
 
