@@ -3,6 +3,8 @@ import { FaLightbulb, FaThermometerHalf, FaRegClock, FaUserMd, FaChevronUp, FaEx
 import '../../scss/articles/_elegant-design.scss';
 import articlesData from '../../data/articlesData';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
+import essence from "../../assets/images/essence.svg"
+import gel from "../../assets/images/gel.avif"
 
 const Article1 = () => {
 	const [activeSection, setActiveSection] = useState(0);
@@ -371,7 +373,7 @@ const Article1 = () => {
 						<div className="product-showcase fade-in-up">
 							<div className="product-card">
 								<div className="product-image">
-									<img src="/src/assets/images/essence.svg" alt="光彩賦活精華" />
+									<img src={essence} alt="光彩賦活精華" />
 								</div>
 								<div className="product-info">
 									<h3>光彩賦活精華</h3>
@@ -380,7 +382,7 @@ const Article1 = () => {
 							</div>
 							<div className="product-card">
 								<div className="product-image">
-									<img src="/src/assets/images/gel.avif" alt="Calmie 專用舒緩凝膠" />
+									<img src={gel} alt="Calmie 專用舒緩凝膠" />
 								</div>
 								<div className="product-info">
 									<h3>Calmie 專用舒緩凝膠</h3>
