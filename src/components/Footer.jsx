@@ -33,10 +33,11 @@ const Footer = () => {
         <div id="rightArea">
           <h3>網站地圖</h3>
           <ul id="siteMap">
-            <li><Link to="/ProductInfo" className="fx navLk">恆溫冷敷舒緩儀</Link></li>
-            <li><Link to="/ProductInfo" className="fx navLk">淨膚導出清潔儀</Link></li>
-            <li><Link to="/ProductInfo" className="fx navLk">智慧亮膚導入筆</Link></li>
-            <li><Link to="/ProductInfo" className="fx navLk">高效粉刺清潔儀</Link></li>
+            <li><Link to="/ProductMasterIX" className="fx navLk">全效肌膚管理儀</Link></li>
+            <li><Link to="/ProductCalmie" className="fx navLk">恆溫冷敷舒緩儀</Link></li>
+            <li><Link to="/ProductAuraClean" className="fx navLk">淨膚導出清潔儀</Link></li>
+            <li><Link to="/ProductGlowPen" className="fx navLk">智慧亮膚導入筆</Link></li>
+            <li><Link to="/ProductCleanShot" className="fx navLk">高效粉刺清潔儀</Link></li>
             <li><Link to="/SkinTest" className="fx navLk">我的膚況區</Link></li>
             <li><Link to="/Article" className="fx navLk">肌膚知識學苑</Link></li>
           </ul> 
