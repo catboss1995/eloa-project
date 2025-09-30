@@ -63,6 +63,7 @@ const Article = () => {
   const navWrapRef = useRef(null);
   const articleCardsRef = useRef([]);
   const sectionHeadersRef = useRef([]);
+  const contentSecRef = useRef(null); // 用於滾動到內容區域
 
   // 重置引用數組
   articleCardsRef.current = [];
@@ -103,10 +104,74 @@ const Article = () => {
       }
       
       setFilteredArticles(results);
+      
+      // 當搜尋條件變更後，延遲一點再滾動到內容區域，讓用戶有時間注意到變化
+      setTimeout(() => {
+        scrollToContent();
+      }, 300); // 增加延遲時間，讓用戶先看到內容變化
     } else {
       setIsSearching(false);
     }
   }, [searchTerm, activeFilter]);
+
+  // 滾動到內容區域的函數 - 使用更緩慢的滾動效果
+  const scrollToContent = () => {
+    if (contentSecRef.current) {
+      const yOffset = -160; // 增加偏移量，讓滾動停在更上方的位置
+      const targetY = contentSecRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      const startY = window.pageYOffset;
+      const distance = targetY - startY;
+      
+      // 如果距離太短，不需要滾動
+      if (Math.abs(distance) < 50) return;
+      
+      try {
+        // 嘗試使用原生平滑滾動，但設置更長的持續時間
+        if ('scrollBehavior' in document.documentElement.style) {
+          // 原生平滑滾動
+          window.scrollTo({
+            top: targetY,
+            behavior: 'smooth'
+          });
+          log('Using native smooth scroll to content section');
+        } else {
+          // 如果瀏覽器不支持原生平滑滾動，使用自定義動畫
+          smoothScrollTo(targetY, 1200); // 增加滾動時間到1200毫秒
+          log('Using custom smooth scroll to content section');
+        }
+      } catch (error) {
+        console.error('Error during scroll:', error);
+        window.scrollTo(0, targetY); // 直接滾動作為備用
+      }
+    }
+  };
+
+  // 自定義平滑滾動函數，提供更多控制
+  const smoothScrollTo = (targetY, duration = 1000) => {
+    const startY = window.pageYOffset;
+    const distance = targetY - startY;
+    let startTime = null;
+    
+    // 使用緩動函數使滾動更自然
+    const easeInOutQuad = (t) => {
+      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    };
+    
+    const animation = (currentTime) => {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+      const ease = easeInOutQuad(progress);
+      
+      window.scrollTo(0, startY + distance * ease);
+      
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    };
+    
+    requestAnimationFrame(animation);
+  };
 
   // 處理點擊外部區域收起搜尋框
   useEffect(() => {
@@ -607,7 +672,7 @@ const Article = () => {
 
       {/* 搜尋結果 */}
       {isSearching && (
-        <section className="contentSec">
+        <section className="contentSec" ref={contentSecRef}>
           <div className={`secHeader ${useFallbackAnimations ? 'animate-fallback' : ''}`} ref={addToHeaderRefs}>
             <h3 className="secTitle">
               {activeFilter ? `${activeFilter}` : '搜尋結果'}
@@ -631,7 +696,7 @@ const Article = () => {
       {!isSearching && (
         <>
           {/* 保養科學堂 */}
-          <section className="contentSec">
+          <section className="contentSec" ref={contentSecRef}>
             <div className={`secHeader ${useFallbackAnimations ? 'animate-fallback' : ''}`} ref={addToHeaderRefs}>
               <h3 className="secTitle">保養科學堂</h3>
             </div>
