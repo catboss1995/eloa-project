@@ -1,6 +1,7 @@
-import React from "react";
+import React, { use } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../scss/styleNews.scss";
+import useDocumentTitle from "../hooks/useDocumentTitle";
 
 
 // 使用與 News.jsx 相同的圖片
@@ -255,6 +256,7 @@ const NewsRouter = () => {
   // 如果找不到最新消息，顯示 404 頁面
   if (!currentNews) {
     return (
+      useDocumentTitle("找不到此最新消息"),
       <section className="news-detail">
         <div className="news-detail__container">
           <div className="news-detail__not-found">
@@ -270,6 +272,7 @@ const NewsRouter = () => {
   }
 
   return (
+    useDocumentTitle(`${currentNews.title}`),
     <section className="news-detail">
       {/* 返回按鈕 */}
       <div className="news-detail__nav">

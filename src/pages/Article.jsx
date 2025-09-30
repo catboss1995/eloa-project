@@ -2,6 +2,7 @@
 import { animate, scroll, inView, stagger } from "motion";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from 'react-router-dom';
+import useDocumentTitle from "../hooks/useDocumentTitle";
 // 引入 SCSS 樣式
 import "../scss/styleAcademy.scss";
 // 引入文章數據
@@ -42,6 +43,9 @@ const imageMap = {
 };
 
 const Article = () => {
+  // 設置頁面標題
+  useDocumentTitle("肌膚知識學苑");
+  
   // 搜尋相關狀態
   const [searchTerm, setSearchTerm] = useState('');
   const [activeFilter, setActiveFilter] = useState('');

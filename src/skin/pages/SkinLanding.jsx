@@ -1,11 +1,12 @@
 import styles from "../../scss/SkinTest.module.scss";
 import { useNavigate } from "react-router-dom";
-const skinBg = "https://ik.imagekit.io/rgyxmrxzs/skin-bg.png?updatedAt=1757574221401";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 export default function SkinLanding() {
   const nav = useNavigate();
 
   return (
+    useDocumentTitle("線上肌膚分析"),
     <div className={styles["skin-page"]}>
       {/* 左側/全版背景（你的 module 裡已有樣式） */}
       <div className={styles["bg-image"]} />

@@ -4,6 +4,7 @@ import newsData from "./NewsData";
 import gsap from "gsap";
 import SplitType from 'split-type';
 import "../scss/styleNews.scss";
+import useDocumentTitle from "../hooks/useDocumentTitle"
 
 // Banner 圖片
 const newsBanner = "https://ik.imagekit.io/rgyxmrxzs/newsBanner2.png?updatedAt=1757227626682";
@@ -61,6 +62,7 @@ const NewsPage = () => {
   });
 
   return (
+    useDocumentTitle("最新消息"),
     <section className="news">
       {/* Hero Banner */}
       <div className="news__hero">

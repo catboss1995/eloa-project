@@ -3,6 +3,7 @@ import "../scss/styleCheckOut.scss"
 import { useCart } from '../data/CartContext'
 import MemberSystem from '../data/MemberSystem'
 import { useNavigate } from 'react-router-dom'
+import useDocumentTitle from '../hooks/useDocumentTitle'
 
 
 const CheckOut = () => {
@@ -201,6 +202,7 @@ const CheckOut = () => {
 
 
   return (
+    useDocumentTitle("結帳"),
     <div className="checkout-page">
       <div className="checkout-container">
         {/* Left side - Form */}

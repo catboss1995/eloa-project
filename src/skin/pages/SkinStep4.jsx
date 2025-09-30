@@ -3,6 +3,7 @@ import { GoChevronRight } from "react-icons/go";
 import { useCart } from "../../data/CartContext"; // 加入這行
 import GlassmorphismButton from "../../components/GlassmorphismButton"; // 若有自訂按鈕元件
 import { useState } from "react";
+import useDocumentTitle from "../../hooks/useDocumentTitle"
 
 import styles from "../../scss/SkinTest.module.scss"; // 玻璃擬態
 import "../../scss/skin/_step.scss";                  // pill/btn/dots 共用
@@ -33,6 +34,7 @@ export default function SkinStep4() {
   };
 
   return (
+    useDocumentTitle("線上肌膚分析結果"),
     <div className={`step4 ${styles["skin-page"]}`}>
       {/* Section 1 */}
       <section

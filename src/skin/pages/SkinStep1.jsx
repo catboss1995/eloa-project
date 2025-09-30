@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSkinForm } from "../store/skinForm";
 import { GoChevronRight } from "react-icons/go";
+import useDocumentTitle from "../../hooks/useDocumentTitle";  
 
 
 // 外層容器與玻璃擬態（跟 SkinLanding 同一份）
@@ -42,6 +43,7 @@ export default function SkinStep1() {
   };
 
   return (
+    useDocumentTitle("線上肌膚分析1/4"),
     <div className={styles["skin-page"]}>
       {/* 左側或全版背景（與 Landing 同一套） */}
       <div className={styles["bg-image"]} />

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useCart } from '../data/CartContext'
 import "../scss/styleProductInfo.scss"
 import GlassmorphismButton from '../components/GlassmorphismButton'
+import useDocumentTitle from '../hooks/useDocumentTitle'
 // display 區
 import calmieFront from "../assets/images/clean-shot-front.avif"
 import calmieLeft from "../assets/images/clean-shot-left.avif"
@@ -721,6 +722,7 @@ const ProductInfo = () => {
     };
   }, []);
   return (
+    useDocumentTitle("CleanShot"),
     <>
       <section className="info-h100-vh" id="product-display-sec">
         <div className="display-area">
@@ -748,7 +750,7 @@ const ProductInfo = () => {
         <div className="text-area">
           <p>皮膚由暗沉、痘疤明顯→均勻透亮，煥發健康光澤</p>
           <p>僅<span>14</span>天</p>
-          <p>*ai效果圖，請勿認真</p>
+          {/* <p>*ai效果圖，請勿認真</p> */}
         </div>
       </section>
       <section className="info-h100-vh" id="faq-sec">
