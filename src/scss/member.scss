@@ -124,6 +124,15 @@
                     margin-left: 4px;
                 }
 
+                .hint-text {
+                    color: $dark-brown2;
+                    font-size: $font14-light;
+                    margin-top: 5px;
+                    margin-left: 4px;
+                    opacity: 0.8;
+                    font-style: italic;
+                }
+
                 .submit-error {
                     text-align: center;
                     margin-top: 10px;
