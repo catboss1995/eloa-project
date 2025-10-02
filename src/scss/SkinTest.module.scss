@@ -63,9 +63,8 @@
 
   .glass-box {
     position: absolute;
-    // justify-self: center;
+    justify-self: center;
     // margin: 0 auto;
-    width: 100%;
     // left: 30%;
     top: 20%;
     // transform: translate(-50%, -50%);
@@ -97,6 +96,11 @@
       // left: 50%;
       // top: 30%;
       // transform: translate(-50%, -50%);
+    }
+
+    @media ($width450) {
+      width: 100%;
+      
     }
 
     .title {
