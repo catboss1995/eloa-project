@@ -454,6 +454,9 @@
             height: 100%;
             top: -10%;
             left: 10%;
+            @media (min-width: 1790px) {
+                left: 13%;
+            }
 
             @media (max-width:1200px) {
                 max-width: 180px;
@@ -1772,6 +1775,9 @@
                 &:nth-child(2) {
                     align-self: center;
                     padding-left: 200px;
+                    @media (max-width:1078px) {
+                        padding-left: 0;                        
+                    }
                 }
 
                 .store-name {
