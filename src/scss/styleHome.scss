@@ -52,6 +52,7 @@
             }
             @media ($mediaMax450) {
                 width: 100%;               
+                margin: -100px auto 0 20px;
             }
 
             .slogan-en {
@@ -87,6 +88,10 @@
             @media ($mediaMax767) {
                 margin: -100px auto 0 50px;
                 width: 80%;
+            }
+            @media ($mediaMax450) {
+                width: 100%;               
+                margin: -100px auto 0 20px;
             }
         }
 
@@ -760,10 +765,12 @@
                         background: $brown4;
                         width: 36px;
                         height: 36px;
-                        border-radius: 99px;
-                        justify-items: center;
-                        align-content: center;
+                        border-radius: 99px;                        
+                        align-content: center;                        
                         margin-top: 10px;
+                        img {
+                            margin: 0 auto;
+                        }
                     }
 
                     .product-card-buttons {
