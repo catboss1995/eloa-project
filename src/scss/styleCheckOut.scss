@@ -22,6 +22,10 @@
             overflow: hidden;
             min-width: 500px;
             max-width: 530px;
+            @media ($mediaMax450) {
+                min-width: 390px;
+                max-width: 390px;                
+            }
 
             .form-header {
                 background: $white;
