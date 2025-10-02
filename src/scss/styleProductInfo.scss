@@ -360,7 +360,8 @@
                         .step-img {
                             display: flex;
                             width: 20vh;
-                            justify-items: center;
+                            // justify-items: center;
+                            margin: 0 auto;
                             @media ($mediaMax1040) {
                                 width: 15vh;
                             }
