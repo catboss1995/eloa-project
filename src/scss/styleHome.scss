@@ -310,6 +310,7 @@
             h2 {
                 font-size: $font48-light;
                 font-family: Joanna, serif;
+                letter-spacing: 3px;
                 margin-bottom: 30px;
                 -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
                 clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
@@ -496,7 +497,7 @@
         #decorate-products {
             position: absolute;
             width: 30%;
-            height: 100%;
+            // height: 100%;
             top: 20%;
             right: 8%;
 
@@ -695,7 +696,7 @@
                     .product-card-pic {
                         padding: 30px 0;
                         height: 35vh;
-                        justify-self: center;
+                        margin: 0 auto;
 
                         @media ($mediaMax1200) {
                             height: 25vh;
@@ -855,6 +856,7 @@
         .feedback-zh,
         .feedback-en {
             font-size: $font32-light;
+            margin: 0 auto;
 
             @media ($mediaMax767) {
                 font-size: $font24-light;
