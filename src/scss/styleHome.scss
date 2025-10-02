@@ -50,6 +50,9 @@
                 width: 80%;
                 margin: -100px auto 0 50px;
             }
+            @media ($mediaMax450) {
+                width: 100%;               
+            }
 
             .slogan-en {
                 color: $white;
@@ -58,6 +61,9 @@
                 font-weight: 400;
                 line-height: 48px;
                 text-shadow: 2px 2px 4px $dark-brown1;
+                @media ($mediaMax450) {
+                    font-size: $font32-light;                    
+                }
             }
 
             .slogan-zh {
@@ -68,6 +74,9 @@
                 line-height: 36px;
                 letter-spacing: 2.4px;
                 text-shadow: 2px 2px 4px $dark-brown1;
+                @media ($mediaMax450) {
+                    font-size: $font18-light;
+                }
             }
         }
 
