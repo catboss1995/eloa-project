@@ -31,7 +31,7 @@ const Footer = () => {
           </div>
         </div>
         <div id="rightArea">
-          <h3>網站地圖</h3>
+          <h3>網站導覽</h3>
           <ul id="siteMap">
             <li><Link to="/ProductMasterIX" className="fx navLk">全效肌膚管理儀</Link></li>
             <li><Link to="/ProductCalmie" className="fx navLk">恆溫冷敷舒緩儀</Link></li>
